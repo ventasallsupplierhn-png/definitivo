@@ -1,7 +1,8 @@
-# Vitra House · Sistema de Cotizaciones y Materiales v8.0.1
+# Sistema de Presupuestos v9.2.0
 
-Aplicación web con dos módulos unidos: **cotización al cliente** y **cálculo de
-materiales para ventanas de PVC**, con acceso por contraseña y cuatro usuarios.
+Aplicación web con tres módulos de trabajo unidos: **cotización de vidriería
+(Vitra House)**, **cálculo de materiales de PVC** y **presupuesto de muebles
+(Muebles Zacapa)**, con acceso por contraseña y cuatro usuarios.
 Funciona en computadora y celular, **sin conexión**, y opcionalmente sincroniza
 con Google Sheets a través de Google Apps Script.
 
@@ -65,18 +66,41 @@ cuando no hay internet.
 
 ## 1c. Módulos
 
-- **🧾 Cotización** — datos del cliente, detalle por área (alto × ancho ÷ 144),
+La pantalla de acceso y el encabezado de la aplicación llevan el logo
+corporativo de Representaciones e Inversiones Tinoco (constante `LOGO_PORTADA`).
+Cada documento impreso lleva dos logos a la izquierda: el de su negocio
+(`LOGO` para Vitra House, `LOGO_MZ` para Muebles Zacapa) y, a la par, el
+corporativo separado por una línea. Los dos encabezan con la razón social
+**Representaciones e Inversiones Tinoco S. de R. L.** (constante `RAZON_SOCIAL`),
+debajo del nombre comercial y sin alterar el RTN ni los datos de cada negocio.
+
+Al entrar aparece la pantalla **«¿Qué módulo deseas usar?»** con una tarjeta por
+módulo; el botón **← Módulos** regresa a esa pantalla en cualquier momento.
+
+- **▣ Cotización · Vitra House** — datos del cliente, detalle por área (alto × ancho ÷ 144),
   cantidad, descuento, ISV, condiciones, monto en letras y cotización imprimible.
 - **🪟 Materiales PVC** — ventanas del proyecto, perfiles, felpa, vinil, vidrio,
   tela mosquitera y herrajes; plan de cortes por lance, sobrantes y consolidado
   de fabricación. Para el administrador muestra además el costo de materiales
   frente al total cotizado y el margen.
-- **🗂 Proyectos** — buscador, filtro por estado, ver, editar, duplicar, eliminar.
+- **◧ Presupuesto · Muebles Zacapa** — muebles por metro lineal (medida ML ×
+  precio por ML), descuento, impuesto y observaciones. El presupuesto impreso
+  muestra descripción, medida y total; el precio por metro lineal queda solo en
+  pantalla, no se imprime. Imprime con la identidad,
+  el RTN y la dirección de Representaciones e Inversiones Tinoco S. de R. L.
+  Sus datos se editan en el bloque `EMPRESA_MZ` del archivo.
+- **◴ Proyectos** — lista única de los dos negocios, con etiqueta de módulo,
+  filtro por módulo y por estado, ver, editar, duplicar, eliminar. Al editar se
+  abre automáticamente el módulo que corresponde.
 - **⚙ Administración** — catálogo de materiales y precios, parámetros de cálculo
   (lance, moneda, decimales), datos de empresa, servidor y usuarios.
 
-Ambos módulos comparten el mismo proyecto: al guardar, se guardan juntos la
-cotización y el cálculo de materiales.
+La cotización de vidriería y el cálculo de materiales de PVC comparten el mismo
+proyecto: al guardar se almacenan juntos. Los presupuestos de muebles se guardan
+como proyectos aparte, en la misma lista.
+
+En el servidor, los números de vidriería usan el prefijo `COT` y los de muebles
+el prefijo `MZ`, cada uno con su propio correlativo.
 
 ## 2. Publicar en GitHub Pages
 
@@ -261,6 +285,7 @@ vieja guardada en caché.
 
 | Síntoma | Causa y solución |
 |---|---|
+| Un operador ve «trabajando sin servidor» | Su usuario no existe en la hoja USUARIOS. En Apps Script ejecute **Agregar usuarios faltantes** (menú *Vitra House* de la hoja), o agréguelo a mano. Mientras tanto trabaja normal, pero sus cotizaciones quedan solo en su equipo. |
 | «El servidor no devolvió datos válidos» | La implementación no tiene acceso **Cualquier persona**. Vuelva a implementar. |
 | «Sin conexión con el servidor» | URL mal copiada (debe terminar en `/exec`) o no hay internet. |
 | Cambié el código del Apps Script y no se refleja | Cada cambio requiere **Implementar ▸ Administrar implementaciones ▸ ✏️ ▸ Versión: Nueva**. |
