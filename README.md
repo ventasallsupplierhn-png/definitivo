@@ -1,4 +1,4 @@
-# Sistema de Presupuestos v9.2.0
+# Sistema de Presupuestos v10.0.0
 
 Aplicación web con tres módulos de trabajo unidos: **cotización de vidriería
 (Vitra House)**, **cálculo de materiales de PVC** y **presupuesto de muebles
@@ -81,7 +81,10 @@ módulo; el botón **← Módulos** regresa a esa pantalla en cualquier momento.
   cantidad, descuento, ISV, condiciones, monto en letras y cotización imprimible.
 - **🪟 Materiales PVC** — ventanas del proyecto, perfiles, felpa, vinil, vidrio,
   tela mosquitera y herrajes; plan de cortes por lance, sobrantes y consolidado
-  de fabricación. Para el administrador muestra además el costo de materiales
+  de fabricación. Genera una **hoja de materiales imprimible** (PDF) y su versión
+  en Excel, con el resumen general, las ventanas, los materiales, el plan de
+  cortes, el detalle de fabricación y espacio de firma para el taller. Toma el
+  cliente y el proyecto de la pestaña de cotización. Para el administrador muestra además el costo de materiales
   frente al total cotizado y el margen.
 - **◧ Presupuesto · Muebles Zacapa** — muebles por metro lineal (medida ML ×
   precio por ML), descuento, impuesto y observaciones. El presupuesto impreso
@@ -95,12 +98,71 @@ módulo; el botón **← Módulos** regresa a esa pantalla en cualquier momento.
 - **⚙ Administración** — catálogo de materiales y precios, parámetros de cálculo
   (lance, moneda, decimales), datos de empresa, servidor y usuarios.
 
+### Editar los precios de los materiales
+
+En **Administración ▸ Catálogo de materiales y herrajes**:
+
+1. Elija en *Lista de precios que está editando* el tipo de PVC (blanco o color
+   madera). Cada uno guarda su propia lista.
+2. Cambie el precio unitario, el contenido de la presentación o desactive los
+   materiales que no use.
+3. Presione **💾 Guardar y publicar precios**. Quedan guardados en el equipo y se
+   envían a la hoja **CATALOGO_PVC** del servidor.
+
+Los demás equipos reciben la lista nueva de dos formas:
+
+- **Automáticamente**, al iniciar sesión o al sincronizar.
+- **Al instante**, con el botón azul **⟳ Actualizar precios**, disponible para
+  todos los usuarios. Sirve cuando el administrador acaba de cambiar un precio y
+  el vendedor necesita cotizar con el valor correcto sin cerrar sesión.
+
+El recuadro *Estado del catálogo* indica de dónde vienen los precios en uso:
+originales del sistema, propios sincronizados con el servidor, o propios guardados
+solo en ese dispositivo (aviso ámbar, cuando no hay conexión).
+
+**↺ Restaurar originales** devuelve el catálogo local a los valores de fábrica.
+No borra lo publicado en el servidor: para eso hay que restaurar y volver a
+publicar, o limpiar la hoja CATALOGO_PVC.
+
+Los materiales de la **cotización** (PVC blanco / color madera con su precio por
+ft²) se editan aparte, en ⚙ Configuración.
+
 La cotización de vidriería y el cálculo de materiales de PVC comparten el mismo
 proyecto: al guardar se almacenan juntos. Los presupuestos de muebles se guardan
 como proyectos aparte, en la misma lista.
 
 En el servidor, los números de vidriería usan el prefijo `COT` y los de muebles
 el prefijo `MZ`, cada uno con su propio correlativo.
+
+## 1d. Respaldo, papelera y conflictos
+
+**Respaldo** (Administración ▸ Respaldo de información): **Descargar respaldo**
+genera un archivo `.json` con todos los proyectos, la papelera, la configuración y
+la lista de precios. **Restaurar respaldo** lo vuelve a cargar en cualquier equipo:
+agrega lo que falte y actualiza lo que sea más reciente, **nunca borra**.
+Conviene descargarlo una vez por semana, sobre todo si trabajan sin servidor.
+
+**Papelera**: eliminar ya no es definitivo. Los proyectos se conservan 90 días y se
+pueden **restaurar** desde Administración, o borrar definitivamente uno por uno.
+
+**Conflictos**: si dos personas editan la misma cotización sin conexión, el
+servidor detecta cuál versión tenía cada quien. En lugar de perder una, guarda la
+segunda como copia con el número marcado `(copia)`, la lista la señala con una
+etiqueta roja y ambos usuarios reciben aviso para decidir cuál conservar.
+
+## 1e. Endurecer el acceso
+
+Por defecto las contraseñas están en claro en `AJUSTES_FABRICA`, lo cual es cómodo
+pero legible en un repositorio público. Dos medidas, ambas opcionales:
+
+1. **Contraseña cifrada.** En Administración ▸ Usuarios ▸ *Contraseña cifrada*
+   escriba usuario y clave y presione **Generar**. Copia al portapapeles una línea
+   como `{ usuario:"ventas1", pinHash:"a3f...", nombre:"Ventas 1", rol:"operador" },`
+   que reemplaza a la del usuario en `AJUSTES_FABRICA`. La clave deja de ser legible.
+2. **Exigir servidor.** En `AJUSTES_FABRICA` ponga `exigirServidor: true`. Entonces
+   solo se entra validando contra la hoja **USUARIOS** de Google Sheets, y la lista
+   del archivo deja de servir. Es la opción más segura, pero **sin internet nadie
+   podrá entrar**.
 
 ## 2. Publicar en GitHub Pages
 
@@ -285,6 +347,9 @@ vieja guardada en caché.
 
 | Síntoma | Causa y solución |
 |---|---|
+| Aparece «Hay piezas que no caben en el lance» | Una ventana es más larga que el lance disponible. Esas piezas **no** están incluidas en la cantidad a comprar. Divida la ventana en secciones o aumente la longitud del lance en Administración. |
+| Un número de cotización lleva «L» (COT-2026-L0003) | Se generó sin conexión. Al sincronizar, el servidor lo reemplaza por el correlativo definitivo. |
+| Los precios no llegan a otro equipo | El administrador no presionó **Guardar y publicar precios**, o el servidor no tiene la hoja CATALOGO_PVC. Ejecute **instalar()** de nuevo en Apps Script: crea la hoja sin borrar datos. |
 | Un operador ve «trabajando sin servidor» | Su usuario no existe en la hoja USUARIOS. En Apps Script ejecute **Agregar usuarios faltantes** (menú *Vitra House* de la hoja), o agréguelo a mano. Mientras tanto trabaja normal, pero sus cotizaciones quedan solo en su equipo. |
 | «El servidor no devolvió datos válidos» | La implementación no tiene acceso **Cualquier persona**. Vuelva a implementar. |
 | «Sin conexión con el servidor» | URL mal copiada (debe terminar en `/exec`) o no hay internet. |

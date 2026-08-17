@@ -183,6 +183,8 @@ select.discount-input{text-align:left;width:110px}
 .doc tfoot td{font-weight:bold;background:#edf5ff}
 .doc tfoot tr.final td{font-size:15px;background:#d9eaff}
 .doc-letras{margin-top:10px;font-size:12.5px;background:#f3f8ff;border-left:4px solid var(--blue);padding:9px 12px}
+.doc-sub{margin:18px 0 8px;font-size:14px;font-weight:800;color:var(--blue-dark);border-bottom:1px solid #b9c9da;padding-bottom:4px}
+.doc-mini{font-size:11.5px;color:#62758c;margin:0 0 6px}
 .doc-cond{margin-top:14px;font-size:12px;line-height:1.6;color:#33495f;white-space:pre-line}
 .doc-firma{margin-top:56px;text-align:center}
 .doc-firma .line{width:250px;border-top:1px solid #333;margin:0 auto 6px}
@@ -272,6 +274,18 @@ body.bloqueado{overflow:hidden}
 .note{background:var(--blue-soft);border-left:4px solid var(--blue);padding:11px 13px;border-radius:9px;font-size:13px;margin-top:12px;color:#0d3f7d;line-height:1.55}
 .note.warning{background:#fff4e5;border-left-color:var(--orange);color:#8a4b00}
 td.l{text-align:left}
+/* ══════════ BOTONES DEL CATÁLOGO ══════════ */
+.cat-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:4px 0 16px}
+.cat-actions>button{display:flex;align-items:center;gap:13px;text-align:left;padding:15px 18px;border-radius:14px;font-size:15px}
+.cat-actions .ico{font-size:21px;flex:none}
+.cat-actions .txt{display:flex;flex-direction:column;gap:3px;line-height:1.3}
+.cat-actions .txt small{font-weight:600;font-size:12px;opacity:.85}
+.btn-actualizar{background:linear-gradient(135deg,#1b78ef,#0056bf);color:#fff;box-shadow:0 6px 16px rgba(11,74,147,.25)}
+.btn-publicar{background:linear-gradient(135deg,#1da85a,#087b3d);color:#fff;box-shadow:0 6px 16px rgba(8,123,61,.25)}
+.cat-actions>button:disabled{opacity:.6}
+.cat-actions .btn-red-outline{grid-column:1/-1;justify-content:center}
+@media(max-width:760px){.cat-actions{grid-template-columns:1fr}}
+
 /* ══════════ ROLES ══════════ */
 body.rol-operador .solo-admin{display:none!important}
 @media(max-width:950px){.summary{grid-template-columns:1fr 1fr}}
@@ -551,6 +565,7 @@ body.rol-operador .solo-admin{display:none!important}
           <tbody id="pvVentanasBody"></tbody>
         </table>
       </div>
+      <div class="note warning" id="pvAvisoCortes" style="display:none"></div>
       <div class="note" id="pvWindowNote"></div>
     </section>
 
@@ -614,6 +629,12 @@ body.rol-operador .solo-admin{display:none!important}
         </table></div>
       </div>
     </section>
+
+    <div class="actions" style="grid-template-columns:repeat(3,1fr)">
+      <button class="pdf" id="pvPdfBtn" type="button">▣ Ver / Exportar PDF</button>
+      <button class="excel" id="pvExcelBtn" type="button">▤ Exportar Excel</button>
+      <button class="enviar" id="pvEnviarBtn" type="button">↗ Enviar</button>
+    </div>
   </div><!-- /panel-pvc -->
 
   <div id="panel-mue" class="tab-panel hidden">
@@ -718,8 +739,30 @@ body.rol-operador .solo-admin{display:none!important}
     <section class="card">
       <div class="card-head">
         <h2 class="section-title"><span class="section-icon">▦</span>Catálogo de materiales y herrajes</h2>
-        <span class="muted">Active o desactive materiales y edite contenido o precio.</span>
       </div>
+      <div class="cat-actions">
+        <button class="btn-actualizar" id="btnActualizarCatalogo" type="button">
+          <span class="ico">⟳</span>
+          <span class="txt"><b>Actualizar precios</b><small>Trae la lista vigente que publicó el administrador</small></span>
+        </button>
+        <button class="btn-publicar solo-admin" id="btnGuardarCatalogo" type="button">
+          <span class="ico">💾</span>
+          <span class="txt"><b>Guardar y publicar precios</b><small>Envía sus cambios a todos los dispositivos</small></span>
+        </button>
+        <button class="btn-red-outline solo-admin" id="btnRestaurarCatalogo" type="button">↺ Restaurar originales</button>
+      </div>
+      <div class="form-grid" style="grid-template-columns:1fr 1fr;margin-bottom:14px">
+        <div class="field">
+          <label for="pvTipoCat">Lista de precios que está editando</label>
+          <select id="pvTipoCat"><option value="PVC blanco">PVC blanco</option><option value="PVC color madera">PVC color madera</option></select>
+          <div class="hint">Cada tipo de PVC guarda su propia lista de precios.</div>
+        </div>
+        <div class="field">
+          <label>Estado del catálogo</label>
+          <div class="note" style="margin-top:0" id="selloCatalogo">Usando los precios originales del sistema.</div>
+        </div>
+      </div>
+      <div class="note warning">Después de cambiar precios o contenidos presione <b>Guardar precios</b>; de lo contrario los valores se pierden al cambiar de tipo de PVC o abrir otro proyecto.</div>
       <div class="table-wrap"><table>
         <thead><tr><th>Incluir</th><th>Material</th><th>Tipo de cálculo</th><th>Presentación</th><th>Longitud / contenido</th><th>Precio unitario (L)</th><th>Regla automática</th></tr></thead>
         <tbody id="pvBibliotecaBody"></tbody>
@@ -739,6 +782,40 @@ body.rol-operador .solo-admin{display:none!important}
         <tbody id="tablaUsuarios"></tbody>
       </table></div>
       <div class="note warning">Las contraseñas se definen en el bloque <b>AJUSTES_FABRICA</b> del archivo y, cuando se usa servidor, en la hoja <b>USUARIOS</b> de Google Sheets.</div>
+
+      <h3 style="font-size:15px;margin:20px 0 8px">Contraseña cifrada</h3>
+      <p class="muted" style="margin:0 0 12px">Evita que la contraseña se lea en el código. Genere la línea, péguela en <b>AJUSTES_FABRICA</b> reemplazando la del usuario y suba el archivo.</p>
+      <div class="form-grid" style="grid-template-columns:1fr 1fr auto;align-items:end">
+        <div class="field"><label for="hashUsuario">Usuario</label><input id="hashUsuario" placeholder="ventas1" autocomplete="off"></div>
+        <div class="field"><label for="hashPin">Contraseña</label><input id="hashPin" type="text" placeholder="nueva clave" autocomplete="off"></div>
+        <div class="field"><button class="btn-outline" id="btnGenerarHash" type="button">🔒 Generar</button></div>
+      </div>
+      <div class="note" id="hashResultado" style="display:none;font-family:Consolas,monospace;font-size:12px;word-break:break-all"></div>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title"><span class="section-icon">🗑</span>Papelera</h2>
+      <p class="muted" style="margin:0 0 12px">Los proyectos eliminados se conservan aquí 90 días antes de perderse.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>N.°</th><th>Módulo</th><th>Proyecto</th><th>Cliente</th><th>Eliminado</th><th>Acciones</th></tr></thead>
+        <tbody id="papeleraBody"></tbody>
+      </table></div>
+      <div class="status" id="papeleraResumen"></div>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title"><span class="section-icon">💾</span>Respaldo de información</h2>
+      <p class="muted" style="margin:0 0 14px">Descargue un archivo con todos los proyectos, la papelera, la configuración y la lista de precios. Sirve para cambiar de equipo o recuperarse de una pérdida.</p>
+      <div class="cat-actions">
+        <button class="btn-publicar" id="btnExportarRespaldo" type="button">
+          <span class="ico">⬇</span><span class="txt"><b>Descargar respaldo</b><small>Guarda todo en un archivo en su equipo</small></span>
+        </button>
+        <button class="btn-actualizar" id="btnImportarRespaldo" type="button">
+          <span class="ico">⬆</span><span class="txt"><b>Restaurar respaldo</b><small>Agrega lo que falte, sin borrar lo actual</small></span>
+        </button>
+      </div>
+      <input type="file" id="archivoRespaldo" accept="application/json,.json" style="display:none">
+      <div class="note">La restauración nunca borra: agrega los proyectos que falten y actualiza los que estén más recientes en el archivo.</div>
     </section>
   </div><!-- /panel-adm -->
 
@@ -889,6 +966,16 @@ const EMPRESA_MZ = {
 const AJUSTES_FABRICA = {
   apiUrl : "https://script.google.com/macros/s/AKfycbzS9iWeTq4JCqg3JcsKfvXn9laW4H7itUXbty9QLdne4SpF8mmC6FcWhK7wTanRq9qb/exec",         // ej. "https://script.google.com/macros/s/AKfycb.../exec"
 
+  /* Seguridad del acceso:
+     false = si no hay conexión, se puede entrar con la lista de abajo (cómodo).
+     true  = solo se entra validando contra la hoja USUARIOS del servidor.
+             Use true cuando el repositorio sea público y le importe que nadie
+             pueda leer las contraseñas en el código.                        */
+  exigirServidor: false,
+
+  /* Para no escribir la contraseña en claro, ponga "pinHash" en lugar de "pin".
+     El hash se genera en Administración ▸ Usuarios ▸ «Generar contraseña cifrada». */
+
   /* Los cuatro usuarios del sistema. Cambie los nombres y las contraseñas.
      rol "admin"    = acceso total (administración, precios, costos, eliminar)
      rol "operador" = solo crear, imprimir y enviar cotizaciones            */
@@ -901,10 +988,12 @@ const AJUSTES_FABRICA = {
 };
 
 /* ── 1. CONSTANTES Y ESTADO GLOBAL ───────────────────────────── */
-const APP_VERSION = "9.2.0";
+const APP_VERSION = "10.0.0";
 const LS = {
   borrador : "vitra.borrador.v7",
   borradorMZ: "vitra.borradorMZ.v9",
+  catalogo : "vitra.catalogo.v9",
+  papelera : "vitra.papelera.v9",
   proyectos: "vitra.proyectos.v7",
   config   : "vitra.config.v7",
   sesion   : "vitra.sesion.v7"
@@ -921,6 +1010,7 @@ const CFG_DEFAULT = {
   validez:15,
   areaMin:0,
   prefijo:"COT",
+  prefijoMz:"MZ",
   notas:"Tiempo de entrega: a convenir.\nAnticipo del 60% para iniciar el trabajo.\nPrecios expresados en Lempiras.",
   materiales:[{nombre:"PVC blanco",precio:230},{nombre:"PVC color madera",precio:360}]
 };
@@ -938,6 +1028,17 @@ const fmt = n => money.format(isFinite(n)?n:0);
 const num = v => { const n = parseFloat(String(v).replace(",",".")); return isFinite(n)?n:0; };
 const r2  = n => Math.round((n + Number.EPSILON) * 100) / 100;
 const uid = () => "P" + Date.now().toString(36) + Math.random().toString(36).slice(2,8);
+
+/* Correlativo local, para cuando no hay servidor. Lleva una "L" para distinguirlo:
+   cuando el proyecto llega al servidor, este le asigna el número definitivo. */
+function correlativoLocal(prefijo){
+  const clave = "vitra.correlativo." + prefijo;
+  let n = 0;
+  try{ n = parseInt(localStorage.getItem(clave) || "0", 10) || 0; }catch(e){}
+  n++;
+  try{ localStorage.setItem(clave, String(n)); }catch(e){}
+  return prefijo + "-" + new Date().getFullYear() + "-L" + String(n).padStart(4, "0");
+}
 
 function escapeHtml(v){
   return String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
@@ -1066,10 +1167,41 @@ function pintarChipNube(){
 /* ── 3b. ACCESO, ROLES Y PESTAÑAS ────────────────────────────── */
 const AVISO = (m,t) => toast(m,t);
 function usuariosLocales(){ return AJUSTES_FABRICA.usuarios || []; }
+
+/* Huella SHA-256 de la contraseña. Permite guardar "pinHash" en vez de "pin". */
+async function huellaPin(usuario, pin){
+  const texto = String(usuario).toLowerCase() + ":" + String(pin) + ":vitra";
+  if(window.crypto && window.crypto.subtle){
+    const buf = await window.crypto.subtle.digest("SHA-256", new TextEncoder().encode(texto));
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,"0")).join("");
+  }
+  // Respaldo simple para navegadores antiguos o sin HTTPS
+  let h1 = 0x811c9dc5, h2 = 0x01000193;
+  for(let i = 0; i < texto.length; i++){
+    h1 = Math.imul(h1 ^ texto.charCodeAt(i), 16777619) >>> 0;
+    h2 = Math.imul(h2 + texto.charCodeAt(i), 2654435761) >>> 0;
+  }
+  return "f" + h1.toString(16).padStart(8,"0") + h2.toString(16).padStart(8,"0");
+}
+async function pinCorrecto(u, pin){
+  if(u.pinHash) return (await huellaPin(u.usuario, pin)) === String(u.pinHash).toLowerCase();
+  return String(u.pin) === String(pin);
+}
 function esAdmin(){ return String(SESION.rol || "").toLowerCase() === "admin"; }
 
 function aplicarRol(){
   document.body.classList.toggle("rol-operador", !esAdmin());
+}
+async function generarHash(){
+  const u = ($("hashUsuario").value || "").trim();
+  const pin = ($("hashPin").value || "").trim();
+  if(!u || !pin) return toast("Escriba el usuario y la contraseña.", "err");
+  const h = await huellaPin(u, pin);
+  const linea = '{ usuario:"' + u + '", pinHash:"' + h + '", nombre:"' + u + '", rol:"operador" },';
+  $("hashResultado").style.display = "block";
+  $("hashResultado").textContent = linea;
+  try{ await navigator.clipboard.writeText(linea); toast("Línea copiada. Péguela en AJUSTES_FABRICA.", "ok"); }
+  catch(e){ toast("Copie la línea que aparece abajo y péguela en AJUSTES_FABRICA.", ""); }
 }
 function pintarUsuarios(){
   $("tablaUsuarios").innerHTML = usuariosLocales().map(u =>
@@ -1114,7 +1246,15 @@ async function entrar(){
     }
   }
   // 2) Sin servidor o sin conexión: lista local del archivo
-  const loc = usuariosLocales().find(u => u.usuario === usuario && String(u.pin) === pin);
+  if(AJUSTES_FABRICA.exigirServidor){
+    al.className = "alerta show err";
+    al.textContent = CFG.apiUrl
+      ? "Usuario o contraseña incorrectos, o no hay conexión con el servidor."
+      : "Este equipo exige validación en el servidor y no tiene URL configurada.";
+    return;
+  }
+  const candidato = usuariosLocales().find(u => u.usuario === usuario);
+  const loc = (candidato && await pinCorrecto(candidato, pin)) ? candidato : null;
   if(!loc){
     al.className = "alerta show err";
     al.textContent = "Usuario o contraseña incorrectos.";
@@ -1201,11 +1341,16 @@ function cerrarSesion(){
   alertaCfg("Sesión cerrada. Los datos locales se conservan.", "ok");
 }
 function aplicarConfigServidor(c){
-  ["empresa","gerente","rtn","telefono","correo","direccion","prefijo","notas"].forEach(k => { if(c[k]) CFG[k] = c[k]; });
+  ["empresa","gerente","rtn","telefono","correo","direccion","prefijo","prefijoMz","notas"].forEach(k => { if(c[k]) CFG[k] = c[k]; });
   if(c.isv     !== undefined && c.isv     !== "") CFG.isv     = num(c.isv);
   if(c.validez !== undefined && c.validez !== "") CFG.validez = num(c.validez);
   if(c.areaMin !== undefined && c.areaMin !== "") CFG.areaMin = num(c.areaMin);
   if(Array.isArray(c.materiales) && c.materiales.length) CFG.materiales = c.materiales;
+  if(c.catalogoPvc && Object.keys(c.catalogoPvc).length){
+    CFG.catalogoPvc = c.catalogoPvc;
+    try{ localStorage.setItem(LS.catalogo, JSON.stringify(c.catalogoPvc)); }catch(e){}
+    if(typeof PVC !== "undefined"){ PVC.renderLibrary(); pintarSelloCatalogo(); }
+  }
 }
 function alertaCfg(msg, tipo){
   const a = $("cfgAlerta");
@@ -1273,9 +1418,9 @@ function renumerar(){
 
 /* ── 6. CÁLCULO ──────────────────────────────────────────────── */
 function calcularLinea(item, unidad){
-  let alto = num(item.alto), ancho = num(item.ancho);
+  let alto = Math.max(0, num(item.alto)), ancho = Math.max(0, num(item.ancho));
   const cant = Math.max(1, Math.floor(num(item.cantidad) || 1));
-  const precio = num(item.precio);
+  const precio = Math.max(0, num(item.precio));
   if(unidad === "cm"){ alto /= 2.54; ancho /= 2.54; }
   let areaUnit = (alto * ancho) / 144;
   const minimo = num(CFG.areaMin);
@@ -1287,8 +1432,9 @@ function totalesDe(datos){
   let subtotal = 0, area = 0;
   if(datos.modulo === "muebles"){
     (datos.items || []).forEach(it => {
-      subtotal += r2(num(it.ml) * num(it.price));
-      area += num(it.ml);
+      const ml = Math.max(0, num(it.ml)), pr = Math.max(0, num(it.price));
+      subtotal += r2(ml * pr);
+      area += ml;
     });
   }else{
     (datos.items || []).forEach(it => {
@@ -1427,8 +1573,8 @@ function cargarProyectosLocales(){
   migrarVersionAnterior();
 }
 function guardarProyectosLocales(){
-  try{ localStorage.setItem(LS.proyectos, JSON.stringify(PROYECTOS)); }
-  catch(e){ toast("Almacenamiento lleno. Elimine proyectos antiguos.", "err"); }
+  try{ localStorage.setItem(LS.proyectos, JSON.stringify(PROYECTOS)); return true; }
+  catch(e){ return false; }
 }
 /* Rescata proyectos de la versión anterior (claves presupuesto_proyecto_*) */
 function migrarVersionAnterior(){
@@ -1462,6 +1608,10 @@ function migrarVersionAnterior(){
 
 /* ── 9. GUARDAR / NUEVO / ELIMINAR ───────────────────────────── */
 async function persistirProyecto(d, campoNumero){
+  if(!d.numero){
+    d.numero = correlativoLocal(d.modulo === "muebles" ? (CFG.prefijoMz || "MZ") : (CFG.prefijo || "COT"));
+    if(campoNumero) $(campoNumero).value = d.numero;
+  }
   const t = totalesDe(d);
   d.subtotal = t.subtotal; d.total = t.total;
   d.actualizado = new Date().toISOString();
@@ -1470,16 +1620,30 @@ async function persistirProyecto(d, campoNumero){
 
   const i = PROYECTOS.findIndex(p => p.id === d.id);
   if(i >= 0) PROYECTOS[i] = d; else PROYECTOS.push(d);
-  guardarProyectosLocales();
+  const enDisco = guardarProyectosLocales();
   renderLista();
-  toast("Proyecto guardado en este dispositivo.", "ok");
+  if(enDisco){
+    toast("Proyecto guardado · " + d.numero + ".", "ok");
+  }else{
+    toast("No se pudo guardar: el almacenamiento del dispositivo está lleno. Elimine proyectos antiguos o exporte a Excel.", "err");
+    if(!CFG.apiUrl || !SESION.token) return d;
+  }
 
   if(CFG.apiUrl && SESION.token){
-    const r = await api("guardar", { proyecto:d });
+    const esLocal = /-L\d+$/.test(d.numero || "");
+    const envio = Object.assign({}, d, esLocal ? { numero:"" } : {});
+    const r = await api("guardar", { proyecto: envio });
     if(r.ok){
       d.pendiente = false;
       if(r.numero){ d.numero = r.numero; if(campoNumero) $(campoNumero).value = r.numero; }
-      if(r.actualizado) d.actualizado = r.actualizado;
+      if(r.actualizado){ d.actualizado = r.actualizado; d.sincronizadoEn = r.actualizado; }
+      if(r.conflicto){
+        d.id = r.id || d.id;
+        d.conflicto = true;
+        guardarProyectosLocales(); renderLista();
+        toast(r.aviso || "Otro usuario modificó este proyecto antes que usted. Su versión se guardó como copia.", "err");
+        return d;
+      }
       guardarProyectosLocales(); renderLista();
       toast("Guardado y sincronizado" + (r.numero ? " · " + r.numero : "") + ".", "ok");
     }else{
@@ -1531,7 +1695,8 @@ async function eliminarProyecto(id){
   if(!esAdmin()) return toast("Solo el administrador puede eliminar proyectos.", "err");
   const p = PROYECTOS.find(x => x.id === id);
   if(!p) return;
-  if(!confirm("¿Eliminar «" + (p.numero || p.proyecto) + "»? Esta acción no se puede deshacer.")) return;
+  if(!confirm("¿Enviar «" + (p.numero || p.proyecto) + "» a la papelera? Podrá restaurarlo durante 90 días.")) return;
+  aPapelera(p);
   p.eliminado = true; p.pendiente = true; p.actualizado = new Date().toISOString();
   guardarProyectosLocales();
   if(CFG.apiUrl && SESION.token){
@@ -1542,8 +1707,8 @@ async function eliminarProyecto(id){
   }
   guardarProyectosLocales();
   if(ACTUAL === id){ ACTUAL = null; }
-  renderLista(); pintarChipNube();
-  toast("Proyecto eliminado.", "ok");
+  renderLista(); renderPapelera(); pintarChipNube();
+  toast("Enviado a la papelera. Puede restaurarlo desde Administración.", "ok");
 }
 
 /* ── 10. LISTA DE PROYECTOS ──────────────────────────────────── */
@@ -1571,7 +1736,7 @@ function renderLista(){
       return '<tr>' +
         '<td><span class="dot ' + (p.pendiente ? "dot-pend" : "dot-sync") + '" title="' + (p.pendiente ? "Pendiente de sincronizar" : "Sincronizado") + '"></span>' + escapeHtml(p.numero || "—") + '</td>' +
         '<td><span class="badge-mod m-' + m + '">' + (m === "muebles" ? "Muebles" : "Vidriería") + '</span></td>' +
-        '<td class="l">' + escapeHtml(p.proyecto) + '</td>' +
+        '<td class="l">' + (p.conflicto ? '<span class="pill" style="background:#ffe9e9;color:#a3161c">copia</span> ' : '') + escapeHtml(p.proyecto) + '</td>' +
         '<td>' + escapeHtml(p.cliente) + '</td>' +
         '<td>' + escapeHtml(p.fecha) + '</td>' +
         '<td><span class="badge-estado e-' + est2 + '">' + est2 + '</span></td>' +
@@ -1601,6 +1766,7 @@ async function sincronizar(silencioso){
   const btn = $("btnSync"); btn.disabled = true; btn.textContent = "⟳ Sincronizando...";
   try{
     // 1) Enviar pendientes
+    const conflictosEnvio = [];
     const pendientes = PROYECTOS.filter(p => p.pendiente);
     for(const p of pendientes){
       if(p.eliminado){
@@ -1608,21 +1774,56 @@ async function sincronizar(silencioso){
         if(r.ok) PROYECTOS = PROYECTOS.filter(x => x.id !== p.id);
       }else{
         const r = await api("guardar", { proyecto:p });
-        if(r.ok){ p.pendiente = false; if(r.numero) p.numero = r.numero; if(r.actualizado) p.actualizado = r.actualizado; }
+        if(r.ok){
+          p.pendiente = false;
+          if(r.numero) p.numero = r.numero;
+          if(r.actualizado){ p.actualizado = r.actualizado; p.sincronizadoEn = r.actualizado; }
+          if(r.conflicto){ p.id = r.id || p.id; p.conflicto = true; conflictosEnvio.push(p.numero || p.proyecto); }
+        }
       }
     }
     // 2) Traer del servidor
     const r = await api("listar", {});
     if(!r.ok){ if(!silencioso) toast(r.error || "No se pudo sincronizar.", "err"); return; }
     if(r.config) { aplicarConfigServidor(r.config); aplicarConfigUI(); }
+    if(typeof pintarSelloCatalogo === "function") pintarSelloCatalogo();
+    const conflictos = [];
     (r.proyectos || []).forEach(remoto => {
       const i = PROYECTOS.findIndex(p => p.id === remoto.id);
-      if(i < 0){ if(!remoto.eliminado){ remoto.pendiente = false; PROYECTOS.push(remoto); } }
-      else if(!PROYECTOS[i].pendiente && String(remoto.actualizado || "") >= String(PROYECTOS[i].actualizado || "")){
+      remoto.sincronizadoEn = remoto.actualizado;
+      if(i < 0){ if(!remoto.eliminado){ remoto.pendiente = false; PROYECTOS.push(remoto); } return; }
+      const local = PROYECTOS[i];
+      if(local.pendiente){
+        // Los dos cambiaron: se conserva el local y se guarda una copia del remoto.
+        if(!remoto.eliminado && String(remoto.actualizado || "") > String(local.actualizado || "")){
+          const copia = Object.assign({}, remoto, {
+            id: uid(),
+            numero: (remoto.numero || "") + " (versión del servidor)",
+            proyecto: (remoto.proyecto || "") + " — versión de " + (remoto.usuario || "otro usuario"),
+            pendiente: false, conflicto: true
+          });
+          if(!PROYECTOS.some(x => x.numero === copia.numero && x.actualizado === copia.actualizado)){
+            PROYECTOS.push(copia);
+            conflictos.push(local.numero || local.proyecto);
+          }
+        }
+        return;
+      }
+      if(String(remoto.actualizado || "") >= String(local.actualizado || "")){
         if(remoto.eliminado) PROYECTOS.splice(i,1);
         else { remoto.pendiente = false; PROYECTOS[i] = remoto; }
       }
     });
+    if(conflictosEnvio.length){
+      setTimeout(() => toast(
+        conflictosEnvio.length + " proyecto(s) también fueron modificados por otro usuario. " +
+        "Su versión se guardó como copia; revise cuál conservar.", "err"), 600);
+    }
+    if(conflictos.length){
+      setTimeout(() => toast(
+        "Atención: " + conflictos.length + " proyecto(s) fueron modificados también por otro usuario. " +
+        "Se conservó su versión y se guardó la del servidor como copia aparte para que las compare.", "err"), 900);
+    }
     guardarConfigLocal();
     guardarProyectosLocales();
     renderLista();
@@ -1714,7 +1915,9 @@ function verDocumento(d){
    nombre del archivo PDF: por eso se cambia justo antes de imprimir. */
 function imprimirDocumento(){
   const original = document.title;
-  document.title = DOC_ACTUAL
+  document.title = DOC_ACTUAL && DOC_ACTUAL.modulo === "pvc"
+    ? ("Materiales - " + (DOC_ACTUAL.cliente || CFG.empresa))
+    : DOC_ACTUAL
     ? ((DOC_ACTUAL.modulo === "muebles" ? "Presupuesto " : "Cotizacion ") +
        (DOC_ACTUAL.numero || "sin numero") + " - " + (DOC_ACTUAL.cliente || CFG.empresa))
     : CFG.empresa;
@@ -1875,6 +2078,28 @@ function conectarEventos(){
   $("btnImprimir").onclick    = imprimirDocumento;
   $("btnAddMaterial").onclick = () => { CFG.materiales.push({ nombre:"", precio:0 }); pintarMateriales(); };
   $("btnConfig2").onclick     = abrirConfig;
+  $("btnGuardarCatalogo").onclick   = guardarCatalogo;
+  $("btnGenerarHash").onclick       = generarHash;
+  $("btnExportarRespaldo").onclick  = exportarRespaldo;
+  $("btnImportarRespaldo").onclick  = () => $("archivoRespaldo").click();
+  $("archivoRespaldo").onchange     = e => {
+    const a = e.target.files && e.target.files[0];
+    if(a) importarRespaldo(a);
+    e.target.value = "";
+  };
+  $("papeleraBody").addEventListener("click", e => {
+    const b = e.target.closest("[data-pap]");
+    if(!b) return;
+    if(b.dataset.pap === "rest") restaurarDePapelera(b.dataset.id);
+    else borrarDefinitivo(b.dataset.id);
+  });
+  $("btnActualizarCatalogo").onclick = actualizarCatalogo;
+  $("btnRestaurarCatalogo").onclick = restaurarCatalogo;
+  $("pvTipoCat").onchange = () => {
+    $("pvTipo").value = $("pvTipoCat").value;
+    PVC.renderLibrary();
+    toast("Mostrando la lista de precios de " + $("pvTipoCat").value + ".", "");
+  };
   $("btnSalir").onclick       = salir;
   $("btnEntrar").onclick      = entrar;
   $("enviarBtn").onclick      = abrirEnviar;
@@ -1904,12 +2129,15 @@ function conectarEventos(){
 
   // Módulo de materiales PVC
   $("pvAgregar").onclick  = () => { PVC.agregarVentana(); autoguardar(); };
-  $("pvCalcular").onclick = () => { PVC.calcular(); actualizarMargen(); autoguardar(); };
+  $("pvCalcular").onclick = () => { PVC.calcular(); PVC.avisoCortes(); actualizarMargen(); autoguardar(); };
   $("pvLimpiar").onclick  = () => { if(confirm("¿Borrar todas las ventanas del cálculo?")){ PVC.limpiar(); autoguardar(); } };
+  $("pvPdfBtn").onclick    = pvVerDocumento;
+  $("pvExcelBtn").onclick  = pvExportarExcel;
+  $("pvEnviarBtn").onclick = pvEnviar;
   $("pvTabDetalleBtn").onclick = () => PVC.tab("detalle");
   $("pvTabTotalesBtn").onclick = () => PVC.tab("totales");
   $("pvUnidad").onchange  = () => { PVC.actualizarUnidad(); autoguardar(); };
-  $("pvTipo").onchange    = () => { PVC.renderLibrary(); autoguardar(); };
+  $("pvTipo").onchange    = () => { $("pvTipoCat").value = $("pvTipo").value; PVC.renderLibrary(); autoguardar(); };
   $("pvLance").onchange   = () => { PVC.aplicarLongitudLance(); autoguardar(); };
   $("panel-pvc").addEventListener("input", autoguardar);
   $("panel-adm").addEventListener("input", autoguardar);
@@ -2006,21 +2234,32 @@ function addWindowRow(data={}){
 function agregarVentana(){addWindowRow()}
 function renderLibrary(){
  const type=document.getElementById('pvTipo').value;
+ const guardado=leerCatalogoGuardado();
  let currentCategory='';
  document.getElementById('pvBibliotecaBody').innerHTML=library.map(m=>{
-  const price=type==='PVC color madera'?m.priceWood:m.priceWhite;
+  const g=guardado[m.id]||{};
+  const base=type==='PVC color madera'?m.priceWood:m.priceWhite;
+  const price=(type==='PVC color madera')
+    ? (g.priceWood!==undefined?g.priceWood:base)
+    : (g.priceWhite!==undefined?g.priceWhite:base);
+  const content=(g.content!==undefined?g.content:m.content);
+  const activo=(g.enabled===false)?'':'checked';
   const categoryRow=m.category!==currentCategory?`<tr class="category-row"><td colspan="7"><strong>${m.category}</strong></td></tr>`:'';
   currentCategory=m.category;
   const typeLabel=m.kind==='area'?'Área':m.kind==='unit'?'Unidad / paquete':m.kind==='linear_bulk'?'Lineal por rollo':'Perfil lineal';
-  return `${categoryRow}<tr data-id="${m.id}"><td class="center"><input class="lib-enabled" type="checkbox" checked></td><td><strong>${m.name}</strong></td><td>${typeLabel}</td><td>${m.presentation}</td><td><input class="item-input lib-content" type="number" min="0.01" step="0.01" value="${m.content}"></td><td><input class="item-input lib-price" type="number" min="0" step="0.01" value="${price}"></td><td class="muted">${m.rule}</td></tr>`;
+  return `${categoryRow}<tr data-id="${m.id}"><td class="center"><input class="lib-enabled" type="checkbox" ${activo}></td><td><strong>${m.name}</strong></td><td>${typeLabel}</td><td>${m.presentation}</td><td><input class="item-input lib-content" type="number" min="0.01" step="0.01" value="${content}"></td><td><input class="item-input lib-price" type="number" min="0" step="0.01" value="${price}"></td><td class="muted">${m.rule}</td></tr>`;
  }).join('');
 }
-function readWindows(){const unit=document.getElementById('pvUnidad').value;return [...document.querySelectorAll('#pvVentanasBody tr')].map(tr=>{const altoEntrada=+tr.querySelector('.alto').value||0,anchoEntrada=+tr.querySelector('.ancho').value||0;return {
+function readWindows(){const unit=document.getElementById('pvUnidad').value;return [...document.querySelectorAll('#pvVentanasBody tr')].map(tr=>{const altoEntrada=Math.max(0,+tr.querySelector('.alto').value||0),anchoEntrada=Math.max(0,+tr.querySelector('.ancho').value||0);return {
  desc:tr.querySelector('.descripcion').value.trim()||'Ventana',alto:unit==='cm'?altoEntrada/CM_PER_INCH:altoEntrada,ancho:unit==='cm'?anchoEntrada/CM_PER_INCH:anchoEntrada,altoEntrada,anchoEntrada,unit,qty:Math.max(1,Math.floor(+tr.querySelector('.cantidad').value||1)),bat:tr.querySelector('.batiente').checked,mosq:tr.querySelector('.mosquitera').checked
 }}).filter(w=>w.alto>0&&w.ancho>0)}
 function readLibrary(){const map={}; document.querySelectorAll('#pvBibliotecaBody tr[data-id]').forEach(tr=>{const base=library.find(x=>x.id===tr.dataset.id);map[base.id]={...base,enabled:tr.querySelector('.lib-enabled').checked,content:+tr.querySelector('.lib-content').value||base.content,price:+tr.querySelector('.lib-price').value||0}});return map}
 function addCuts(store,id,length,count,label){if(!store[id])store[id]=[];for(let i=0;i<count;i++)store[id].push({length,label})}
-function optimize(cuts,stock){
+let CORTES_IMPOSIBLES=[];
+function optimize(cuts,stock,nombreMaterial){
+ // Una pieza más larga que el lance no se puede cortar: se registra para avisar.
+ cuts.filter(x=>x.length>stock).forEach(x=>CORTES_IMPOSIBLES.push({
+   material:nombreMaterial||'Perfil', largo:x.length, etiqueta:x.label||'', lance:stock }));
  const sorted=cuts.filter(x=>x.length>0&&x.length<=stock).slice().sort((a,b)=>b.length-a.length); const bins=[];
  for(const cut of sorted){let bi=-1,best=Infinity;for(let i=0;i<bins.length;i++){const rem=stock-bins[i].used;if(cut.length<=rem&&rem-cut.length<best){best=rem-cut.length;bi=i}}if(bi<0)bins.push({used:cut.length,cuts:[cut]});else{bins[bi].used+=cut.length;bins[bi].cuts.push(cut)}}return bins
 }
@@ -2051,6 +2290,7 @@ function mostrarPestanaConsolidado(tab){
  document.getElementById('pvTabTotalesBtn').classList.toggle('active',!detalle);
 }
 function calcular(){
+ CORTES_IMPOSIBLES=[];
  const windows=readWindows(); resumenConversion(windows); if(!windows.length){ AVISO('Agregue al menos una ventana con alto y ancho.','err'); return }
  const lib=readLibrary(), decimals=+document.getElementById('pvDecimales').value||2, waste=Math.max(0,+document.getElementById('pvDesperdicio').value||0)/100;
  const cuts={}, area={}, units={}, detail=[]; let totalWindows=0;
@@ -2076,7 +2316,7 @@ function calcular(){
  const summary=[], cutRows=[], fabMap=new Map(); let totalCost=0,totalLances=0,totalLinearIn=0,totalScrap=0;
  for(const m of library){if(!lib[m.id].enabled)continue;const cfg=lib[m.id];
   if(m.kind==='linear'){
-   const arr=cuts[m.id]||[]; const base=arr.reduce((s,c)=>s+c.length,0); const target=base*(1+waste); let bins=optimize(arr,cfg.content); const minStock=Math.ceil(target/cfg.content); while(bins.length<minStock)bins.push({used:0,cuts:[]});
+   const arr=cuts[m.id]||[]; const base=arr.reduce((s,c)=>s+c.length,0); const target=base*(1+waste); let bins=optimize(arr,cfg.content,m.name); const minStock=Math.ceil(target/cfg.content); while(bins.length<minStock)bins.push({used:0,cuts:[]});
    const purchase=bins.length,cost=purchase*cfg.price,scrap=purchase*cfg.content-target; totalCost+=cost;totalLances+=purchase;totalLinearIn+=target;totalScrap+=Math.max(0,scrap);
    summary.push({category:m.category,name:m.name,unit:'pulgadas / lances',required:target,purchase,cost,price:cfg.price,scrap:Math.max(0,scrap)});
    bins.forEach((b,i)=>cutRows.push(`<tr><td>${m.name}</td><td>${i+1}</td><td>${b.cuts.length?b.cuts.map(c=>fmt(c.length,decimals)+'”').join(' + '):'Reserva por desperdicio'}</td><td class="num">${fmt(b.used,decimals)} pulg</td><td class="num">${fmt(cfg.content-b.used,decimals)} pulg</td><td class="num">${fmt((cfg.content-b.used)/12,decimals)} pies</td></tr>`));
@@ -2100,7 +2340,29 @@ function calcular(){
  document.getElementById('pvFabricacionBody').innerHTML=[...fabMap.values()].map(x=>`<tr><td>${x.name}</td><td>${x.measure}</td><td class="num">${fmt(x.qty,x.measure==='Unidad'?0:2)}</td><td>${[...x.ref].slice(0,4).join(', ')}</td></tr>`).join('');
 }
 
+function avisoCortesImposibles(){
+  const caja = document.getElementById('pvAvisoCortes');
+  if(!CORTES_IMPOSIBLES.length){ caja.style.display = 'none'; return; }
+  const vistos = {};
+  CORTES_IMPOSIBLES.forEach(c => {
+    const k = c.material + '|' + c.largo.toFixed(2);
+    vistos[k] = (vistos[k] || 0) + 1;
+  });
+  const lance = CORTES_IMPOSIBLES[0].lance;
+  caja.style.display = 'block';
+  caja.innerHTML = '<b>⚠ Hay piezas que no caben en el lance.</b><br>' +
+    'El lance mide ' + lance.toFixed(2) + ' pulgadas (' + (lance/12).toFixed(2) + ' pies) y estas piezas son más largas, ' +
+    'por lo que <b>no están incluidas en el plan de cortes ni en la cantidad a comprar</b>:<ul style="margin:7px 0 0 18px">' +
+    Object.keys(vistos).map(k => {
+      const p = k.split('|');
+      return '<li>' + escapeHtml(p[0]) + ' — ' + p[1] + ' pulg (' + vistos[k] + ' pieza' + (vistos[k] > 1 ? 's' : '') + ')</li>';
+    }).join('') +
+    '</ul><div style="margin-top:7px">Divida la ventana en secciones, o use un lance más largo en Administración.</div>';
+}
+
 function limpiar(){
+  CORTES_IMPOSIBLES = [];
+  document.getElementById('pvAvisoCortes').style.display = 'none';
   document.getElementById('pvVentanasBody').innerHTML = '';
   rowSeq = 0; addWindowRow();
   document.getElementById('pvResumenBody').innerHTML = '<tr><td colspan="7">Sin datos calculados.</td></tr>';
@@ -2145,18 +2407,16 @@ function importar(o){
   set('pvUnidad',o.unidad); set('pvTipo',o.tipo); set('pvDesperdicio',o.desperdicio);
   set('pvLance',o.lance); set('pvMoneda',o.moneda); set('pvDecimales',o.decimales); set('pvNota',o.nota);
   renderLibrary();
+  // Solo se restauran las casillas activadas del proyecto: los precios y contenidos
+  // provienen del catálogo guardado en Administración, para que sean uniformes.
   if(o.biblioteca){
     Object.keys(o.biblioteca).forEach(id => {
       const tr = document.querySelector('#pvBibliotecaBody tr[data-id="' + id + '"]');
       if(!tr) return;
-      const c = o.biblioteca[id];
-      tr.querySelector('.lib-enabled').checked = c.enabled !== false;
-      if(c.content) tr.querySelector('.lib-content').value = c.content;
-      if(c.price !== undefined) tr.querySelector('.lib-price').value = c.price;
+      tr.querySelector('.lib-enabled').checked = o.biblioteca[id].enabled !== false;
     });
-  }else{
-    aplicarLongitudLance();
   }
+  aplicarLongitudLance();
   document.getElementById('pvVentanasBody').innerHTML = '';
   rowSeq = 0;
   const filas = (o.ventanas && o.ventanas.length) ? o.ventanas : [{}];
@@ -2169,8 +2429,10 @@ function iniciarModulo(){
 }
 return {
   calcular: calcular, agregarVentana: agregarVentana, limpiar: limpiar,
+  avisoCortes: avisoCortesImposibles, hayImposibles: function(){ return CORTES_IMPOSIBLES.length; },
   exportar: exportar, importar: importar, iniciar: iniciarModulo,
   renderLibrary: renderLibrary, actualizarUnidad: actualizarUnidad,
+  material: function(id){ return library.find(function(x){ return x.id === id; }) || null; },
   aplicarLongitudLance: aplicarLongitudLance, tab: mostrarPestanaConsolidado,
   costo: function(){ return lastCalculatedTotal; }
 };
@@ -2229,6 +2491,376 @@ async function compartirCotizacion(){
 }
 
 
+/* ── 18b. CATÁLOGO DE MATERIALES PVC: PRECIOS PERMANENTES ────── */
+function leerCatalogoGuardado(){
+  try{ return JSON.parse(localStorage.getItem(LS.catalogo) || "{}") || {}; }
+  catch(e){ return {}; }
+}
+/* Guarda los precios del tipo de PVC que está a la vista, sin borrar los del otro. */
+async function guardarCatalogo(){
+  if(!esAdmin()) return toast("Solo el administrador puede modificar el catálogo.", "err");
+  const tipo = $("pvTipo").value;
+  const campo = (tipo === "PVC color madera") ? "priceWood" : "priceWhite";
+  const guardado = leerCatalogoGuardado();
+  let cambios = 0;
+  document.querySelectorAll("#pvBibliotecaBody tr[data-id]").forEach(tr => {
+    const id = tr.dataset.id;
+    const reg = guardado[id] || {};
+    reg[campo] = num(tr.querySelector(".lib-price").value);
+    reg.content = num(tr.querySelector(".lib-content").value);
+    reg.enabled = tr.querySelector(".lib-enabled").checked;
+    guardado[id] = reg;
+    cambios++;
+  });
+  try{
+    localStorage.setItem(LS.catalogo, JSON.stringify(guardado));
+    CFG.catalogoPvc = guardado;
+    guardarConfigLocal();
+    pintarSelloCatalogo();
+  }catch(e){ return toast("No se pudo guardar: almacenamiento lleno.", "err"); }
+
+  if(!CFG.apiUrl || !SESION.token){
+    toast("Catálogo guardado en este dispositivo · " + cambios + " materiales de " + tipo + ".", "ok");
+    return;
+  }
+  const btn = $("btnGuardarCatalogo");
+  btn.disabled = true; btn.textContent = "Enviando al servidor...";
+  const paquete = {};
+  Object.keys(guardado).forEach(id => {
+    const base = (typeof PVC !== "undefined") ? PVC.material(id) : null;
+    paquete[id] = Object.assign({ nombre: base ? base.name : "" }, guardado[id]);
+  });
+  const r = await api("guardarCatalogo", { catalogo: paquete });
+  btn.disabled = false; btn.textContent = "💾 Guardar y publicar precios";
+  if(r.ok) toast("Precios publicados · " + r.total + " materiales disponibles en todos los dispositivos.", "ok");
+  else toast("Guardado aquí, pero no se pudo publicar: " + (r.error || "sin conexión") + ". Reintente con «Actualizar precios».", "err");
+  pintarSelloCatalogo();
+}
+
+/* Trae del servidor la lista de precios vigente. */
+async function actualizarCatalogo(){
+  if(!CFG.apiUrl) return toast("No hay servidor configurado: los precios solo existen en este dispositivo.", "err");
+  if(!SESION.token) return toast("Su usuario no tiene sesión en el servidor. Cierre sesión y vuelva a entrar.", "err");
+  const btn = $("btnActualizarCatalogo");
+  btn.disabled = true; btn.textContent = "Buscando precios...";
+  const r = await api("catalogos", {});
+  btn.disabled = false; btn.textContent = "⟳ Actualizar precios";
+  if(!r.ok) return toast(r.error || "No se pudo consultar el servidor.", "err");
+  const cat = (r.config && r.config.catalogoPvc) || {};
+  const n = Object.keys(cat).length;
+  if(!n) return toast("El servidor todavía no tiene precios publicados. El administrador debe guardarlos primero.", "");
+  aplicarConfigServidor(r.config);
+  guardarConfigLocal();
+  aplicarConfigUI();
+  PVC.renderLibrary();
+  pintarSelloCatalogo();
+  toast("Precios actualizados desde el servidor · " + n + " materiales.", "ok");
+}
+function restaurarCatalogo(){
+  if(!esAdmin()) return toast("Solo el administrador puede modificar el catálogo.", "err");
+  if(!confirm("¿Restaurar los precios y contenidos originales de todos los materiales? Se perderán los valores que haya guardado.")) return;
+  localStorage.removeItem(LS.catalogo);
+  delete CFG.catalogoPvc;
+  guardarConfigLocal();
+  PVC.renderLibrary();
+  pintarSelloCatalogo();
+  toast("Catálogo restaurado a los valores originales.", "ok");
+}
+function pintarSelloCatalogo(){
+  const g = leerCatalogoGuardado();
+  const n = Object.keys(g).length;
+  const sello = $("selloCatalogo");
+  if(!n){
+    sello.className = "note";
+    sello.textContent = "Usando los precios originales del sistema.";
+  }else if(CFG.apiUrl && SESION.token){
+    sello.className = "note";
+    sello.textContent = "Precios propios en uso (" + n + " materiales), sincronizados con el servidor.";
+  }else{
+    sello.className = "note warning";
+    sello.textContent = "Precios propios en uso (" + n + " materiales), guardados solo en este dispositivo.";
+  }
+}
+
+
+/* ── 18c. DOCUMENTO DEL CÁLCULO DE MATERIALES ────────────────── */
+/* Se arma con lo que ya está calculado en pantalla, de modo que el papel
+   siempre coincide con lo que vio el usuario. */
+function pvTabla(idCuerpo, encabezados, idPie){
+  const filas = [...document.querySelectorAll("#" + idCuerpo + " tr")];
+  if(!filas.length) return "";
+  const cuerpo = filas.map(tr => {
+    const ancho = tr.querySelector("td[colspan]");
+    if(tr.classList.contains("category-row") || ancho)
+      return '<tr><td colspan="' + encabezados.length + '" class="l"' +
+             (tr.classList.contains("category-row") ? ' style="background:#eaf2fb;font-weight:800"' : ' style="color:#62758c"') + '>' +
+             escapeHtml(tr.textContent.trim()) + '</td></tr>';
+    return '<tr>' + [...tr.children].map((td,i) =>
+      '<td class="' + (i === 0 ? "l" : (isNaN(parseFloat(td.textContent)) ? "" : "r")) + '">' +
+      escapeHtml(td.textContent.trim()) + '</td>').join("") + '</tr>';
+  }).join("");
+  let pie = "";
+  if(idPie){
+    const tf = document.querySelectorAll("#" + idPie + " tr");
+    pie = [...tf].map(tr => '<tr>' + [...tr.children].map(td =>
+      '<td class="r" colspan="' + (td.colSpan || 1) + '">' + escapeHtml(td.textContent.trim()) + '</td>').join("") + '</tr>').join("");
+  }
+  return '<table><thead><tr>' + encabezados.map(h => '<th>' + h + '</th>').join("") +
+         '</tr></thead><tbody>' + cuerpo + '</tbody>' + (pie ? '<tfoot>' + pie + '</tfoot>' : "") + '</table>';
+}
+
+function construirDocPvc(){
+  const d = leerFormulario();
+  const unidad = $("pvUnidad").value === "cm" ? "cm" : "pulg.";
+  const ventanas = [...document.querySelectorAll("#pvVentanasBody tr")]
+    .filter(tr => num(tr.querySelector(".alto").value) > 0 && num(tr.querySelector(".ancho").value) > 0)
+    .map((tr,i) => '<tr>' +
+      '<td>' + (i+1) + '</td>' +
+      '<td class="l">' + escapeHtml(tr.querySelector(".descripcion").value || "Ventana") + '</td>' +
+      '<td>' + escapeHtml(tr.querySelector(".alto").value) + " × " + escapeHtml(tr.querySelector(".ancho").value) + " " + unidad + '</td>' +
+      '<td>' + escapeHtml(tr.querySelector(".cantidad").value || 1) + '</td>' +
+      '<td>' + (tr.querySelector(".batiente").checked ? "Sí" : "—") + '</td>' +
+      '<td>' + (tr.querySelector(".mosquitera").checked ? "Sí" : "—") + '</td></tr>').join("");
+
+  return '' +
+  '<div class="doc-head">' +
+    '<div class="doc-logos">' +
+      '<img class="doc-logo-marca" src="' + LOGO + '" alt="' + escapeHtml(CFG.empresa) + '">' +
+      '<img class="doc-logo-corp" src="' + LOGO_PORTADA + '" alt="' + escapeHtml(RAZON_SOCIAL) + '">' +
+    '</div>' +
+    '<div class="doc-emp">' +
+      '<h1>' + escapeHtml(CFG.empresa) + '</h1>' +
+      '<div class="doc-legal"><b>' + escapeHtml(RAZON_SOCIAL) + '</b></div>' +
+      '<div><b>RTN:</b> ' + escapeHtml(CFG.rtn) + '</div>' +
+      '<div><b>Teléfono:</b> ' + escapeHtml(CFG.telefono) + '</div>' +
+      (CFG.direccion ? '<div>' + escapeHtml(CFG.direccion) + '</div>' : "") +
+    '</div>' +
+  '</div>' +
+  '<div class="doc-meta">' +
+    '<div class="box"><h4>Proyecto</h4>' +
+      '<div><b>' + escapeHtml(d.proyecto || "Sin nombre") + '</b></div>' +
+      '<div>Cliente: ' + escapeHtml(d.cliente || "—") + '</div>' +
+      '<div>Cotización: ' + escapeHtml(d.numero || "Sin asignar") + '</div>' +
+    '</div>' +
+    '<div class="box"><h4>Cálculo de materiales</h4>' +
+      '<div><b>Tipo de PVC:</b> ' + escapeHtml($("pvTipo").value) + '</div>' +
+      '<div><b>Lance:</b> ' + escapeHtml($("pvLance").value) + ' pies</div>' +
+      '<div><b>Desperdicio:</b> ' + escapeHtml($("pvDesperdicio").value || 0) + ' %</div>' +
+      '<div><b>Fecha:</b> ' + fechaLarga(todayISO()) + '</div>' +
+    '</div>' +
+  '</div>' +
+
+  '<div class="doc-sub">Resumen general</div>' +
+  '<table><thead><tr><th>Ventanas</th><th>Lances de perfiles</th><th>Metros lineales</th><th>Sobrante</th><th>Costo de materiales</th></tr></thead>' +
+  '<tbody><tr>' +
+    '<td>' + escapeHtml($("pvMVentanas").textContent) + '</td>' +
+    '<td>' + escapeHtml($("pvMLances").textContent) + '</td>' +
+    '<td>' + escapeHtml($("pvMMetros").textContent) + '</td>' +
+    '<td>' + escapeHtml($("pvMSobrante").textContent) + '</td>' +
+    '<td class="r"><b>' + escapeHtml($("pvMCosto").textContent) + '</b></td>' +
+  '</tr></tbody></table>' +
+
+  '<div class="doc-sub">Ventanas del proyecto</div>' +
+  '<table><thead><tr><th>#</th><th>Descripción</th><th>Medidas</th><th>Cant.</th><th>Batiente</th><th>Mosquitera</th></tr></thead>' +
+  '<tbody>' + (ventanas || '<tr><td colspan="6">Sin ventanas registradas.</td></tr>') + '</tbody></table>' +
+
+  '<div class="doc-sub">Resumen de materiales</div>' +
+  pvTabla("pvResumenBody", ["Material","Unidad","Requerida","A comprar","Precio","Costo","Sobrante"]) +
+
+  '<div class="doc-sub">Plan de cortes por lance</div>' +
+  '<p class="doc-mini">Corte cada lance según el detalle; la última columna indica el retazo que queda utilizable.</p>' +
+  pvTabla("pvCortesBody", ["Perfil","Lance","Cortes asignados","Utilizado","Sobrante","Sobrante en pies"]) +
+
+  '<div class="doc-sub">Detalle de fabricación</div>' +
+  pvTabla("pvFabricacionBody", ["Material","Medida / concepto","Cantidad","Referencia"]) +
+
+  '<div class="doc-firma"><div class="line"></div><div class="t">Recibido en taller</div>' +
+  '<div class="n">Nombre y firma</div></div>' +
+  '<div class="doc-pie">' + escapeHtml(CFG.empresa) + ' · Hoja de materiales generada el ' + fechaLarga(todayISO()) + ' a las ' + horaActual() + ' · ' + escapeHtml(SESION.nombre || SESION.usuario) + '</div>';
+}
+
+function pvHayCalculo(){
+  return [...document.querySelectorAll("#pvResumenBody tr")]
+    .some(tr => tr.children.length > 1 && !tr.querySelector("td[colspan]"));
+}
+function pvVerDocumento(){
+  if(!pvHayCalculo()) return toast("Primero presione «Calcular materiales».", "err");
+  DOC_ACTUAL = { modulo:"pvc", numero:$("numero").value, cliente:$("cliente").value || $("proyecto").value };
+  $("docTitulo").textContent = "Hoja de materiales · " + ($("proyecto").value || "Sin nombre");
+  $("docRender").innerHTML = construirDocPvc();
+  abrir("modalDoc");
+}
+
+/* Exportación a Excel de la hoja de materiales */
+async function pvExportarExcel(){
+  if(!pvHayCalculo()) return toast("Primero presione «Calcular materiales».", "err");
+  const d = leerFormulario();
+  const leer = (id) => [...document.querySelectorAll("#" + id + " tr")]
+    .map(tr => [...tr.children].map(td => td.textContent.trim()));
+  const matriz = [
+    [CFG.empresa + " — Hoja de materiales"],
+    ["Proyecto", d.proyecto], ["Cliente", d.cliente], ["Cotización", d.numero || "Sin asignar"],
+    ["Tipo de PVC", $("pvTipo").value], ["Lance (pies)", $("pvLance").value],
+    ["Desperdicio (%)", $("pvDesperdicio").value], ["Fecha", todayISO()],
+    [],
+    ["RESUMEN GENERAL"],
+    ["Ventanas", $("pvMVentanas").textContent, "Lances", $("pvMLances").textContent,
+     "Metros lineales", $("pvMMetros").textContent, "Costo", $("pvMCosto").textContent],
+    [],
+    ["RESUMEN DE MATERIALES"],
+    ["Material","Unidad","Requerida","A comprar","Precio","Costo","Sobrante"]
+  ].concat(leer("pvResumenBody"), [[], ["PLAN DE CORTES"],
+    ["Perfil","Lance","Cortes asignados","Utilizado","Sobrante","Sobrante en pies"]],
+    leer("pvCortesBody"), [[], ["DETALLE DE FABRICACIÓN"],
+    ["Material","Medida / concepto","Cantidad","Referencia"]], leer("pvFabricacionBody"));
+
+  const nombre = "Materiales_" + (d.proyecto || d.numero || "proyecto").replace(/[^\w\-]+/g,"_") + ".xlsx";
+  try{
+    if(typeof XLSX === "undefined") await cargarScript("https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js");
+    const ws = XLSX.utils.aoa_to_sheet(matriz);
+    ws["!cols"] = [{wch:34},{wch:20},{wch:14},{wch:14},{wch:14},{wch:14},{wch:14}];
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Materiales");
+    XLSX.writeFile(wb, nombre);
+    toast("Hoja de materiales exportada a Excel.", "ok");
+  }catch(e){
+    const csv = matriz.map(f => f.map(c => '"' + String(c ?? "").replace(/"/g,'""') + '"').join(",")).join("\n");
+    const blob = new Blob(["\uFEFF" + csv], { type:"text/csv;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = nombre.replace(".xlsx",".csv"); a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    toast("Sin internet: se generó un archivo CSV que abre en Excel.", "");
+  }
+}
+
+function pvEnviar(){
+  if(!pvHayCalculo()) return toast("Primero presione «Calcular materiales».", "err");
+  const d = leerFormulario();
+  const txt = [
+    CFG.empresa + " — Hoja de materiales",
+    "Proyecto: " + (d.proyecto || "—"),
+    "Cliente: " + (d.cliente || "—"),
+    "",
+    "Ventanas: " + $("pvMVentanas").textContent,
+    "Lances de perfiles: " + $("pvMLances").textContent,
+    "Metros lineales: " + $("pvMMetros").textContent,
+    "Costo de materiales: " + $("pvMCosto").textContent,
+    "",
+    "Adjunto el detalle completo en PDF."
+  ].join("\n");
+  ENVIO_ACTUAL = null;
+  $("envMensaje").value = txt;
+  abrir("modalEnviar");
+}
+
+/* ── 18d. RESPALDO DE INFORMACIÓN ─────────────────────────────── */
+function exportarRespaldo(){
+  const paquete = {
+    formato: "vitra-respaldo",
+    version: APP_VERSION,
+    generado: new Date().toISOString(),
+    usuario: SESION.usuario || "local",
+    proyectos: PROYECTOS,
+    papelera: leerPapelera(),
+    config: CFG,
+    catalogoPvc: leerCatalogoGuardado()
+  };
+  const nombre = "Respaldo_" + todayISO() + "_" + (PROYECTOS.filter(p => !p.eliminado).length) + "-proyectos.json";
+  const blob = new Blob([JSON.stringify(paquete, null, 2)], { type:"application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = nombre; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+  toast("Respaldo descargado · " + PROYECTOS.length + " proyectos.", "ok");
+}
+
+function importarRespaldo(archivo){
+  const lector = new FileReader();
+  lector.onload = () => {
+    let p;
+    try{ p = JSON.parse(lector.result); }
+    catch(e){ return toast("El archivo no es un respaldo válido.", "err"); }
+    if(!p || p.formato !== "vitra-respaldo" || !Array.isArray(p.proyectos))
+      return toast("El archivo no es un respaldo de este sistema.", "err");
+
+    let nuevos = 0, actualizados = 0;
+    p.proyectos.forEach(rem => {
+      const i = PROYECTOS.findIndex(x => x.id === rem.id);
+      if(i < 0){ PROYECTOS.push(rem); nuevos++; }
+      else if(String(rem.actualizado || "") > String(PROYECTOS[i].actualizado || "")){
+        PROYECTOS[i] = rem; actualizados++;
+      }
+    });
+    guardarProyectosLocales();
+
+    if(p.catalogoPvc && Object.keys(p.catalogoPvc).length && esAdmin()){
+      if(confirm("¿Importar también la lista de precios del respaldo? Reemplazará la actual.")){
+        try{ localStorage.setItem(LS.catalogo, JSON.stringify(p.catalogoPvc)); }catch(e){}
+        PVC.renderLibrary(); pintarSelloCatalogo();
+      }
+    }
+    renderLista();
+    toast("Respaldo restaurado · " + nuevos + " nuevos, " + actualizados + " actualizados. Nada se borró.", "ok");
+  };
+  lector.onerror = () => toast("No se pudo leer el archivo.", "err");
+  lector.readAsText(archivo);
+}
+
+/* ── 18e. PAPELERA ────────────────────────────────────────────── */
+function leerPapelera(){
+  try{ return JSON.parse(localStorage.getItem(LS.papelera) || "[]") || []; }
+  catch(e){ return []; }
+}
+function guardarPapelera(lista){
+  try{ localStorage.setItem(LS.papelera, JSON.stringify(lista)); }catch(e){}
+}
+function aPapelera(p){
+  const lista = leerPapelera();
+  lista.push(Object.assign({}, p, { borradoEl: new Date().toISOString(), borradoPor: SESION.usuario || "local" }));
+  // Solo se conservan 90 días
+  const limite = Date.now() - 90 * 24 * 60 * 60 * 1000;
+  guardarPapelera(lista.filter(x => new Date(x.borradoEl).getTime() > limite));
+}
+function renderPapelera(){
+  const lista = leerPapelera().sort((a,b) => String(b.borradoEl).localeCompare(String(a.borradoEl)));
+  const body = $("papeleraBody");
+  if(!body) return;
+  if(!lista.length){
+    body.innerHTML = '<tr><td colspan="6" style="padding:18px;color:#62758c">La papelera está vacía.</td></tr>';
+  }else{
+    body.innerHTML = lista.map(p =>
+      '<tr><td>' + escapeHtml(p.numero || "—") + '</td>' +
+      '<td><span class="badge-mod m-' + (p.modulo || "vidrieria") + '">' + ((p.modulo === "muebles") ? "Muebles" : "Vidriería") + '</span></td>' +
+      '<td class="l">' + escapeHtml(p.proyecto || "") + '</td>' +
+      '<td>' + escapeHtml(p.cliente || "") + '</td>' +
+      '<td>' + escapeHtml(String(p.borradoEl || "").slice(0,10)) + ' · ' + escapeHtml(p.borradoPor || "") + '</td>' +
+      '<td style="white-space:nowrap">' +
+        '<button class="action-small detail" data-pap="rest" data-id="' + p.id + '">↩ Restaurar</button>' +
+        '<button class="action-small del" data-pap="fin" data-id="' + p.id + '">✕ Borrar definitivo</button>' +
+      '</td></tr>').join("");
+  }
+  $("papeleraResumen").textContent = lista.length
+    ? lista.length + " proyecto(s) en la papelera · se conservan 90 días."
+    : "";
+}
+function restaurarDePapelera(id){
+  const lista = leerPapelera();
+  const i = lista.findIndex(x => x.id === id);
+  if(i < 0) return;
+  const p = lista[i];
+  delete p.borradoEl; delete p.borradoPor;
+  p.eliminado = false; p.pendiente = true; p.actualizado = new Date().toISOString();
+  lista.splice(i,1); guardarPapelera(lista);
+  if(!PROYECTOS.some(x => x.id === p.id)) PROYECTOS.push(p);
+  guardarProyectosLocales(); renderLista(); renderPapelera();
+  toast("Proyecto restaurado · " + (p.numero || p.proyecto) + ".", "ok");
+}
+function borrarDefinitivo(id){
+  if(!confirm("¿Borrar definitivamente? Esta acción ya no se puede deshacer.")) return;
+  guardarPapelera(leerPapelera().filter(x => x.id !== id));
+  renderPapelera();
+  toast("Proyecto borrado definitivamente.", "");
+}
+
 /* ── 19. MÓDULO: PRESUPUESTO DE MUEBLES (MUEBLES ZACAPA) ─────── */
 let MZ_ACTUAL = null;
 
@@ -2258,7 +2890,7 @@ function mzRenumerar(){
 function mzCalcular(){
   let subtotal = 0, ml = 0;
   $("mzItems").querySelectorAll("tr").forEach(r => {
-    const m = num(r.querySelector(".mz-ml").value), pr = num(r.querySelector(".mz-price").value);
+    const m = Math.max(0, num(r.querySelector(".mz-ml").value)), pr = Math.max(0, num(r.querySelector(".mz-price").value));
     const t = r2(m * pr);
     r.querySelector(".mz-total").textContent = fmt(t);
     subtotal += t; ml += m;
@@ -2426,6 +3058,8 @@ function iniciar(){
 
   renderLista();
   pintarUsuarios();
+  pintarSelloCatalogo();
+  renderPapelera();
   irTab("home");
   $("saveStatus").textContent = "Autoguardado activado";
 
