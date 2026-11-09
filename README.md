@@ -1,4 +1,4 @@
-# Sistema de Presupuestos v11.0.0
+# Sistema de Presupuestos v11.1.0
 
 > **Desde la v11 el servidor es Supabase** (ya no Google Sheets). Los proyectos,
 > precios, configuración, el catálogo de clientes y las solicitudes que llegan desde

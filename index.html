@@ -1125,7 +1125,7 @@ const AJUSTES_FABRICA = {
 if(AJUSTES_FABRICA.supabaseUrl && AJUSTES_FABRICA.supabaseKey) AJUSTES_FABRICA.apiUrl = "supabase";
 
 /* ── 1. CONSTANTES Y ESTADO GLOBAL ───────────────────────────── */
-const APP_VERSION = "11.0.0";
+const APP_VERSION = "11.1.0";
 const LS = {
   borrador : "vitra.borrador.v7",
   borradorMZ: "vitra.borradorMZ.v9",
@@ -1599,11 +1599,13 @@ async function catCargar(){
 }
 function catPintar(){
   const originales = CAT.filter(x => x.tipo === "original").length;
-  const pend = !originales;
+  const faltaM = !CAT.some(x => x.tipo === "original" && x.brand === "Muebles Zacapa");
+  const faltaV = !CAT.some(x => x.tipo === "original" && x.brand === "VitraHouse");
+  const pend = faltaM || faltaV;
   $("catImportar").classList.toggle("hidden", !pend);
   $("catAviso").className = pend ? "note warning" : "note";
   $("catAviso").innerHTML = pend
-    ? "Las 45 piezas originales del catálogo todavía no están en la nube. Presione <b>⬆ Importar piezas originales</b> una sola vez para pasarlas con sus fotos; después podrá editarlas aquí."
+    ? "Faltan en la nube " + (faltaM && faltaV ? "las 45 piezas de Muebles Zacapa y los 20 trabajos de VitraHouse" : faltaM ? "las 45 piezas originales de Muebles Zacapa" : "los 20 trabajos originales de VitraHouse") + ". Presione <b>⬆ Importar piezas originales</b> una sola vez para pasarlos con sus fotos; después podrá editarlos aquí."
     : "Lo que guarde aquí se publica al instante en el catálogo que ven los clientes.";
   const q = $("catBuscar").value.trim().toLowerCase(), m = $("catMarca").value, t = $("catTipo").value;
   const lista = CAT.filter(x => x.tipo !== "edicion" &&
@@ -1703,45 +1705,58 @@ async function catEliminar(id){
 /* Pasa a la nube las piezas originales que venían dentro del catálogo publicado */
 async function catImportar(){
   const base = catUrlPublica();
-  let lista = null;
   $("catImportar").disabled = true;
+  let hechas = 0;
   try{
-    $("catAviso").textContent = "Leyendo las piezas originales del catálogo publicado…";
-    let r = await fetch(base + "base-original.json", { cache:"no-store" }).catch(() => null);
-    if(r && r.ok){ lista = await r.json(); }
-    else{
-      r = await fetch(base + "index.html", { cache:"no-store" });
-      const html = await r.text();
-      const i = html.indexOf("const BASE=[");
-      const j = i < 0 ? -1 : html.indexOf("}];", i);
-      if(i < 0 || j < 0) throw new Error("El catálogo publicado ya no trae las piezas originales.");
-      lista = JSON.parse(html.slice(i + 11, j + 2));
+    const listas = [];
+    if(!CAT.some(x => x.tipo === "original" && x.brand === "Muebles Zacapa")){
+      $("catAviso").textContent = "Leyendo las piezas de Muebles Zacapa del catálogo publicado…";
+      let lista = null;
+      let r = await fetch(base + "base-original.json", { cache:"no-store" }).catch(() => null);
+      if(r && r.ok){ lista = await r.json(); }
+      else{
+        r = await fetch(base + "index.html", { cache:"no-store" });
+        const html = await r.text();
+        const i = html.indexOf("const BASE=[");
+        const j = i < 0 ? -1 : html.indexOf("}];", i);
+        if(i < 0 || j < 0) throw new Error("No se encontraron las piezas de Muebles Zacapa en el catálogo publicado.");
+        lista = JSON.parse(html.slice(i + 11, j + 2));
+      }
+      listas.push({ marca:"Muebles Zacapa", items:lista });
     }
-    if(!Array.isArray(lista) || !lista.length) throw new Error("No se encontraron piezas originales.");
-    let hechas = 0;
-    for(let k = 0; k < lista.length; k++){
-      const b = lista[k];
-      const ex = CAT.find(x => x.id === b.id);
-      if(ex && ex.tipo === "original"){ hechas++; continue; }
-      $("catAviso").textContent = "Importando pieza " + (k + 1) + " de " + lista.length + "…";
-      const fotos = ex && ex.images && ex.images.length ? ex.images : [await catSubirFoto(await catReducir(b.image), b.id)];
-      const fila = {
-        id:b.id, tipo:"original", orden:k + 1,
-        brand: ex ? ex.brand : (b.brand || "Muebles Zacapa"), title: ex ? ex.title : b.title,
-        category: ex ? ex.category : (b.category || "General"),
-        price: ex ? ex.price : null, size: ex ? ex.size || "" : "", material: ex ? ex.material || "" : "",
-        color: ex ? ex.color || "" : "", avail: ex ? ex.avail || "Disponible" : "Disponible",
-        descr: ex ? ex.descr || "" : "", images:fotos
-      };
-      const w = await sbRest("/rest/v1/catalogo_productos?on_conflict=id", { method:"POST",
-        headers:{ "Content-Type":"application/json", Prefer:"resolution=merge-duplicates,return=minimal" },
-        body:JSON.stringify(fila) });
-      if(!w.ok) throw new Error(w.error);
-      hechas++;
+    if(!CAT.some(x => x.tipo === "original" && x.brand === "VitraHouse")){
+      $("catAviso").textContent = "Leyendo los trabajos de VitraHouse del catálogo publicado…";
+      const r = await fetch(base + "vitra-original.json", { cache:"no-store" }).catch(() => null);
+      if(r && r.ok) listas.push({ marca:"VitraHouse", items:await r.json() });
+      else setTimeout(() => toast("Faltan los trabajos de VitraHouse: suba vitra-original.json al repositorio del catálogo y vuelva a presionar Importar.", "err"), 2500);
+    }
+    for(const grupo of listas){
+      const lista = grupo.items;
+      if(!Array.isArray(lista) || !lista.length) continue;
+      for(let k = 0; k < lista.length; k++){
+        const b = lista[k];
+        const ex = CAT.find(x => x.id === b.id);
+        if(ex && ex.tipo === "original"){ hechas++; continue; }
+        $("catAviso").textContent = "Importando " + grupo.marca + ": " + (k + 1) + " de " + lista.length + "…";
+        const fotos = ex && ex.images && ex.images.length ? ex.images : [await catSubirFoto(await catReducir(b.image), b.id)];
+        const fila = {
+          id:b.id, tipo:"original", orden:k + 1,
+          brand: ex ? ex.brand : (b.brand || grupo.marca), title: ex ? ex.title : b.title,
+          category: ex ? ex.category : (b.category || "General"),
+          price: ex ? ex.price : null, size: ex ? ex.size || "" : "", material: ex ? ex.material || "" : "",
+          color: ex ? ex.color || "" : "", avail: ex ? ex.avail || "Disponible" : "Disponible",
+          descr: ex ? ex.descr || "" : (b.desc || ""), images:fotos
+        };
+        const w = await sbRest("/rest/v1/catalogo_productos?on_conflict=id", { method:"POST",
+          headers:{ "Content-Type":"application/json", Prefer:"resolution=merge-duplicates,return=minimal" },
+          body:JSON.stringify(fila) });
+        if(!w.ok) throw new Error(w.error);
+        hechas++;
+      }
     }
     toast("✓ " + hechas + " piezas originales quedaron en la nube.", "ok");
   }catch(e){
-    toast("No se pudo importar: " + e.message, "err");
+    toast("No se pudo importar: " + e.message + (hechas ? " (" + hechas + " ya quedaron en la nube; vuelva a presionar Importar para continuar)" : ""), "err");
   }finally{
     $("catImportar").disabled = false;
     catCargar();
