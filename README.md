@@ -1,4 +1,16 @@
-# Sistema de Presupuestos v10.0.0
+# Sistema de Presupuestos v11.0.0
+
+> **Desde la v11 el servidor es Supabase** (ya no Google Sheets). Los proyectos,
+> precios, configuración, el catálogo de clientes y las solicitudes que llegan desde
+> el enlace del catálogo se guardan en la nube del dueño. La carpeta `apps-script/`
+> queda solo como referencia de la versión anterior.
+>
+> **Instalación:** vea `supabase/LEEME.txt`.
+>
+> **Módulos nuevos:** 📥 *Solicitudes del catálogo* (todo el personal) y
+> 🛋 *Catálogo de clientes* (administrador). En *Materiales PVC* se puede guardar el
+> proyecto y abrirlo desde *Proyectos* con el botón 🪟 Materiales.
+
 
 Aplicación web con tres módulos de trabajo unidos: **cotización de vidriería
 (Vitra House)**, **cálculo de materiales de PVC** y **presupuesto de muebles

@@ -333,6 +333,41 @@ body.rol-operador .solo-admin{display:none!important}
   .doc tr{page-break-inside:avoid}
   .doc-firma{page-break-inside:avoid}
 }
+
+@media(max-width:700px){#pvProyectoCard .form-grid{grid-template-columns:1fr!important}}
+
+.hidden{display:none!important}
+.sol-badge{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 7px;border-radius:99px;background:#dc2626;color:#fff;font-size:12px;font-weight:800;vertical-align:middle;margin-left:6px}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin-top:14px}
+.cat-card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.cat-foto{position:relative;height:150px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;color:#94a3b8}
+.cat-foto img{width:100%;height:100%;object-fit:cover}
+.cat-tag{position:absolute;top:8px;left:8px;background:#167447;color:#fff;font-size:11px;font-weight:800;padding:3px 8px;border-radius:99px}
+.cat-n{position:absolute;top:8px;right:8px;background:#000a;color:#fff;font-size:11px;padding:2px 7px;border-radius:99px}
+.cat-info{padding:10px 12px 12px;display:flex;flex-direction:column;gap:4px;flex:1}
+.cat-info small{color:var(--muted)}
+.cat-meta{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:2px}
+.cat-precio{font-weight:800;color:#0b4a93}
+.cat-disp{font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;background:#e3f3e8;color:#135b30}
+.cat-disp.d-Sobrepedido{background:#fff1d6;color:#8a5a00}.cat-disp.d-Agotado{background:#fde4e2;color:#a3261b}
+.cat-acc{display:flex;gap:6px;margin-top:auto;padding-top:8px}
+.cat-fotos{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;margin:6px 0 10px}
+.cat-fotos>div{position:relative;border:2px solid var(--border);border-radius:10px;overflow:hidden}
+.cat-fotos>div.principal{border-color:#0b4a93}
+.cat-fotos img{width:100%;height:80px;object-fit:cover;display:block}
+.cat-fotos .tag{position:absolute;top:4px;left:4px;background:#0b4a93;color:#fff;font-size:10px;padding:1px 6px;border-radius:99px}
+.cat-fotos .acc{display:flex;gap:3px;padding:3px}.cat-fotos .acc button{flex:1;font-size:11px;padding:4px;border-radius:6px;border:1px solid var(--border);background:#fff;cursor:pointer}
+.pf-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.sol-lista{display:grid;gap:12px;margin-top:14px}
+.sol-card{border:1px solid var(--border);border-left:5px solid #0e7490;border-radius:12px;padding:12px 14px;background:#fff}
+.sol-card.e-Nueva{border-left-color:#dc2626}.sol-card.e-Enproceso{border-left-color:#d97706}.sol-card.e-Cotizada{border-left-color:#16a34a}.sol-card.e-Descartada{border-left-color:#94a3b8;opacity:.75}
+.sol-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.sol-head b{font-size:16px;display:block}.sol-head small{color:var(--muted)}
+.sol-head select{max-width:160px}
+.sol-dato{margin:6px 0;color:#334155}.sol-prods{margin:8px 0;padding-left:20px}.sol-det{margin:6px 0;white-space:pre-line;color:#334155}
+.sol-acc{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+@media(max-width:700px){.pf-grid{grid-template-columns:1fr}.sol-head{flex-direction:column}.sol-head select{max-width:none;width:100%}}
+a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 16px;border-radius:12px;font-weight:700;font-size:14px;text-decoration:none!important;line-height:1.2;cursor:pointer}
 </style>
 </head>
 <body class="bloqueado">
@@ -412,6 +447,16 @@ body.rol-operador .solo-admin{display:none!important}
       <button class="mod-card" data-tab="pro" type="button" style="--c:#ff7300;--soft:#fdeee0">
         <span class="mod-ico">◴</span>
         <div><h3>Proyectos guardados</h3><p>Busca, abre, duplica o reimprime los trabajos de ambos módulos</p></div>
+        <span class="mod-go">↗</span>
+      </button>
+      <button class="mod-card sb-only" data-tab="sol" type="button" style="--c:#0e7490;--soft:#e0f4f7">
+        <span class="mod-ico">📥</span>
+        <div><h3>Solicitudes del catálogo <span class="sol-badge" id="solBadge" style="display:none">0</span></h3><p>Pedidos de cotización que envían los clientes desde el enlace del catálogo</p></div>
+        <span class="mod-go">↗</span>
+      </button>
+      <button class="mod-card solo-admin sb-only" data-tab="cat" type="button" style="--c:#b45309;--soft:#fdf1e3">
+        <span class="mod-ico">🛋</span>
+        <div><h3>Catálogo de clientes</h3><p>Crea y edita productos, fotos y precios; se publican al instante en el enlace</p></div>
         <span class="mod-go">↗</span>
       </button>
       <button class="mod-card solo-admin" data-tab="adm" type="button" style="--c:#6d28d9;--soft:#efe8fc">
@@ -533,6 +578,7 @@ body.rol-operador .solo-admin{display:none!important}
 
   <div class="actions">
     <button class="save" id="saveProjectBtn">💾 Guardar proyecto</button>
+    <button class="btn-outline" id="calcMatBtn" type="button">🪟 Calcular materiales</button>
     <button class="new" id="newProjectBtn">＋ Nuevo proyecto</button>
     <button class="pdf" id="printBtn">▣ Ver / Exportar PDF</button>
     <button class="excel" id="excelBtn">▤ Exportar Excel</button>
@@ -542,6 +588,27 @@ body.rol-operador .solo-admin{display:none!important}
   </div><!-- /panel-cot -->
 
   <div id="panel-pvc" class="tab-panel hidden">
+    <section class="card" id="pvProyectoCard">
+      <div class="card-head">
+        <h2 class="section-title"><span class="section-icon">◴</span>Proyecto del cálculo</h2>
+        <div class="toolbar">
+          <button class="save" style="color:#fff" id="pvGuardarProyecto" type="button">💾 Guardar proyecto</button>
+          <button class="btn-outline" id="pvIrCotizacion" type="button">▣ Ver cotización</button>
+        </div>
+      </div>
+      <div class="form-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="field"><label for="pvAbrir">Abrir proyecto guardado</label>
+          <select id="pvAbrir"><option value="">— Elegir proyecto —</option></select></div>
+        <div class="field"><label for="pvCliente">Nombre de cliente</label>
+          <input id="pvCliente" placeholder="Nombre del cliente" autocomplete="off"></div>
+        <div class="field"><label for="pvProyecto">Nombre del proyecto</label>
+          <input id="pvProyecto" placeholder="Ej. Residencia Los Pinos" autocomplete="off"></div>
+      </div>
+      <div class="note" id="pvVinculo" style="margin-top:10px"></div>
+      <div class="toolbar" style="margin-top:10px">
+        <button class="btn-outline" id="pvTraerCot" type="button">⇩ Traer ventanas de la cotización</button>
+      </div>
+    </section>
     <section class="card">
       <div class="card-head">
         <h2 class="section-title"><span class="section-icon">🪟</span>Ventanas del proyecto</h2>
@@ -724,6 +791,43 @@ body.rol-operador .solo-admin{display:none!important}
 
   </div><!-- /panel-pro -->
 
+  <div id="panel-cat" class="tab-panel hidden">
+  <section class="card">
+    <div class="card-head">
+      <h2 class="section-title"><span class="section-icon">🛋</span>Catálogo de clientes</h2>
+      <div class="toolbar">
+        <button class="save" style="color:#fff" id="catNuevo" type="button">＋ Nuevo producto</button>
+        <button class="btn-outline hidden" id="catImportar" type="button">⬆ Importar piezas originales</button>
+        <button class="btn-outline" id="catRecargar" type="button">⟳ Actualizar</button>
+        <a class="btn-outline" id="catAbrirPub" target="_blank" rel="noopener" style="text-decoration:none">↗ Ver como cliente</a>
+      </div>
+    </div>
+    <div class="note" id="catAviso"></div>
+    <div class="filters" style="grid-template-columns:1fr 190px 190px;margin-top:12px">
+      <input id="catBuscar" placeholder="Buscar producto, categoría o descripción..." autocomplete="off">
+      <select id="catMarca"><option value="">Ambas empresas</option><option>Muebles Zacapa</option><option>VitraHouse</option></select>
+      <select id="catTipo"><option value="">Todos</option><option value="nuevo">Solo nuevos</option><option value="original">Solo originales</option></select>
+    </div>
+    <div id="catGrid" class="cat-grid"></div>
+    <div class="status" id="catResumen"></div>
+  </section>
+  </div><!-- /panel-cat -->
+
+  <div id="panel-sol" class="tab-panel hidden">
+  <section class="card">
+    <div class="card-head">
+      <h2 class="section-title"><span class="section-icon">📥</span>Solicitudes del catálogo</h2>
+      <div class="toolbar"><button class="btn-outline" id="solRecargar" type="button">⟳ Actualizar</button></div>
+    </div>
+    <div class="filters" style="grid-template-columns:1fr 230px 190px">
+      <input id="solBuscar" placeholder="Buscar cliente, producto o detalle..." autocomplete="off">
+      <select id="solEstado"><option value="activas">Pendientes (Nueva / En proceso)</option><option value="">Todas</option><option>Nueva</option><option>En proceso</option><option>Cotizada</option><option>Descartada</option></select>
+      <select id="solEmpresa"><option value="">Ambas empresas</option><option>Muebles Zacapa</option><option>VitraHouse</option></select>
+    </div>
+    <div id="solLista" class="sol-lista"></div>
+  </section>
+  </div><!-- /panel-sol -->
+
   <div id="panel-adm" class="tab-panel hidden">
     <section class="card">
       <h2 class="section-title"><span class="section-icon">⚙</span>Configuración global de cálculo</h2>
@@ -829,6 +933,30 @@ body.rol-operador .solo-admin{display:none!important}
 </div>
 
 <!-- ══════════ MODAL: CONFIGURACIÓN ══════════ -->
+<div class="modal" id="modalProducto">
+  <div class="modal-box">
+    <div class="modal-head"><h3 id="catFormTitulo">Producto</h3><button type="button" data-close="modalProducto">Cerrar</button></div>
+    <div class="modal-body">
+      <div class="alerta" id="pfAlerta"></div>
+      <div class="form-grid pf-grid">
+        <div class="field"><label for="pfMarca">Empresa</label><select id="pfMarca"><option>Muebles Zacapa</option><option>VitraHouse</option></select></div>
+        <div class="field"><label for="pfTitulo">Nombre del producto *</label><input id="pfTitulo" maxlength="200" placeholder="Ej. Comedor 6 sillas en caoba"></div>
+        <div class="field"><label for="pfCategoria">Categoría</label><input id="pfCategoria" list="catCategorias" placeholder="Ej. Comedores y mesas"><datalist id="catCategorias"></datalist></div>
+        <div class="field"><label for="pfPrecio">Precio (L) — opcional</label><input id="pfPrecio" type="number" min="0" step="0.01" inputmode="decimal"></div>
+        <div class="field"><label for="pfMedidas">Medidas</label><input id="pfMedidas" placeholder="Ej. 1.80 × 0.90 m"></div>
+        <div class="field"><label for="pfMaterial">Material / acabado</label><input id="pfMaterial" placeholder="Ej. Caoba, laca mate"></div>
+        <div class="field"><label for="pfColor">Color</label><input id="pfColor" placeholder="Ej. Nogal oscuro"></div>
+        <div class="field"><label for="pfDisp">Disponibilidad</label><select id="pfDisp"><option>Disponible</option><option>Sobre pedido</option><option>Agotado</option></select></div>
+      </div>
+      <div class="field" style="margin-top:10px"><label for="pfDesc">Descripción</label><textarea id="pfDesc" rows="3" maxlength="4000" placeholder="Detalles, tiempo de entrega, garantía, instalación…"></textarea></div>
+      <div class="field" style="margin-top:10px"><label>Fotos (la primera es la principal)</label>
+        <div id="catFotos" class="cat-fotos"></div>
+        <input id="pfFotos" type="file" accept="image/*" multiple>
+        <div class="hint" id="catFotosNuevas"></div></div>
+    </div>
+    <div class="modal-foot"><button class="save" style="color:#fff" id="pfGuardar" type="button">💾 Guardar y publicar</button></div>
+  </div>
+</div>
 <div class="modal" id="modalConfig">
   <div class="modal-box">
     <div class="modal-head">
@@ -964,7 +1092,13 @@ const EMPRESA_MZ = {
 };
 
 const AJUSTES_FABRICA = {
-  apiUrl : "https://script.google.com/macros/s/AKfycbzS9iWeTq4JCqg3JcsKfvXn9laW4H7itUXbty9QLdne4SpF8mmC6FcWhK7wTanRq9qb/exec",         // ej. "https://script.google.com/macros/s/AKfycb.../exec"
+  apiUrl : "",         // (ya no se usa: el servidor ahora es Supabase)
+
+  /* Servidor en la nube (Supabase). La clave publicable es pública por diseño:
+     la seguridad la ponen las reglas de la base de datos, no esta clave. */
+  supabaseUrl: "https://swjccmziyjtshqeqntlq.supabase.co",
+  supabaseKey: "sb_publishable_XOZ38hBxCZC4bUiktw9fqA_tm28UqOP",
+  catalogoUrl: "https://ventasallsupplierhn-png.github.io/Catalogo-unificado./",
 
   /* Seguridad del acceso:
      false = si no hay conexión, se puede entrar con la lista de abajo (cómodo).
@@ -980,15 +1114,18 @@ const AJUSTES_FABRICA = {
      rol "admin"    = acceso total (administración, precios, costos, eliminar)
      rol "operador" = solo crear, imprimir y enviar cotizaciones            */
   usuarios: [
-    { usuario:"admin",   pin:"1234", nombre:"Administrador", rol:"admin"    },
-    { usuario:"ventas1", pin:"1111", nombre:"Ventas 1",      rol:"operador" },
-    { usuario:"ventas2", pin:"2222", nombre:"Ventas 2",      rol:"operador" },
-    { usuario:"taller",  pin:"3333", nombre:"Taller",        rol:"operador" }
+    /* Con Supabase las contraseñas viven en el servidor (Authentication ▸ Users).
+       "correo" es la cuenta interna de cada usuario en Supabase.                */
+    { usuario:"admin",   nombre:"Administrador", rol:"admin",    correo:"ventasallsupplierhn@gmail.com" },
+    { usuario:"ventas1", nombre:"Ventas 1",      rol:"operador", correo:"ventasallsupplierhn+ventas1@gmail.com" },
+    { usuario:"ventas2", nombre:"Ventas 2",      rol:"operador", correo:"ventasallsupplierhn+ventas2@gmail.com" },
+    { usuario:"taller",  nombre:"Taller",        rol:"operador", correo:"ventasallsupplierhn+taller@gmail.com" }
   ]
 };
+if(AJUSTES_FABRICA.supabaseUrl && AJUSTES_FABRICA.supabaseKey) AJUSTES_FABRICA.apiUrl = "supabase";
 
 /* ── 1. CONSTANTES Y ESTADO GLOBAL ───────────────────────────── */
-const APP_VERSION = "10.0.0";
+const APP_VERSION = "11.0.0";
 const LS = {
   borrador : "vitra.borrador.v7",
   borradorMZ: "vitra.borradorMZ.v9",
@@ -1242,8 +1379,10 @@ async function entrar(){
       if(r.config) aplicarConfigServidor(r.config);
       guardarConfigLocal(); abrirApp(); $("logPin").value = "";
       sincronizar(true);
+      if(typeof solCargar === "function") solCargar(true);
       return;
     }
+    if(SB_ON && !r.red){ al.className = "alerta show err"; al.textContent = r.error || "Usuario o contraseña incorrectos."; return; }
   }
   // 2) Sin servidor o sin conexión: lista local del archivo
   if(AJUSTES_FABRICA.exigirServidor){
@@ -1253,8 +1392,20 @@ async function entrar(){
       : "Este equipo exige validación en el servidor y no tiene URL configurada.";
     return;
   }
-  const candidato = usuariosLocales().find(u => u.usuario === usuario);
-  const loc = (candidato && await pinCorrecto(candidato, pin)) ? candidato : null;
+  let loc = null;
+  if(SB_ON){
+    // Sin internet: solo entra quien ya inició sesión antes en este equipo, con la misma contraseña
+    const c = sbUsuariosNube().find(u => u.login === usuario || u.usuario === usuario);
+    if(c && (await huellaPin(c.usuario, pin)) === c.pinHash) loc = c;
+    if(!loc){
+      al.className = "alerta show err";
+      al.textContent = c ? "Usuario o contraseña incorrectos." : "Sin conexión con el servidor. La primera vez debe entrar con internet.";
+      return;
+    }
+  }else{
+    const candidato = usuariosLocales().find(u => u.usuario === usuario);
+    loc = (candidato && await pinCorrecto(candidato, pin)) ? candidato : null;
+  }
   if(!loc){
     al.className = "alerta show err";
     al.textContent = "Usuario o contraseña incorrectos.";
@@ -1270,23 +1421,434 @@ function salir(){
   if(!confirm("¿Cerrar sesión? Los proyectos guardados se conservan.")) return;
   SESION = { usuario:"", nombre:"", rol:"", token:"" };
   localStorage.removeItem(LS.sesion);
+  if(SB_ON) sbGuardar(null);
   location.reload();
 }
 const MODULOS = {
   home:"", cot:"Cotización · Vitra House", pvc:"Materiales PVC",
-  mue:"Presupuesto · Muebles Zacapa", pro:"Proyectos guardados", adm:"Administración"
+  mue:"Presupuesto · Muebles Zacapa", pro:"Proyectos guardados", adm:"Administración",
+  cat:"Catálogo de clientes", sol:"Solicitudes del catálogo"
 };
 function irTab(t){
-  if(t === "adm" && !esAdmin()) return;
+  if((t === "adm" || t === "cat") && !esAdmin()) return;
   if(!MODULOS.hasOwnProperty(t)) t = "home";
   Object.keys(MODULOS).forEach(k => $("panel-" + k).classList.toggle("hidden", k !== t));
   $("navBar").classList.toggle("hidden", t === "home");
   $("navTitulo").textContent = MODULOS[t] || "";
   window.scrollTo({ top:0, behavior:"smooth" });
+  if(t === "pvc" && typeof pvSincronizarCampos === "function") pvSincronizarCampos();
+  if(t === "cat" && typeof catCargar === "function") catCargar();
+  if(t === "sol" && typeof solCargar === "function") solCargar();
 }
 
 /* ── 4. COMUNICACIÓN CON APPS SCRIPT ─────────────────────────── */
+
+/* ── 4b. SUPABASE: sesión, servidor y módulos de catálogo y solicitudes ─────── */
+const SB = {
+  url: String(AJUSTES_FABRICA.supabaseUrl || "").trim().replace(/\/+$/,"").replace(/\/rest\/v1$/,""),
+  key: String(AJUSTES_FABRICA.supabaseKey || "").trim(),
+  ls: "vitra.sb.v1", lsUsuarios: "vitra.usuariosNube.v1", bucket: "catalogo"
+};
+const SB_ON = !!(SB.url && SB.key);
+function sbCorreo(usuario){
+  const u = (AJUSTES_FABRICA.usuarios || []).find(x => x.usuario === usuario);
+  return (u && u.correo) ? u.correo : String(usuario || "");
+}
+function sbLeer(){ try{ return JSON.parse(localStorage.getItem(SB.ls) || "null"); }catch(e){ return null; } }
+function sbGuardar(s){ try{ s ? localStorage.setItem(SB.ls, JSON.stringify(s)) : localStorage.removeItem(SB.ls); }catch(e){} }
+function sbUsuariosNube(){ try{ const l = JSON.parse(localStorage.getItem(SB.lsUsuarios) || "[]"); return Array.isArray(l) ? l : []; }catch(e){ return []; } }
+async function sbFetch(path, opt){
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), 30000);
+  try{
+    const r = await fetch(SB.url + path, Object.assign({ signal:ctrl.signal, cache:"no-store" }, opt || {}));
+    const txt = await r.text();
+    let j = null; try{ j = txt ? JSON.parse(txt) : null; }catch(e){}
+    return { ok:r.ok, status:r.status, j:j };
+  }catch(e){ return { ok:false, status:0, j:null, red:true, abort:e.name === "AbortError" }; }
+  finally{ clearTimeout(t); }
+}
+function sbErr(r, def){
+  if(r.red) return r.abort ? "El servidor tardó demasiado en responder." : "Sin conexión con el servidor.";
+  const m = (r.j && (r.j.error_description || r.j.message || r.j.msg || r.j.error)) || "";
+  if(/invalid login/i.test(m)) return "Usuario o contraseña incorrectos.";
+  if(/email not confirmed/i.test(m)) return "Ese usuario aún no está confirmado en Supabase.";
+  if(/row-level security|permission denied/i.test(m) || r.status === 401 || r.status === 403) return "Su usuario no tiene permiso para esta acción.";
+  return m || def || ("Error " + r.status);
+}
+function sbNuevaSesion(j){
+  const s = { access:j.access_token, refresh:j.refresh_token, exp:Math.floor(Date.now()/1000) + (j.expires_in || 3600) };
+  sbGuardar(s); return s;
+}
+/* Devuelve un token válido, renovándolo si venció. "__red" = sin internet. */
+async function sbToken(){
+  const s = sbLeer();
+  if(!s) return null;
+  if(s.exp - 60 > Date.now()/1000) return s.access;
+  const r = await sbFetch("/auth/v1/token?grant_type=refresh_token", {
+    method:"POST", headers:{ apikey:SB.key, "Content-Type":"application/json" },
+    body:JSON.stringify({ refresh_token:s.refresh }) });
+  if(!r.ok){ if(r.red) return "__red"; sbGuardar(null); return null; }
+  const n = sbNuevaSesion(r.j);
+  SESION.token = n.access;
+  try{ localStorage.setItem(LS.sesion, JSON.stringify(SESION)); }catch(e){}
+  return n.access;
+}
+function sbSinSesion(){
+  SESION.token = "";
+  try{ localStorage.setItem(LS.sesion, JSON.stringify(SESION)); }catch(e){}
+  if(typeof pintarChipNube === "function") pintarChipNube();
+}
+async function sbRpc(fn, args){
+  const tk = await sbToken();
+  if(tk === "__red") return { ok:false, error:"Sin conexión con el servidor." };
+  if(!tk){ sbSinSesion(); return { ok:false, error:"Sesión expirada. Cierre sesión y vuelva a entrar." }; }
+  const r = await sbFetch("/rest/v1/rpc/" + fn, { method:"POST",
+    headers:{ apikey:SB.key, Authorization:"Bearer " + tk, "Content-Type":"application/json" },
+    body:JSON.stringify(args || {}) });
+  if(!r.ok) return { ok:false, error:sbErr(r, "Error del servidor.") };
+  return r.j || { ok:false, error:"El servidor no devolvió datos." };
+}
+async function sbRest(path, opt){
+  const tk = await sbToken();
+  if(tk === "__red") return { ok:false, error:"Sin conexión con el servidor." };
+  if(!tk){ sbSinSesion(); return { ok:false, error:"Sesión expirada. Cierre sesión y vuelva a entrar." }; }
+  const o = Object.assign({}, opt || {});
+  o.headers = Object.assign({ apikey:SB.key, Authorization:"Bearer " + tk }, o.headers || {});
+  const r = await sbFetch(path, o);
+  return r.ok ? { ok:true, data:r.j } : { ok:false, error:sbErr(r) };
+}
+/* Traduce las acciones del servidor anterior (Apps Script) a Supabase */
+async function sbApi(action, data){
+  data = data || {};
+  if(action === "ping"){
+    const r = await sbFetch("/auth/v1/settings", { headers:{ apikey:SB.key } });
+    return r.ok ? { ok:true, version:"Supabase" } : { ok:false, error:sbErr(r) };
+  }
+  if(action === "login"){
+    const r = await sbFetch("/auth/v1/token?grant_type=password", { method:"POST",
+      headers:{ apikey:SB.key, "Content-Type":"application/json" },
+      body:JSON.stringify({ email:sbCorreo(data.usuario), password:String(data.pin || "") }) });
+    if(!r.ok) return { ok:false, red:!!r.red, error:sbErr(r, "Usuario o contraseña incorrectos.") };
+    sbNuevaSesion(r.j);
+    const s = await sbRpc("presu_sesion", {});
+    if(!s.ok){ sbGuardar(null); return s; }
+    try{
+      // Permite entrar sin internet la próxima vez, con la misma contraseña
+      const huella = await huellaPin(s.usuario, data.pin);
+      const lista = sbUsuariosNube().filter(u => u.usuario !== s.usuario);
+      lista.push({ usuario:s.usuario, login:data.usuario, nombre:s.nombre, rol:s.rol, pinHash:huella });
+      localStorage.setItem(SB.lsUsuarios, JSON.stringify(lista));
+    }catch(e){}
+    return { ok:true, usuario:s.usuario, nombre:s.nombre, rol:s.rol, token:r.j.access_token, config:s.config, version:"Supabase" };
+  }
+  if(action === "listar")          return sbRpc("presu_listar", {});
+  if(action === "guardar")         return sbRpc("presu_guardar", { proy:data.proyecto });
+  if(action === "eliminar")        return sbRpc("presu_eliminar", { pid:data.id });
+  if(action === "guardarCatalogo") return sbRpc("presu_guardar_catalogo", { cat:data.catalogo });
+  if(action === "guardarConfig")   return sbRpc("presu_guardar_config", { cfg:data.config });
+  if(action === "catalogos"){ const s = await sbRpc("presu_sesion", {}); return s.ok ? { ok:true, config:s.config } : s; }
+  return { ok:false, error:"Acción no reconocida: " + action };
+}
+
+/* ---------- Fotos: reducir y subir ---------- */
+function catReducir(fuente){
+  return new Promise((res, rej) => {
+    const u = typeof fuente === "string" ? fuente : URL.createObjectURL(fuente);
+    const img = new Image();
+    img.onload = () => {
+      const k = Math.min(1, 1400 / Math.max(img.width, img.height));
+      const c = document.createElement("canvas");
+      c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+      const g = c.getContext("2d"); g.fillStyle = "#fff"; g.fillRect(0,0,c.width,c.height);
+      g.drawImage(img, 0, 0, c.width, c.height);
+      if(typeof fuente !== "string") URL.revokeObjectURL(u);
+      c.toBlob(b => b ? res(b) : rej(new Error("No se pudo procesar la foto.")), "image/jpeg", 0.82);
+    };
+    img.onerror = () => { if(typeof fuente !== "string") URL.revokeObjectURL(u); rej(new Error("No se pudo leer una de las fotos.")); };
+    img.src = u;
+  });
+}
+async function catSubirFoto(blob, id){
+  const ruta = String(id).replace(/[^a-zA-Z0-9_-]/g,"") + "/" + Date.now() + "-" + Math.random().toString(36).slice(2,8) + ".jpg";
+  const r = await sbRest("/storage/v1/object/" + SB.bucket + "/" + ruta, { method:"POST",
+    headers:{ "Content-Type":"image/jpeg", "x-upsert":"true" }, body:blob });
+  if(!r.ok) throw new Error(r.error);
+  return SB.url + "/storage/v1/object/public/" + SB.bucket + "/" + ruta;
+}
+function catPrefijoFotos(){ return SB.url + "/storage/v1/object/public/" + SB.bucket + "/"; }
+async function catBorrarFotos(urls){
+  const pre = catPrefijoFotos();
+  for(const u of (urls || [])){
+    if(String(u).indexOf(pre) !== 0) continue;
+    try{ await sbRest("/storage/v1/object/" + SB.bucket + "/" + u.slice(pre.length), { method:"DELETE" }); }catch(e){}
+  }
+}
+
+/* ---------- Módulo Catálogo (administrador) ---------- */
+let CAT = [], CAT_EDIT = null, CAT_FOTOS = [], CAT_NUEVAS = [];
+function catUrlPublica(){ return String(AJUSTES_FABRICA.catalogoUrl || "").replace(/\/?$/, "/"); }
+async function catCargar(){
+  if(!SB_ON) return;
+  $("catAviso").className = "note"; $("catAviso").textContent = "Cargando catálogo…";
+  const r = await sbFetch("/rest/v1/catalogo_productos?select=*&order=orden.asc,created_at.desc",
+    { headers:{ apikey:SB.key, Authorization:"Bearer " + SB.key } });
+  if(!r.ok){ $("catAviso").className = "note warning"; $("catAviso").textContent = "No se pudo leer el catálogo: " + sbErr(r); return; }
+  CAT = Array.isArray(r.j) ? r.j : [];
+  catPintar();
+}
+function catPintar(){
+  const originales = CAT.filter(x => x.tipo === "original").length;
+  const pend = !originales;
+  $("catImportar").classList.toggle("hidden", !pend);
+  $("catAviso").className = pend ? "note warning" : "note";
+  $("catAviso").innerHTML = pend
+    ? "Las 45 piezas originales del catálogo todavía no están en la nube. Presione <b>⬆ Importar piezas originales</b> una sola vez para pasarlas con sus fotos; después podrá editarlas aquí."
+    : "Lo que guarde aquí se publica al instante en el catálogo que ven los clientes.";
+  const q = $("catBuscar").value.trim().toLowerCase(), m = $("catMarca").value, t = $("catTipo").value;
+  const lista = CAT.filter(x => x.tipo !== "edicion" &&
+    (!m || x.brand === m) && (!t || x.tipo === t) &&
+    (!q || (x.title + " " + x.category + " " + (x.descr || "")).toLowerCase().includes(q)));
+  $("catGrid").innerHTML = lista.length ? lista.map(x => {
+    const foto = (x.images && x.images[0]) || "";
+    return '<article class="cat-card">' +
+      '<div class="cat-foto">' + (foto ? '<img loading="lazy" src="' + escapeHtml(foto) + '" alt="">' : '<span>Sin foto</span>') +
+        (x.tipo === "nuevo" ? '<span class="cat-tag">Nuevo</span>' : '') +
+        ((x.images || []).length > 1 ? '<span class="cat-n">📷 ' + x.images.length + '</span>' : '') + '</div>' +
+      '<div class="cat-info"><small>' + escapeHtml(x.brand) + ' · ' + escapeHtml(x.category || "") + '</small>' +
+      '<b>' + escapeHtml(x.title) + '</b>' +
+      '<div class="cat-meta">' + (x.price != null ? '<span class="cat-precio">L ' + fmt(Number(x.price)).replace(/^L\s*/,"") + '</span>' : '<span class="muted">Sin precio</span>') +
+      '<span class="cat-disp d-' + escapeHtml((x.avail || "Disponible").replace(/\s/g,"")) + '">' + escapeHtml(x.avail || "Disponible") + '</span></div>' +
+      '<div class="cat-acc"><button class="action-small edit" data-cat="edit" data-id="' + escapeHtml(x.id) + '">✏ Editar</button>' +
+      '<button class="action-small del" data-cat="del" data-id="' + escapeHtml(x.id) + '">Eliminar</button></div></div></article>';
+  }).join("") : '<p class="muted" style="padding:20px">No hay productos que mostrar.</p>';
+  const nuevos = CAT.filter(x => x.tipo === "nuevo").length;
+  $("catResumen").textContent = lista.length + " mostrado(s) · " + originales + " originales · " + nuevos + " nuevos";
+}
+function catPintarFotos(){
+  $("catFotos").innerHTML = CAT_FOTOS.map((u,k) =>
+    '<div class="' + (k ? "" : "principal") + '">' + (k ? "" : '<span class="tag">Principal</span>') +
+    '<img src="' + escapeHtml(u) + '" alt="">' +
+    '<div class="acc">' + (k ? '<button type="button" data-foto="main" data-k="' + k + '">★ Principal</button>' : '') +
+    '<button type="button" data-foto="del" data-k="' + k + '">✕ Quitar</button></div></div>').join("") ||
+    '<small class="muted">Sin fotos todavía.</small>';
+  $("catFotosNuevas").textContent = CAT_NUEVAS.length ? CAT_NUEVAS.length + " foto(s) nueva(s) se subirán al guardar." : "";
+}
+function catAbrirForm(id){
+  const x = id ? CAT.find(i => i.id === id) : null;
+  CAT_EDIT = x ? x.id : null;
+  CAT_FOTOS = x ? (x.images || []).slice() : [];
+  CAT_NUEVAS = [];
+  $("catFormTitulo").textContent = x ? "✏ Editar producto" : "＋ Nuevo producto";
+  $("pfMarca").value = x ? x.brand : "Muebles Zacapa";
+  $("pfTitulo").value = x ? x.title : "";
+  $("pfCategoria").value = x ? (x.category || "") : "";
+  $("pfPrecio").value = x && x.price != null ? x.price : "";
+  $("pfMedidas").value = x ? (x.size || "") : "";
+  $("pfMaterial").value = x ? (x.material || "") : "";
+  $("pfColor").value = x ? (x.color || "") : "";
+  $("pfDisp").value = x ? (x.avail || "Disponible") : "Disponible";
+  $("pfDesc").value = x ? (x.descr || "") : "";
+  $("pfFotos").value = "";
+  $("catCategorias").innerHTML = [...new Set(CAT.map(i => i.category).filter(Boolean))].sort()
+    .map(c => '<option value="' + escapeHtml(c) + '">').join("");
+  $("pfAlerta").className = "alerta";
+  catPintarFotos();
+  abrir("modalProducto");
+  setTimeout(() => $("pfTitulo").focus(), 50);
+}
+async function catGuardar(){
+  const titulo = $("pfTitulo").value.trim();
+  const al = $("pfAlerta");
+  const aviso = (t, tipo) => { al.className = "alerta show " + (tipo || "err"); al.textContent = t; };
+  if(!titulo) return aviso("Escriba el nombre del producto.");
+  if(!CAT_FOTOS.length && !CAT_NUEVAS.length) return aviso("Agregue al menos una foto.");
+  const btn = $("pfGuardar"); btn.disabled = true;
+  try{
+    const ex = CAT_EDIT ? CAT.find(i => i.id === CAT_EDIT) : null;
+    const id = ex ? ex.id : "p" + (window.crypto && crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36));
+    const fotos = CAT_FOTOS.slice();
+    for(let i = 0; i < CAT_NUEVAS.length; i++){
+      aviso("Subiendo foto " + (i + 1) + " de " + CAT_NUEVAS.length + "…", "ok");
+      fotos.push(await catSubirFoto(await catReducir(CAT_NUEVAS[i]), id));
+    }
+    const fila = {
+      id:id, tipo: ex ? (ex.tipo === "edicion" ? "original" : ex.tipo) : "nuevo",
+      brand:$("pfMarca").value, title:titulo, category:$("pfCategoria").value.trim() || "General",
+      price: $("pfPrecio").value === "" ? null : num($("pfPrecio").value),
+      size:$("pfMedidas").value.trim(), material:$("pfMaterial").value.trim(), color:$("pfColor").value.trim(),
+      avail:$("pfDisp").value, descr:$("pfDesc").value.trim(), images:fotos
+    };
+    aviso("Guardando…", "ok");
+    const r = await sbRest("/rest/v1/catalogo_productos?on_conflict=id", { method:"POST",
+      headers:{ "Content-Type":"application/json", Prefer:"resolution=merge-duplicates,return=minimal" },
+      body:JSON.stringify(fila) });
+    if(!r.ok) throw new Error(r.error);
+    if(ex) catBorrarFotos((ex.images || []).filter(u => fotos.indexOf(u) < 0));
+    cerrar("modalProducto");
+    toast("✓ «" + titulo + "» publicado en el catálogo.", "ok");
+    await catCargar();
+  }catch(e){ aviso("No se pudo guardar: " + e.message); }
+  finally{ btn.disabled = false; }
+}
+async function catEliminar(id){
+  const x = CAT.find(i => i.id === id);
+  if(!x || !confirm("¿Eliminar «" + x.title + "» del catálogo? Los clientes dejarán de verlo.")) return;
+  const r = await sbRest("/rest/v1/catalogo_productos?id=eq." + encodeURIComponent(id), { method:"DELETE" });
+  if(!r.ok) return toast("No se pudo eliminar: " + r.error, "err");
+  catBorrarFotos(x.images);
+  toast("Producto eliminado del catálogo.", "ok");
+  catCargar();
+}
+/* Pasa a la nube las piezas originales que venían dentro del catálogo publicado */
+async function catImportar(){
+  const base = catUrlPublica();
+  let lista = null;
+  $("catImportar").disabled = true;
+  try{
+    $("catAviso").textContent = "Leyendo las piezas originales del catálogo publicado…";
+    let r = await fetch(base + "base-original.json", { cache:"no-store" }).catch(() => null);
+    if(r && r.ok){ lista = await r.json(); }
+    else{
+      r = await fetch(base + "index.html", { cache:"no-store" });
+      const html = await r.text();
+      const i = html.indexOf("const BASE=[");
+      const j = i < 0 ? -1 : html.indexOf("}];", i);
+      if(i < 0 || j < 0) throw new Error("El catálogo publicado ya no trae las piezas originales.");
+      lista = JSON.parse(html.slice(i + 11, j + 2));
+    }
+    if(!Array.isArray(lista) || !lista.length) throw new Error("No se encontraron piezas originales.");
+    let hechas = 0;
+    for(let k = 0; k < lista.length; k++){
+      const b = lista[k];
+      const ex = CAT.find(x => x.id === b.id);
+      if(ex && ex.tipo === "original"){ hechas++; continue; }
+      $("catAviso").textContent = "Importando pieza " + (k + 1) + " de " + lista.length + "…";
+      const fotos = ex && ex.images && ex.images.length ? ex.images : [await catSubirFoto(await catReducir(b.image), b.id)];
+      const fila = {
+        id:b.id, tipo:"original", orden:k + 1,
+        brand: ex ? ex.brand : (b.brand || "Muebles Zacapa"), title: ex ? ex.title : b.title,
+        category: ex ? ex.category : (b.category || "General"),
+        price: ex ? ex.price : null, size: ex ? ex.size || "" : "", material: ex ? ex.material || "" : "",
+        color: ex ? ex.color || "" : "", avail: ex ? ex.avail || "Disponible" : "Disponible",
+        descr: ex ? ex.descr || "" : "", images:fotos
+      };
+      const w = await sbRest("/rest/v1/catalogo_productos?on_conflict=id", { method:"POST",
+        headers:{ "Content-Type":"application/json", Prefer:"resolution=merge-duplicates,return=minimal" },
+        body:JSON.stringify(fila) });
+      if(!w.ok) throw new Error(w.error);
+      hechas++;
+    }
+    toast("✓ " + hechas + " piezas originales quedaron en la nube.", "ok");
+  }catch(e){
+    toast("No se pudo importar: " + e.message, "err");
+  }finally{
+    $("catImportar").disabled = false;
+    catCargar();
+  }
+}
+
+/* ---------- Módulo Solicitudes del catálogo ---------- */
+let SOL = [];
+const SOL_ESTADOS = ["Nueva","En proceso","Cotizada","Descartada"];
+async function solCargar(silencioso){
+  if(!SB_ON || !SESION.token) { if(!silencioso && SB_ON) $("solLista").innerHTML = '<p class="muted" style="padding:20px">Inicie sesión con internet para ver las solicitudes.</p>'; return; }
+  const r = await sbRest("/rest/v1/catalogo_solicitudes?select=*&order=created_at.desc&limit=300");
+  if(!r.ok){ if(!silencioso) $("solLista").innerHTML = '<p class="muted" style="padding:20px">No se pudieron cargar: ' + escapeHtml(r.error) + '</p>'; return; }
+  SOL = r.data || [];
+  solBadge();
+  solPintar();
+}
+function solBadge(){
+  const n = SOL.filter(s => s.estado === "Nueva").length;
+  const b = $("solBadge"); if(!b) return;
+  b.textContent = n; b.style.display = n ? "inline-flex" : "none";
+}
+function solPintar(){
+  const q = $("solBuscar").value.trim().toLowerCase(), est = $("solEstado").value, emp = $("solEmpresa").value;
+  const lista = SOL.filter(s =>
+    (est === "activas" ? (s.estado === "Nueva" || s.estado === "En proceso") : (!est || s.estado === est)) &&
+    (!emp || s.empresa === emp) &&
+    (!q || (s.cliente + " " + s.ubicacion + " " + s.detalles + " " + (s.productos || []).map(p => p.title).join(" ")).toLowerCase().includes(q)));
+  $("solLista").innerHTML = lista.length ? lista.map(s => {
+    const f = new Date(s.created_at);
+    const prods = (s.productos || []).map(p => '<li>' + escapeHtml(p.title || "") + (p.category ? ' <span class="muted">(' + escapeHtml(p.category) + ')</span>' : '') + ' × <b>' + escapeHtml(p.qty || 1) + '</b></li>').join("");
+    const mz = s.empresa === "Muebles Zacapa";
+    return '<article class="sol-card e-' + escapeHtml(s.estado.replace(/\s/g,"")) + '">' +
+      '<div class="sol-head"><div><b>' + escapeHtml(s.cliente) + '</b>' +
+        '<small>' + f.toLocaleDateString("es-HN") + ' ' + f.toLocaleTimeString("es-HN",{hour:"2-digit",minute:"2-digit"}) + ' · ' + escapeHtml(s.empresa) + '</small></div>' +
+        '<select data-sol="estado" data-id="' + s.id + '">' + SOL_ESTADOS.map(e => '<option' + (e === s.estado ? ' selected' : '') + '>' + e + '</option>').join("") + '</select></div>' +
+      (s.telefono || s.ubicacion ? '<p class="sol-dato">' + (s.telefono ? '☎ ' + escapeHtml(s.telefono) + ' ' : '') + (s.ubicacion ? '📍 ' + escapeHtml(s.ubicacion) : '') + '</p>' : '') +
+      (prods ? '<ul class="sol-prods">' + prods + '</ul>' : '<p class="muted">Solicitud general, sin productos seleccionados.</p>') +
+      (s.detalles ? '<p class="sol-det">📝 ' + escapeHtml(s.detalles) + '</p>' : '') +
+      (s.atendido_por ? '<p class="muted" style="margin:6px 0 0">Atendida por ' + escapeHtml(s.atendido_por) + '</p>' : '') +
+      '<div class="sol-acc"><button class="save" style="color:#fff" data-sol="crear" data-id="' + s.id + '">' + (mz ? '◧ Crear presupuesto de muebles' : '▣ Crear cotización Vitra House') + '</button>' +
+      (s.telefono ? '<a class="btn-outline" target="_blank" rel="noopener" href="https://wa.me/' + escapeHtml(String(s.telefono).replace(/\D/g,"").replace(/^(\d{8})$/,"504$1")) + '">WhatsApp</a>' : '') +
+      '</div></article>';
+  }).join("") : '<p class="muted" style="padding:20px">No hay solicitudes con ese filtro.</p>';
+}
+async function solEstado(id, estado){
+  const r = await sbRest("/rest/v1/catalogo_solicitudes?id=eq." + id, { method:"PATCH",
+    headers:{ "Content-Type":"application/json", Prefer:"return=minimal" },
+    body:JSON.stringify({ estado:estado, atendido_por:SESION.usuario || null }) });
+  if(!r.ok){ toast("No se pudo actualizar: " + r.error, "err"); return false; }
+  const s = SOL.find(x => x.id === id); if(s){ s.estado = estado; s.atendido_por = SESION.usuario; }
+  solBadge(); solPintar();
+  return true;
+}
+async function solCrear(id){
+  const s = SOL.find(x => x.id === id); if(!s) return;
+  const prods = s.productos || [];
+  const nota = "Solicitud desde el catálogo" + (s.ubicacion ? " · Ubicación: " + s.ubicacion : "") + (s.detalles ? "\nDetalles del cliente: " + s.detalles : "");
+  if(s.empresa === "Muebles Zacapa"){
+    mzPintar({ fecha:todayISO(), isv:15, cliente:s.cliente, telefono:s.telefono || "", direccion:s.ubicacion || "",
+      proyecto:"Solicitud web · " + s.cliente, notas:nota,
+      items: prods.length ? prods.map(p => ({ desc:(p.title || "") + ((p.qty || 1) > 1 ? " × " + p.qty : "") })) : [{},{}] });
+    irTab("mue");
+  }else{
+    pintarFormulario({ fecha:todayISO(), validez:CFG.validez, isv:CFG.isv, cliente:s.cliente, telefono:s.telefono || "",
+      proyecto:"Solicitud web · " + s.cliente, notas:(CFG.notas ? CFG.notas + "\n" : "") + nota,
+      items: prods.length ? prods.map(p => ({ description:(p.title || "") + (p.category ? " (" + p.category + ")" : ""), cantidad:p.qty || 1 })) : [{}] });
+    irTab("cot");
+  }
+  if(s.estado === "Nueva") await solEstado(id, "En proceso");
+  toast("Datos de la solicitud cargados. Complete medidas y precios y guarde el proyecto.", "ok");
+}
+function nubeModulosEventos(){
+  document.querySelectorAll(".sb-only").forEach(e => e.classList.toggle("hidden", !SB_ON));
+  if(!SB_ON) return;
+  $("catAbrirPub").href = catUrlPublica() + "?vista=cliente";
+  $("catNuevo").onclick = () => catAbrirForm(null);
+  $("catRecargar").onclick = catCargar;
+  $("catImportar").onclick = catImportar;
+  ["catBuscar","catMarca","catTipo"].forEach(i => $(i).addEventListener("input", catPintar));
+  $("catGrid").addEventListener("click", e => {
+    const b = e.target.closest("[data-cat]"); if(!b) return;
+    if(b.dataset.cat === "edit") catAbrirForm(b.dataset.id);
+    if(b.dataset.cat === "del") catEliminar(b.dataset.id);
+  });
+  $("pfFotos").onchange = () => { CAT_NUEVAS = CAT_NUEVAS.concat([...$("pfFotos").files]); $("pfFotos").value = ""; catPintarFotos(); };
+  $("catFotos").addEventListener("click", e => {
+    const b = e.target.closest("[data-foto]"); if(!b) return;
+    const k = +b.dataset.k;
+    if(b.dataset.foto === "del") CAT_FOTOS.splice(k, 1); else CAT_FOTOS.unshift(CAT_FOTOS.splice(k, 1)[0]);
+    catPintarFotos();
+  });
+  $("pfGuardar").onclick = catGuardar;
+  $("solRecargar").onclick = () => solCargar();
+  ["solBuscar","solEstado","solEmpresa"].forEach(i => $(i).addEventListener("input", solPintar));
+  $("solLista").addEventListener("click", e => {
+    const b = e.target.closest('[data-sol="crear"]'); if(b) solCrear(b.dataset.id);
+  });
+  $("solLista").addEventListener("change", e => {
+    const s = e.target.closest('[data-sol="estado"]'); if(s) solEstado(s.dataset.id, s.value);
+  });
+  // Aviso de solicitudes nuevas cada 3 minutos mientras el programa está abierto
+  setInterval(() => { if(document.visibilityState === "visible" && SESION.token) solCargar(true); }, 180000);
+}
+
 async function api(action, data){
+  if(CFG.apiUrl === "supabase") return sbApi(action, data);
   if(!CFG.apiUrl) return { ok:false, error:"No hay URL configurada." };
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), 30000);
@@ -1606,6 +2168,73 @@ function migrarVersionAnterior(){
   }
 }
 
+/* ── 9b. PROYECTO ↔ CÁLCULO DE MATERIALES ─────────────────────── */
+function pvTieneCalculo(p){
+  return !!(p && p.pvc && Array.isArray(p.pvc.ventanas) &&
+    p.pvc.ventanas.some(v => num(v.alto) > 0 && num(v.ancho) > 0));
+}
+function pvSincronizarCampos(){
+  $("pvCliente").value = $("cliente").value;
+  $("pvProyecto").value = $("proyecto").value;
+  pvPintarVinculo();
+}
+function pvPintarVinculo(){
+  const n = $("numero").value, pr = $("proyecto").value, c = $("cliente").value;
+  const guardado = ACTUAL && PROYECTOS.some(x => x.id === ACTUAL && !x.eliminado);
+  $("pvVinculo").innerHTML = guardado
+    ? '🔗 Vinculado al proyecto <b>' + escapeHtml(n || "sin número") + '</b> · ' + escapeHtml(pr || "Sin nombre") +
+      (c ? ' — Cliente: ' + escapeHtml(c) : '') +
+      '. Al guardar se actualiza este mismo proyecto: cotización y materiales quedan juntos.'
+    : 'Este cálculo todavía no está guardado en un proyecto. Escriba cliente y proyecto y presione «💾 Guardar proyecto».';
+  const sel = $("pvAbrir");
+  const lista = PROYECTOS.filter(x => !x.eliminado && (x.modulo || "vidrieria") !== "muebles")
+    .sort((a,b) => String(b.actualizado || "").localeCompare(String(a.actualizado || "")));
+  sel.innerHTML = '<option value="">— Elegir proyecto —</option>' + lista.map(x =>
+    '<option value="' + escapeHtml(x.id) + '"' + (x.id === ACTUAL ? ' selected' : '') + '>' +
+    escapeHtml((x.numero || "s/n") + " · " + (x.proyecto || "Sin nombre") + (x.cliente ? " — " + x.cliente : "")) +
+    (pvTieneCalculo(x) ? " 🪟" : "") + '</option>').join("");
+}
+function abrirMateriales(id){
+  const p = PROYECTOS.find(x => x.id === id);
+  if(!p) return toast("El proyecto ya no existe.", "err");
+  pintarFormulario(p);
+  irTab("pvc");
+  if(PVC.hayVentanas()){ PVC.calcular(); PVC.avisoCortes(); actualizarMargen(); }
+  autoguardar();
+  toast("Materiales de " + (p.numero || p.proyecto) + ".", "");
+}
+function pvTraerCotizacion(){
+  const filas = [...$("itemsBody").querySelectorAll("tr")].map(r => ({
+    descripcion: r.querySelector(".description").value.trim(),
+    alto: r.querySelector(".alto").value,
+    ancho: r.querySelector(".ancho").value,
+    cantidad: Math.max(1, Math.round(num(r.querySelector(".cantidad").value) || 1))
+  })).filter(f => num(f.alto) > 0 && num(f.ancho) > 0);
+  if(!filas.length) return toast("La cotización no tiene líneas con alto y ancho.", "err");
+  if(PVC.hayVentanas() && !confirm("Se reemplazarán las ventanas actuales del cálculo por las " + filas.length + " línea(s) de la cotización. ¿Continuar?")) return;
+  filas.forEach((f,i) => { if(!f.descripcion) f.descripcion = "Ventana " + (i + 1); });
+  $("pvUnidad").value = unidadActual();
+  PVC.cargarVentanas(filas);
+  PVC.actualizarUnidad();
+  PVC.calcular(); PVC.avisoCortes(); actualizarMargen();
+  autoguardar();
+  toast(filas.length + " ventana(s) traídas de la cotización. Revise batiente y mosquitera.", "ok");
+}
+async function pvGuardarProyecto(){
+  $("cliente").value = $("pvCliente").value.trim();
+  $("proyecto").value = $("pvProyecto").value.trim();
+  if(!$("cliente").value){ toast("Escriba el nombre del cliente antes de guardar.", "err"); $("pvCliente").focus(); return; }
+  if(!$("proyecto").value){ toast("Escriba el nombre del proyecto antes de guardar.", "err"); $("pvProyecto").focus(); return; }
+  if(!PVC.hayVentanas()){ toast("Agregue al menos una ventana con alto y ancho.", "err"); return; }
+  PVC.calcular(); PVC.avisoCortes(); actualizarMargen();
+  const d = leerFormulario();
+  ACTUAL = d.id;
+  const r = await persistirProyecto(d, "numero");
+  if(r && r.id) ACTUAL = r.id;
+  autoguardar();
+  pvSincronizarCampos();
+}
+
 /* ── 9. GUARDAR / NUEVO / ELIMINAR ───────────────────────────── */
 async function persistirProyecto(d, campoNumero){
   if(!d.numero){
@@ -1735,7 +2364,7 @@ function renderLista(){
       const m = (p.modulo || "vidrieria");
       return '<tr>' +
         '<td><span class="dot ' + (p.pendiente ? "dot-pend" : "dot-sync") + '" title="' + (p.pendiente ? "Pendiente de sincronizar" : "Sincronizado") + '"></span>' + escapeHtml(p.numero || "—") + '</td>' +
-        '<td><span class="badge-mod m-' + m + '">' + (m === "muebles" ? "Muebles" : "Vidriería") + '</span></td>' +
+        '<td><span class="badge-mod m-' + m + '">' + (m === "muebles" ? "Muebles" : "Vidriería") + '</span>' + (pvTieneCalculo(p) ? ' <span title="Tiene cálculo de materiales">🪟</span>' : '') + '</td>' +
         '<td class="l">' + (p.conflicto ? '<span class="pill" style="background:#ffe9e9;color:#a3161c">copia</span> ' : '') + escapeHtml(p.proyecto) + '</td>' +
         '<td>' + escapeHtml(p.cliente) + '</td>' +
         '<td>' + escapeHtml(p.fecha) + '</td>' +
@@ -1744,6 +2373,7 @@ function renderLista(){
         '<td style="white-space:nowrap">' +
           '<button class="action-small detail" data-acc="ver"  data-id="' + p.id + '">Ver</button>' +
           '<button class="action-small edit"   data-acc="edit" data-id="' + p.id + '">Editar</button>' +
+          (m !== "muebles" ? '<button class="action-small edit" data-acc="mat" data-id="' + p.id + '">🪟 Materiales</button>' : '') +
           '<button class="action-small dup"    data-acc="dup"  data-id="' + p.id + '">Duplicar</button>' +
           '<button class="action-small del solo-admin" data-acc="del"  data-id="' + p.id + '">Eliminar</button>' +
         '</td></tr>';
@@ -1998,7 +2628,7 @@ function abrirConfig(){
   }else if(fijo){
     est.style.display = "block";
     est.innerHTML = "⚠ No se pudo conectar con el servidor de la empresa. Puede seguir trabajando en este dispositivo; los cambios se enviarán al recuperar la conexión.";
-    $("bloqueConexion").style.display = "";
+    $("bloqueConexion").style.display = SB_ON ? "none" : "";
   }else{
     est.style.display = "none";
     $("bloqueConexion").style.display = "";
@@ -2055,6 +2685,12 @@ function guardarConfig(){
   pintarFormulario(datos);
   cerrar("modalConfig");
   toast("Configuración guardada.", "ok");
+  if(SB_ON && esAdmin() && SESION.token){
+    api("guardarConfig", { config:{ empresa:CFG.empresa, gerente:CFG.gerente, rtn:CFG.rtn, telefono:CFG.telefono,
+      correo:CFG.correo, direccion:CFG.direccion, isv:CFG.isv, validez:CFG.validez, areaMin:CFG.areaMin,
+      prefijo:CFG.prefijo, notas:CFG.notas, materiales:CFG.materiales } })
+      .then(r => { if(!r.ok) toast("Quedó guardada en este equipo, pero no se publicó para los demás: " + (r.error || ""), "err"); });
+  }
 }
 
 /* ── 15. EVENTOS ─────────────────────────────────────────────── */
@@ -2130,6 +2766,13 @@ function conectarEventos(){
   // Módulo de materiales PVC
   $("pvAgregar").onclick  = () => { PVC.agregarVentana(); autoguardar(); };
   $("pvCalcular").onclick = () => { PVC.calcular(); PVC.avisoCortes(); actualizarMargen(); autoguardar(); };
+  $("pvGuardarProyecto").onclick = pvGuardarProyecto;
+  $("pvIrCotizacion").onclick = () => irTab("cot");
+  $("calcMatBtn").onclick = () => irTab("pvc");
+  $("pvTraerCot").onclick = pvTraerCotizacion;
+  $("pvAbrir").onchange = () => { const id = $("pvAbrir").value; if(id) abrirMateriales(id); };
+  $("pvCliente").oninput = () => { $("cliente").value = $("pvCliente").value; autoguardar(); pvPintarVinculo(); };
+  $("pvProyecto").oninput = () => { $("proyecto").value = $("pvProyecto").value; autoguardar(); pvPintarVinculo(); };
   $("pvLimpiar").onclick  = () => { if(confirm("¿Borrar todas las ventanas del cálculo?")){ PVC.limpiar(); autoguardar(); } };
   $("pvPdfBtn").onclick    = pvVerDocumento;
   $("pvExcelBtn").onclick  = pvExportarExcel;
@@ -2170,6 +2813,7 @@ function conectarEventos(){
     if(b.dataset.acc === "edit") editarProyecto(id);
     if(b.dataset.acc === "dup")  duplicarProyecto(id);
     if(b.dataset.acc === "del")  eliminarProyecto(id);
+    if(b.dataset.acc === "mat")  abrirMateriales(id);
   });
 
   document.querySelectorAll("[data-close]").forEach(b =>
@@ -2434,7 +3078,16 @@ return {
   renderLibrary: renderLibrary, actualizarUnidad: actualizarUnidad,
   material: function(id){ return library.find(function(x){ return x.id === id; }) || null; },
   aplicarLongitudLance: aplicarLongitudLance, tab: mostrarPestanaConsolidado,
-  costo: function(){ return lastCalculatedTotal; }
+  costo: function(){ return lastCalculatedTotal; },
+  cargarVentanas: function(filas){
+    document.getElementById('pvVentanasBody').innerHTML = '';
+    rowSeq = 0;
+    (filas && filas.length ? filas : [{}]).forEach(addWindowRow);
+  },
+  hayVentanas: function(){
+    return [...document.querySelectorAll('#pvVentanasBody tr')].some(tr =>
+      Number(tr.querySelector('.alto').value) > 0 && Number(tr.querySelector('.ancho').value) > 0);
+  }
 };
 })();
 
@@ -3063,7 +3716,8 @@ function iniciar(){
   irTab("home");
   $("saveStatus").textContent = "Autoguardado activado";
 
-  if(SESION.usuario){ abrirApp(); if(CFG.apiUrl && SESION.token) sincronizar(true); }
+  nubeModulosEventos();
+  if(SESION.usuario){ abrirApp(); if(CFG.apiUrl && SESION.token){ sincronizar(true); solCargar(true); } }
   else mostrarLogin();
 
   if("serviceWorker" in navigator){
