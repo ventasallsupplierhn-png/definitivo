@@ -1,4 +1,4 @@
-# Sistema de Presupuestos · Vitra House y Muebles Zacapa · v12.6.0
+# Sistema de Presupuestos · Vitra House y Muebles Zacapa · v12.7.0
 
 Aplicación web (GitHub Pages + Supabase) de **Representaciones e Inversiones Tinoco S. de R. L.**
 Funciona en computadora y celular, también sin internet (se sincroniza al volver la conexión).
@@ -8,6 +8,7 @@ Funciona en computadora y celular, también sin internet (se sincroniza al volve
 - **Historial de cotizaciones**: etapa automática (borrador → enviada → aceptada → venta → facturada → cobrada → entregada), botón con el siguiente paso y menú con todas las acciones. Guardado en la nube, con papelera.
 - **Solicitudes del catálogo**: llegan del enlace público del catálogo.
 - **Catálogo de clientes** (administrador).
+- **💼 Mis negocios** (administrador): ingresos, gastos y utilidad de todos los negocios, con categorías propias, reportes (estado de resultados mes a mes, comparativo, gastos por categoría) en Excel y PDF. Vitra House y Muebles Zacapa pueden tomar sus datos del Control comercial (automático) o registrarse a mano.
 - **Envío**: WhatsApp, correo, **PDF** y **enlace de aceptación con firma** del cliente (`firma.html`).
 - **📊 Control comercial**:
   - Resumen, con indicadores por vendedor.
@@ -38,6 +39,7 @@ supabase/             scripts de la base de datos y LEEME.txt con la instalació
 5. `supabase_mejoras_v12_3.sql`
 6. `supabase_mejoras_v12_4.sql` (costo presupuestado de cada venta)
 7. `supabase_mejoras_v12_6.sql` (comprobante de venta y modo autoimpresor)
+8. `supabase_mejoras_v12_7.sql` (Mis negocios)
 
 Todos se pueden volver a ejecutar sin perder datos. Los detalles (usuarios, roles, catálogo) están en `supabase/LEEME.txt`.
 

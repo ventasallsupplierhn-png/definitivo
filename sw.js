@@ -2,7 +2,7 @@
    Permite que la aplicación abra sin internet.
    IMPORTANTE: al publicar una versión nueva, cambie CACHE_VERSION. */
 
-const CACHE_VERSION = 'vitra-v12.6.0';
+const CACHE_VERSION = 'vitra-v12.7.0';
 const ARCHIVOS = [
   './',
   './index.html',

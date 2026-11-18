@@ -398,6 +398,38 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
 .ctl-t input,.ctl-t select{width:100%}
 .ctl-click{cursor:pointer}.ctl-click:hover td{background:#f4f9ff}
 .ctl-radio{display:flex;gap:8px;align-items:center;padding:6px 0;font-weight:400;cursor:pointer;font-size:14px}.ctl-radio input{width:auto;margin:0}
+/* v12.7 · Mis negocios */
+.btn-red{background:var(--red)}
+.neg-kpis{grid-template-columns:repeat(4,1fr)}
+.neg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;margin-bottom:16px}
+.neg-card{background:#fff;border:1px solid var(--border);border-left:5px solid var(--c);border-radius:14px;padding:13px 15px;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s}
+.neg-card:hover{transform:translateY(-2px)}
+.neg-card h4{margin:0 0 6px;font-size:15.5px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.neg-tag{font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;background:#e7f1ff;color:var(--blue)}.neg-tag.m{background:#f1f1f1;color:#666}
+.neg-row{display:flex;justify-content:space-between;gap:8px;font-size:13.5px;padding:2px 0}.neg-row.u{font-weight:800}
+.neg-bar{height:6px;border-radius:4px;background:#eef2f6;margin-top:8px;overflow:hidden}.neg-bar i{display:block;height:100%;background:var(--c)}
+.neg-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:0}
+.neg-seg{display:flex;border:1px solid var(--border);border-radius:11px;overflow:hidden;margin-bottom:12px}
+.neg-seg button{flex:1;background:#fff;color:var(--muted);border-radius:0;box-shadow:none}
+.neg-seg button.on.i{background:#e9f7ef;color:var(--green)}.neg-seg button.on.g{background:#fdecec;color:var(--red)}
+.neg-cfg{border:1px solid var(--line);border-left:5px solid var(--c);border-radius:12px;padding:11px 13px;margin-bottom:10px}.neg-cfg.off{opacity:.6}
+.neg-cfg-h{display:flex;align-items:center;gap:8px}.neg-cfg-h b{font-size:15px}
+.neg-op{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}.neg-op button{background:#fff;border:1px solid var(--border);color:#355172;font-size:12.5px;padding:7px 11px;box-shadow:none}
+.neg-op button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.neg-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}.neg-chips span{font-size:12px;background:#f1f6fc;border-radius:7px;padding:3px 8px;color:#355172}
+.neg-rep td:first-child{white-space:pre}.neg-rep tr.neg-b td{font-weight:800;background:#f6f9fd}.neg-rep tr.neg-tt td{font-weight:800;background:#e7f1ff}
+.neg-t td{vertical-align:top}
+@media(max-width:700px){.neg-kpis{grid-template-columns:1fr 1fr}.neg-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.neg-t{min-width:0!important}.neg-t thead{display:none}.neg-t tbody{display:block}
+.neg-t tr{display:grid;grid-template-columns:1fr auto;gap:3px 10px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px;background:#fff}
+.neg-t td{border:0!important;padding:0!important;text-align:left;background:none!important}
+.neg-t td:nth-child(1){grid-column:1;grid-row:1;color:var(--muted);font-size:12px}
+.neg-t td:nth-child(6){grid-column:2;grid-row:1/span 2;text-align:right;font-size:16px;align-self:center}
+.neg-t td:nth-child(2){grid-column:1;grid-row:2;font-weight:700}
+.neg-t td:nth-child(3){grid-column:1;grid-row:3;font-size:12.5px}
+.neg-t td:nth-child(4){grid-column:2;grid-row:3;text-align:right;font-size:12.5px;color:var(--muted)}
+.neg-t td:nth-child(5){grid-column:1/-1;grid-row:4;font-size:13px}
+.neg-t td:nth-child(7){grid-column:1/-1;grid-row:5;text-align:right}}
 .ctl-bajo td{background:#fff6f6}.ctl-anulada td{color:#9aa8b8;text-decoration:line-through}
 .ctl-pill{display:inline-block;padding:3px 10px;border-radius:99px;font-size:11.5px;font-weight:800;white-space:nowrap}
 .st-sol{background:#eef2f7;color:#4b5f78}.st-apr{background:#fff1d6;color:#8a5a00}.st-env{background:#e0f4f7;color:#0e6a7d}.st-par{background:#fdebd7;color:#9a4b00}
@@ -588,6 +620,11 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
       <button class="mod-card sb-only" data-tab="ctl" type="button" style="--c:#0b4a93;--soft:#dceeff">
         <span class="mod-ico">📊</span>
         <div><h3>Control comercial</h3><p>Ventas y cobros, gastos por proyecto, órdenes de compra, compras, inventario y facturación SAR</p></div>
+        <span class="mod-go">↗</span>
+      </button>
+      <button class="mod-card solo-admin sb-only" data-tab="neg" type="button" style="--c:#159447;--soft:#e6f5ec">
+        <span class="mod-ico">💼</span>
+        <div><h3>Mis negocios</h3><p>Ingresos, gastos y utilidad de todos los negocios, con reportes por negocio y comparativos</p></div>
         <span class="mod-go">↗</span>
       </button>
       <button class="mod-card sb-only" data-tab="sol" type="button" style="--c:#0e7490;--soft:#e0f4f7">
@@ -943,6 +980,15 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
     <div id="ctlCuerpo"></div>
   </div><!-- /panel-ctl -->
 
+  <div id="panel-neg" class="tab-panel hidden">
+    <div class="ctl-top">
+      <div class="ctl-titulo"><span class="section-icon">💼</span><div><h2>Mis negocios</h2><div class="muted small">Ingresos, gastos y utilidad de todos los negocios · solo administrador · <span id="negEstado"></span></div></div></div>
+      <div class="toolbar"><button class="btn-outline" id="negRecargar" type="button">⟳ Actualizar</button></div>
+    </div>
+    <div class="ctl-tabs" id="negTabs"></div>
+    <div id="negCuerpo"></div>
+  </div><!-- /panel-neg -->
+
   <div id="panel-cat" class="tab-panel hidden">
   <section class="card">
     <div class="card-head">
@@ -1279,7 +1325,7 @@ const AJUSTES_FABRICA = {
 if(AJUSTES_FABRICA.supabaseUrl && AJUSTES_FABRICA.supabaseKey) AJUSTES_FABRICA.apiUrl = "supabase";
 
 /* ── 1. CONSTANTES Y ESTADO GLOBAL ───────────────────────────── */
-const APP_VERSION = "12.6.0";
+const APP_VERSION = "12.7.0";
 const LS = {
   borrador : "vitra.borrador.v7",
   borradorMZ: "vitra.borradorMZ.v9",
@@ -1588,10 +1634,10 @@ function salir(){
 const MODULOS = {
   home:"", cot:"Cotización · Vitra House", pvc:"Materiales PVC",
   mue:"Presupuesto · Muebles Zacapa", pro:"Historial de cotizaciones", adm:"Administración",
-  cat:"Catálogo de clientes", sol:"Solicitudes del catálogo", ctl:"Control comercial"
+  cat:"Catálogo de clientes", sol:"Solicitudes del catálogo", ctl:"Control comercial", neg:"Mis negocios"
 };
 function irTab(t){
-  if((t === "adm" || t === "cat") && !esAdmin()) return;
+  if((t === "adm" || t === "cat" || t === "neg") && !esAdmin()) return;
   if(!MODULOS.hasOwnProperty(t)) t = "home";
   Object.keys(MODULOS).forEach(k => $("panel-" + k).classList.toggle("hidden", k !== t));
   $("navBar").classList.toggle("hidden", t === "home");
@@ -1602,6 +1648,7 @@ function irTab(t){
   if(t === "pvc" && typeof pvSincronizarCampos === "function") pvSincronizarCampos();
   if(t === "cat" && typeof catCargar === "function") catCargar();
   if(t === "ctl" && typeof ctlCargar === "function") ctlCargar();
+  if(t === "neg" && typeof negCargar === "function"){ negPintar(); negCargar(); }
   if(t === "pro"){ renderLista(); if(typeof ctlAsegurar === "function") ctlAsegurar().then(renderLista); }
   if(t === "sol" && typeof solCargar === "function") solCargar();
 }
@@ -4115,6 +4162,325 @@ document.addEventListener("click", e => {
   const m = e.target.closest("[data-facmodo]"); if(m) facModoForm(m.dataset.facmodo === "on");
 });
 
+/* ══════════ v12.7 · MIS NEGOCIOS: ingresos y gastos de todos los negocios (solo administrador) ══════════ */
+const NEG = { negs: [], movs: [], cob: [], gas: [], com: [], vista: "res", anio: new Date().getFullYear(), mes: "", filtro: "", tipo: "", buscar: "", rep: "er", repNeg: "", cargando: false, listo: false };
+const NEG_MESES = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+const NEG_MESES_L = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+const NEG_METODOS = ["Efectivo","Transferencia","Depósito","Tarjeta","Cheque","Crédito"];
+function negM(n){ return Number(n || 0).toLocaleString("es-HN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function negArchivo(t){ return String(t).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w .-]+/g, "-").replace(/-+/g, "-").replace(/\s+/g, " ").trim().slice(0, 80); }
+function negL(n){ return "L " + negM(n); }
+function negPorId(id){ return NEG.negs.find(n => n.id === id); }
+function negModuloProy(pid){ const p = ctlProy(pid); return p ? (p.modulo || "vidrieria") : "vidrieria"; }
+function negCats(n, tipo){ const c = n && (tipo === "ingreso" ? n.cat_ingreso : n.cat_gasto); return Array.isArray(c) && c.length ? c : [tipo === "ingreso" ? "Otros ingresos" : "Otros gastos"]; }
+
+async function negCargar(){
+  if(!esAdmin()) return;
+  if(!SB_ON || !SESION.token){ $("negCuerpo").innerHTML = '<p class="muted" style="padding:20px">Mis negocios necesita la conexión con la nube.</p>'; return; }
+  if(NEG.cargando) return; NEG.cargando = true;
+  $("negEstado").textContent = "Actualizando…";
+  try{
+    const ini = NEG.anio + "-01-01", fin = NEG.anio + "-12-31", rango = "&fecha=gte." + ini + "&fecha=lte." + fin;
+    NEG.negs = await ctlGet("neg_negocios", "&order=orden.asc,nombre.asc");
+    const auto = NEG.negs.some(n => n.modo === "auto" && n.enlace && n.activo);
+    const [movs, cob, gas, com] = await Promise.all([
+      ctlGet("neg_movimientos", rango + "&order=fecha.desc,creado.desc"),
+      auto ? ctlGet("ctl_cobros", rango) : [],
+      auto ? ctlGet("ctl_gastos", rango) : [],
+      auto ? ctlGet("ctl_compras", rango) : []
+    ]);
+    Object.assign(NEG, { movs, cob, gas, com, listo: true });
+    $("negEstado").textContent = "Actualizado " + horaActual();
+  }catch(e){
+    $("negEstado").textContent = "";
+    $("negCuerpo").innerHTML = '<div class="note" style="margin:10px 0">No se pudo leer Mis negocios: ' + escapeHtml(e.message) + '<br>¿Ya ejecutó el script <b>supabase_mejoras_v12_7.sql</b> en Supabase?</div>';
+    NEG.cargando = false; return;
+  }
+  NEG.cargando = false;
+  negPintar();
+}
+
+/* Todos los movimientos del año: los manuales + los que vienen del programa (negocios en automático) */
+function negFilas(){
+  const filas = NEG.movs.map(m => Object.assign({ auto: false }, m, { monto: Number(m.monto) }));
+  const autos = NEG.negs.filter(n => n.modo === "auto" && n.enlace && n.activo);
+  if(!autos.length) return filas;
+  const porMod = {}; autos.forEach(n => { porMod[n.enlace] = n; });
+  const gen = autos.find(n => n.recibe_generales);
+  const destino = pid => pid ? porMod[negModuloProy(pid)] : gen;
+  NEG.cob.forEach(c => { const n = destino(c.proyecto_id); if(n && c.proyecto_id) filas.push({ id: "c" + c.id, auto: true, origen: "Cobro", negocio_id: n.id, tipo: "ingreso", fecha: c.fecha, categoria: "Cobros de proyectos", detalle: ctlNomProy(c.proyecto_id), monto: Number(c.monto), metodo: c.metodo, referencia: c.referencia || "" }); });
+  NEG.gas.forEach(g => { const n = destino(g.proyecto_id); if(n) filas.push({ id: "g" + g.id, auto: true, origen: "Gasto", negocio_id: n.id, tipo: "gasto", fecha: g.fecha, categoria: g.categoria || "Gastos", detalle: (g.descripcion || "") + (g.proyecto_id ? " · " + ctlNomProy(g.proyecto_id, true) : " · gasto general"), monto: Number(g.monto), metodo: "", referencia: g.comprobante || "" }); });
+  NEG.com.forEach(c => { const n = destino(c.proyecto_id); if(n) filas.push({ id: "p" + c.id, auto: true, origen: "Compra", negocio_id: n.id, tipo: "gasto", fecha: c.fecha, categoria: "Compras a proveedores", detalle: (c.proveedor || "Proveedor") + (c.proyecto_id ? " · " + ctlNomProy(c.proyecto_id, true) : ""), monto: Number(c.total), metodo: "", referencia: c.numero_factura || "" }); });
+  return filas;
+}
+function negEnPeriodo(f, mes){ const m = mes === undefined ? NEG.mes : mes; return String(f.fecha).slice(0, 4) === String(NEG.anio) && (!m || String(f.fecha).slice(5, 7) === m); }
+function negTotales(filas){
+  const t = { ing: 0, gas: 0 };
+  filas.forEach(f => { if(f.anulado) return; if(f.tipo === "ingreso") t.ing += f.monto; else t.gas += f.monto; });
+  t.ing = r2c(t.ing); t.gas = r2c(t.gas); t.util = r2c(t.ing - t.gas); t.margen = t.ing > 0 ? t.util / t.ing * 100 : 0;
+  return t;
+}
+function negPeriodoTxt(){ return NEG.mes ? NEG_MESES_L[Number(NEG.mes) - 1] + " " + NEG.anio : "año " + NEG.anio; }
+
+/* ---------- Pintado ---------- */
+function negPintar(){
+  const vistas = [["res","Resumen"],["mov","Movimientos"],["rep","Reportes"],["cfg","⚙ Negocios"]];
+  $("negTabs").innerHTML = vistas.map(v => '<button type="button" data-negv="' + v[0] + '" class="' + (v[0] === NEG.vista ? "on" : "") + '">' + v[1] + '</button>').join("");
+  if(!NEG.listo) return;
+  $("negCuerpo").innerHTML = ({ res: negVistaResumen, mov: negVistaMovimientos, rep: negVistaReportes, cfg: negVistaNegocios })[NEG.vista]();
+}
+function negSelPeriodo(){
+  const a = new Date().getFullYear(), anios = [a, a - 1, a - 2, a - 3];
+  if(!anios.includes(NEG.anio)) anios.push(NEG.anio);
+  return '<select id="negAnio">' + anios.map(x => '<option' + (x === NEG.anio ? " selected" : "") + '>' + x + '</option>').join("") + '</select>' +
+    '<select id="negMes"><option value="">Todo el año</option>' + NEG_MESES_L.map((m, i) => { const v = String(i + 1).padStart(2, "0"); return '<option value="' + v + '"' + (v === NEG.mes ? " selected" : "") + '>' + m.charAt(0).toUpperCase() + m.slice(1) + '</option>'; }).join("") + '</select>';
+}
+function negSelNegocio(id, sel, todos){
+  return '<select id="' + id + '">' + (todos ? '<option value="">' + todos + '</option>' : '') +
+    NEG.negs.filter(n => n.activo || n.id === sel).map(n => '<option value="' + n.id + '"' + (n.id === sel ? " selected" : "") + '>' + escapeHtml(n.nombre) + '</option>').join("") + '</select>';
+}
+function negBotones(){ return '<span style="flex:1"></span><button type="button" class="save" style="color:#fff" data-negacc="ingreso">＋ Ingreso</button><button type="button" class="btn-red" style="color:#fff" data-negacc="gasto">＋ Gasto</button>'; }
+function negVistaResumen(){
+  if(!NEG.negs.length) return '<div class="ctl-card"><p>Todavía no hay negocios. Agréguelos en <b>⚙ Negocios</b>.</p></div>';
+  const todas = negFilas().filter(f => negEnPeriodo(f)), lista = NEG.filtro ? todas.filter(f => f.negocio_id === NEG.filtro) : todas;
+  const t = negTotales(lista);
+  const tarjetas = NEG.negs.filter(n => n.activo && (!NEG.filtro || n.id === NEG.filtro)).map(n => {
+    const x = negTotales(todas.filter(f => f.negocio_id === n.id)), pct = x.ing > 0 ? Math.max(0, Math.min(100, x.gas / x.ing * 100)) : (x.gas > 0 ? 100 : 0);
+    return '<div class="neg-card" style="--c:' + escapeHtml(n.color) + '" data-negver="' + n.id + '"><h4>' + escapeHtml(n.nombre) + (n.enlace ? '<span class="neg-tag' + (n.modo === "auto" ? "" : " m") + '">' + (n.modo === "auto" ? "Automático" : "Manual") + '</span>' : '') + '</h4>' +
+      '<div class="neg-row"><span>Ingresos</span><span class="up">' + negL(x.ing) + '</span></div><div class="neg-row"><span>Gastos</span><span class="down">' + negL(x.gas) + '</span></div>' +
+      '<div class="neg-row u"><span>Utilidad</span><span class="' + (x.util < 0 ? "down" : "") + '">' + negL(x.util) + (x.ing > 0 ? ' · ' + x.margen.toFixed(1) + '%' : '') + '</span></div>' +
+      '<div class="neg-bar" title="Gastos como % de los ingresos"><i style="width:' + pct.toFixed(0) + '%"></i></div></div>';
+  }).join("");
+  const ult = lista.slice().sort((a, b) => String(b.fecha).localeCompare(String(a.fecha))).slice(0, 10);
+  return '<div class="ctl-acciones"><span>Período</span>' + negSelPeriodo() + negSelNegocio("negFiltro", NEG.filtro, "Todos los negocios") + negBotones() + '</div>' +
+    '<div class="ctl-kpis neg-kpis">' + ctlKpi("#159447", "Ingresos", negL(t.ing), negPeriodoTxt(), "up") + ctlKpi("#d92027", "Gastos", negL(t.gas), negPeriodoTxt(), "down") +
+      ctlKpi("#0b4a93", "Utilidad", negL(t.util), t.util < 0 ? "pérdida" : "ganancia", t.util < 0 ? "down" : "up") + ctlKpi("#ff7300", "Margen", t.ing > 0 ? t.margen.toFixed(1) + "%" : "—", "utilidad ÷ ingresos") + '</div>' +
+    '<div class="neg-grid">' + tarjetas + '</div>' +
+    '<div class="ctl-card"><h3>Últimos movimientos</h3>' + negTabla(ult, false) + '</div>';
+}
+function negTabla(filas, acciones){
+  if(!filas.length) return '<p class="muted" style="padding:10px 0">No hay movimientos en este período.</p>';
+  return '<div class="table-wrap"><table class="ctl-t neg-t"><thead><tr><th>Fecha</th><th>Negocio</th><th>Tipo</th><th>Categoría</th><th>Detalle</th><th class="r">Monto</th>' + (acciones ? '<th></th>' : '') + '</tr></thead><tbody>' +
+    filas.map(f => { const n = negPorId(f.negocio_id) || {};
+      return '<tr class="' + (f.anulado ? "ctl-anulada" : "") + '"><td>' + cF(f.fecha) + '</td><td><span class="neg-dot" style="background:' + escapeHtml(n.color || "#999") + '"></span>' + escapeHtml(n.nombre || "—") + '</td>' +
+        '<td class="' + (f.tipo === "ingreso" ? "up" : "down") + '"><b>' + (f.tipo === "ingreso" ? "Ingreso" : "Gasto") + '</b></td><td>' + escapeHtml(f.categoria) + '</td>' +
+        '<td>' + escapeHtml(f.detalle || "—") + (f.referencia ? '<div class="muted small">' + escapeHtml(f.referencia) + '</div>' : '') + (f.auto ? '<div class="muted small">Automático · ' + f.origen + ' del Control comercial</div>' : '') + (f.anulado ? '<div class="muted small">Anulado: ' + escapeHtml(f.motivo_anulacion || "") + '</div>' : '') + '</td>' +
+        '<td class="r"><b>' + negM(f.monto) + '</b></td>' +
+        (acciones ? '<td class="acc">' + (!f.auto && !f.anulado ? '<button class="action-small edit" data-negmov="edit" data-id="' + f.id + '">Editar</button><button class="action-small del" data-negmov="anular" data-id="' + f.id + '">Anular</button>' : '') + '</td>' : '') + '</tr>'; }).join("") +
+    '</tbody></table></div>';
+}
+function negListaMov(){
+  const b = NEG.buscar.toLowerCase();
+  return negFilas().filter(f => negEnPeriodo(f) && (!NEG.filtro || f.negocio_id === NEG.filtro) && (!NEG.tipo || f.tipo === NEG.tipo) &&
+    (!b || (f.categoria + " " + f.detalle + " " + f.referencia).toLowerCase().includes(b))).sort((a, b2) => String(b2.fecha).localeCompare(String(a.fecha)));
+}
+function negVistaMovimientos(){
+  const lista = negListaMov(), t = negTotales(lista);
+  return '<div class="ctl-acciones">' + negSelPeriodo() + negSelNegocio("negFiltro", NEG.filtro, "Todos los negocios") +
+    '<select id="negTipo"><option value="">Ingresos y gastos</option><option value="ingreso"' + (NEG.tipo === "ingreso" ? " selected" : "") + '>Solo ingresos</option><option value="gasto"' + (NEG.tipo === "gasto" ? " selected" : "") + '>Solo gastos</option></select>' +
+    '<input id="negBuscar" placeholder="Buscar categoría o detalle" value="' + escapeHtml(NEG.buscar) + '" style="max-width:220px">' + negBotones() + '</div>' +
+    '<div class="ctl-card"><h3>Movimientos <span class="muted small">· ' + lista.length + ' · ingresos ' + negL(t.ing) + ' · gastos ' + negL(t.gas) + ' · utilidad ' + negL(t.util) + '</span>' +
+    '<button type="button" class="btn-outline" data-negacc="excelMov" style="float:right;padding:6px 12px">⬇ Excel</button></h3>' + negTabla(lista, true) + '</div>';
+}
+
+/* ---------- Reportes ---------- */
+function negMesesHasta(){ const h = new Date(); return NEG.anio < h.getFullYear() ? 12 : (NEG.anio > h.getFullYear() ? 0 : h.getMonth() + 1); }
+function negReporte(){
+  const filas = negFilas().filter(f => !f.anulado && String(f.fecha).slice(0, 4) === String(NEG.anio));
+  if(NEG.rep === "er"){
+    const n = NEG.repNeg ? negPorId(NEG.repNeg) : null, base = n ? filas.filter(f => f.negocio_id === n.id) : filas;
+    const nm = Math.max(1, negMesesHasta()), cols = NEG_MESES.slice(0, nm);
+    const linea = (lista, mesIdx) => r2c(lista.filter(f => mesIdx == null || Number(String(f.fecha).slice(5, 7)) === mesIdx + 1).reduce((s, f) => s + f.monto, 0));
+    const bloque = tipo => { const l = base.filter(f => f.tipo === tipo); const cats = [...new Set(l.map(f => f.categoria || "Sin categoría"))].sort();
+      return { tot: [linea(l, null)].concat(cols.map((_, i) => linea(l, i))), cats: cats.map(c => { const lc = l.filter(f => (f.categoria || "Sin categoría") === c); return { c, v: [linea(lc, null)].concat(cols.map((_, i) => linea(lc, i))) }; }) }; };
+    const I = bloque("ingreso"), G = bloque("gasto"), U = I.tot.map((v, i) => r2c(v - G.tot[i]));
+    const enc = ["Concepto"].concat(cols, ["Total " + NEG.anio]);
+    const filasR = [["b", "Ingresos"].concat(I.tot.slice(1), [I.tot[0]])].concat(I.cats.map(x => ["", "   " + x.c].concat(x.v.slice(1), [x.v[0]])),
+      [["b", "Gastos"].concat(G.tot.slice(1), [G.tot[0]])], G.cats.map(x => ["", "   " + x.c].concat(x.v.slice(1), [x.v[0]])),
+      [["t", "Utilidad"].concat(U.slice(1), [U[0]])], [["", "Margen"].concat(I.tot.slice(1).map((v, i) => v > 0 ? (U[i + 1] / v * 100).toFixed(1) + "%" : "—"), [I.tot[0] > 0 ? (U[0] / I.tot[0] * 100).toFixed(1) + "%" : "—"])]);
+    return { titulo: "Estado de resultados · " + (n ? n.nombre : "Todos los negocios") + " · " + NEG.anio, enc, filas: filasR };
+  }
+  const per = filas.filter(f => negEnPeriodo(f));
+  if(NEG.rep === "comp"){
+    const enc = ["Negocio", "Ingresos", "Gastos", "Utilidad", "Margen"];
+    const fl = NEG.negs.filter(n => n.activo || per.some(f => f.negocio_id === n.id)).map(n => { const t = negTotales(per.filter(f => f.negocio_id === n.id)); return ["", n.nombre, t.ing, t.gas, t.util, t.ing > 0 ? t.margen.toFixed(1) + "%" : "—"]; });
+    const t = negTotales(per);
+    return { titulo: "Comparativo entre negocios · " + negPeriodoTxt(), enc, filas: fl.concat([["t", "Total", t.ing, t.gas, t.util, t.ing > 0 ? t.margen.toFixed(1) + "%" : "—"]]) };
+  }
+  const gas = per.filter(f => f.tipo === "gasto"), negs = NEG.negs.filter(n => gas.some(f => f.negocio_id === n.id));
+  const cats = [...new Set(gas.map(f => f.categoria || "Sin categoría"))].sort();
+  const enc = ["Categoría"].concat(negs.map(n => n.nombre), ["Total", "%"]), totG = r2c(gas.reduce((s, f) => s + f.monto, 0));
+  const fl = cats.map(c => { const v = negs.map(n => r2c(gas.filter(f => f.negocio_id === n.id && (f.categoria || "Sin categoría") === c).reduce((s, f) => s + f.monto, 0))); const tt = r2c(v.reduce((s, x) => s + x, 0));
+    return ["", c].concat(v, [tt, totG > 0 ? (tt / totG * 100).toFixed(1) + "%" : "—"]); }).sort((a, b) => b[b.length - 2] - a[a.length - 2]);
+  return { titulo: "Gastos por categoría · " + negPeriodoTxt(), enc, filas: fl.concat([["t", "Total"].concat(negs.map(n => r2c(gas.filter(f => f.negocio_id === n.id).reduce((s, f) => s + f.monto, 0))), [totG, totG > 0 ? "100%" : "—"])]) };
+}
+function negTablaReporte(r){
+  return '<div class="table-wrap"><table class="ctl-t neg-rep"><thead><tr>' + r.enc.map((h, i) => '<th' + (i ? ' class="r"' : '') + '>' + escapeHtml(h) + '</th>').join("") + '</tr></thead><tbody>' +
+    r.filas.map(f => '<tr class="' + (f[0] === "b" ? "neg-b" : f[0] === "t" ? "neg-tt" : "") + '">' + f.slice(1).map((v, i) => '<td' + (i ? ' class="r"' : '') + '>' + (typeof v === "number" ? negM(v) : escapeHtml(v)) + '</td>').join("") + '</tr>').join("") +
+    '</tbody></table></div>';
+}
+function negVistaReportes(){
+  const r = negReporte();
+  return '<div class="ctl-acciones"><select id="negRep"><option value="er"' + (NEG.rep === "er" ? " selected" : "") + '>Estado de resultados (mes a mes)</option><option value="comp"' + (NEG.rep === "comp" ? " selected" : "") + '>Comparativo entre negocios</option><option value="cat"' + (NEG.rep === "cat" ? " selected" : "") + '>Gastos por categoría</option></select>' +
+    (NEG.rep === "er" ? '<select id="negAnio2">' + negSelPeriodo().split("</select>")[0].replace('<select id="negAnio">', "") + '</select>' + negSelNegocio("negRepNeg", NEG.repNeg, "Todos los negocios (consolidado)") : negSelPeriodo()) +
+    '<span style="flex:1"></span><button type="button" class="btn-outline" data-negacc="excelRep">⬇ Excel</button><button type="button" class="pdf" style="color:#fff" data-negacc="pdfRep">▣ PDF / imprimir</button></div>' +
+    '<div class="ctl-card"><h3>' + escapeHtml(r.titulo) + '</h3>' + negTablaReporte(r) +
+    '<p class="muted small" style="margin:10px 0 0">Los negocios en modo automático toman los cobros como ingresos y los gastos y compras (por su total) como gastos, desde el Control comercial. No incluye movimientos anulados.</p></div>';
+}
+function negReporteDoc(){
+  const r = negReporte();
+  DOC_ACTUAL = { modulo: "neg", numero: "", cliente: negArchivo(r.titulo) };
+  $("docTitulo").textContent = r.titulo;
+  $("docRender").innerHTML = '<style>#docRender .neg-doc th{background:#0b4a93;color:#fff}#docRender .neg-doc td,#docRender .neg-doc th{font-size:11.5px;padding:5px 6px}#docRender .neg-doc td:first-child,#docRender .neg-doc th:first-child{text-align:left;white-space:pre}' +
+    '#docRender .neg-doc tr.neg-b td{font-weight:bold;background:#f1f6fc}#docRender .neg-doc tr.neg-tt td{font-weight:bold;background:#dceeff}</style>' +
+    '<div class="doc-head"><div class="doc-logos"><img class="doc-logo-corp" src="' + LOGO_PORTADA + '" alt="" style="border:0;padding:0"></div><div class="doc-emp"><h1>' + escapeHtml(r.titulo.split(" · ")[0]) + '</h1><div>' + escapeHtml(r.titulo.split(" · ").slice(1).join(" · ")) + '</div><div class="doc-legal"><b>' + escapeHtml(RAZON_SOCIAL) + '</b></div><div>Generado el ' + fechaLarga(todayISO()) + '</div></div></div>' +
+    '<table class="neg-doc"><thead><tr>' + r.enc.map(h => '<th>' + escapeHtml(h) + '</th>').join("") + '</tr></thead><tbody>' +
+    r.filas.map(f => '<tr class="' + (f[0] === "b" ? "neg-b" : f[0] === "t" ? "neg-tt" : "") + '">' + f.slice(1).map((v, i) => '<td class="' + (i ? "r" : "l") + '">' + (typeof v === "number" ? negM(v) : escapeHtml(v)) + '</td>').join("") + '</tr>').join("") + '</tbody></table>';
+  abrir("modalDoc");
+}
+function negExcelRep(){ const r = negReporte(); return ctlExcel(negArchivo(r.titulo) + ".xlsx", "Reporte", [r.enc].concat(r.filas.map(f => f.slice(1))), r.enc.map((_, i) => i ? 14 : 30)); }
+function negExcelMov(){
+  const l = negListaMov();
+  return ctlExcel(negArchivo("Movimientos " + negPeriodoTxt()) + ".xlsx", "Movimientos", [["Fecha","Negocio","Tipo","Categoría","Detalle","Forma de pago","Referencia","Monto","Origen","Estado"]].concat(
+    l.map(f => [f.fecha, (negPorId(f.negocio_id) || {}).nombre || "", f.tipo === "ingreso" ? "Ingreso" : "Gasto", f.categoria, f.detalle, f.metodo || "", f.referencia || "", f.monto, f.auto ? "Automático (" + f.origen + ")" : "Manual", f.anulado ? "Anulado" : ""])),
+    [11, 20, 9, 20, 40, 14, 14, 13, 20, 10]);
+}
+
+/* ---------- Registrar / editar movimiento ---------- */
+function negFormMov(tipo, id){
+  const m = id ? NEG.movs.find(x => x.id === id) : null;
+  if(m) tipo = m.tipo;
+  const activos = NEG.negs.filter(n => n.activo || (m && n.id === m.negocio_id));
+  if(!activos.length){ NEG.vista = "cfg"; negPintar(); return toast("Primero agregue un negocio.", "err"); }
+  const negSel = m ? m.negocio_id : (NEG.filtro || activos[0].id);
+  ctlModal((m ? "Editar " : "Registrar ") + (tipo === "ingreso" ? "ingreso" : "gasto"),
+    '<div class="neg-seg"><button type="button" data-negtipo="ingreso" class="' + (tipo === "ingreso" ? "on i" : "") + '">＋ Ingreso</button><button type="button" data-negtipo="gasto" class="' + (tipo === "gasto" ? "on g" : "") + '">－ Gasto</button></div>' +
+    '<div class="form-grid ctl-form">' +
+    ctlCampo("nmNeg", "Negocio *", negSelNegocio("nmNeg", negSel)) +
+    ctlCampo("nmFecha", "Fecha *", ctlIn("nmFecha", m ? m.fecha : todayISO(), 'type="date"')) +
+    ctlCampo("nmCat", "Categoría *", '<select id="nmCat"></select>') +
+    ctlCampo("nmMonto", "Monto (L) *", ctlIn("nmMonto", m ? m.monto : "", 'type="number" min="0.01" step="0.01" inputmode="decimal"')) +
+    ctlCampo("nmDet", "Detalle", ctlIn("nmDet", m ? m.detalle : "", 'maxlength="300" placeholder="Ej.: ventas del día, pago de energía…"'), true) +
+    ctlCampo("nmMet", "Forma de pago", '<select id="nmMet">' + NEG_METODOS.map(x => '<option' + (m && m.metodo === x ? " selected" : "") + '>' + x + '</option>').join("") + '</select>') +
+    ctlCampo("nmRef", "N.° factura / recibo", ctlIn("nmRef", m ? m.referencia : "", 'maxlength="60" placeholder="Opcional"')) + '</div>',
+    [{ txt: "Guardar", cls: "save", fn: async () => {
+      const monto = r2c(num(ctlVal("nmMonto")));
+      if(!ctlVal("nmNeg")) return ctlAviso("Elija el negocio.");
+      if(!ctlVal("nmFecha")) return ctlAviso("Indique la fecha.");
+      if(!(monto > 0)) return ctlAviso("El monto debe ser mayor que cero.");
+      const fila = { negocio_id: ctlVal("nmNeg"), tipo: $("modalCtl").dataset.negtipo, fecha: ctlVal("nmFecha"), categoria: ctlVal("nmCat"), monto, detalle: ctlVal("nmDet"), metodo: ctlVal("nmMet"), referencia: ctlVal("nmRef") };
+      try{ await ctlEscribir("neg_movimientos", fila, m ? "id=eq." + m.id : null); }
+      catch(e){ return ctlAviso("No se pudo guardar: " + e.message); }
+      cerrar("modalCtl"); toast((fila.tipo === "ingreso" ? "Ingreso" : "Gasto") + " de " + negL(monto) + " guardado.", "ok");
+      if(String(fila.fecha).slice(0, 4) !== String(NEG.anio)){ NEG.anio = Number(String(fila.fecha).slice(0, 4)); NEG.mes = ""; }
+      negCargar();
+    } }]);
+  const caja = $("modalCtl"); caja.dataset.negtipo = tipo;
+  const cats = () => { const n = negPorId(ctlVal("nmNeg")), t = caja.dataset.negtipo, l = negCats(n, t).slice();
+    if(m && m.categoria && !l.includes(m.categoria)) l.unshift(m.categoria);
+    $("nmCat").innerHTML = l.map(c => '<option' + (m && m.categoria === c ? " selected" : "") + '>' + escapeHtml(c) + '</option>').join(""); };
+  $("nmNeg").onchange = cats; cats();
+  caja.querySelectorAll("[data-negtipo]").forEach(b => b.onclick = () => {
+    caja.dataset.negtipo = b.dataset.negtipo;
+    caja.querySelectorAll("[data-negtipo]").forEach(x => x.className = x === b ? "on " + (x.dataset.negtipo === "ingreso" ? "i" : "g") : "");
+    $("ctlMTitulo").textContent = (m ? "Editar " : "Registrar ") + (b.dataset.negtipo === "ingreso" ? "ingreso" : "gasto"); cats();
+  });
+  setTimeout(() => { const x = $("nmMonto"); if(x && !m) x.focus(); }, 80);
+}
+async function negAnular(id){
+  const m = NEG.movs.find(x => x.id === id); if(!m) return;
+  const motivo = (prompt("Motivo de la anulación de este " + m.tipo + " de " + negL(m.monto) + " (queda en la auditoría):") || "").trim();
+  if(!motivo) return;
+  try{ await ctlEscribir("neg_movimientos", { anulado: true, motivo_anulacion: motivo }, "id=eq." + m.id); toast("Movimiento anulado.", "ok"); negCargar(); }
+  catch(e){ toast("No se pudo anular: " + e.message, "err"); }
+}
+
+/* ---------- Configurar negocios ---------- */
+function negVistaNegocios(){
+  const enl = NEG.negs.filter(n => n.enlace), otros = NEG.negs.filter(n => !n.enlace);
+  const gen = enl.find(n => n.recibe_generales && n.modo === "auto");
+  const tarjeta = n => '<div class="neg-cfg' + (n.activo ? "" : " off") + '" style="--c:' + escapeHtml(n.color) + '"><div class="neg-cfg-h"><b>' + escapeHtml(n.nombre) + '</b>' + (n.activo ? '' : ' <span class="ctl-pill st-anu">Inactivo</span>') +
+    '<span style="flex:1"></span><button type="button" class="action-small edit" data-negcfg="edit" data-id="' + n.id + '">Editar</button></div>' +
+    (n.enlace ? '<div class="neg-op"><button type="button" data-negmodo="auto" data-id="' + n.id + '" class="' + (n.modo === "auto" ? "on" : "") + '">Automático desde el programa</button><button type="button" data-negmodo="manual" data-id="' + n.id + '" class="' + (n.modo === "manual" ? "on" : "") + '">Manual</button></div>' +
+      '<div class="muted small" style="margin-top:6px">' + (n.modo === "auto" ? "Ingresos = cobros de sus proyectos · Gastos = gastos y compras de sus proyectos. También puede registrar movimientos manuales extra." : "Usted registra sus ingresos y gastos, como en cualquier otro negocio.") + '</div>' : '') +
+    '<div class="neg-chips"><span>Ingresos: ' + negCats(n, "ingreso").map(escapeHtml).join(" · ") + '</span><span>Gastos: ' + negCats(n, "gasto").map(escapeHtml).join(" · ") + '</span></div></div>';
+  return '<div class="ctl-acciones"><button type="button" class="new" style="color:#fff" data-negcfg="nuevo">＋ Agregar negocio</button></div>' +
+    (enl.length ? '<div class="ctl-card"><h3>Negocios del programa</h3>' + enl.map(tarjeta).join("") +
+      '<div class="field" style="margin-top:12px;max-width:520px"><label for="negGen">Gastos y compras <b>sin proyecto</b> del Control comercial (luz, alquiler del taller…) se cargan a:</label>' +
+      '<select id="negGen"><option value="">No incluirlos</option>' + enl.filter(n => n.modo === "auto").map(n => '<option value="' + n.id + '"' + (gen && gen.id === n.id ? " selected" : "") + '>' + escapeHtml(n.nombre) + '</option>').join("") + '</select>' +
+      '<div class="muted small">Solo aplica a negocios en modo automático.</div></div></div>' : '') +
+    '<div class="ctl-card"><h3>Otros negocios</h3>' + (otros.map(tarjeta).join("") || '<p class="muted">Agregue aquí los demás negocios de la empresa.</p>') + '</div>';
+}
+function negFormNegocio(id){
+  const n = id ? negPorId(id) : null;
+  const usados = n ? NEG.movs.some(m => m.negocio_id === n.id) : false;
+  ctlModal(n ? "Editar negocio" : "Agregar negocio",
+    '<div class="form-grid ctl-form">' +
+    ctlCampo("ngNom", "Nombre *", ctlIn("ngNom", n ? n.nombre : "", 'maxlength="80"')) +
+    ctlCampo("ngColor", "Color", ctlIn("ngColor", n ? n.color : ["#159447","#7a3fb8","#0e7490","#b45309","#d92027"][NEG.negs.length % 5], 'type="color" style="height:42px;padding:3px"')) +
+    ctlCampo("ngIng", "Categorías de ingreso (separadas por coma)", '<textarea id="ngIng" rows="2" maxlength="600">' + escapeHtml(negCats(n || { cat_ingreso: ["Ventas","Otros ingresos"] }, "ingreso").join(", ")) + '</textarea>', true) +
+    ctlCampo("ngGas", "Categorías de gasto (separadas por coma)", '<textarea id="ngGas" rows="3" maxlength="900">' + escapeHtml(negCats(n || { cat_gasto: ["Planilla","Alquiler","Servicios","Mercadería","Transporte","Mantenimiento","Impuestos","Otros gastos"] }, "gasto").join(", ")) + '</textarea>', true) +
+    (n ? ctlCampo("ngAct", "Estado", '<select id="ngAct"><option value="1"' + (n.activo ? " selected" : "") + '>Activo</option><option value="0"' + (!n.activo ? " selected" : "") + '>Inactivo (se oculta, conserva su historial)</option></select>') : '') + '</div>',
+    [].concat(n && !n.enlace && !usados ? [{ txt: "Eliminar", cls: "btn-red", fn: async () => {
+      if(!confirm("¿Eliminar el negocio «" + n.nombre + "»? No tiene movimientos registrados.")) return;
+      try{ await ctlBorrar("neg_negocios", "id=eq." + n.id); }catch(e){ return ctlAviso("No se pudo eliminar: " + e.message); }
+      cerrar("modalCtl"); toast("Negocio eliminado.", "ok"); negCargar(); } }] : [],
+    [{ txt: "Guardar", cls: "save", fn: async () => {
+      const lista = id2 => [...new Set(ctlVal(id2).split(/[,\n]/).map(x => x.trim().slice(0, 60)).filter(Boolean))].slice(0, 30);
+      const fila = { nombre: ctlVal("ngNom"), color: ctlVal("ngColor") || "#0b4a93", cat_ingreso: lista("ngIng"), cat_gasto: lista("ngGas") };
+      if(!fila.nombre) return ctlAviso("Escriba el nombre del negocio.");
+      if(NEG.negs.some(x => x.id !== id && x.nombre.toLowerCase() === fila.nombre.toLowerCase())) return ctlAviso("Ya existe un negocio con ese nombre.");
+      if(!fila.cat_ingreso.length || !fila.cat_gasto.length) return ctlAviso("Escriba al menos una categoría de ingreso y una de gasto.");
+      if(n) fila.activo = ctlVal("ngAct") === "1"; else fila.orden = NEG.negs.reduce((mx, x) => Math.max(mx, x.orden || 0), 0) + 1;
+      try{ await ctlEscribir("neg_negocios", fila, n ? "id=eq." + n.id : null); }catch(e){ return ctlAviso("No se pudo guardar: " + e.message); }
+      cerrar("modalCtl"); toast("Negocio guardado.", "ok"); negCargar();
+    } }]));
+}
+async function negCambiarModo(id, modo){
+  const n = negPorId(id); if(!n || n.modo === modo) return;
+  if(!confirm(modo === "auto" ? "«" + n.nombre + "» tomará automáticamente los cobros, gastos y compras de sus proyectos. Si ya registró esos mismos movimientos a mano, anúlelos para no contarlos dos veces. ¿Continuar?"
+                              : "«" + n.nombre + "» dejará de tomar datos del programa; usted registrará sus ingresos y gastos. ¿Continuar?")) return;
+  try{
+    const f = { modo }; if(modo === "manual") f.recibe_generales = false;
+    await ctlEscribir("neg_negocios", f, "id=eq." + n.id); toast(n.nombre + ": modo " + (modo === "auto" ? "automático" : "manual") + ".", "ok"); negCargar();
+  }catch(e){ toast("No se pudo cambiar: " + e.message, "err"); }
+}
+async function negCambiarGenerales(id){
+  try{
+    for(const n of NEG.negs.filter(x => x.recibe_generales && x.id !== id)) await ctlEscribir("neg_negocios", { recibe_generales: false }, "id=eq." + n.id);
+    if(id) await ctlEscribir("neg_negocios", { recibe_generales: true }, "id=eq." + id);
+    toast(id ? "Los gastos sin proyecto se cargan a " + negPorId(id).nombre + "." : "Los gastos sin proyecto no se incluyen.", "ok"); negCargar();
+  }catch(e){ toast("No se pudo cambiar: " + e.message, "err"); negCargar(); }
+}
+
+/* ---------- Eventos ---------- */
+function negIniciar(){
+  $("negRecargar").onclick = negCargar;
+  $("negTabs").addEventListener("click", e => { const b = e.target.closest("[data-negv]"); if(b){ NEG.vista = b.dataset.negv; negPintar(); } });
+  const c = $("negCuerpo");
+  c.addEventListener("click", e => {
+    const t = e.target;
+    const a = t.closest("[data-negacc]"); if(a){ ({ ingreso: () => negFormMov("ingreso"), gasto: () => negFormMov("gasto"), excelMov: negExcelMov, excelRep: negExcelRep, pdfRep: negReporteDoc })[a.dataset.negacc](); return; }
+    const mv = t.closest("[data-negmov]"); if(mv){ mv.dataset.negmov === "edit" ? negFormMov(null, mv.dataset.id) : negAnular(mv.dataset.id); return; }
+    const cf = t.closest("[data-negcfg]"); if(cf){ negFormNegocio(cf.dataset.negcfg === "nuevo" ? null : cf.dataset.id); return; }
+    const md = t.closest("[data-negmodo]"); if(md){ negCambiarModo(md.dataset.id, md.dataset.negmodo); return; }
+    const vr = t.closest("[data-negver]"); if(vr){ NEG.filtro = vr.dataset.negver; NEG.vista = "mov"; negPintar(); }
+  });
+  c.addEventListener("change", e => {
+    const id = e.target.id, v = e.target.value;
+    if(id === "negAnio" || id === "negAnio2"){ NEG.anio = Number(v); negCargar(); return; }
+    if(id === "negMes") NEG.mes = v;
+    else if(id === "negFiltro") NEG.filtro = v;
+    else if(id === "negTipo") NEG.tipo = v;
+    else if(id === "negRep") NEG.rep = v;
+    else if(id === "negRepNeg") NEG.repNeg = v;
+    else if(id === "negGen") return negCambiarGenerales(v);
+    else return;
+    negPintar();
+  });
+  c.addEventListener("input", e => { if(e.target.id === "negBuscar"){ NEG.buscar = e.target.value; const pos = e.target.selectionStart; negPintar(); const n = $("negBuscar"); n.focus(); n.setSelectionRange(pos, pos); } });
+}
+
 /* ══════════ v12.5 · HISTORIAL DE COTIZACIONES: etapa, siguiente paso y acciones ══════════ */
 const ETAPAS = ["Borrador","Enviada","Aceptada","Venta","Facturada","Cobrada","Entregada"];
 let HIST_ETAPA = "", CTL_CARGADO = 0, CTL_PROMESA = null;
@@ -4437,7 +4803,8 @@ function verDocumento(d){
    nombre del archivo PDF: por eso se cambia justo antes de imprimir. */
 function imprimirDocumento(){
   const original = document.title;
-  document.title = DOC_ACTUAL && (DOC_ACTUAL.modulo === "cpb" || DOC_ACTUAL.modulo === "fac")
+  document.title = DOC_ACTUAL && DOC_ACTUAL.modulo === "neg" ? (DOC_ACTUAL.cliente || "Reporte")
+    : DOC_ACTUAL && (DOC_ACTUAL.modulo === "cpb" || DOC_ACTUAL.modulo === "fac")
     ? ((DOC_ACTUAL.modulo === "cpb" ? "Comprobante " : "Factura ") + DOC_ACTUAL.numero + " - " + (DOC_ACTUAL.cliente || CFG.empresa))
     : DOC_ACTUAL && DOC_ACTUAL.modulo === "oc"
     ? ("Orden de compra " + DOC_ACTUAL.numero + " - " + (DOC_ACTUAL.cliente || CFG.empresa))
@@ -5089,7 +5456,7 @@ async function conBoton(btn, texto, fn){
 /* Botón del visor de documentos: descarga lo que está en pantalla (cotización, presupuesto u orden de compra) */
 function descargarPdfVisor(){
   const d = DOC_ACTUAL || {};
-  const nombre = d.modulo === "cpb" || d.modulo === "fac" ? ((d.modulo === "cpb" ? "Comprobante " : "Factura ") + d.numero + " - " + (d.cliente || CFG.empresa)) :
+  const nombre = d.modulo === "neg" ? (d.cliente || "Reporte") : d.modulo === "cpb" || d.modulo === "fac" ? ((d.modulo === "cpb" ? "Comprobante " : "Factura ") + d.numero + " - " + (d.cliente || CFG.empresa)) :
                  d.modulo === "oc" ? ("Orden de compra " + (d.numero || "")) :
                  d.modulo === "pvc" ? ("Materiales - " + (d.cliente || CFG.empresa)) : docNombreArchivo(d);
   return conBoton($("btnPdfDoc"), "Generando PDF…", async () => {
@@ -5813,6 +6180,7 @@ function iniciar(){
 
   nubeModulosEventos();
   ctlEventos();
+  negIniciar();
   if(SESION.usuario){ abrirApp(); if(CFG.apiUrl && SESION.token){ sincronizar(true); solCargar(true); } }
   else mostrarLogin();
 
