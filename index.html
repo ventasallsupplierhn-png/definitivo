@@ -117,6 +117,7 @@ select.discount-input{text-align:left;width:110px}
 
 /* ══════════ LISTA GUARDADOS ══════════ */
 .filters{display:grid;grid-template-columns:1fr 190px;gap:10px;margin-bottom:14px}
+.filters.f3{grid-template-columns:1fr 190px 160px}
 .filters input,.filters select{padding:11px 12px;border:1px solid var(--border);border-radius:9px;font-size:15px;width:100%}
 .action-small{padding:7px 10px;margin:2px;font-size:12.5px}
 .detail{background:#fff;border:1px solid var(--sky);color:#0b5fb8}
@@ -216,7 +217,7 @@ select.discount-input{text-align:left;width:110px}
   .measure-box{display:grid;gap:10px}
   .toolbar{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px}
   button{min-height:46px}
-  .filters{grid-template-columns:1fr}
+  .filters,.filters.f3{grid-template-columns:1fr}
   .table-wrap{box-shadow:inset -14px 0 18px -20px #000}
   .summary-box{width:100%}
   .actions{grid-template-columns:1fr 1fr;gap:10px}
@@ -310,6 +311,7 @@ body.rol-operador .solo-admin{display:none!important}
 .navbar{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap}
 .navbar h2{margin:0;font-size:18px;color:var(--blue-dark)}
 .navbar.hidden{display:none}
+.nav-nuevo{margin-left:auto;padding:10px 16px;border-radius:12px;font-weight:800;font-size:14px}.nav-nuevo.hidden{display:none}
 .section-icon.mz{background:#75451f}
 .badge-mod{display:inline-block;padding:3px 9px;border-radius:999px;font-size:11.5px;font-weight:800}
 .m-vidrieria{background:#e0efff;color:#0b5fb8}
@@ -412,6 +414,31 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
 .ctl-ficha-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
 .ctl-acc-head{display:flex;gap:8px;flex-wrap:wrap}
 .aud-kpis{grid-template-columns:repeat(4,1fr)}
+.hist-etapas{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.hist-etapas button{padding:7px 12px;border-radius:12px;background:#fff;border:1px solid var(--border);font-size:12.5px;font-weight:700;color:#33495f;cursor:pointer;text-align:left;font-family:inherit}
+.hist-etapas button b{display:block;font-size:17px;color:var(--text)}.hist-etapas button.on{background:#0b4a93;border-color:#0b4a93;color:#fff}.hist-etapas button.on b{color:#fff}
+.hist-st{display:inline-block;padding:3px 9px;border-radius:99px;font-size:11.5px;font-weight:800;white-space:nowrap}
+.hist-st.s1{background:#eef1f5;color:#55657a}.hist-st.s2{background:#eaf3ff;color:#0b4a93}.hist-st.s3{background:#e3f3e8;color:#135b30}.hist-st.s4{background:#fff1d6;color:#8a5a00}
+.hist-st.s5{background:#e7f1fb;color:#0b5fb8}.hist-st.s6{background:#efe8fc;color:#6d28d9}.hist-st.s7{background:#dff5e6;color:#0b6b33}.hist-st.s0{background:#fde4e2;color:#a3261b}
+.hist-pasos{display:flex;gap:3px;margin-top:5px}.hist-pasos i{width:18px;height:5px;border-radius:9px;background:#e3ebf4}.hist-pasos i.d{background:#1da85a}.hist-pasos i.r{background:#d92027}
+.hist-acc{white-space:nowrap;text-align:right}.hist-sig{color:#fff}.hist-mas{background:#fff;border:1px solid var(--border);color:#0b4a93;font-weight:900;min-width:36px}
+.hist-menu{position:fixed;z-index:2000;width:285px;max-height:70vh;overflow:auto;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 16px 40px rgba(8,47,99,.24);padding:6px}
+.hist-menu button{display:flex;width:100%;gap:9px;align-items:center;padding:8px 10px;border:0;background:none;border-radius:9px;font:inherit;font-size:13.5px;color:var(--text);cursor:pointer;text-align:left}
+.hist-menu button:hover:not(:disabled){background:#f1f6fc}.hist-menu button:disabled{color:#a5b4c5;cursor:default}.hist-menu button.rojo{color:#d92027}
+.hist-menu button span{width:20px;text-align:center}
+@media(max-width:640px){
+  .hist-head{display:none}
+  .hist-tabla{min-width:0!important;display:block;width:100%}.hist-tabla .hist-body{display:block}
+  .hist-etapas{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}.hist-etapas button{flex:none}
+  .hist-body tr{display:grid;grid-template-columns:1fr auto;grid-template-areas:"num tot" "pro pro" "eta fec" "acc acc";gap:4px 10px;padding:12px 10px;border-bottom:1px solid var(--line)}
+  .hist-body td{display:block;border:0!important;padding:0!important;text-align:left!important;background:none!important}
+  .hist-body td:nth-child(1){grid-area:num}.hist-body td:nth-child(2){grid-area:pro}.hist-body td:nth-child(3){grid-area:fec;align-self:end;color:#62758c;font-size:12px;text-align:right!important}
+  .hist-body td:nth-child(4){grid-area:eta}.hist-body td:nth-child(5){grid-area:tot;text-align:right!important;font-size:15px}
+  .hist-body td:nth-child(6){grid-area:acc;display:flex;gap:6px;justify-content:flex-end;margin-top:4px}
+  .hist-body td[colspan]{grid-column:1/-1}
+  .hist-body .hist-sig{flex:1;max-width:240px;padding:10px 12px}
+}.hist-menu small{margin-left:auto;color:#8193a7;font-size:11.5px;white-space:nowrap}.hist-menu .sep{height:1px;background:var(--line);margin:4px 0}
+.pres-bar{height:9px;border-radius:9px;background:#e3ebf4;position:relative;overflow:hidden}.pres-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:9px}
 .ver-txt{color:#8193a7;font-size:12px;margin:12px 0 0;text-align:center}
 .aviso-ver{position:fixed;left:50%;top:12px;transform:translateX(-50%);z-index:9999;display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center;
   max-width:calc(100% - 24px);padding:10px 12px 10px 16px;border-radius:14px;background:linear-gradient(135deg,#082f63,#0b4a93);color:#fff;
@@ -528,6 +555,7 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
   <div class="navbar hidden" id="navBar">
     <button class="btn-ghost" id="btnHome" type="button">← Módulos</button>
     <h2 id="navTitulo"></h2>
+    <button class="new nav-nuevo hidden" id="navNuevo" type="button" style="color:#fff">＋ Nuevo proyecto</button>
   </div>
 
   <div id="panel-home" class="tab-panel">
@@ -553,7 +581,7 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
       </button>
       <button class="mod-card" data-tab="pro" type="button" style="--c:#ff7300;--soft:#fdeee0">
         <span class="mod-ico">◴</span>
-        <div><h3>Proyectos guardados</h3><p>Busca, abre, duplica o reimprime los trabajos de ambos módulos</p></div>
+        <div><h3>Historial de cotizaciones</h3><p>Etapa de cada cotización y su siguiente paso: enviar, vender, facturar, cobrar o entregar</p></div>
         <span class="mod-go">↗</span>
       </button>
       <button class="mod-card sb-only" data-tab="ctl" type="button" style="--c:#0b4a93;--soft:#dceeff">
@@ -878,25 +906,24 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
   <div id="panel-pro" class="tab-panel hidden">
   <section class="card">
     <div class="card-head">
-      <h2 class="section-title"><span class="section-icon">◴</span>Proyectos guardados</h2>
+      <h2 class="section-title"><span class="section-icon">📁</span>Historial de cotizaciones</h2>
       <div class="toolbar"><button class="btn-outline" id="refreshSaved">⟳ Actualizar lista</button></div>
     </div>
-    <div class="filters" style="grid-template-columns:1fr 190px 190px">
+    <p class="muted" style="margin:-4px 0 10px">Todo lo cotizado, en qué etapa va y qué sigue. El botón verde es el siguiente paso; «⋯» abre todas las acciones.</p>
+    <div class="hist-etapas" id="histEtapas"></div>
+    <div class="filters f3">
       <input id="buscar" placeholder="Buscar por proyecto, cliente o número..." autocomplete="off">
       <select id="filtroModulo">
         <option value="">Todos los módulos</option>
         <option value="vidrieria">Vitra House</option>
         <option value="muebles">Muebles Zacapa</option>
       </select>
-      <select id="filtroEstado">
-        <option value="">Todos los estados</option>
-        <option>Borrador</option><option>Enviada</option><option>Aprobada</option><option>Rechazada</option>
-      </select>
+      <select id="filtroAnio"><option value="">Todos los años</option></select>
     </div>
     <div class="table-wrap">
-      <table>
-        <thead><tr><th>N.°</th><th>Módulo</th><th>Proyecto</th><th>Cliente</th><th>Fecha</th><th>Estado</th><th>Total</th><th>Acciones</th></tr></thead>
-        <tbody id="savedProjectsBody"></tbody>
+      <table class="hist-tabla">
+        <thead class="hist-head"><tr><th>N.°</th><th class="l">Proyecto · cliente</th><th>Fecha</th><th>Etapa</th><th class="r">Total</th><th></th></tr></thead>
+        <tbody id="savedProjectsBody" class="hist-body"></tbody>
       </table>
     </div>
     <div class="status" id="listaResumen"></div>
@@ -927,7 +954,7 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
       </div>
     </div>
     <div class="note" id="catAviso"></div>
-    <div class="filters" style="grid-template-columns:1fr 190px 190px;margin-top:12px">
+    <div class="filters f3" style="margin-top:12px">
       <input id="catBuscar" placeholder="Buscar producto, categoría o descripción..." autocomplete="off">
       <select id="catMarca"><option value="">Ambas empresas</option><option>Muebles Zacapa</option><option>VitraHouse</option></select>
       <select id="catTipo"><option value="">Todos</option><option value="nuevo">Solo nuevos</option><option value="original">Solo originales</option></select>
@@ -943,7 +970,7 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
       <h2 class="section-title"><span class="section-icon">📥</span>Solicitudes del catálogo</h2>
       <div class="toolbar"><button class="btn-outline" id="solRecargar" type="button">⟳ Actualizar</button></div>
     </div>
-    <div class="filters" style="grid-template-columns:1fr 230px 190px">
+    <div class="filters f3">
       <input id="solBuscar" placeholder="Buscar cliente, producto o detalle..." autocomplete="off">
       <select id="solEstado"><option value="activas">Pendientes (Nueva / En proceso)</option><option value="">Todas</option><option>Nueva</option><option>En proceso</option><option>Cotizada</option><option>Descartada</option></select>
       <select id="solEmpresa"><option value="">Ambas empresas</option><option>Muebles Zacapa</option><option>VitraHouse</option></select>
@@ -1251,7 +1278,7 @@ const AJUSTES_FABRICA = {
 if(AJUSTES_FABRICA.supabaseUrl && AJUSTES_FABRICA.supabaseKey) AJUSTES_FABRICA.apiUrl = "supabase";
 
 /* ── 1. CONSTANTES Y ESTADO GLOBAL ───────────────────────────── */
-const APP_VERSION = "12.3.1";
+const APP_VERSION = "12.5.0";
 const LS = {
   borrador : "vitra.borrador.v7",
   borradorMZ: "vitra.borradorMZ.v9",
@@ -1559,7 +1586,7 @@ function salir(){
 }
 const MODULOS = {
   home:"", cot:"Cotización · Vitra House", pvc:"Materiales PVC",
-  mue:"Presupuesto · Muebles Zacapa", pro:"Proyectos guardados", adm:"Administración",
+  mue:"Presupuesto · Muebles Zacapa", pro:"Historial de cotizaciones", adm:"Administración",
   cat:"Catálogo de clientes", sol:"Solicitudes del catálogo", ctl:"Control comercial"
 };
 function irTab(t){
@@ -1568,14 +1595,17 @@ function irTab(t){
   Object.keys(MODULOS).forEach(k => $("panel-" + k).classList.toggle("hidden", k !== t));
   $("navBar").classList.toggle("hidden", t === "home");
   $("navTitulo").textContent = MODULOS[t] || "";
+  $("navNuevo").classList.toggle("hidden", !["cot","pvc","mue"].includes(t));
+  $("navNuevo").dataset.mod = t;
   window.scrollTo({ top:0, behavior:"smooth" });
   if(t === "pvc" && typeof pvSincronizarCampos === "function") pvSincronizarCampos();
   if(t === "cat" && typeof catCargar === "function") catCargar();
   if(t === "ctl" && typeof ctlCargar === "function") ctlCargar();
+  if(t === "pro"){ renderLista(); if(typeof ctlAsegurar === "function") ctlAsegurar().then(renderLista); }
   if(t === "sol" && typeof solCargar === "function") solCargar();
 }
 
-/* ── 4. COMUNICACIÓN CON APPS SCRIPT ─────────────────────────── */
+/* ── 4. COMUNICACIÓN CON EL SERVIDOR (api → Supabase) ──────────────────────────── */
 
 /* ── 4b. SUPABASE: sesión, servidor y módulos de catálogo y solicitudes ─────── */
 const SB = {
@@ -2342,16 +2372,17 @@ async function ctlCargar(){
     ]);
     Object.assign(CTL, { prov, mat, oc, gas, ven, com, cob, cai, fac, mov });
     await firmasCargar();
+    CTL_CARGADO = Date.now();
     $("ctlEstado").textContent = "Actualizado " + horaActual();
   }catch(e){
     $("ctlEstado").textContent = "";
     toast("No se pudo leer el Control comercial: " + e.message, "err");
   }finally{ CTL_CARGANDO = false; }
   ctlPintar();
+  if(!$("panel-pro").classList.contains("hidden")) renderLista();
   if(CTL_FICHA_PEND){ const x = CTL_FICHA_PEND; CTL_FICHA_PEND = null; ctlFicha(x); }
   else if(CTL_FICHA && $("modalFicha").classList.contains("open")) ctlFicha(CTL_FICHA);
 }
-function ctlAbrirProyecto(pid){ CTL_FICHA_PEND = pid; irTab("ctl"); }
 async function ctlEscribir(tabla, fila, filtro){
   const r = await sbRest("/rest/v1/" + tabla + (filtro ? "?" + filtro : ""), {
     method: filtro ? "PATCH" : "POST",
@@ -2376,12 +2407,16 @@ function ctlCostoProyecto(pid){
   return { gastos:r2c(gastos), materiales:r2c(materiales + otros), total:r2c(gastos + materiales + otros) };
 }
 function ctlVenta(pid){ return CTL.ven.find(v => v.proyecto_id === pid); }
-/* Venta sin ISV: si ya tiene factura, se toma lo facturado sin impuesto; si no, el subtotal de la venta */
+/* Venta sin ISV = total del proyecto (ya con descuento) menos el ISV.
+   Con factura se toma lo facturado sin impuesto. Ojo: p.subtotal es ANTES del descuento; no usarlo para la venta. */
 function ctlBaseVenta(pid){
   const facs = CTL.fac.filter(f => f.proyecto_id === pid && !f.anulada);
   if(facs.length) return r2c(facs.reduce((s,f) => s + Number(f.exonerado) + Number(f.exento) + Number(f.gravado15) + Number(f.gravado18), 0));
-  const v = ctlVenta(pid), p = ctlProy(pid);
-  return r2c(v ? Number(v.subtotal) : Number((p && (p.subtotal || p.total)) || 0));
+  const v = ctlVenta(pid), p = ctlProy(pid), t = p ? totalesDe(p) : null;
+  if(!v) return r2c(t ? t.base : 0);
+  // Ventas convertidas antes de la 12.3.2 guardaron el subtotal sin descuento: si el total coincide con el proyecto, se usa la base correcta
+  if(t && Math.abs(t.total - Number(v.total)) < 0.01) return r2c(t.base);
+  return r2c(Number(v.total) - Number(v.isv));
 }
 function ctlCobrado(pid){ return r2c(CTL.cob.filter(c => c.proyecto_id === pid).reduce((s,c) => s + Number(c.monto), 0)); }
 function ctlEstadoProyecto(pid){
@@ -2739,6 +2774,7 @@ function obraHtml(pid){
     '<div style="margin:10px 0;line-height:1.6">' + est + '</div>' +
     (e && e.estado === "Aceptada" ? '<div id="obraFirmaImg" class="firma-img" data-token="' + e.token + '"></div>' : '') +
     '<div class="ctl-acc-head"><button type="button" class="firma-btn" style="padding:9px 14px;font-size:14px" data-obra="acta" data-pid="' + escapeHtml(pid) + '">✍ ' + (e ? "Nuevo enlace de acta" : "Enviar acta de entrega para firma") + '</button>' +
+    (e && e.estado === "Aceptada" ? '<a class="btn-outline" style="text-decoration:none" target="_blank" rel="noopener" href="' + urlBasePrograma() + 'firma.html?t=' + e.token + '">📄 Ver acta firmada</a>' : '') +
     (e ? '<button type="button" class="btn-outline" data-firma="copiar" data-token="' + e.token + '">🔗 Copiar enlace</button>' : '') + '</div>';
 }
 /* Reduce la foto antes de subirla (máx. 1600 px, JPEG) para que cargue rápido en el celular del cliente */
@@ -3215,16 +3251,64 @@ function ctlOcDesdePvc(){
 }
 
 /* ---------- Ventas, cobros y ficha del proyecto ---------- */
-async function ctlConvertirVenta(pid){
+/* Costo presupuestado: materiales del cálculo PVC (si el proyecto lo tiene) + mano de obra y otros */
+function ctlCostoPvc(p){ return p && p.pvc && Number(p.pvc.costo) > 0 ? r2c(Number(p.pvc.costo)) : 0; }
+function ctlFormPresupuesto(pid, convertir){
   const p = ctlProy(pid);
   if(!p) return toast("Elija la cotización aprobada.", "err");
-  if(!(Number(p.total) > 0)) return toast("La cotización no tiene total. Revísela antes de convertirla.", "err");
-  if(!confirm("¿Convertir " + (p.numero || p.proyecto) + " en venta por " + cL(p.total) + "?")) return;
-  try{
-    await ctlEscribir("ctl_ventas", { proyecto_id: pid, estado: "Venta", fecha: todayISO(), subtotal: r2c(p.subtotal || p.total), isv: r2c(Number(p.total) - Number(p.subtotal || p.total)), total: r2c(p.total) });
-    toast("✔ " + (p.numero || p.proyecto) + " ahora es una venta.", "ok");
-    await ctlCargar(); ctlFicha(pid);
-  }catch(e){ toast("No se pudo convertir: " + e.message, "err"); }
+  const t = totalesDe(p), v = ctlVenta(pid);
+  if(convertir && !(t.total > 0)) return toast("La cotización no tiene total. Revísela antes de convertirla.", "err");
+  const pvc = ctlCostoPvc(p);
+  const mat0 = v && v.costo_mat_pres != null ? Number(v.costo_mat_pres) : pvc;
+  const otr0 = v && v.costo_otros_pres != null ? Number(v.costo_otros_pres) : "";
+  const base = convertir ? t.base : ctlBaseVenta(pid);
+  ctlModal((convertir ? "✔ Convertir en venta · " : "Costo presupuestado · ") + (p.numero || p.proyecto),
+    '<div class="muted" style="margin-bottom:10px">' + escapeHtml(p.proyecto || "") + ' · ' + escapeHtml(p.cliente || "") + ' · total ' + cL(t.total) +
+      ' (sin ISV ' + cL(base) + (t.descuento > 0 ? ', con descuento de ' + cL(t.descuento) : '') + ')</div>' +
+    '<div class="form-grid ctl-form">' +
+      ctlCampo("cvMat", "Costo presupuestado de materiales (L)", ctlIn("cvMat", mat0 || "", 'type="number" min="0" step="0.01"')) +
+      ctlCampo("cvOtros", "Mano de obra y otros gastos presupuestados (L)", ctlIn("cvOtros", otr0, 'type="number" min="0" step="0.01"')) + '</div>' +
+    '<div class="note" style="margin-top:10px">' + (pvc ? '📐 Materiales tomados del <b>Cálculo de materiales PVC</b> del proyecto (' + cL(pvc) + '). Puede corregirlo.'
+      : 'Este proyecto no tiene cálculo de materiales PVC: escriba el costo estimado, o déjelo en blanco.') + '</div>' +
+    '<div class="muted" style="margin-top:8px">Utilidad presupuestada: <b id="cvUtil"></b></div>' +
+    '<p class="muted small" style="margin:8px 0 0">Es una referencia para comparar con lo real; no se registra como gasto.</p>',
+    [{ txt: convertir ? "✔ Convertir en venta" : "💾 Guardar presupuesto", fn: async () => {
+      const mat = ctlVal("cvMat") === "" ? null : r2c(num(ctlVal("cvMat"))), otr = ctlVal("cvOtros") === "" ? null : r2c(num(ctlVal("cvOtros")));
+      if((mat != null && mat < 0) || (otr != null && otr < 0)) return ctlAviso("Los costos no pueden ser negativos.");
+      try{
+        if(convertir){
+          // base = subtotal − descuento; el ISV se calcula sobre esa base (p.subtotal es antes del descuento)
+          await ctlEscribir("ctl_ventas", { proyecto_id: pid, estado: "Venta", fecha: todayISO(), subtotal: r2c(t.base), isv: r2c(t.isv), total: r2c(t.total),
+            costo_mat_pres: mat, costo_otros_pres: otr });
+          toast("✔ " + (p.numero || p.proyecto) + " ahora es una venta.", "ok");
+        }else{
+          await ctlEscribir("ctl_ventas", { costo_mat_pres: mat, costo_otros_pres: otr }, "proyecto_id=eq." + encodeURIComponent(pid));
+          toast("Costo presupuestado guardado.", "ok");
+        }
+        cerrar("modalCtl"); await ctlCargar(); ctlFicha(pid);
+      }catch(e){ ctlAviso(/costo_(mat|otros)_pres/.test(e.message) ? "Falta ejecutar supabase_mejoras_v12_4.sql en Supabase." : "No se pudo guardar: " + e.message); }
+    } }]);
+  const util = () => { const c = num(ctlVal("cvMat")) + num(ctlVal("cvOtros")), u = base - c;
+    $("cvUtil").innerHTML = '<span style="color:' + (u >= 0 ? "#159447" : "#d92027") + '">' + cL(u) + ' · ' + (base > 0 ? Math.round(u / base * 100) : 0) + '%</span>'; };
+  ["cvMat","cvOtros"].forEach(id => $(id).addEventListener("input", util)); util();
+}
+function ctlConvertirVenta(pid){ return ctlFormPresupuesto(pid, true); }
+
+function ctlTablaPresupuesto(pid, base, c, pres){
+  const v = ctlVenta(pid);
+  if(!v || v.estado === "Anulada") return "";
+  if(!pres) return '<div class="note" style="margin-top:12px">Esta venta no tiene costo presupuestado. <button type="button" class="btn-outline" style="padding:5px 10px;margin-left:6px" data-fx="presupuesto">＋ Agregar presupuesto</button></div>';
+  const fila = (n, pr, re, inv) => { const d = r2c(re - pr), bueno = inv ? d >= 0 : d <= 0;
+    return '<tr><td style="text-align:left">' + n + '</td><td class="r">' + cL(pr) + '</td><td class="r">' + cL(re) + '</td><td class="r"><b style="color:' + (Math.abs(d) < 0.01 ? "#62758c" : bueno ? "#159447" : "#d92027") + '">' + (d > 0 ? "+ " : d < 0 ? "− " : "") + cL(Math.abs(d)) + '</b></td>' +
+      (inv ? '<td></td>' : '<td><div class="pres-bar"><i style="width:' + (pr > 0 ? Math.min(100, re / pr * 100) : (re > 0 ? 100 : 0)) + '%;background:' + (re > pr + 0.01 ? "#d92027" : "#ff8a1f") + '"></i></div></td>') + '</tr>'; };
+  const cp = r2c(pres.mat + pres.otros), up = r2c(base - cp), ur = r2c(base - c.total), pc = x => base > 0 ? " · " + Math.round(x / base * 100) + "%" : "";
+  return '<div class="ctl-card" style="margin-top:12px"><div class="ctl-acc-head" style="justify-content:space-between;align-items:center"><h3 style="margin:0">Presupuestado vs real</h3>' +
+    '<button type="button" class="btn-outline" style="padding:5px 10px" data-fx="presupuesto">Editar presupuesto</button></div>' +
+    '<div class="table-wrap"><table class="ctl-t"><thead><tr><th>Concepto</th><th class="r">Presupuestado</th><th class="r">Real</th><th class="r">Diferencia</th><th style="width:24%">Avance</th></tr></thead><tbody>' +
+    fila("Materiales", pres.mat, c.materiales) + fila("Mano de obra y otros", pres.otros, c.gastos) +
+    '<tr><td style="text-align:left"><b>Costo total</b></td><td class="r"><b>' + cL(cp) + '</b></td><td class="r"><b>' + cL(c.total) + '</b></td><td class="r"><b style="color:' + (c.total <= cp + 0.01 ? "#159447" : "#d92027") + '">' + (c.total - cp > 0.009 ? "+ " : c.total - cp < -0.009 ? "− " : "") + cL(Math.abs(c.total - cp)) + '</b></td><td></td></tr>' +
+    '<tr><td style="text-align:left"><b>Utilidad</b></td><td class="r">' + cL(up) + pc(up) + '</td><td class="r">' + cL(ur) + pc(ur) + '</td><td class="r"><b style="color:' + (ur >= up - 0.01 ? "#159447" : "#d92027") + '">' + (ur - up > 0.009 ? "+ " : ur - up < -0.009 ? "− " : "") + cL(Math.abs(ur - up)) + '</b></td><td></td></tr>' +
+    '</tbody></table></div><p class="muted small" style="margin:8px 0 0">Lo real sale de las órdenes de compra recibidas, las salidas de inventario y los gastos registrados al proyecto.</p></div>';
 }
 function ctlFormCobro(pid){
   const v = ctlVenta(pid); if(!v) return;
@@ -3257,6 +3341,7 @@ function ctlFicha(pid){
   CTL_FICHA = pid;
   const adm = esAdmin(), v = ctlVenta(pid), c = ctlCostoProyecto(pid), est = ctlEstadoProyecto(pid);
   const base = ctlBaseVenta(pid), util = r2c(base - c.total);
+  const pres = v && (v.costo_mat_pres != null || v.costo_otros_pres != null) ? { mat: Number(v.costo_mat_pres || 0), otros: Number(v.costo_otros_pres || 0) } : null;
   const etapas = ["Cotización","Venta","Facturada","Cobrada"], idx = v && v.estado === "Anulada" ? -1 : etapas.indexOf(est);
   const gastos = CTL.gas.filter(g => g.proyecto_id === pid), ocs = CTL.oc.filter(o => o.proyecto_id === pid), cobros = CTL.cob.filter(x => x.proyecto_id === pid);
   const facs = CTL.fac.filter(f => f.proyecto_id === pid && !f.anulada);
@@ -3273,11 +3358,11 @@ function ctlFicha(pid){
     (v && v.estado === "Anulada" ? '<div class="note warning">Esta venta fue anulada.</div>' :
       '<div class="ctl-pipe">' + etapas.map((e,i) => '<div class="' + (i < idx ? "done" : i === idx ? "now" : "") + '">' + (i < idx ? "✓ " : "") + e + '</div>').join("") + '</div>') +
     (adm ? '<div class="ctl-profit"><div><small>' + (v ? "Venta (sin ISV)" : "Cotizado (sin ISV)") + '</small><b>' + cL(base) + '</b><span class="muted small">' + (facs.length ? "Factura " + escapeHtml(facs.map(f => f.numero).join(", ")) : v ? "Sin factura" : "Aún no es venta") + '</span></div>' +
-      '<div><small>Materiales</small><b>' + cL(c.materiales) + '</b><span class="muted small">' + ocs.length + ' orden(es) de compra</span></div>' +
-      '<div><small>Gastos</small><b>' + cL(c.gastos) + '</b><span class="muted small">' + gastos.length + ' gasto(s)</span></div>' +
-      '<div class="' + (util >= 0 ? "pos" : "neg") + '"><small>Utilidad</small><b>' + cL(util) + '</b><span class="small"><b>Margen ' + (base > 0 ? Math.round(util / base * 100) : 0) + '%</b></span></div></div>' +
+      '<div><small>Materiales</small><b>' + cL(c.materiales) + '</b><span class="muted small">' + (pres ? 'presup. ' + cL(pres.mat) : ocs.length + ' orden(es) de compra') + '</span></div>' +
+      '<div><small>Gastos</small><b>' + cL(c.gastos) + '</b><span class="muted small">' + (pres ? 'presup. ' + cL(pres.otros) : gastos.length + ' gasto(s)') + '</span></div>' +
+      '<div class="' + (util >= 0 ? "pos" : "neg") + '"><small>Utilidad</small><b>' + cL(util) + '</b><span class="small"><b>Margen ' + (base > 0 ? Math.round(util / base * 100) : 0) + '%</b>' + (pres ? ' · presup. ' + (base > 0 ? Math.round((base - pres.mat - pres.otros) / base * 100) : 0) + '%' : '') + '</span></div></div>' +
       '<div class="ctl-stack"><i style="width:' + pct(c.materiales) + '%;background:#ff8a1f"></i><i style="width:' + pct(c.gastos) + '%;background:#e9b949"></i><i style="width:' + pct(Math.max(0, util)) + '%;background:#1da85a"></i></div>' +
-      '<div class="ctl-legend"><span><i style="background:#ff8a1f"></i>Materiales</span><span><i style="background:#e9b949"></i>Gastos</span><span><i style="background:#1da85a"></i>Utilidad</span></div>' : '') +
+      '<div class="ctl-legend"><span><i style="background:#ff8a1f"></i>Materiales</span><span><i style="background:#e9b949"></i>Gastos</span><span><i style="background:#1da85a"></i>Utilidad</span></div>' + ctlTablaPresupuesto(pid, base, c, pres) : '') +
     '<div class="ctl-grid2" style="margin-top:14px"><div class="ctl-card"><h3>Gastos del proyecto</h3><div class="table-wrap"><table class="ctl-t"><thead><tr><th>Fecha</th><th>Categoría</th><th>Detalle</th><th class="r">Monto</th><th></th></tr></thead><tbody>' +
       (gastos.map(g => '<tr><td>' + cF(g.fecha) + '</td><td>' + escapeHtml(g.categoria) + '</td><td>' + escapeHtml(g.descripcion) + (g.comprobante ? '<div class="muted small">' + escapeHtml(g.comprobante) + '</div>' : '') + '</td><td class="r">' + cL(g.monto) + '</td><td class="acc">' +
         ((adm || g.usuario === SESION.usuario) ? '<button class="action-small edit" data-gasto="edit" data-id="' + g.id + '">Editar</button>' : '') + '</td></tr>').join("") || '<tr><td colspan="5" class="muted">Sin gastos registrados.</td></tr>') +
@@ -3483,7 +3568,7 @@ function ctlFormFactura(pidFijo){
     const pid = ctlVal("cfProy"), v = ctlVenta(pid), p = ctlProy(pid);
     if(p){ $("cfCli").value = p.cliente || ""; $("cfRtn").value = p.rtn || ""; }
     if(v){
-      if(Number(v.isv) > 0){ $("cfG15").value = r2c(v.subtotal); $("cfExe").value = 0; }
+      if(Number(v.isv) > 0){ $("cfG15").value = ctlBaseVenta(pid); $("cfExe").value = 0; }
       else{ $("cfG15").value = r2c(Number(v.total) / 1.15); }
     }
     tot();
@@ -3564,7 +3649,7 @@ function ctlEventos(){
     const fm = t.closest("[data-firma]"); if(fm){ firmaAccion(fm); return; }
     const fx = t.closest("[data-fx]");
     if(fx){ const pid = CTL_FICHA;
-      ({ gasto: () => ctlFormGasto(null, pid), oc: () => ctlFormOc(null, { proyecto_id: pid }), venta: () => ctlConvertirVenta(pid),
+      ({ gasto: () => ctlFormGasto(null, pid), oc: () => ctlFormOc(null, { proyecto_id: pid }), venta: () => ctlConvertirVenta(pid), presupuesto: () => ctlFormPresupuesto(pid, false),
          factura: () => ctlFormFactura(pid), cobro: () => ctlFormCobro(pid), anular: () => ctlAnularVenta(pid) })[fx.dataset.fx](); return; }
     const fi = t.closest("[data-ficha]"); if(fi && !t.closest("button")) ctlFicha(fi.dataset.ficha);
   };
@@ -3709,13 +3794,55 @@ async function guardarProyecto(){
   autoguardar();
 }
 
-function nuevoProyecto(){
-  if(!confirm("¿Iniciar un proyecto nuevo? Los proyectos guardados se conservan.")) return;
+function nuevoProyecto(){ nuevoDesdeModulo("cot"); }
+/* ── Inicio en limpio: al entrar desde «Módulos» la pantalla empieza vacía.
+   Si quedó un trabajo sin guardar, se pregunta si continuarlo o empezar de cero. */
+function huellaDatos(o){
+  if(o === null || o === undefined || o === "") return "";
+  if(Array.isArray(o)) return "[" + o.map(huellaDatos).join(",") + "]";
+  if(typeof o === "object") return "{" + Object.keys(o).sort().map(k => k + ":" + huellaDatos(o[k])).join(",") + "}";
+  return String(o);
+}
+function huellaTrabajo(d, mz){
+  const items = (d.items || []).filter(i => mz ? (num(i.ml) > 0 || String(i.desc || "").trim()) : (num(i.alto) > 0 || num(i.ancho) > 0 || String(i.description || "").trim()));
+  const ven = !mz && d.pvc && Array.isArray(d.pvc.ventanas) ? d.pvc.ventanas.filter(v => num(v.alto) > 0 || num(v.ancho) > 0) : [];
+  return huellaDatos({ c: String(d.cliente || "").trim(), p: String(d.proyecto || "").trim(), t: String(d.telefono || "").trim(), i: items, d: num(d.descuento), v: ven });
+}
+function trabajoSinGuardar(mz){
+  const d = mz ? mzLeer() : leerFormulario();
+  const vacio = huellaTrabajo({ items: [] }, mz);
+  const h = huellaTrabajo(d, mz);
+  if(h === vacio) return null;                                    // pantalla vacía
+  const id = mz ? MZ_ACTUAL : ACTUAL;
+  const g = id && PROYECTOS.find(x => x.id === id && !x.eliminado);
+  if(g && huellaTrabajo(g, mz) === h) return null;                // igual a lo guardado
+  return d;
+}
+function limpiarModulo(t){
+  if(t === "mue"){ MZ_ACTUAL = null; localStorage.removeItem(LS.borradorMZ); mzPintar({ fecha:todayISO(), isv:15, items:[{},{}] }); return; }
   ACTUAL = null;
   localStorage.removeItem(LS.borrador);
   pintarFormulario({ fecha:todayISO(), validez:CFG.validez, isv:CFG.isv, notas:CFG.notas, items:[{}] });
+  if(typeof PVC !== "undefined") PVC.limpiar();
   $("saveStatus").textContent = "Nuevo proyecto iniciado";
-  toast("Nuevo proyecto listo.", "ok");
+}
+function entrarModulo(t){
+  if(!["cot","pvc","mue"].includes(t)) return irTab(t);
+  const d = trabajoSinGuardar(t === "mue");
+  if(!d){ limpiarModulo(t); return irTab(t); }
+  const nombre = [d.numero, d.proyecto, d.cliente].filter(Boolean).join(" · ") || "sin nombre";
+  ctlModal("Hay un trabajo sin guardar",
+    '<p style="margin:0 0 8px">Quedó un ' + (t === "mue" ? "presupuesto" : "proyecto") + ' sin guardar: <b>' + escapeHtml(nombre) + '</b>.</p>' +
+    '<p class="muted" style="margin:0">Puede continuarlo o empezar uno nuevo en limpio. Si empieza de cero, lo que no se guardó se pierde.</p>',
+    [{ txt: "↩ Continuar ese trabajo", cls: "save", fn: () => { cerrar("modalCtl"); irTab(t); } },
+     { txt: "＋ Empezar de cero", cls: "new", fn: () => { cerrar("modalCtl"); limpiarModulo(t); irTab(t); toast("Pantalla en limpio.", "ok"); } }]);
+}
+function nuevoDesdeModulo(t){
+  const d = trabajoSinGuardar(t === "mue");
+  if(d && !confirm("Hay cambios sin guardar. Si inicia un proyecto nuevo se perderán. ¿Continuar?")) return;
+  limpiarModulo(t);
+  if(t === "pvc") pvSincronizarCampos();
+  toast(t === "mue" ? "Nuevo presupuesto listo." : "Nuevo proyecto listo.", "ok");
 }
 function editarProyecto(id){
   const p = PROYECTOS.find(x => x.id === id);
@@ -3755,47 +3882,162 @@ async function eliminarProyecto(id){
 }
 
 /* ── 10. LISTA DE PROYECTOS ──────────────────────────────────── */
+
+/* ══════════ v12.5 · HISTORIAL DE COTIZACIONES: etapa, siguiente paso y acciones ══════════ */
+const ETAPAS = ["Borrador","Enviada","Aceptada","Venta","Facturada","Cobrada","Entregada"];
+let HIST_ETAPA = "", CTL_CARGADO = 0, CTL_PROMESA = null;
+function ctlAsegurar(){
+  if(!SB_ON || !SESION.token) return Promise.resolve();
+  if(CTL_CARGADO && Date.now() - CTL_CARGADO < 60000) return Promise.resolve();
+  if(!CTL_PROMESA) CTL_PROMESA = ctlCargar().finally(() => { CTL_PROMESA = null; });
+  return CTL_PROMESA;
+}
+/* Etapa real del proyecto, según lo que pasó en el sistema (firma, venta, factura, cobro, acta) */
+function etapaDe(p){
+  const v = typeof ctlVenta === "function" ? ctlVenta(p.id) : null;
+  const ent = FIRMAS.find(f => f.proyecto_id === p.id && f.tipo === "entrega" && f.estado === "Aceptada");
+  const fir = firmaDe(p.id);
+  if(v && v.estado !== "Anulada"){
+    const saldo = r2c(Number(v.total) - ctlCobrado(p.id));
+    const facs = CTL.fac.filter(f => f.proyecto_id === p.id && !f.anulada).length;
+    if(ent) return { n: 7, txt: "📦 Entregada", cls: "s7" };
+    if(v.estado === "Cobrada" || (esAdmin() && saldo <= 0.009 && Number(v.total) > 0)) return { n: 6, txt: "Cobrada", cls: "s6" };
+    if(facs || v.estado === "Facturada") return { n: 5, txt: "Facturada" + (esAdmin() && saldo > 0.009 ? " · saldo " + cL(saldo) : ""), cls: "s5" };
+    return { n: 4, txt: "Venta" + (esAdmin() && saldo > 0.009 && ctlCobrado(p.id) > 0 ? " · saldo " + cL(saldo) : ""), cls: "s4" };
+  }
+  if(ent) return { n: 7, txt: "📦 Entregada", cls: "s7" };
+  if(fir && fir.estado === "Aceptada") return { n: 3, txt: "✍ Aceptada", cls: "s3" };
+  if((fir && fir.estado === "Rechazada") || p.estado === "Rechazada") return { n: 2, txt: "✖ No aceptada", cls: "s0", rechazada: true };
+  if(p.estado === "Aprobada") return { n: 3, txt: "Aprobada", cls: "s3" };
+  if(fir || p.estado === "Enviada"){
+    const dias = diasEntre(todayISO(), segVence(p));
+    return { n: 2, txt: "Enviada" + (dias < 0 ? " · venció" : dias <= 3 ? " · vence en " + dias + " día(s)" : ""), cls: dias < 0 ? "s0" : "s2" };
+  }
+  return { n: 1, txt: "Borrador", cls: "s1" };
+}
+/* Siguiente paso sugerido para cada etapa (respeta el rol) */
+function siguientePaso(p, e){
+  const adm = esAdmin(), nube = SB_ON && !!SESION.token;
+  if(e.rechazada) return { acc: "dup", txt: "⧉ Recotizar" };
+  if(e.n === 1) return { acc: "enviar", txt: "📤 Enviar" };
+  if(e.n === 2) return p.telefono && nube ? { acc: "seguir", txt: "✆ Seguimiento" } : { acc: "enviar", txt: "📤 Enviar" };
+  if(e.n === 3) return adm && nube ? { acc: "venta", txt: "✔ Convertir en venta" } : { acc: "ver", txt: "👁 Ver" };
+  if(e.n === 4) return adm ? { acc: "factura", txt: "🧾 Facturar" } : { acc: "ficha", txt: "📊 Ficha" };
+  if(e.n === 5) return adm ? { acc: "cobro", txt: "💵 Registrar cobro" } : { acc: "ficha", txt: "📊 Ficha" };
+  if(e.n === 6) return { acc: "acta", txt: "📦 Acta de entrega" };
+  return { acc: "ver", txt: "👁 Ver" };
+}
+function histAcciones(p){
+  const adm = esAdmin(), nube = SB_ON && !!SESION.token, mz = (p.modulo || "vidrieria") === "muebles";
+  const v = nube && typeof ctlVenta === "function" ? ctlVenta(p.id) : null, vOk = v && v.estado !== "Anulada";
+  const saldo = vOk ? r2c(Number(v.total) - ctlCobrado(p.id)) : 0;
+  const l = [
+    { acc: "ver", i: "👁", txt: "Ver documento" },
+    { acc: "edit", i: "✏", txt: mz ? "Editar presupuesto" : "Editar cotización" },
+    { acc: "enviar", i: "📤", txt: "Enviar (PDF, WhatsApp, firma)" }
+  ];
+  if(!mz) l.push({ acc: "mat", i: "🪟", txt: "Cálculo de materiales", nota: pvTieneCalculo(p) ? "listo" : "" });
+  if(nube){
+    l.push({ sep: true });
+    if(adm) l.push({ acc: "venta", i: "✔", txt: "Convertir en venta", off: vOk ? "ya es venta" : (totalesDe(p).total > 0 ? "" : "sin total") });
+    if(adm) l.push({ acc: "factura", i: "🧾", txt: "Facturar", off: vOk ? "" : "después de la venta" });
+    if(adm) l.push({ acc: "cobro", i: "💵", txt: "Registrar cobro", off: !vOk ? "después de la venta" : (saldo <= 0.009 ? "ya está cobrada" : "") });
+    l.push({ acc: "oc", i: "🛒", txt: "Orden de compra de materiales" });
+    l.push({ acc: "gasto", i: "💸", txt: "Registrar gasto" });
+    l.push({ acc: "acta", i: "📦", txt: "Acta de entrega" });
+    l.push({ acc: "ficha", i: "📊", txt: "Ficha del proyecto" });
+  }
+  l.push({ sep: true }, { acc: "dup", i: "⧉", txt: "Duplicar" });
+  if(adm) l.push({ acc: "del", i: "🗑", txt: "Eliminar", rojo: true });
+  return l;
+}
+function histMenu(btn){
+  histCerrarMenu();
+  const p = PROYECTOS.find(x => x.id === btn.dataset.id); if(!p) return;
+  const m = document.createElement("div");
+  m.id = "histMenu"; m.className = "hist-menu"; m.setAttribute("role", "menu");
+  m.innerHTML = histAcciones(p).map(a => a.sep ? '<div class="sep"></div>' :
+    '<button type="button" role="menuitem" data-acc="' + a.acc + '" data-id="' + escapeHtml(p.id) + '"' + (a.off ? ' disabled' : '') + (a.rojo ? ' class="rojo"' : '') + '>' +
+    '<span>' + a.i + '</span>' + escapeHtml(a.txt) + (a.off || a.nota ? '<small>' + escapeHtml(a.off || a.nota) + '</small>' : '') + '</button>').join("");
+  document.body.appendChild(m); HIST_ABIERTO = Date.now();
+  const r = btn.getBoundingClientRect(), w = m.offsetWidth, h = m.offsetHeight;
+  m.style.left = Math.max(8, Math.min(innerWidth - w - 8, r.right - w)) + "px";
+  m.style.top = (r.bottom + h + 8 > innerHeight && r.top - h - 6 > 8 ? r.top - h - 6 : Math.min(r.bottom + 6, innerHeight - h - 8)) + "px";
+  m.addEventListener("click", e => { const b = e.target.closest("[data-acc]"); if(b && !b.disabled){ histCerrarMenu(); histAccion(b.dataset.acc, b.dataset.id); } });
+}
+function histCerrarMenu(){ const m = document.getElementById("histMenu"); if(m) m.remove(); }
+document.addEventListener("click", e => { if(!e.target.closest("#histMenu") && !e.target.closest("[data-hmenu]")) histCerrarMenu(); });
+let HIST_ABIERTO = 0;
+window.addEventListener("scroll", e => { if(Date.now() - HIST_ABIERTO < 500) return; if(!(e.target && e.target.closest && e.target.closest("#histMenu"))) histCerrarMenu(); }, true);
+window.addEventListener("resize", histCerrarMenu);
+async function histAccion(acc, id){
+  const p = PROYECTOS.find(x => x.id === id);
+  if(!p && acc !== "del") return toast("El proyecto ya no existe.", "err");
+  const sinc = async () => { if(p && p.pendiente) await sincronizar(true); await ctlAsegurar(); };
+  switch(acc){
+    case "ver": return verDocumento(p);
+    case "edit": return editarProyecto(id);
+    case "mat": return abrirMateriales(id);
+    case "dup": return duplicarProyecto(id);
+    case "del": return eliminarProyecto(id);
+    case "enviar": return abrirEnviar(p);
+    case "seguir": await ctlAsegurar(); return segWhatsapp(id);
+    case "venta": await sinc(); return ctlConvertirVenta(id);
+    case "factura": await sinc(); return ctlFormFactura(id);
+    case "cobro": await sinc(); return ctlFormCobro(id);
+    case "oc": await sinc(); return ctlFormOc(null, { proyecto_id: id });
+    case "gasto": await sinc(); return ctlFormGasto(null, id);
+    case "ficha": await sinc(); return ctlFicha(id);
+    case "acta":
+      await sinc(); ctlFicha(id);
+      setTimeout(() => { const c = document.getElementById("obraCaja"); if(c) c.scrollIntoView({ behavior: "smooth", block: "center" }); }, 500);
+      return;
+  }
+}
+
 function renderLista(){
   const q = $("buscar").value.trim().toLowerCase();
-  const est = $("filtroEstado").value;
-  const mod = $("filtroModulo").value;
+  const mod = $("filtroModulo").value, anio = $("filtroAnio").value;
   const body = $("savedProjectsBody");
-  let lista = PROYECTOS.filter(p => !p.eliminado);
-  if(mod) lista = lista.filter(p => (p.modulo || "vidrieria") === mod);
-  if(est) lista = lista.filter(p => (p.estado || "Borrador") === est);
-  if(q) lista = lista.filter(p =>
+  let base = PROYECTOS.filter(p => !p.eliminado);
+  // Años disponibles para el filtro
+  const anios = [...new Set(base.map(p => String(p.fecha || "").slice(0, 4)).filter(x => /^\d{4}$/.test(x)))].sort().reverse();
+  $("filtroAnio").innerHTML = '<option value="">Todos los años</option>' + anios.map(y => '<option' + (y === anio ? ' selected' : '') + '>' + y + '</option>').join("");
+  if(mod) base = base.filter(p => (p.modulo || "vidrieria") === mod);
+  if(anio) base = base.filter(p => String(p.fecha || "").slice(0, 4) === anio);
+  if(q) base = base.filter(p =>
     (p.proyecto || "").toLowerCase().includes(q) ||
     (p.cliente || "").toLowerCase().includes(q) ||
     (p.numero || "").toLowerCase().includes(q));
-  lista.sort((a,b) => String(b.actualizado || "").localeCompare(String(a.actualizado || "")));
+  const conE = base.map(p => ({ p, e: etapaDe(p) }));
+  const cuenta = n => conE.filter(x => x.e.n === n && !x.e.rechazada).length, rech = conE.filter(x => x.e.rechazada).length;
+  $("histEtapas").innerHTML = '<button type="button" data-etapa=""' + (HIST_ETAPA === "" ? ' class="on"' : '') + '>Todas<b>' + conE.length + '</b></button>' +
+    ETAPAS.map((t, i) => (i >= 3 && !(SB_ON && SESION.token)) ? "" : '<button type="button" data-etapa="' + (i + 1) + '"' + (HIST_ETAPA === String(i + 1) ? ' class="on"' : '') + '>' + t + (t === "Enviada" || t === "Aceptada" || t === "Facturada" || t === "Cobrada" || t === "Entregada" ? "s" : "") + '<b>' + cuenta(i + 1) + '</b></button>').join("") +
+    (rech ? '<button type="button" data-etapa="rech"' + (HIST_ETAPA === "rech" ? ' class="on"' : '') + '>No aceptadas<b>' + rech + '</b></button>' : '');
+  let lista = HIST_ETAPA === "" ? conE : HIST_ETAPA === "rech" ? conE.filter(x => x.e.rechazada) : conE.filter(x => String(x.e.n) === HIST_ETAPA && !x.e.rechazada);
+  lista.sort((a,b) => String(b.p.actualizado || "").localeCompare(String(a.p.actualizado || "")));
 
   if(!lista.length){
-    body.innerHTML = '<tr><td colspan="8" style="padding:22px;color:#62758c">No hay proyectos que mostrar.</td></tr>';
+    body.innerHTML = '<tr><td colspan="6" style="padding:22px;color:#62758c">No hay cotizaciones que mostrar.</td></tr>';
   }else{
-    body.innerHTML = lista.map(p => {
-      const t = totalesDe(p);
-      const est2 = p.estado || "Borrador";
-      const m = (p.modulo || "vidrieria");
+    body.innerHTML = lista.map(({ p, e }) => {
+      const t = totalesDe(p), m = (p.modulo || "vidrieria"), sig = siguientePaso(p, e);
+      const fir = firmaDe(p.id), visto = e.n === 2 && fir && fir.estado === "Pendiente" && fir.visto;
       return '<tr>' +
-        '<td><span class="dot ' + (p.pendiente ? "dot-pend" : "dot-sync") + '" title="' + (p.pendiente ? "Pendiente de sincronizar" : "Sincronizado") + '"></span>' + escapeHtml(p.numero || "—") + '</td>' +
-        '<td><span class="badge-mod m-' + m + '">' + (m === "muebles" ? "Muebles" : "Vidriería") + '</span>' + (pvTieneCalculo(p) ? ' <span title="Tiene cálculo de materiales">🪟</span>' : '') + '</td>' +
-        '<td class="l">' + (p.conflicto ? '<span class="pill" style="background:#ffe9e9;color:#a3161c">copia</span> ' : '') + escapeHtml(p.proyecto) + '</td>' +
-        '<td>' + escapeHtml(p.cliente) + '</td>' +
-        '<td>' + escapeHtml(p.fecha) + '</td>' +
-        '<td><span class="badge-estado e-' + est2 + '">' + est2 + '</span>' + firmaBadge(p.id) + '</td>' +
-        '<td style="font-weight:700">' + fmt(t.total) + '</td>' +
-        '<td style="white-space:nowrap">' +
-          '<button class="action-small detail" data-acc="ver"  data-id="' + p.id + '">Ver</button>' +
-          '<button class="action-small edit"   data-acc="edit" data-id="' + p.id + '">Editar</button>' +
-          (m !== "muebles" ? '<button class="action-small edit" data-acc="mat" data-id="' + p.id + '">🪟 Materiales</button>' : '') +
-          (SB_ON ? '<button class="action-small dup" data-acc="ctl" data-id="' + p.id + '">📊 Control</button>' : '') +
-          '<button class="action-small dup"    data-acc="dup"  data-id="' + p.id + '">Duplicar</button>' +
-          '<button class="action-small del solo-admin" data-acc="del"  data-id="' + p.id + '">Eliminar</button>' +
-        '</td></tr>';
+        '<td><span class="dot ' + (p.pendiente ? "dot-pend" : "dot-sync") + '" title="' + (p.pendiente ? "Pendiente de sincronizar" : "Sincronizado") + '"></span><b>' + escapeHtml(p.numero || "—") + '</b>' +
+          '<div class="muted small">' + (m === "muebles" ? "Muebles" : "Vidriería") + (pvTieneCalculo(p) ? ' <span title="Tiene cálculo de materiales">🪟</span>' : '') + '</div></td>' +
+        '<td class="l">' + (p.conflicto ? '<span class="pill" style="background:#ffe9e9;color:#a3161c">copia</span> ' : '') + escapeHtml(p.proyecto || "Sin nombre") +
+          '<div class="muted small">' + escapeHtml(p.cliente || "") + '</div></td>' +
+        '<td>' + escapeHtml(p.fecha || "") + '</td>' +
+        '<td><span class="hist-st ' + e.cls + '">' + escapeHtml(e.txt) + '</span>' + (visto ? ' <span class="muted small" title="El cliente abrió el enlace">👁</span>' : '') +
+          '<div class="hist-pasos" title="' + escapeHtml(ETAPAS.slice(0, e.n).join(" → ")) + '">' + ETAPAS.map((x, i) => '<i class="' + (i < e.n ? (e.rechazada && i === e.n - 1 ? "r" : "d") : "") + '"></i>').join("") + '</div></td>' +
+        '<td class="r" style="font-weight:700;white-space:nowrap">' + fmt(t.total) + '</td>' +
+        '<td class="hist-acc"><button type="button" class="action-small save hist-sig" data-acc="' + sig.acc + '" data-id="' + escapeHtml(p.id) + '">' + sig.txt + '</button>' +
+          '<button type="button" class="action-small hist-mas" data-hmenu="1" data-id="' + escapeHtml(p.id) + '" aria-label="Más acciones" title="Más acciones">⋯</button></td></tr>';
     }).join("");
   }
-  const totalMonto = lista.reduce((s,p) => s + totalesDe(p).total, 0);
-  $("listaResumen").textContent = lista.length + " proyecto(s) · Total listado: " + fmt(totalMonto);
+  const totalMonto = lista.reduce((s,x) => s + totalesDe(x.p).total, 0);
+  $("listaResumen").textContent = lista.length + " cotización(es) · Total listado: " + fmt(totalMonto);
   pintarChipNube();
 }
 
@@ -4156,7 +4398,8 @@ function conectarEventos(){
   $("envCorreo").onclick      = enviarCorreo;
   $("envCompartir").onclick   = compartirCotizacion;
   $("logPin").addEventListener("keydown", e => { if(e.key === "Enter") entrar(); });
-  document.querySelectorAll("[data-tab]").forEach(b => b.onclick = () => irTab(b.dataset.tab));
+  document.querySelectorAll("[data-tab]").forEach(b => b.onclick = () => entrarModulo(b.dataset.tab));
+  $("navNuevo").onclick = () => nuevoDesdeModulo($("navNuevo").dataset.mod);
   $("btnHome").onclick = () => irTab("home");
 
   // Módulo de muebles
@@ -4215,19 +4458,14 @@ function conectarEventos(){
   document.querySelectorAll('input[name="unidad"]').forEach(r =>
     r.addEventListener("change", () => { recalcular(); autoguardar(); }));
   $("buscar").addEventListener("input", renderLista);
-  $("filtroEstado").addEventListener("change", renderLista);
+  $("filtroAnio").addEventListener("change", renderLista);
+  $("histEtapas").addEventListener("click", e => { const b = e.target.closest("[data-etapa]"); if(b){ HIST_ETAPA = b.dataset.etapa; renderLista(); } });
 
   $("savedProjectsBody").addEventListener("click", e => {
+    const mm = e.target.closest("[data-hmenu]");
+    if(mm){ document.getElementById("histMenu") && document.getElementById("histMenu").dataset.de === mm.dataset.id ? histCerrarMenu() : (histMenu(mm), document.getElementById("histMenu") && (document.getElementById("histMenu").dataset.de = mm.dataset.id)); return; }
     const b = e.target.closest("[data-acc]");
-    if(!b) return;
-    const id = b.dataset.id;
-    const p = PROYECTOS.find(x => x.id === id);
-    if(b.dataset.acc === "ver" && p) verDocumento(p);
-    if(b.dataset.acc === "edit") editarProyecto(id);
-    if(b.dataset.acc === "dup")  duplicarProyecto(id);
-    if(b.dataset.acc === "del")  eliminarProyecto(id);
-    if(b.dataset.acc === "mat")  abrirMateriales(id);
-    if(b.dataset.acc === "ctl")  ctlAbrirProyecto(id);
+    if(b) histAccion(b.dataset.acc, b.dataset.id);
   });
 
   document.querySelectorAll("[data-close]").forEach(b =>
@@ -4715,7 +4953,8 @@ function firmaSeccionFicha(pid){
     : '<b>⏳ Pendiente</b> · enviada ' + escapeHtml(fechaHoraCorta(f.creado)) + ' · ' + (f.visto ? "vista " + escapeHtml(fechaHoraCorta(f.visto)) : "aún no la abre") + ' · vence ' + cF(f.vence);
   return '<div class="ctl-card" style="margin-top:14px"><h3>Aceptación del cliente</h3><div style="line-height:1.7">' + cab + '</div>' +
     (f.estado === "Aceptada" ? '<div id="fichaFirmaImg" data-token="' + f.token + '" class="firma-img muted small">Cargando firma…</div>' : '') +
-    '<div class="ctl-acc-head" style="margin-top:10px"><button type="button" class="btn-outline" data-firma="copiar" data-token="' + f.token + '">🔗 Copiar enlace</button>' +
+    '<div class="ctl-acc-head" style="margin-top:10px">' + (f.estado === "Aceptada" ? '<a class="btn-outline" style="text-decoration:none" target="_blank" rel="noopener" href="' + urlBasePrograma() + 'firma.html?t=' + f.token + '">📄 Ver cotización firmada</a>' : '') +
+    '<button type="button" class="btn-outline" data-firma="copiar" data-token="' + f.token + '">🔗 Copiar enlace</button>' +
     (f.estado === "Pendiente" ? '<button type="button" class="btn-red-outline" data-firma="anular" data-token="' + f.token + '">Anular enlace</button>' : '') +
     (f.estado === "Aceptada" && esAdmin() && !ctlVenta(pid) ? '<button class="save" style="color:#fff" type="button" data-fx="venta">✔ Convertir en venta</button>' : '') + '</div></div>';
 }
@@ -5249,13 +5488,7 @@ async function mzGuardar(){
   await persistirProyecto(d, "mzNumero");
   mzAutoguardar();
 }
-function mzNuevo(){
-  if(!confirm("¿Iniciar un presupuesto nuevo? Los proyectos guardados se conservan.")) return;
-  MZ_ACTUAL = null;
-  localStorage.removeItem(LS.borradorMZ);
-  mzPintar({ fecha:todayISO(), isv:15, items:[{},{}] });
-  toast("Nuevo presupuesto listo.", "ok");
-}
+function mzNuevo(){ nuevoDesdeModulo("mue"); }
 function mzVer(){
   const d = mzLeer();
   if(!d.items.some(i => num(i.ml) > 0 && num(i.price) > 0)) return toast("Agregue medidas y precios antes de generar el presupuesto.", "err");

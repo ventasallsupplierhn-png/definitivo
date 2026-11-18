@@ -1,8 +1,8 @@
-/* Vitra House · Service Worker v12.3.1
+/* Vitra House · Service Worker v12.5.0
    Permite que la aplicación abra sin internet.
    IMPORTANTE: al publicar una versión nueva, cambie CACHE_VERSION. */
 
-const CACHE_VERSION = 'vitra-v12.3.1';
+const CACHE_VERSION = 'vitra-v12.5.0';
 const ARCHIVOS = [
   './',
   './index.html',
