@@ -368,6 +368,106 @@ body.rol-operador .solo-admin{display:none!important}
 .sol-acc{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 @media(max-width:700px){.pf-grid{grid-template-columns:1fr}.sol-head{flex-direction:column}.sol-head select{max-width:none;width:100%}}
 a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 16px;border-radius:12px;font-weight:700;font-size:14px;text-decoration:none!important;line-height:1.2;cursor:pointer}
+
+/* ══════════ CONTROL COMERCIAL ══════════ */
+.ctl-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.ctl-titulo{display:flex;align-items:center;gap:10px}.ctl-titulo h2{margin:0;font-size:22px}
+.ctl-tabs{display:flex;gap:6px;flex-wrap:wrap;background:#f1f6fc;border:1px solid var(--line);border-radius:14px;padding:6px;margin-bottom:16px}
+.ctl-tabs button{background:transparent;color:#355172;font-weight:700;font-size:13.5px;padding:9px 14px;border-radius:10px;box-shadow:none}
+.ctl-tabs button.on{background:#fff;color:var(--blue);box-shadow:0 2px 8px rgba(11,74,147,.12)}
+.ctl-tabs b{display:inline-flex;min-width:18px;height:18px;border-radius:99px;background:var(--red);color:#fff;font-size:11px;align-items:center;justify-content:center;margin-left:6px;padding:0 5px}
+.ctl-kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:16px}
+.ctl-kpi{background:#fff;border:1px solid var(--border);border-radius:16px;padding:14px 16px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.ctl-kpi:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c)}
+.ctl-kpi small{display:block;color:var(--muted);font-weight:700;font-size:12px}
+.ctl-kpi strong{display:block;font-size:20px;margin:6px 0 2px;letter-spacing:-.3px;white-space:nowrap}
+.ctl-kpi em{font-style:normal;font-size:12px;font-weight:700}
+.up{color:var(--green)}.down{color:var(--red)}.warn{color:var(--amber)}.small{font-size:12.5px}.mono{font-family:Consolas,monospace}
+.ctl-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:18px;box-shadow:var(--shadow);margin-bottom:16px}
+.ctl-card h3{margin:0 0 12px;font-size:16px;font-weight:800}
+.ctl-grid2{display:grid;grid-template-columns:1.6fr 1fr;gap:16px}
+.ctl-grid2>*{min-width:0}.ctl-card .table-wrap{overflow-x:auto}
+.ctl-t{width:100%;border-collapse:collapse;font-size:13.5px;min-width:0}
+.ctl-t th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);padding:9px 10px;border-bottom:2px solid var(--line);font-weight:800;background:none}
+.ctl-t td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+.ctl-t td.r,.ctl-t th.r{text-align:right;white-space:nowrap}
+.ctl-t td.acc{text-align:right;white-space:nowrap}.ctl-t td.acc .action-small{margin-left:4px}
+.ctl-t tfoot td{border-top:2px solid var(--line);border-bottom:0;background:#f8fbff}
+.ctl-t input,.ctl-t select{width:100%}
+.ctl-click{cursor:pointer}.ctl-click:hover td{background:#f4f9ff}
+.ctl-bajo td{background:#fff6f6}.ctl-anulada td{color:#9aa8b8;text-decoration:line-through}
+.ctl-pill{display:inline-block;padding:3px 10px;border-radius:99px;font-size:11.5px;font-weight:800;white-space:nowrap}
+.st-sol{background:#eef2f7;color:#4b5f78}.st-apr{background:#fff1d6;color:#8a5a00}.st-env{background:#e0f4f7;color:#0e6a7d}.st-par{background:#fdebd7;color:#9a4b00}
+.st-ok{background:#e3f3e8;color:#135b30}.st-anu{background:#fde4e2;color:#a3261b}.st-ven{background:#e0efff;color:#0b5fb8}.st-fac{background:#efe5fb;color:#6421ad}
+.ctl-bar{height:8px;border-radius:99px;background:#edf2f8;overflow:hidden;width:96px;display:inline-block;vertical-align:middle;margin-right:8px}.ctl-bar i{display:block;height:100%}
+.ctl-alert{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border-radius:12px;margin-bottom:10px;font-size:13px}
+.ctl-alert.a{background:#fff6e5;border:1px solid #f3d699}.ctl-alert.r{background:#fdecea;border:1px solid #f5c2bd}.ctl-alert.i{background:#eaf3ff;border:1px solid #c5dcfa}
+.ctl-acciones{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.ctl-acciones select,.ctl-acciones input{max-width:420px;flex:1;min-width:200px}
+.ctl-filtro{margin-bottom:12px;font-weight:700;color:#355172}.ctl-mes{width:auto;display:inline-block;margin-left:6px}
+.ctl-form{grid-template-columns:repeat(2,minmax(0,1fr))}.ctl-wide{grid-column:1/-1}
+.ctl-tot{margin:12px 0 0 auto;max-width:340px;display:grid;gap:4px}
+.ctl-tot div{display:flex;justify-content:space-between;gap:12px;font-size:14px}.ctl-tot div.t{border-top:2px solid var(--text);padding-top:6px;font-size:16px}
+.ctl-check{display:flex;gap:8px;align-items:flex-start;margin:12px 0;font-size:13.5px}.ctl-check input{width:auto;margin-top:3px}
+.ctl-ficha-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.ctl-acc-head{display:flex;gap:8px;flex-wrap:wrap}
+.aud-kpis{grid-template-columns:repeat(4,1fr)}
+.ver-txt{color:#8193a7;font-size:12px;margin:12px 0 0;text-align:center}
+.aviso-ver{position:fixed;left:50%;top:12px;transform:translateX(-50%);z-index:9999;display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center;
+  max-width:calc(100% - 24px);padding:10px 12px 10px 16px;border-radius:14px;background:linear-gradient(135deg,#082f63,#0b4a93);color:#fff;
+  box-shadow:0 12px 30px rgba(8,47,99,.35);font-size:14px}
+.aviso-ver button{border:0;border-radius:10px;padding:8px 14px;font-weight:800;cursor:pointer;background:#fff;color:#0b4a93;font-size:13.5px}
+.aviso-ver button.x{background:transparent;color:#cfe2ff;padding:8px 6px}
+.aviso-ver.hidden{display:none}
+@media(max-width:640px){.aviso-ver{width:calc(100% - 24px);justify-content:flex-start;font-size:13.5px}.aviso-ver>span{flex:1 1 100%}}
+.ind-bar{display:grid;gap:2px;margin-top:5px;max-width:200px}.ind-bar i{display:block;height:5px;border-radius:9px;background:#9cc4f2}.ind-bar i.v{background:#1da85a}
+.ind-ley{display:inline-block;width:12px;height:6px;border-radius:9px;background:#9cc4f2;margin:0 4px 1px 0}.ind-ley.v{background:#1da85a;margin-left:8px}
+.ctl-t b.up{color:#159447}.ctl-t b.warn{color:#b06a00}.ctl-t b.down{color:#d92027}
+.cxc-vence{padding:6px 8px;border:1px solid var(--border);border-radius:8px;font:inherit;font-size:13px;max-width:150px}
+.obra-fotos{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.obra-fotos figure{margin:0;position:relative}.obra-fotos img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;border:1px solid var(--line);display:block}
+.obra-fotos figure button{position:absolute;top:4px;right:4px;border:0;border-radius:50%;width:24px;height:24px;background:rgba(0,0,0,.55);color:#fff;cursor:pointer;font-size:12px}
+.obra-add{display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:4/3;border:2px dashed #9fb4cc;border-radius:10px;color:#0b4a93;font-weight:800;font-size:13px;cursor:pointer;background:#f6faff}
+.obra-add span{font-size:26px;line-height:1}
+.aud-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:16px;align-items:start}
+.aud-filtros{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.aud-filtros select,.aud-filtros input{padding:8px 10px;border:1px solid var(--border);border-radius:10px;font:inherit;font-size:13px;background:#fff}
+.aud-filtros input{flex:1;min-width:170px}.aud-filtros .btn-outline{padding:8px 12px;font-size:13px}
+.aud-tabla{max-height:560px;overflow:auto}.aud-tabla th,.aud-tabla td{text-align:left;font-size:12.5px}.aud-tabla td{vertical-align:top}.aud-f{white-space:nowrap;font-weight:600}.aud-doc{font-weight:700;min-width:110px}.aud-tabla td:last-child{min-width:170px}
+.aud-fila{cursor:pointer}.aud-fila:hover td{background:#f6faff}.aud-fila.on td{background:#e8f2ff}
+.st-warn{background:#fff1d6;color:#8a5a00}.st-info{background:#eaf3ff;color:#0b4a93}
+.aud-dif{display:grid;grid-template-columns:minmax(110px,.9fr) 1fr 1fr;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:12.5px}
+.aud-dif.dos{grid-template-columns:minmax(110px,.9fr) 2fr}
+.aud-dif>div{padding:7px 9px;border-bottom:1px solid var(--line);word-break:break-word}
+.aud-dif .h{background:#eef4fb;font-weight:800;font-size:11.5px;color:#33495f}
+.aud-dif .old{background:#fdf1f0;color:#8a1c1c}.aud-dif .new{background:#eefaf2;color:#135b30;font-weight:700}
+.aud-integ{display:flex;gap:10px;align-items:center;border-radius:12px;padding:10px 12px;font-size:13px}
+.aud-integ span:first-child{font-size:24px}.aud-integ.ok{background:#eefaf2;border:1px solid #9fd5b2}.aud-integ.mal{background:#fdecea;border:1px solid #f5c2bd}
+@media(max-width:900px){.aud-grid{grid-template-columns:minmax(0,1fr)}.aud-filtros select{flex:1 1 45%}.aud-kpis{grid-template-columns:1fr 1fr}.aud-tabla{max-height:none}}
+.firma-b{display:inline-block;margin-left:4px;padding:3px 8px;border-radius:999px;font-size:11.5px;font-weight:800;white-space:nowrap}
+.firma-b.ok{background:#e3f3e8;color:#135b30}.firma-b.no{background:#fde4e2;color:#a3261b}.firma-b.wait{background:#fff1d6;color:#8a5a00}
+.env-sep{margin:6px 0 -2px;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#62758c}
+.firma-btn{background:#fff;border:2px solid #0b4a93;color:#0b4a93;border-radius:12px;padding:12px;font-weight:800;cursor:pointer;font-size:15px}
+.firma-box-env{margin-top:14px;padding:12px;border:1px solid #c5dcfa;background:#eef6ff;border-radius:12px}
+.firma-box-env label{display:block;font-weight:800;font-size:13px;margin-bottom:5px}
+.firma-box-env input{width:100%;padding:9px 10px;border:1px solid #b9c9da;border-radius:9px;font-size:13px;background:#fff}
+.firma-img img{max-width:280px;max-height:120px;margin-top:8px;border:1px solid #dfe7f0;border-radius:8px;background:#fff}
+.ctl-pipe{display:flex;margin:4px 0 16px}
+.ctl-pipe div{flex:1;text-align:center;padding:10px 6px;font-weight:800;font-size:12.5px;background:#eef2f7;color:#62758c;clip-path:polygon(0 0,92% 0,100% 50%,92% 100%,0 100%,8% 50%);margin-left:-6px}
+.ctl-pipe div:first-child{clip-path:polygon(0 0,92% 0,100% 50%,92% 100%,0 100%);margin-left:0}
+.ctl-pipe .done{background:#d9f0e2;color:#135b30}.ctl-pipe .now{background:var(--blue);color:#fff}
+.ctl-profit{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.ctl-profit div{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fbfdff}
+.ctl-profit small{display:block;color:var(--muted);font-weight:700;font-size:12px}.ctl-profit b{display:block;font-size:19px;margin:4px 0 2px}
+.ctl-profit .pos{background:#eefaf2;border-color:#bfe5cd}.ctl-profit .pos b{color:var(--green)}.ctl-profit .neg{background:#fdecea;border-color:#f5c2bd}.ctl-profit .neg b{color:var(--red)}
+.ctl-stack{height:12px;border-radius:99px;overflow:hidden;display:flex;margin:12px 0 4px;background:#edf2f8}
+.ctl-legend{display:flex;gap:14px;font-size:12px;color:var(--muted)}.ctl-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.ctl-firmas{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;margin-top:48px;text-align:center;font-size:12.5px}.ctl-firmas div{border-top:1px solid #333;padding-top:6px}
+.ctl-lineas td{padding:6px}
+@media(max-width:1100px){.ctl-kpis{grid-template-columns:repeat(3,1fr)}.ctl-grid2{grid-template-columns:1fr}}
+@media(max-width:700px){.ctl-kpis{grid-template-columns:1fr 1fr}.ctl-kpi strong{font-size:17px}.ctl-profit{grid-template-columns:1fr 1fr}.ctl-form{grid-template-columns:1fr}
+  .ctl-tabs{flex-wrap:nowrap;overflow-x:auto}.ctl-tabs button{white-space:nowrap}.ctl-acciones select,.ctl-acciones input{max-width:none}
+  .ctl-pipe div{font-size:10.5px;padding:8px 2px}.ctl-firmas{gap:10px}}
 </style>
 </head>
 <body class="bloqueado">
@@ -387,7 +487,14 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
     </div>
     <div class="alerta err" id="logAlerta"></div>
     <button id="btnEntrar" type="button">Entrar</button>
+    <p class="ver-txt">Versión <span class="verApp"></span></p>
   </div>
+</div>
+
+<div class="aviso-ver hidden" id="avisoVersion" role="status">
+  <span>🔄 Hay una versión nueva del programa <b id="avisoVerNum"></b>.</span>
+  <button type="button" id="btnActualizarApp">Actualizar ahora</button>
+  <button type="button" class="x" id="btnAvisoLuego" aria-label="Más tarde">Más tarde</button>
 </div>
 
 <div class="app">
@@ -447,6 +554,11 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
       <button class="mod-card" data-tab="pro" type="button" style="--c:#ff7300;--soft:#fdeee0">
         <span class="mod-ico">◴</span>
         <div><h3>Proyectos guardados</h3><p>Busca, abre, duplica o reimprime los trabajos de ambos módulos</p></div>
+        <span class="mod-go">↗</span>
+      </button>
+      <button class="mod-card sb-only" data-tab="ctl" type="button" style="--c:#0b4a93;--soft:#dceeff">
+        <span class="mod-ico">📊</span>
+        <div><h3>Control comercial</h3><p>Ventas y cobros, gastos por proyecto, órdenes de compra, compras, inventario y facturación SAR</p></div>
         <span class="mod-go">↗</span>
       </button>
       <button class="mod-card sb-only" data-tab="sol" type="button" style="--c:#0e7490;--soft:#e0f4f7">
@@ -700,6 +812,7 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
     <div class="actions" style="grid-template-columns:repeat(3,1fr)">
       <button class="pdf" id="pvPdfBtn" type="button">▣ Ver / Exportar PDF</button>
       <button class="excel" id="pvExcelBtn" type="button">▤ Exportar Excel</button>
+      <button class="new sb-only" id="pvOcBtn" type="button">🧾 Orden de compra</button>
       <button class="enviar" id="pvEnviarBtn" type="button">↗ Enviar</button>
     </div>
   </div><!-- /panel-pvc -->
@@ -791,6 +904,17 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
 
   </div><!-- /panel-pro -->
 
+  <div id="panel-ctl" class="tab-panel hidden">
+    <div class="ctl-top">
+      <div class="ctl-titulo"><span class="section-icon">📊</span><div><h2>Control comercial</h2><div class="muted small">Ventas, compras, gastos, inventario y facturación · <span id="ctlEstado"></span></div></div></div>
+      <div class="toolbar"><button class="btn-outline" id="ctlRecargar" type="button">⟳ Actualizar</button>
+        <button class="new" style="color:#fff" id="ctlBtnOc" type="button">＋ Orden de compra</button>
+        <button class="save" style="color:#fff" id="ctlBtnGasto" type="button">＋ Registrar gasto</button></div>
+    </div>
+    <div class="ctl-tabs" id="ctlTabs"></div>
+    <div id="ctlCuerpo"></div>
+  </div><!-- /panel-ctl -->
+
   <div id="panel-cat" class="tab-panel hidden">
   <section class="card">
     <div class="card-head">
@@ -859,7 +983,8 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
         <div class="field">
           <label for="pvTipoCat">Lista de precios que está editando</label>
           <select id="pvTipoCat"><option value="PVC blanco">PVC blanco</option><option value="PVC color madera">PVC color madera</option></select>
-          <div class="hint">Cada tipo de PVC guarda su propia lista de precios.</div>
+          <div class="hint">Cada tipo de PVC guarda su propia lista de precios. Los tipos salen de ⚙ Configuración ▸ Materiales y precios.</div>
+          <div class="note warning hidden" id="pvAvisoTipo" style="margin-top:8px"></div>
         </div>
         <div class="field">
           <label>Estado del catálogo</label>
@@ -885,16 +1010,7 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
         <thead><tr><th>Usuario</th><th>Nombre</th><th>Rol</th><th>Permisos</th></tr></thead>
         <tbody id="tablaUsuarios"></tbody>
       </table></div>
-      <div class="note warning">Las contraseñas se definen en el bloque <b>AJUSTES_FABRICA</b> del archivo y, cuando se usa servidor, en la hoja <b>USUARIOS</b> de Google Sheets.</div>
-
-      <h3 style="font-size:15px;margin:20px 0 8px">Contraseña cifrada</h3>
-      <p class="muted" style="margin:0 0 12px">Evita que la contraseña se lea en el código. Genere la línea, péguela en <b>AJUSTES_FABRICA</b> reemplazando la del usuario y suba el archivo.</p>
-      <div class="form-grid" style="grid-template-columns:1fr 1fr auto;align-items:end">
-        <div class="field"><label for="hashUsuario">Usuario</label><input id="hashUsuario" placeholder="ventas1" autocomplete="off"></div>
-        <div class="field"><label for="hashPin">Contraseña</label><input id="hashPin" type="text" placeholder="nueva clave" autocomplete="off"></div>
-        <div class="field"><button class="btn-outline" id="btnGenerarHash" type="button">🔒 Generar</button></div>
-      </div>
-      <div class="note" id="hashResultado" style="display:none;font-family:Consolas,monospace;font-size:12px;word-break:break-all"></div>
+      <div class="note">Las cuentas y contraseñas viven en <b>Supabase ▸ Authentication ▸ Users</b> (las crea y cambia el dueño). El rol y el nombre que se muestra se cambian en <b>Table Editor ▸ perfiles</b>.</div>
     </section>
 
     <section class="card">
@@ -933,6 +1049,19 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
 </div>
 
 <!-- ══════════ MODAL: CONFIGURACIÓN ══════════ -->
+<div class="modal" id="modalFicha">
+  <div class="modal-box" style="max-width:1120px">
+    <div class="modal-head"><h3 id="fichaTitulo">Proyecto</h3><button type="button" data-close="modalFicha">Cerrar</button></div>
+    <div class="modal-body"><div id="fichaCuerpo"></div></div>
+  </div>
+</div>
+<div class="modal" id="modalCtl">
+  <div class="modal-box" style="max-width:860px">
+    <div class="modal-head"><h3 id="ctlMTitulo">Control comercial</h3><button type="button" data-close="modalCtl">Cerrar</button></div>
+    <div class="modal-body"><div class="alerta" id="ctlMAlerta"></div><div id="ctlMCuerpo"></div></div>
+    <div class="modal-foot" id="ctlMPie"></div>
+  </div>
+</div>
 <div class="modal" id="modalProducto">
   <div class="modal-box">
     <div class="modal-head"><h3 id="catFormTitulo">Producto</h3><button type="button" data-close="modalProducto">Cerrar</button></div>
@@ -967,23 +1096,6 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
       <div class="alerta" id="cfgAlerta"></div>
       <div class="stack">
         <div class="info-note" id="estadoConexion" style="display:none"></div>
-        <div class="stack" id="bloqueConexion">
-          <div class="field">
-            <label for="cfgUrl">URL de la aplicación web (Google Apps Script)</label>
-            <input id="cfgUrl" placeholder="https://script.google.com/macros/s/.../exec">
-            <div class="hint">Debe terminar en <b>/exec</b>. Déjelo vacío para trabajar solo en este dispositivo.</div>
-          </div>
-          <div class="form-grid" style="grid-template-columns:1fr 1fr">
-            <div class="field"><label for="cfgUsuario">Usuario</label><input id="cfgUsuario" autocomplete="username" placeholder="admin"></div>
-            <div class="field"><label for="cfgPin">PIN</label><input id="cfgPin" type="password" autocomplete="current-password" placeholder="••••"></div>
-          </div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <button class="btn-outline" id="btnProbar">Probar conexión</button>
-            <button class="save" style="color:#fff" id="btnLogin">Iniciar sesión</button>
-            <button class="btn-red-outline" id="btnLogout">Cerrar sesión</button>
-          </div>
-        </div>
-
         <hr style="border:0;border-top:1px solid var(--line);margin:4px 0">
 
         <h4 style="margin:0;font-size:15px">Empresa</h4>
@@ -1011,6 +1123,7 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
       </div>
     </div>
     <div class="modal-foot">
+      <span class="ver-txt" style="margin-right:auto">Versión <span class="verApp"></span></span>
       <button class="btn-ghost" type="button" data-close="modalConfig">Cancelar</button>
       <button class="save" style="color:#fff" id="btnGuardarCfg">Guardar configuración</button>
     </div>
@@ -1027,7 +1140,8 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
     <div class="modal-body"><div id="docRender" class="doc"></div></div>
     <div class="modal-foot">
       <button class="btn-ghost" type="button" data-close="modalDoc">Cerrar</button>
-      <button class="pdf" style="color:#fff" id="btnImprimir">▣ Imprimir / Guardar PDF</button>
+      <button class="btn-outline" type="button" id="btnPdfDoc">⬇ Descargar PDF</button>
+      <button class="pdf" style="color:#fff" id="btnImprimir">▣ Imprimir</button>
     </div>
   </div>
 </div>
@@ -1037,12 +1151,24 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
   <div class="modal-box sm">
     <div class="modal-head"><h3>↗ Enviar cotización</h3><button type="button" data-close="modalEnviar">Cerrar</button></div>
     <div class="modal-body">
-      <p class="muted" style="margin-top:0">Se envía un resumen con el número, el cliente y el total. Para adjuntar el PDF, genérelo primero con «Ver / Exportar PDF» y adjúntelo en la aplicación de mensajería.</p>
+      <p class="muted" style="margin-top:0">Envíe el resumen como mensaje, la cotización en <b>PDF</b> o un <b>enlace</b> para que el cliente la revise y la acepte con su firma.</p>
       <div class="field"><label for="envMensaje">Mensaje</label><textarea id="envMensaje" rows="7"></textarea></div>
       <div style="display:grid;gap:10px">
         <button class="save" style="color:#fff" id="envWhatsapp" type="button">✆ Enviar por WhatsApp</button>
         <button class="new" style="color:#fff" id="envCorreo" type="button">✉ Enviar por correo</button>
         <button class="btn-outline" id="envCompartir" type="button">↗ Compartir / copiar</button>
+        <div class="env-sep">Documento y aceptación</div>
+        <button class="pdf" style="color:#fff" id="envPdf" type="button">📄 Enviar en PDF</button>
+        <button class="firma-btn" id="envFirma" type="button">✍ Enlace para aceptación con firma</button>
+      </div>
+      <div id="envFirmaBox" class="firma-box-env hidden">
+        <label for="envFirmaUrl">Enlace para el cliente</label>
+        <input id="envFirmaUrl" type="text" readonly>
+        <div class="muted small" id="envFirmaVence"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+          <button class="save" style="color:#fff" id="envFirmaWa" type="button">✆ Enviar por WhatsApp</button>
+          <button class="btn-outline" id="envFirmaCopiar" type="button">🔗 Copiar</button>
+        </div>
       </div>
     </div>
   </div>
@@ -1053,7 +1179,7 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
 <script>
 /* ═══════════════════════════════════════════════════════════════
    VITRA HOUSE · Sistema de Cotizaciones
-   GitHub Pages + Google Apps Script
+   GitHub Pages + Supabase
    ═══════════════════════════════════════════════════════════════ */
 "use strict";
 
@@ -1102,7 +1228,7 @@ const AJUSTES_FABRICA = {
 
   /* Seguridad del acceso:
      false = si no hay conexión, se puede entrar con la lista de abajo (cómodo).
-     true  = solo se entra validando contra la hoja USUARIOS del servidor.
+     true  = solo se entra validando en el servidor (Supabase).
              Use true cuando el repositorio sea público y le importe que nadie
              pueda leer las contraseñas en el código.                        */
   exigirServidor: false,
@@ -1125,7 +1251,7 @@ const AJUSTES_FABRICA = {
 if(AJUSTES_FABRICA.supabaseUrl && AJUSTES_FABRICA.supabaseKey) AJUSTES_FABRICA.apiUrl = "supabase";
 
 /* ── 1. CONSTANTES Y ESTADO GLOBAL ───────────────────────────── */
-const APP_VERSION = "11.1.0";
+const APP_VERSION = "12.3.1";
 const LS = {
   borrador : "vitra.borrador.v7",
   borradorMZ: "vitra.borradorMZ.v9",
@@ -1163,6 +1289,8 @@ const $  = id => document.getElementById(id);
 const money = new Intl.NumberFormat("es-HN",{style:"currency",currency:"HNL",minimumFractionDigits:2,maximumFractionDigits:2});
 const fmt = n => money.format(isFinite(n)?n:0);
 const num = v => { const n = parseFloat(String(v).replace(",",".")); return isFinite(n)?n:0; };
+/* Lee números ya formateados en pantalla ("1,200.50", "L 3,500.00"): la coma es separador de miles */
+const numTxt = v => { const n = parseFloat(String(v).replace(/[^\d.-]/g, "")); return isFinite(n)?n:0; };
 const r2  = n => Math.round((n + Number.EPSILON) * 100) / 100;
 const uid = () => "P" + Date.now().toString(36) + Math.random().toString(36).slice(2,8);
 
@@ -1248,8 +1376,9 @@ function numeroALetras(n){
   const ent = Math.floor(v);
   const cent = Math.round((v - ent) * 100);
   let txt = seccion(ent);
+  if(ent >= 1000000 && ent % 1000000 === 0) txt += " de";           // «un millón de lempiras»
   txt = txt.charAt(0).toUpperCase() + txt.slice(1);
-  return txt + " lempiras con " + String(cent).padStart(2,"0") + "/100";
+  return txt + (ent === 1 ? " lempira" : " lempiras") + " con " + String(cent).padStart(2,"0") + "/100";
 }
 
 /* ── 3. CONFIGURACIÓN LOCAL ──────────────────────────────────── */
@@ -1279,6 +1408,7 @@ function aplicarConfigUI(){
   $("empRtn").textContent = CFG.rtn;
   document.title = CFG.empresa + " · Cálculo de Presupuesto";
   pintarChipNube();
+  if(typeof pvLlenarTipos === "function" && document.getElementById("pvTipo")) pvLlenarTipos();
 }
 function pintarChipNube(){
   const chip = $("chipNube");
@@ -1320,6 +1450,20 @@ async function huellaPin(usuario, pin){
   }
   return "f" + h1.toString(16).padStart(8,"0") + h2.toString(16).padStart(8,"0");
 }
+/* Huella reforzada para entrar sin internet: PBKDF2-SHA256, 150 000 vueltas, sal aleatoria */
+async function huellaFuerte(usuario, pin, salHex){
+  if(!(window.crypto && crypto.subtle)) return huellaPin(usuario, pin);
+  const sal = salHex ? new Uint8Array(salHex.match(/../g).map(h => parseInt(h, 16))) : crypto.getRandomValues(new Uint8Array(16));
+  const clave = await crypto.subtle.importKey("raw", new TextEncoder().encode(String(usuario).toLowerCase() + ":" + String(pin)), "PBKDF2", false, ["deriveBits"]);
+  const bits = await crypto.subtle.deriveBits({ name:"PBKDF2", hash:"SHA-256", salt:sal, iterations:150000 }, clave, 256);
+  const hex = b => [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, "0")).join("");
+  return "p2$" + hex(sal) + "$" + hex(bits);
+}
+async function pinCoincide(usuario, pin, guardada){
+  guardada = String(guardada || "");
+  if(guardada.startsWith("p2$")) return (await huellaFuerte(usuario, pin, guardada.split("$")[1])) === guardada;
+  return (await huellaPin(usuario, pin)) === guardada.toLowerCase();   // formato anterior (se reemplaza al entrar con internet)
+}
 async function pinCorrecto(u, pin){
   if(u.pinHash) return (await huellaPin(u.usuario, pin)) === String(u.pinHash).toLowerCase();
   return String(u.pin) === String(pin);
@@ -1328,17 +1472,6 @@ function esAdmin(){ return String(SESION.rol || "").toLowerCase() === "admin"; }
 
 function aplicarRol(){
   document.body.classList.toggle("rol-operador", !esAdmin());
-}
-async function generarHash(){
-  const u = ($("hashUsuario").value || "").trim();
-  const pin = ($("hashPin").value || "").trim();
-  if(!u || !pin) return toast("Escriba el usuario y la contraseña.", "err");
-  const h = await huellaPin(u, pin);
-  const linea = '{ usuario:"' + u + '", pinHash:"' + h + '", nombre:"' + u + '", rol:"operador" },';
-  $("hashResultado").style.display = "block";
-  $("hashResultado").textContent = linea;
-  try{ await navigator.clipboard.writeText(linea); toast("Línea copiada. Péguela en AJUSTES_FABRICA.", "ok"); }
-  catch(e){ toast("Copie la línea que aparece abajo y péguela en AJUSTES_FABRICA.", ""); }
 }
 function pintarUsuarios(){
   $("tablaUsuarios").innerHTML = usuariosLocales().map(u =>
@@ -1369,7 +1502,7 @@ async function entrar(){
   al.className = "alerta";
   if(!pin){ al.className = "alerta show err"; al.textContent = "Escriba su contraseña."; return; }
 
-  // 1) Si hay servidor configurado, manda la hoja USUARIOS
+  // 1) Con servidor (Supabase): se valida en la nube
   if(CFG.apiUrl){
     $("btnEntrar").disabled = true; $("btnEntrar").textContent = "Verificando...";
     const r = await api("login", { usuario:usuario, pin:pin });
@@ -1396,7 +1529,7 @@ async function entrar(){
   if(SB_ON){
     // Sin internet: solo entra quien ya inició sesión antes en este equipo, con la misma contraseña
     const c = sbUsuariosNube().find(u => u.login === usuario || u.usuario === usuario);
-    if(c && (await huellaPin(c.usuario, pin)) === c.pinHash) loc = c;
+    if(c && await pinCoincide(c.usuario, pin, c.pinHash)) loc = c;
     if(!loc){
       al.className = "alerta show err";
       al.textContent = c ? "Usuario o contraseña incorrectos." : "Sin conexión con el servidor. La primera vez debe entrar con internet.";
@@ -1427,7 +1560,7 @@ function salir(){
 const MODULOS = {
   home:"", cot:"Cotización · Vitra House", pvc:"Materiales PVC",
   mue:"Presupuesto · Muebles Zacapa", pro:"Proyectos guardados", adm:"Administración",
-  cat:"Catálogo de clientes", sol:"Solicitudes del catálogo"
+  cat:"Catálogo de clientes", sol:"Solicitudes del catálogo", ctl:"Control comercial"
 };
 function irTab(t){
   if((t === "adm" || t === "cat") && !esAdmin()) return;
@@ -1438,6 +1571,7 @@ function irTab(t){
   window.scrollTo({ top:0, behavior:"smooth" });
   if(t === "pvc" && typeof pvSincronizarCampos === "function") pvSincronizarCampos();
   if(t === "cat" && typeof catCargar === "function") catCargar();
+  if(t === "ctl" && typeof ctlCargar === "function") ctlCargar();
   if(t === "sol" && typeof solCargar === "function") solCargar();
 }
 
@@ -1481,14 +1615,26 @@ function sbNuevaSesion(j){
   sbGuardar(s); return s;
 }
 /* Devuelve un token válido, renovándolo si venció. "__red" = sin internet. */
+let SB_RENOVANDO = null;
 async function sbToken(){
   const s = sbLeer();
   if(!s) return null;
   if(s.exp - 60 > Date.now()/1000) return s.access;
+  // Varias consultas a la vez comparten una sola renovación: renovar en paralelo puede cerrar la sesión
+  if(!SB_RENOVANDO) SB_RENOVANDO = sbRenovar(s).finally(() => { SB_RENOVANDO = null; });
+  return SB_RENOVANDO;
+}
+async function sbRenovar(s){
   const r = await sbFetch("/auth/v1/token?grant_type=refresh_token", {
     method:"POST", headers:{ apikey:SB.key, "Content-Type":"application/json" },
     body:JSON.stringify({ refresh_token:s.refresh }) });
-  if(!r.ok){ if(r.red) return "__red"; sbGuardar(null); return null; }
+  if(!r.ok){
+    if(r.red) return "__red";
+    // Otra pestaña pudo renovarla un instante antes: se usa esa
+    const otra = sbLeer();
+    if(otra && otra.refresh !== s.refresh && otra.exp - 60 > Date.now()/1000) return otra.access;
+    sbGuardar(null); return null;
+  }
   const n = sbNuevaSesion(r.j);
   SESION.token = n.access;
   try{ localStorage.setItem(LS.sesion, JSON.stringify(SESION)); }catch(e){}
@@ -1518,7 +1664,7 @@ async function sbRest(path, opt){
   const r = await sbFetch(path, o);
   return r.ok ? { ok:true, data:r.j } : { ok:false, error:sbErr(r) };
 }
-/* Traduce las acciones del servidor anterior (Apps Script) a Supabase */
+/* Acciones del programa → Supabase */
 async function sbApi(action, data){
   data = data || {};
   if(action === "ping"){
@@ -1535,11 +1681,12 @@ async function sbApi(action, data){
     if(!s.ok){ sbGuardar(null); return s; }
     try{
       // Permite entrar sin internet la próxima vez, con la misma contraseña
-      const huella = await huellaPin(s.usuario, data.pin);
+      const huella = await huellaFuerte(s.usuario, data.pin);
       const lista = sbUsuariosNube().filter(u => u.usuario !== s.usuario);
       lista.push({ usuario:s.usuario, login:data.usuario, nombre:s.nombre, rol:s.rol, pinHash:huella });
       localStorage.setItem(SB.lsUsuarios, JSON.stringify(lista));
     }catch(e){}
+    sbRpc("aud_sesion", { i: { equipo: audEquipo() } }).catch(() => {});   // queda en la bitácora de auditoría
     return { ok:true, usuario:s.usuario, nombre:s.nombre, rol:s.rol, token:r.j.access_token, config:s.config, version:"Supabase" };
   }
   if(action === "listar")          return sbRpc("presu_listar", {});
@@ -1727,7 +1874,9 @@ async function catImportar(){
     if(!CAT.some(x => x.tipo === "original" && x.brand === "VitraHouse")){
       $("catAviso").textContent = "Leyendo los trabajos de VitraHouse del catálogo publicado…";
       const r = await fetch(base + "vitra-original.json", { cache:"no-store" }).catch(() => null);
-      if(r && r.ok) listas.push({ marca:"VitraHouse", items:await r.json() });
+      let itemsV = null;
+      if(r && r.ok){ try{ itemsV = await r.json(); }catch(e){ itemsV = null; } }
+      if(Array.isArray(itemsV)) listas.push({ marca:"VitraHouse", items:itemsV });
       else setTimeout(() => toast("Faltan los trabajos de VitraHouse: suba vitra-original.json al repositorio del catálogo y vuelva a presionar Importar.", "err"), 2500);
     }
     for(const grupo of listas){
@@ -1864,59 +2013,10 @@ function nubeModulosEventos(){
 
 async function api(action, data){
   if(CFG.apiUrl === "supabase") return sbApi(action, data);
-  if(!CFG.apiUrl) return { ok:false, error:"No hay URL configurada." };
-  const ctrl = new AbortController();
-  const t = setTimeout(() => ctrl.abort(), 30000);
-  try{
-    const res = await fetch(CFG.apiUrl, {
-      method : "POST",
-      headers: { "Content-Type":"text/plain;charset=utf-8" },  // evita preflight CORS
-      body   : JSON.stringify(Object.assign({ action:action, token:SESION.token }, data || {})),
-      redirect: "follow",
-      signal : ctrl.signal
-    });
-    const txt = await res.text();
-    try{ return JSON.parse(txt); }
-    catch(e){ return { ok:false, error:"El servidor no devolvió datos válidos. Verifique que la implementación tenga acceso «Cualquier persona»." }; }
-  }catch(err){
-    return { ok:false, error: err.name === "AbortError" ? "El servidor tardó demasiado en responder." : "Sin conexión con el servidor." };
-  }finally{ clearTimeout(t); }
+  return { ok:false, error:"No hay servidor configurado." };
 }
 
-async function probarConexion(){
-  const url = $("cfgUrl").value.trim();
-  if(!url) return alertaCfg("Escriba primero la URL de la aplicación web.", "err");
-  const guardada = CFG.apiUrl; CFG.apiUrl = url;
-  alertaCfg("Probando conexión...", "ok");
-  const r = await api("ping", {});
-  CFG.apiUrl = guardada;
-  if(r.ok) alertaCfg("Conexión correcta. Servidor v" + (r.version || "?") + ".", "ok");
-  else alertaCfg("No se pudo conectar: " + (r.error || "error desconocido"), "err");
-}
 
-async function iniciarSesion(){
-  const url = $("cfgUrl").value.trim();
-  const usuario = $("cfgUsuario").value.trim();
-  const pin = $("cfgPin").value.trim();
-  if(!url || !usuario || !pin) return alertaCfg("Complete URL, usuario y PIN.", "err");
-  CFG.apiUrl = url; SESION.token = "";
-  alertaCfg("Verificando credenciales...", "ok");
-  const r = await api("login", { usuario:usuario, pin:pin });
-  if(!r.ok){ pintarChipNube(); return alertaCfg(r.error || "Usuario o PIN incorrecto.", "err"); }
-  SESION = { usuario:r.usuario, nombre:r.nombre, rol:r.rol, token:r.token };
-  if(r.config) aplicarConfigServidor(r.config);
-  guardarConfigLocal();
-  aplicarConfigUI();
-  alertaCfg("Sesión iniciada como " + r.nombre + " (" + r.rol + ").", "ok");
-  $("cfgPin").value = "";
-  await sincronizar(true);
-}
-function cerrarSesion(){
-  SESION = { usuario:"", nombre:"", rol:"", token:"" };
-  guardarConfigLocal();
-  pintarChipNube();
-  alertaCfg("Sesión cerrada. Los datos locales se conservan.", "ok");
-}
 function aplicarConfigServidor(c){
   ["empresa","gerente","rtn","telefono","correo","direccion","prefijo","prefijoMz","notas"].forEach(k => { if(c[k]) CFG[k] = c[k]; });
   if(c.isv     !== undefined && c.isv     !== "") CFG.isv     = num(c.isv);
@@ -2183,6 +2283,1301 @@ function migrarVersionAnterior(){
   }
 }
 
+
+/* ══════════════════════════════════════════════════════════════════════
+   CONTROL COMERCIAL · ventas, cobros, gastos, órdenes de compra, compras,
+   inventario, proveedores y facturación SAR (talonario de imprenta)
+   ══════════════════════════════════════════════════════════════════════ */
+const CTL = { prov:[], mat:[], oc:[], gas:[], com:[], ven:[], cob:[], cai:[], fac:[], mov:[] };
+let CTL_VISTA = "resumen", CTL_MES = "", CTL_FICHA = null, CTL_FICHA_PEND = null, CTL_OC_LINEAS = [], CTL_CARGANDO = false;
+const CTL_CAT_GASTO = ["Mano de obra","Transporte","Combustible","Viáticos","Insumos","Herramientas","Alquiler","Servicios","Comisiones","Otros"];
+const CTL_ESTADO_OC = ["Solicitada","Aprobada","Enviada","Recibida parcial","Recibida","Anulada"];
+const CTL_PILL = { "Solicitada":"st-sol","Aprobada":"st-apr","Enviada":"st-env","Recibida parcial":"st-par","Recibida":"st-ok","Anulada":"st-anu",
+                   "Venta":"st-ven","Facturada":"st-fac","Cobrada":"st-ok","Cotización":"st-sol" };
+
+function cL(n){ return "L " + Number(n || 0).toLocaleString("es-HN", { minimumFractionDigits:2, maximumFractionDigits:2 }); }
+function cN(n, d){ return Number(n || 0).toLocaleString("es-HN", { minimumFractionDigits:0, maximumFractionDigits:d == null ? 2 : d }); }
+function cF(iso){ if(!iso) return "—"; const p = String(iso).slice(0,10).split("-"); return p.length === 3 ? p[2] + "/" + p[1] + "/" + p[0] : iso; }
+function r2c(n){ return Math.round((Number(n) || 0) * 100) / 100; }
+function ctlPill(t){ return '<span class="ctl-pill ' + (CTL_PILL[t] || "st-sol") + '">' + escapeHtml(t) + '</span>'; }
+function ctlProy(id){ return PROYECTOS.find(p => p.id === id); }
+function ctlNomProy(id, corto){
+  const p = ctlProy(id);
+  if(!id) return "Sin proyecto (gasto general)";
+  if(!p) return "Proyecto " + id;
+  return (p.numero || "s/n") + " · " + (p.proyecto || "Sin nombre") + (corto ? "" : (p.cliente ? " — " + p.cliente : ""));
+}
+function ctlOpcionesProy(sel, permitirVacio){
+  const lista = PROYECTOS.filter(p => !p.eliminado).sort((a,b) => String(b.actualizado || "").localeCompare(String(a.actualizado || "")));
+  return (permitirVacio ? '<option value="">— Sin proyecto (gasto general) —</option>' : '<option value="">— Elija el proyecto —</option>') +
+    lista.map(p => '<option value="' + escapeHtml(p.id) + '"' + (p.id === sel ? " selected" : "") + '>' + escapeHtml(ctlNomProy(p.id)) + '</option>').join("");
+}
+function ctlMesActual(){ return todayISO().slice(0,7); }
+function ctlEnMes(iso){ return String(iso || "").slice(0,7) === (CTL_MES || ctlMesActual()); }
+
+/* ---------- Datos ---------- */
+async function ctlGet(tabla, extra){
+  const r = await sbRest("/rest/v1/" + tabla + "?select=*" + (extra || ""));
+  if(!r.ok) throw new Error(r.error);
+  return r.data || [];
+}
+async function ctlCargar(){
+  if(!SB_ON){ $("ctlCuerpo").innerHTML = '<p class="muted" style="padding:20px">El Control comercial necesita la conexión con la nube.</p>'; return; }
+  if(!SESION.token){ $("ctlCuerpo").innerHTML = '<p class="muted" style="padding:20px">Inicie sesión con internet para usar el Control comercial.</p>'; return; }
+  if(CTL_CARGANDO) return; CTL_CARGANDO = true;
+  $("ctlEstado").textContent = "Actualizando…";
+  try{
+    const adm = esAdmin();
+    const [prov, mat, oc, gas, ven, com, cob, cai, fac, mov] = await Promise.all([
+      ctlGet("ctl_proveedores", "&order=nombre.asc"),
+      ctlGet("ctl_materiales", "&order=nombre.asc"),
+      ctlGet("ctl_ordenes", "&order=creado.desc&limit=500"),
+      ctlGet("ctl_gastos", "&order=fecha.desc&limit=1000"),
+      ctlGet("ctl_ventas", "&order=fecha.desc"),
+      adm ? ctlGet("ctl_compras", "&order=fecha.desc&limit=1000") : [],
+      adm ? ctlGet("ctl_cobros", "&order=fecha.desc") : [],
+      adm ? ctlGet("ctl_cai", "&order=creado.desc") : [],
+      adm ? ctlGet("ctl_facturas", "&order=fecha.desc&limit=1000") : [],
+      adm ? ctlGet("ctl_movimientos", "&order=id.desc&limit=2000") : []
+    ]);
+    Object.assign(CTL, { prov, mat, oc, gas, ven, com, cob, cai, fac, mov });
+    await firmasCargar();
+    $("ctlEstado").textContent = "Actualizado " + horaActual();
+  }catch(e){
+    $("ctlEstado").textContent = "";
+    toast("No se pudo leer el Control comercial: " + e.message, "err");
+  }finally{ CTL_CARGANDO = false; }
+  ctlPintar();
+  if(CTL_FICHA_PEND){ const x = CTL_FICHA_PEND; CTL_FICHA_PEND = null; ctlFicha(x); }
+  else if(CTL_FICHA && $("modalFicha").classList.contains("open")) ctlFicha(CTL_FICHA);
+}
+function ctlAbrirProyecto(pid){ CTL_FICHA_PEND = pid; irTab("ctl"); }
+async function ctlEscribir(tabla, fila, filtro){
+  const r = await sbRest("/rest/v1/" + tabla + (filtro ? "?" + filtro : ""), {
+    method: filtro ? "PATCH" : "POST",
+    headers: { "Content-Type":"application/json", Prefer:"return=minimal" },
+    body: JSON.stringify(fila) });
+  if(!r.ok) throw new Error(r.error);
+}
+async function ctlBorrar(tabla, filtro){
+  const r = await sbRest("/rest/v1/" + tabla + "?" + filtro, { method:"DELETE" });
+  if(!r.ok) throw new Error(r.error);
+}
+
+/* ---------- Cálculos ---------- */
+function ctlOcPorId(id){ return CTL.oc.find(o => o.id === id); }
+function ctlCostoProyecto(pid){
+  const gastos = CTL.gas.filter(g => g.proyecto_id === pid).reduce((s,g) => s + Number(g.monto), 0);
+  const materiales = CTL.mov.filter(m => m.proyecto_id === pid && m.tipo === "salida")
+    .reduce((s,m) => s + Number(m.cantidad) * Number(m.costo_unit), 0);
+  // Líneas de órdenes de compra sin material de inventario (servicios, cortes…) recibidas para el proyecto
+  const otros = CTL.oc.filter(o => o.proyecto_id === pid && o.estado !== "Anulada").reduce((s,o) =>
+    s + (o.lineas || []).filter(l => !l.material_id).reduce((t,l) => t + Number(l.recibido || 0) * Number(l.precio || 0), 0), 0);
+  return { gastos:r2c(gastos), materiales:r2c(materiales + otros), total:r2c(gastos + materiales + otros) };
+}
+function ctlVenta(pid){ return CTL.ven.find(v => v.proyecto_id === pid); }
+/* Venta sin ISV: si ya tiene factura, se toma lo facturado sin impuesto; si no, el subtotal de la venta */
+function ctlBaseVenta(pid){
+  const facs = CTL.fac.filter(f => f.proyecto_id === pid && !f.anulada);
+  if(facs.length) return r2c(facs.reduce((s,f) => s + Number(f.exonerado) + Number(f.exento) + Number(f.gravado15) + Number(f.gravado18), 0));
+  const v = ctlVenta(pid), p = ctlProy(pid);
+  return r2c(v ? Number(v.subtotal) : Number((p && (p.subtotal || p.total)) || 0));
+}
+function ctlCobrado(pid){ return r2c(CTL.cob.filter(c => c.proyecto_id === pid).reduce((s,c) => s + Number(c.monto), 0)); }
+function ctlEstadoProyecto(pid){
+  const v = ctlVenta(pid);
+  if(!v) return "Cotización";
+  return v.estado;
+}
+function ctlCaiInfo(c){
+  const usadas = CTL.fac.filter(f => f.cai_id === c.id);
+  const maxUsado = usadas.reduce((m,f) => Math.max(m, Number(String(f.numero).slice(-8))), c.desde - 1);
+  const total = c.hasta - c.desde + 1, quedan = c.hasta - maxUsado;
+  const dias = Math.round((new Date(c.fecha_limite + "T12:00:00") - new Date(todayISO() + "T12:00:00")) / 86400000);
+  const sig = maxUsado + 1 <= c.hasta ? c.prefijo + "-" + String(maxUsado + 1).padStart(8, "0") : "";
+  return { usadas:usadas.length, total, quedan, pct: Math.round((total - quedan) / total * 100), dias, vencido: dias < 0, agotado: quedan <= 0, siguiente: sig };
+}
+function ctlAvisos(){
+  const av = [];
+  if(esAdmin()){
+    CTL.cai.filter(c => c.activo).forEach(c => {
+      const i = ctlCaiInfo(c);
+      if(i.vencido) av.push({ t:"r", i:"⛔", h:"<b>CAI vencido</b> (" + escapeHtml(c.prefijo) + ") desde el " + cF(c.fecha_limite) + ". No puede usar más facturas de ese talonario." });
+      else if(i.agotado) av.push({ t:"r", i:"⛔", h:"<b>Talonario agotado</b> (" + escapeHtml(c.prefijo) + "). Solicite un nuevo CAI." });
+      else if(i.dias <= 30 || i.quedan <= Math.max(10, i.total * 0.1))
+        av.push({ t:"a", i:"⚠️", h:"<b>CAI al " + i.pct + "%</b> — quedan " + i.quedan + " facturas y vence el " + cF(c.fecha_limite) + " (" + i.dias + " días). Solicite el nuevo CAI en la Oficina Virtual del SAR." });
+    });
+    if(!CTL.cai.some(c => c.activo)) av.push({ t:"i", i:"🧾", h:"Registre los datos del <b>CAI de su talonario</b> en Facturación SAR para controlar rango y fecha límite." });
+    FIRMAS.filter(f => f.estado === "Aceptada" && !ctlVenta(f.proyecto_id) && ctlProy(f.proyecto_id)).slice(0,4)
+      .forEach(f => av.push({ t:"a", i:"✍", h:"<b>" + escapeHtml(ctlNomProy(f.proyecto_id, true)) + "</b> fue aceptada y firmada por " + escapeHtml(f.firma_nombre || "el cliente") + ". Conviértala en venta desde su ficha." }));
+    const prontas = segLista().filter(x => x.dias >= 0 && x.dias <= 3 && !(x.firma && x.firma.estado === "Aceptada"));
+    if(prontas.length) av.push({ t:"a", i:"⏰", h:"<b>" + prontas.length + " cotización(es)</b> vencen en 3 días o menos. Deles seguimiento en la pestaña Seguimiento." });
+    const vencidos = cxcLista().filter(x => x.atraso > 0);
+    if(vencidos.length) av.push({ t:"r", i:"📅", h:"<b>" + vencidos.length + " cobro(s) vencido(s)</b> por " + cL(vencidos.reduce((s,x) => s + x.saldo, 0)) + ". Vea «Por cobrar»." });
+    const sol = CTL.oc.filter(o => o.estado === "Solicitada");
+    if(sol.length) av.push({ t:"i", i:"📝", h:"<b>" + sol.length + " orden(es) de compra</b> esperan su aprobación." });
+  }
+  const bajos = CTL.mat.filter(m => m.activo && Number(m.minimo) > 0 && Number(m.stock) <= Number(m.minimo));
+  if(bajos.length) av.push({ t:"r", i:"📦", h:"<b>" + bajos.length + " material(es) bajo mínimo:</b> " + bajos.slice(0,4).map(m => escapeHtml(m.nombre) + " (" + cN(m.stock) + " " + escapeHtml(m.unidad) + ")").join(", ") + (bajos.length > 4 ? "…" : "") + "." });
+  CTL.oc.filter(o => o.estado === "Enviada" && (Date.now() - new Date(o.fecha + "T12:00:00")) / 86400000 > 5)
+    .slice(0,3).forEach(o => av.push({ t:"i", i:"🚚", h:"<b>" + escapeHtml(o.numero) + "</b> a " + escapeHtml(ctlProvNombre(o.proveedor_id)) + " lleva más de 5 días sin recibirse." }));
+  if(esAdmin()) CTL.ven.filter(v => v.estado !== "Anulada" && v.estado !== "Cobrada").map(v => ({ v, s:r2c(Number(v.total) - ctlCobrado(v.proyecto_id)) }))
+    .filter(x => x.s > 0).sort((a,b) => b.s - a.s).slice(0,3)
+    .forEach(x => av.push({ t:"i", i:"💰", h:"<b>" + escapeHtml(ctlNomProy(x.v.proyecto_id, true)) + "</b> tiene saldo de " + cL(x.s) + " por cobrar." }));
+  return av;
+}
+function ctlProvNombre(id){ const p = CTL.prov.find(x => x.id === id); return p ? p.nombre : "—"; }
+
+
+/* ---------- Auditoría de cambios (solo administrador) ---------- */
+const AUD = { mes:"", usuario:"", modulo:"", accion:"", q:"", datos:null, sel:null, verif:null, cargando:false };
+const AUD_CAMPOS = { total:"Total", subtotal:"Subtotal", isv:"ISV", cliente:"Cliente", rtn:"RTN", telefono:"Teléfono", proyecto:"Proyecto", estado:"Estado",
+  numero:"Número", fecha:"Fecha", cantidad:"Cantidad", alto:"Alto", ancho:"Ancho", precio:"Precio", description:"Descripción", desc:"Descripción",
+  material:"Material", ml:"Medida (ML)", price:"Precio", stock:"Existencia", costo:"Costo", minimo:"Mínimo", anulada:"Anulada", motivo_anulacion:"Motivo de anulación",
+  monto:"Monto", nota:"Nota", nombre:"Nombre", categoria:"Categoría", descripcion:"Descripción", comprobante:"Comprobante", proveedor_id:"Proveedor",
+  entrega:"Entrega", condiciones:"Condiciones", lineas:"Líneas", rol:"Rol", activo:"Activo", fecha_limite:"Fecha límite", desde:"Desde", hasta:"Hasta",
+  cai:"CAI", prefijo:"Prefijo", eliminado:"En papelera", valor:"Valor", notas:"Condiciones", descuento:"Descuento", validez:"Validez", unidad:"Unidad",
+  firma_nombre:"Firmado por", visto:"Visto por el cliente", vence:"Vence", comentario:"Comentario", metodo:"Método", referencia:"Referencia", price_usd:"Precio" };
+function audCampo(ruta){
+  const p = String(ruta || "").split(".").filter(x => x !== "datos" && x !== "valor");
+  let linea = "", nom = "";
+  p.forEach((x, i) => {
+    if(/^\d+$/.test(x)) linea = " (línea " + (Number(x) + 1) + ")";
+    else nom = AUD_CAMPOS[x] || (x.charAt(0).toUpperCase() + x.slice(1).replace(/_/g, " "));
+  });
+  return (nom || ruta) + linea;
+}
+function audResumen(x){
+  if(x.accion !== "Modificación" && x.accion !== "Restauración" || !Array.isArray(x.cambios)) return x.detalle || "";
+  return x.cambios.slice(0, 3).map(c => audCampo(c.c) + ": " + audValor(c.a) + " → " + audValor(c.d)).join(" · ") + (x.cambios.length > 3 ? " · y " + (x.cambios.length - 3) + " más" : "");
+}
+function audValor(v){
+  if(v === null || v === undefined || v === "") return "—";
+  if(typeof v === "number") return v.toLocaleString("es-HN", { maximumFractionDigits: 2 });
+  if(v === true) return "Sí"; if(v === false) return "No";
+  if(typeof v === "object") return JSON.stringify(v);
+  return String(v);
+}
+function ctlVistaAuditoria(){
+  if(!AUD.mes) AUD.mes = CTL_MES || ctlMesActual();
+  setTimeout(audCargar, 0);
+  return '<div id="audCaja"><p class="muted" style="padding:20px">Cargando la bitácora…</p></div>';
+}
+async function audCargar(){
+  if(AUD.cargando) return; AUD.cargando = true;
+  try{
+    const r = await sbRpc("aud_consultar", { f: { mes: AUD.mes, usuario: AUD.usuario, modulo: AUD.modulo, accion: AUD.accion, q: AUD.q, limite: 1000 } });
+    if(!r.ok){
+      const falta = /aud_consultar|function|404/i.test(r.error || "");
+      AUD.datos = null;
+      if($("audCaja")) $("audCaja").innerHTML = '<div class="note warning" style="margin:10px 0">' + (falta ? "Falta instalar en Supabase el archivo <b>supabase_auditoria.sql</b>." : escapeHtml(r.error || "No se pudo leer la auditoría.")) + '</div>';
+      return;
+    }
+    AUD.datos = r;
+    if(AUD.sel && !r.filas.some(x => x.id === AUD.sel)) AUD.sel = null;
+    audPintar();
+  }finally{ AUD.cargando = false; }
+}
+function audPintar(){
+  const caja = $("audCaja"); if(!caja || !AUD.datos) return;
+  const d = AUD.datos, rs = d.resumen || {};
+  const op = (lista, val, todos) => '<option value="">' + todos + '</option>' + (lista || []).slice().sort().map(x => '<option' + (x === val ? " selected" : "") + '>' + escapeHtml(x) + '</option>').join("");
+  const pill = a => '<span class="ctl-pill ' + ({ "Creación":"st-ok", "Modificación":"st-warn", "Restauración":"st-warn", "Anulación":"st-anu", "Eliminación":"st-anu", "Inicio de sesión":"st-info" }[a] || "") + '">' + escapeHtml(a) + '</span>';
+  const filas = d.filas.map(x => '<tr data-aud="' + x.id + '" class="aud-fila' + (x.id === AUD.sel ? " on" : "") + '">' +
+    '<td><div class="aud-f">' + escapeHtml(x.fecha) + '</div><div class="muted small">' + escapeHtml(x.usuario) + '</div></td>' +
+    '<td>' + pill(x.accion) + '<div class="muted small" style="margin-top:3px">' + escapeHtml(x.modulo) + '</div></td>' +
+    '<td class="aud-doc">' + (x.documento ? String(x.documento).split(" · ").map((t, i) => i ? '<div class="muted small">' + escapeHtml(t) + '</div>' : escapeHtml(t)).join("") : '<span class="muted">—</span>') + '</td>' +
+    '<td class="small">' + escapeHtml(audResumen(x)) + '</td></tr>').join("") ||
+    '<tr><td colspan="4" class="muted" style="padding:18px">No hay registros con esos filtros.</td></tr>';
+  const v = AUD.verif;
+  caja.innerHTML =
+    '<div class="ctl-kpis aud-kpis">' +
+      ctlKpi("#0b4a93", "Registros del mes", (rs.total || 0).toLocaleString("es-HN"), escapeHtml(audNombreMes(AUD.mes))) +
+      ctlKpi("#1da85a", "Creaciones", (rs.crea || 0).toLocaleString("es-HN"), "facturas, gastos, OC…") +
+      ctlKpi("#e9b949", "Modificaciones", (rs.mod || 0).toLocaleString("es-HN"), "con valor anterior y nuevo") +
+      ctlKpi("#d92027", "Anulaciones / eliminaciones", (rs.anul || 0).toLocaleString("es-HN"), (rs.motivos || 0) + " factura(s) anulada(s) con motivo") +
+    '</div>' +
+    '<div class="aud-grid"><div class="ctl-card"><h3>Bitácora de cambios</h3>' +
+      '<div class="aud-filtros">' + ctlSelMes().replace('id="ctlMes"', 'id="audMes"').replace(/ selected/g, "").replace('value="' + AUD.mes + '"', 'value="' + AUD.mes + '" selected') +
+      '<select id="audUsuario">' + op(d.usuarios, AUD.usuario, "Todos los usuarios") + '</select>' +
+      '<select id="audModulo">' + op(d.modulos, AUD.modulo, "Todos los módulos") + '</select>' +
+      '<select id="audAccion">' + op(["Creación","Modificación","Anulación","Eliminación","Restauración","Inicio de sesión"], AUD.accion, "Todas las acciones") + '</select>' +
+      '<input id="audQ" type="search" placeholder="Buscar documento, n.° de factura…" value="' + escapeHtml(AUD.q) + '">' +
+      '<button type="button" class="btn-outline" id="audExcel">⬇ Excel</button><button type="button" class="btn-outline" id="audTxt">⬇ TXT</button></div>' +
+      '<div class="muted small" style="margin:-4px 0 8px">' + d.encontrados + ' registro(s)' + (d.encontrados > d.filas.length ? " · se muestran los " + d.filas.length + " más recientes; use los filtros o exporte" : "") + '</div>' +
+      '<div class="table-wrap aud-tabla"><table class="ctl-t"><thead><tr><th>Fecha · usuario</th><th>Acción · módulo</th><th>Documento</th><th>Cambio</th></tr></thead><tbody>' + filas + '</tbody></table></div></div>' +
+    '<div><div class="ctl-card" id="audDetalle">' + audDetalleHtml() + '</div>' +
+      '<div class="ctl-card"><h3>Integridad de la bitácora</h3>' +
+        (v ? '<div class="aud-integ ' + (v.integra ? "ok" : "mal") + '"><span>' + (v.integra ? "🔒" : "⚠️") + '</span><div><b>' + (v.integra ? "Íntegra" : "¡Alterada!") + '</b> · ' + Number(v.total).toLocaleString("es-HN") + ' registros encadenados<br>' +
+              '<span class="muted small">' + (v.integra ? "Ningún registro fue editado ni borrado." : "El registro #" + v.error_en + " no coincide con su huella: alguien modificó la base de datos directamente.") + ' Verificado: ' + escapeHtml(v.verificado) + '</span></div></div>'
+           : '<p class="muted small" style="margin:0 0 10px">Nadie puede editar ni borrar la bitácora, ni el administrador. Cada registro lleva una huella digital del anterior; la verificación recalcula toda la cadena.</p>') +
+        '<button type="button" class="save" style="color:#fff;margin-top:10px" id="audVerificar">✔ Verificar integridad</button></div></div></div>';
+  const recargar = () => { AUD.mes = $("audMes").value; AUD.usuario = $("audUsuario").value; AUD.modulo = $("audModulo").value; AUD.accion = $("audAccion").value; AUD.q = $("audQ").value.trim(); audCargar(); };
+  ["audMes","audUsuario","audModulo","audAccion"].forEach(id => $(id).onchange = recargar);
+  let tq; $("audQ").oninput = () => { clearTimeout(tq); tq = setTimeout(recargar, 450); };
+  $("audExcel").onclick = () => audExportar("xlsx");
+  $("audTxt").onclick = () => audExportar("txt");
+  $("audVerificar").onclick = audVerificar;
+  caja.querySelector("tbody").onclick = e => { const tr = e.target.closest("[data-aud]"); if(!tr) return; AUD.sel = Number(tr.dataset.aud);
+    caja.querySelectorAll(".aud-fila").forEach(x => x.classList.toggle("on", x === tr)); $("audDetalle").innerHTML = audDetalleHtml();
+    if(innerWidth < 900) $("audDetalle").scrollIntoView({ behavior:"smooth", block:"start" }); };
+}
+function audNombreMes(m){
+  const nom = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+  return m ? nom[Number(m.slice(5)) - 1] + " " + m.slice(0, 4) : "";
+}
+function audDetalleHtml(){
+  const x = AUD.datos && AUD.datos.filas.find(f => f.id === AUD.sel);
+  if(!x) return '<h3>Detalle del cambio</h3><p class="muted small" style="margin:0">Toque un registro de la bitácora para ver qué cambió.</p>';
+  let cuerpo;
+  if(Array.isArray(x.cambios)){
+    cuerpo = '<div class="aud-dif"><div class="h">Campo</div><div class="h">Antes</div><div class="h">Después</div>' +
+      x.cambios.map(c => '<div>' + escapeHtml(audCampo(c.c)) + '</div><div class="old">' + escapeHtml(audValor(c.a)) + '</div><div class="new">' + escapeHtml(audValor(c.d)) + '</div>').join("") + '</div>';
+  }else if(x.cambios && typeof x.cambios === "object"){
+    const pares = Object.entries(x.cambios).filter(([k, v]) => v !== null && v !== "" && typeof v !== "object" && !/^(id|token|user_id|cai_id|material_id|orden_id|proveedor_id|proyecto_id)$/.test(k));
+    cuerpo = '<div class="aud-dif dos"><div class="h">Campo</div><div class="h">' + (x.accion === "Eliminación" ? "Valor eliminado" : "Valor registrado") + '</div>' +
+      pares.map(([k, v]) => '<div>' + escapeHtml(audCampo(k)) + '</div><div class="' + (x.accion === "Eliminación" ? "old" : "new") + '">' + escapeHtml(audValor(v)) + '</div>').join("") + '</div>';
+  }else cuerpo = '<p class="muted small" style="margin:0">' + escapeHtml(x.detalle || "Sin datos adicionales.") + '</p>';
+  return '<h3>Detalle del cambio</h3><div class="muted small" style="margin-bottom:8px">' + escapeHtml(x.fecha) + ' · <b>' + escapeHtml(x.usuario) + '</b> · ' + escapeHtml(x.modulo) +
+    (x.documento ? ' · ' + escapeHtml(x.documento) : '') + ' · registro #' + x.id + '</div>' + cuerpo +
+    '<div class="muted small mono" style="margin-top:8px;word-break:break-all">Huella: ' + escapeHtml(x.hash) + '</div>';
+}
+async function audVerificar(){
+  const b = $("audVerificar"); b.disabled = true; b.textContent = "Verificando…";
+  const r = await sbRpc("aud_verificar", {});
+  b.disabled = false; b.textContent = "✔ Verificar integridad";
+  if(!r.ok) return toast(r.error || "No se pudo verificar.", "err");
+  AUD.verif = r; audPintar();
+  toast(r.integra ? "Bitácora íntegra: " + r.total + " registros." : "¡Atención! La bitácora fue alterada (registro #" + r.error_en + ").", r.integra ? "ok" : "err");
+}
+async function audExportar(tipo){
+  const r = await sbRpc("aud_consultar", { f: { mes: AUD.mes, usuario: AUD.usuario, modulo: AUD.modulo, accion: AUD.accion, q: AUD.q, limite: 5000 } });
+  if(!r.ok) return toast(r.error || "No se pudo exportar.", "err");
+  const cab = ["Registro","Fecha y hora","Usuario","Módulo","Acción","Documento","Detalle","Cambios","Huella"];
+  const cambiosTxt = x => Array.isArray(x.cambios) ? x.cambios.map(c => audCampo(c.c) + ": " + audValor(c.a) + " → " + audValor(c.d)).join("; ") : "";
+  const filas = r.filas.slice().reverse().map(x => [x.id, x.fecha, x.usuario, x.modulo, x.accion, x.documento || "", x.detalle || "", cambiosTxt(x), x.hash]);
+  const nombre = "Auditoria " + RAZON_SOCIAL.replace(/[^\w\s.-]/g, "").trim() + " " + AUD.mes;
+  if(tipo === "txt"){
+    const limpio = v => String(v).replace(/[|\r\n]+/g, " ");
+    const txt = ["BITÁCORA DE AUDITORÍA · " + RAZON_SOCIAL + " · RTN " + (CFG.rtn || "") + " · " + audNombreMes(AUD.mes), "Generado " + fechaLarga(todayISO()) + " " + horaActual() + " por " + (SESION.usuario || ""), "",
+      cab.join("|")].concat(filas.map(f => f.map(limpio).join("|"))).join("\r\n");
+    descargarBlob(new Blob(["﻿" + txt], { type: "text/plain;charset=utf-8" }), nombre + ".txt");
+  }else{
+    try{ if(typeof XLSX === "undefined") await cargarScript("https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"); }
+    catch(e){ return toast("Se necesita internet para exportar a Excel.", "err"); }
+    const ws = XLSX.utils.aoa_to_sheet([cab].concat(filas));
+    ws["!cols"] = [8,19,14,18,15,30,40,60,20].map(w => ({ wch: w }));
+    const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, "Auditoría");
+    XLSX.writeFile(wb, nombre + ".xlsx");
+  }
+  toast("Bitácora exportada (" + filas.length + " registros).", "ok");
+}
+function audEquipo(){
+  const u = navigator.userAgent;
+  const so = /Android/i.test(u) ? "Android" : /iPhone|iPad/i.test(u) ? "iPhone/iPad" : /Windows/i.test(u) ? "Windows" : /Mac/i.test(u) ? "Mac" : "Otro";
+  const nav = /Edg\//.test(u) ? "Edge" : /Chrome\//.test(u) ? "Chrome" : /Safari\//.test(u) ? "Safari" : /Firefox\//.test(u) ? "Firefox" : "Navegador";
+  return (/Mobi|Android|iPhone/i.test(u) ? "Celular" : "Computadora") + " · " + nav + " " + so;
+}
+
+
+/* ══════════ v12.3 · SEGUIMIENTO, INDICADORES, CUENTAS POR COBRAR Y ACTA DE ENTREGA ══════════ */
+function telWa(t){ const d = String(t || "").replace(/\D/g, ""); return d ? (d.length === 8 ? "504" + d : d) : ""; }
+function abrirWa(tel, texto){ window.open("https://wa.me/" + telWa(tel) + "?text=" + encodeURIComponent(texto), "_blank"); }
+function diasEntre(desde, hasta){ return Math.round((new Date(String(hasta).slice(0,10) + "T12:00:00") - new Date(String(desde).slice(0,10) + "T12:00:00")) / 86400000); }
+function empresaDe(p){ return (p.modulo || "vidrieria") === "muebles" ? EMPRESA_MZ : { nombre: CFG.empresa, telefono: CFG.telefono }; }
+
+/* ---------- 1. Seguimiento de cotizaciones ---------- */
+function segVence(p){
+  const dias = num(p.validez) || num(CFG.validez) || 15;
+  return sumarDias(p.fecha || todayISO(), dias);
+}
+function segLista(){
+  const hoy = todayISO();
+  return PROYECTOS.filter(p => !p.eliminado && !ctlVenta(p.id) && Number(totalesDe(p).total) > 0 &&
+                               !["Rechazada"].includes(p.estado || "") && (!firmaDe(p.id) || firmaDe(p.id).estado !== "Rechazada"))
+    .map(p => { const v = segVence(p); return { p, vence: v, dias: diasEntre(hoy, v), firma: firmaDe(p.id) }; })
+    .filter(x => x.dias >= -30)
+    .sort((a,b) => a.dias - b.dias);
+}
+function ctlVistaSeguimiento(){
+  const l = segLista();
+  const venc = l.filter(x => x.dias < 0), pronto = l.filter(x => x.dias >= 0 && x.dias <= 3), vig = l.filter(x => x.dias > 3);
+  const acep = l.filter(x => x.firma && x.firma.estado === "Aceptada");
+  const fila = x => {
+    const p = x.p, t = totalesDe(p).total;
+    const est = x.firma && x.firma.estado === "Aceptada" ? '<span class="ctl-pill st-ok">✍ Aceptada</span>'
+      : x.dias < 0 ? '<span class="ctl-pill st-anu">Venció hace ' + (-x.dias) + ' día(s)</span>'
+      : x.dias <= 3 ? '<span class="ctl-pill st-warn">' + (x.dias === 0 ? "Vence hoy" : "Vence en " + x.dias + " día(s)") + '</span>'
+      : '<span class="ctl-pill st-info">Vigente · ' + x.dias + ' días</span>';
+    return '<tr><td><b>' + escapeHtml(p.numero || "s/n") + '</b><div class="muted small">' + escapeHtml(p.proyecto || "") + '</div></td>' +
+      '<td>' + escapeHtml(p.cliente || "—") + (p.telefono ? '<div class="muted small">' + escapeHtml(p.telefono) + '</div>' : '') + '</td>' +
+      (esAdmin() ? '<td>' + escapeHtml(p.usuario || "") + '</td>' : '') +
+      '<td>' + cF(p.fecha) + '<div class="muted small">vence ' + cF(x.vence) + '</div></td><td>' + est + firmaBadge(p.id).replace(/^ /, '<br>') + '</td>' +
+      '<td class="r">' + cL(t) + '</td><td class="acc">' +
+      '<button type="button" class="action-small detail" data-seg="ver" data-id="' + escapeHtml(p.id) + '">Ver</button>' +
+      (p.telefono ? '<button type="button" class="action-small save" style="color:#fff" data-seg="wa" data-id="' + escapeHtml(p.id) + '">✆ Seguimiento</button>' : '') +
+      (x.firma && x.firma.estado === "Aceptada" && esAdmin() ? '<button type="button" class="action-small edit" data-seg="ficha" data-id="' + escapeHtml(p.id) + '">✔ Convertir</button>' : '') + '</td></tr>';
+  };
+  const tabla = (titulo, arr, vacio) => '<div class="ctl-card"><h3>' + titulo + ' <span class="muted small">(' + arr.length + ')</span></h3>' +
+    (arr.length ? '<div class="table-wrap"><table class="ctl-t"><thead><tr><th>Cotización</th><th>Cliente</th>' + (esAdmin() ? '<th>Vendedor</th>' : '') +
+      '<th>Fecha</th><th>Estado</th><th class="r">Total</th><th></th></tr></thead><tbody>' + arr.map(fila).join("") + '</tbody></table></div>'
+      : '<p class="muted" style="margin:0">' + vacio + '</p>') + '</div>';
+  const monto = arr => cL(arr.reduce((s,x) => s + totalesDe(x.p).total, 0));
+  return '<div class="ctl-kpis aud-kpis">' +
+      ctlKpi("#d92027", "Vencidas sin respuesta", venc.length, monto(venc) + " · últimos 30 días", venc.length ? "down" : "muted") +
+      ctlKpi("#e9b949", "Vencen en 3 días o menos", pronto.length, monto(pronto), pronto.length ? "warn" : "muted") +
+      ctlKpi("#1678e8", "Vigentes", vig.length, monto(vig)) +
+      ctlKpi("#159447", "Aceptadas con firma", acep.length, acep.length ? "Pendientes de convertir en venta" : "—", acep.length ? "up" : "muted") +
+    '</div>' +
+    tabla("⏰ Vencen pronto", pronto, "Ninguna cotización vence en los próximos 3 días.") +
+    tabla("⌛ Vencidas sin respuesta", venc, "No hay cotizaciones vencidas en los últimos 30 días.") +
+    tabla("📄 Vigentes", vig, "No hay otras cotizaciones vigentes.") +
+    '<p class="muted small">Se excluyen las que ya son venta y las rechazadas. «✆ Seguimiento» abre WhatsApp con un mensaje listo para el cliente.</p>';
+}
+function segWhatsapp(pid){
+  const p = ctlProy(pid); if(!p) return;
+  const x = segLista().find(y => y.p.id === pid) || { dias: 0, vence: segVence(p) };
+  const f = firmaDe(pid), emp = empresaDe(p), doc = (p.modulo === "muebles" ? "presupuesto " : "cotización ") + (p.numero || "");
+  const txt = "Hola" + (p.cliente ? " " + p.cliente : "") + ", le saluda " + emp.nombre + ". " +
+    (x.dias < 0 ? "Le escribimos por su " + doc + " (" + (p.proyecto || "") + "), que venció el " + fechaLarga(x.vence) + ". Con gusto se la actualizamos si todavía le interesa."
+                : "Le damos seguimiento a su " + doc + " (" + (p.proyecto || "") + ") por " + cL(totalesDe(p).total) + ", válida hasta el " + fechaLarga(x.vence) + ". ¿Tiene alguna duda o desea que avancemos?") +
+    (f && f.estado === "Pendiente" && x.dias >= 0 ? "\nPuede revisarla y aceptarla aquí: " + urlBasePrograma() + "firma.html?t=" + f.token : "") +
+    "\n" + emp.telefono;
+  abrirWa(p.telefono, txt);
+}
+
+/* ---------- 2. Indicadores por vendedor (resumen del administrador) ---------- */
+function indicadoresVendedores(){
+  const mes = CTL_MES || ctlMesActual(), por = {};
+  const fila = u => por[u] = por[u] || { u, cot: 0, montoCot: 0, ven: 0, montoVen: 0 };
+  PROYECTOS.filter(p => !p.eliminado && String(p.fecha || "").slice(0,7) === mes && totalesDe(p).total > 0)
+    .forEach(p => { const f = fila(p.usuario || "—"); f.cot++; f.montoCot += totalesDe(p).total; });
+  CTL.ven.filter(v => v.estado !== "Anulada" && String(v.fecha || "").slice(0,7) === mes)
+    .forEach(v => { const p = ctlProy(v.proyecto_id); const f = fila(p ? p.usuario || "—" : "—"); f.ven++; f.montoVen += Number(v.total); });
+  const l = Object.values(por).sort((a,b) => b.montoVen - a.montoVen || b.montoCot - a.montoCot);
+  if(!l.length) return '<div class="ctl-card"><h3>Indicadores por vendedor</h3><p class="muted" style="margin:0">Sin cotizaciones ni ventas en el período.</p></div>';
+  const max = Math.max(...l.map(x => Math.max(x.montoCot, x.montoVen)), 1);
+  return '<div class="ctl-card"><h3>Indicadores por vendedor · ' + escapeHtml(audNombreMes(mes)) + '</h3><div class="table-wrap"><table class="ctl-t"><thead><tr><th>Vendedor</th><th class="r">Cotizado</th><th class="r">Vendido</th><th>Cierre</th><th class="r">Ticket promedio</th></tr></thead><tbody>' +
+    l.map(x => { const tasa = x.cot ? Math.round(x.ven / x.cot * 100) : 0;
+      return '<tr><td><b>' + escapeHtml(x.u) + '</b><div class="ind-bar"><i style="width:' + (x.montoCot / max * 100) + '%"></i><i class="v" style="width:' + (x.montoVen / max * 100) + '%"></i></div></td>' +
+        '<td class="r">' + cL(x.montoCot) + '<div class="muted small">' + x.cot + ' cotización(es)</div></td><td class="r">' + cL(x.montoVen) + '<div class="muted small">' + x.ven + ' venta(s)</div></td>' +
+        '<td><b class="' + (tasa >= 40 ? "up" : tasa >= 20 ? "warn" : "down") + '">' + tasa + '%</b></td><td class="r">' + cL(x.ven ? x.montoVen / x.ven : 0) + '</td></tr>'; }).join("") +
+    '</tbody></table></div><p class="muted small" style="margin:8px 0 0"><span class="ind-ley"></span>cotizado <span class="ind-ley v"></span>vendido · Cierre = ventas del mes ÷ cotizaciones del mes.</p></div>';
+}
+
+/* ---------- 3. Cuentas por cobrar ---------- */
+const CXC_DIAS = 30;   // plazo cuando la venta no tiene fecha de pago acordada
+function cxcLista(){
+  const hoy = todayISO();
+  return CTL.ven.filter(v => v.estado !== "Anulada").map(v => {
+    const saldo = r2c(Number(v.total) - ctlCobrado(v.proyecto_id));
+    const vence = v.vence || sumarDias(v.fecha, CXC_DIAS);
+    return { v, p: ctlProy(v.proyecto_id) || {}, saldo, vence, atraso: diasEntre(vence, hoy), propia: !!v.vence };
+  }).filter(x => x.saldo > 0.009).sort((a,b) => b.atraso - a.atraso);
+}
+function ctlVistaCxc(){
+  const l = cxcLista();
+  const tramo = x => x.atraso <= 0 ? 0 : x.atraso <= 30 ? 1 : x.atraso <= 60 ? 2 : 3;
+  const tot = [0,0,0,0]; l.forEach(x => tot[tramo(x)] += x.saldo);
+  const total = tot.reduce((a,b) => a + b, 0);
+  const nombres = ["Al día", "1 a 30 días vencido", "31 a 60 días vencido", "Más de 60 días"], colores = ["#159447","#e9b949","#ff7300","#d92027"];
+  const barra = total > 0 ? '<div class="ctl-stack" style="margin:4px 0 6px">' + tot.map((t,i) => '<i style="width:' + (t / total * 100) + '%;background:' + colores[i] + '"></i>').join("") + '</div>' : '';
+  const filas = l.map(x => '<tr><td><b>' + escapeHtml(x.p.numero || "s/n") + '</b><div class="muted small">' + escapeHtml(x.p.proyecto || "") + '</div></td>' +
+    '<td>' + escapeHtml(x.p.cliente || "—") + (x.p.telefono ? '<div class="muted small">' + escapeHtml(x.p.telefono) + '</div>' : '') + '</td>' +
+    '<td>' + cF(x.v.fecha) + '</td><td><input type="date" class="cxc-vence" data-cxc="vence" data-pid="' + escapeHtml(x.v.proyecto_id) + '" value="' + escapeHtml(x.v.vence || "") + '" title="Fecha de pago acordada">' +
+      (x.propia ? '' : '<div class="muted small">sin fecha · se toma ' + CXC_DIAS + ' días</div>') + '</td>' +
+    '<td><span class="ctl-pill" style="background:' + colores[tramo(x)] + '22;color:' + colores[tramo(x)] + '">' + (x.atraso <= 0 ? (x.atraso === 0 ? "Vence hoy" : "Vence en " + (-x.atraso) + " d") : x.atraso + " días vencido") + '</span></td>' +
+    '<td class="r"><b>' + cL(x.saldo) + '</b><div class="muted small">de ' + cL(x.v.total) + '</div></td>' +
+    '<td class="acc">' + (x.p.telefono ? '<button type="button" class="action-small save" style="color:#fff" data-cxc="wa" data-pid="' + escapeHtml(x.v.proyecto_id) + '">✆ Recordatorio</button>' : '') +
+      '<button type="button" class="action-small edit" data-cxc="ficha" data-pid="' + escapeHtml(x.v.proyecto_id) + '">Ficha</button></td></tr>').join("") ||
+    '<tr><td colspan="7" class="muted" style="padding:18px">No hay saldos pendientes. ✔</td></tr>';
+  return '<div class="ctl-kpis aud-kpis">' + tot.map((t,i) => ctlKpi(colores[i], nombres[i], cL(t), l.filter(x => tramo(x) === i).length + " cliente(s)")).join("") + '</div>' +
+    '<div class="ctl-card"><h3>Cuentas por cobrar · total ' + cL(total) + '</h3>' + barra +
+    '<div class="table-wrap"><table class="ctl-t"><thead><tr><th>Proyecto</th><th>Cliente</th><th>Venta</th><th>Fecha de pago</th><th>Antigüedad</th><th class="r">Saldo</th><th></th></tr></thead><tbody>' + filas + '</tbody></table></div>' +
+    '<p class="muted small" style="margin:8px 0 0">Cambie la fecha de pago acordada directamente en la tabla. «✆ Recordatorio» abre WhatsApp con el saldo y la fecha.</p></div>';
+}
+async function cxcGuardarVence(pid, fecha){
+  try{
+    await ctlEscribir("ctl_ventas", { vence: fecha || null }, "proyecto_id=eq." + encodeURIComponent(pid));
+    const v = ctlVenta(pid); if(v) v.vence = fecha || null;
+    toast("Fecha de pago guardada.", "ok"); ctlPintar();
+  }catch(e){ toast(/vence/.test(e.message) ? "Falta ejecutar supabase_mejoras_v12_3.sql en Supabase." : "No se pudo guardar: " + e.message, "err"); }
+}
+function cxcWhatsapp(pid){
+  const x = cxcLista().find(y => y.v.proyecto_id === pid); if(!x) return;
+  const emp = empresaDe(x.p);
+  const txt = "Estimado(a)" + (x.p.cliente ? " " + x.p.cliente : "") + ", le saluda " + emp.nombre + ". " +
+    "Le recordamos el saldo pendiente de " + cL(x.saldo) + " del proyecto " + (x.p.numero || "") + (x.p.proyecto ? " (" + x.p.proyecto + ")" : "") +
+    (x.atraso > 0 ? ", con fecha de pago " + fechaLarga(x.vence) + "." : ", con fecha de pago " + fechaLarga(x.vence) + ".") +
+    " Si ya realizó el pago, por favor envíenos el comprobante. ¡Gracias!\n" + emp.telefono;
+  abrirWa(x.p.telefono, txt);
+}
+
+/* ---------- 4. Acta de entrega con fotos y firma ---------- */
+let OBRA_FOTOS = {};   // pid → [{id,url,ruta,nota,usuario,creado}]
+async function obraCargarFotos(pid){
+  const r = await sbRest("/rest/v1/obra_fotos?select=*&proyecto_id=eq." + encodeURIComponent(pid) + "&order=creado.asc");
+  OBRA_FOTOS[pid] = r.ok ? (r.data || []) : null;
+  const box = document.getElementById("obraCaja"); if(box && CTL_FICHA === pid){ box.innerHTML = obraHtml(pid); obraCargarFirma(); }
+}
+function entregaDe(pid){ return FIRMAS.find(f => f.proyecto_id === pid && f.tipo === "entrega" && f.estado !== "Anulada") || null; }
+function obraSeccionFicha(pid){
+  setTimeout(() => obraCargarFotos(pid), 0);
+  return '<div class="ctl-card" style="margin-top:14px"><h3>📦 Entrega de obra</h3><div id="obraCaja"><p class="muted small">Cargando fotos…</p></div></div>';
+}
+function obraHtml(pid){
+  const fotos = OBRA_FOTOS[pid];
+  if(fotos === null) return '<div class="note warning">Falta ejecutar <b>supabase_mejoras_v12_3.sql</b> en Supabase para usar las fotos y el acta de entrega.</div>';
+  const e = entregaDe(pid);
+  const est = !e ? '<span class="muted">Sin acta enviada.</span>'
+    : e.estado === "Aceptada" ? '<b style="color:#135b30">✅ Obra recibida</b> por <b>' + escapeHtml(e.firma_nombre || "") + '</b> · ' + escapeHtml(fechaHoraCorta(e.respondido))
+    : e.estado === "Rechazada" ? '<b style="color:#a3261b">⚠ El cliente dejó observaciones</b> · ' + escapeHtml(fechaHoraCorta(e.respondido)) + (e.comentario ? '<div>«' + escapeHtml(e.comentario) + '»</div>' : '')
+    : '<b>⏳ Acta enviada</b> · ' + (e.visto ? "vista " + escapeHtml(fechaHoraCorta(e.visto)) : "aún no la abre");
+  return '<div class="obra-fotos">' + (fotos || []).map(f => '<figure><a href="' + escapeHtml(f.url) + '" target="_blank" rel="noopener"><img src="' + escapeHtml(f.url) + '" alt="Foto de obra" loading="lazy"></a>' +
+      '<button type="button" title="Quitar foto" data-obra="borrar" data-id="' + f.id + '">✕</button></figure>').join("") +
+      '<label class="obra-add"><input type="file" accept="image/*" multiple id="obraArchivo" data-pid="' + escapeHtml(pid) + '" hidden><span>＋</span>Agregar fotos</label></div>' +
+    '<div style="margin:10px 0;line-height:1.6">' + est + '</div>' +
+    (e && e.estado === "Aceptada" ? '<div id="obraFirmaImg" class="firma-img" data-token="' + e.token + '"></div>' : '') +
+    '<div class="ctl-acc-head"><button type="button" class="firma-btn" style="padding:9px 14px;font-size:14px" data-obra="acta" data-pid="' + escapeHtml(pid) + '">✍ ' + (e ? "Nuevo enlace de acta" : "Enviar acta de entrega para firma") + '</button>' +
+    (e ? '<button type="button" class="btn-outline" data-firma="copiar" data-token="' + e.token + '">🔗 Copiar enlace</button>' : '') + '</div>';
+}
+/* Reduce la foto antes de subirla (máx. 1600 px, JPEG) para que cargue rápido en el celular del cliente */
+function obraReducir(file){
+  return new Promise((res, rej) => {
+    const url = URL.createObjectURL(file), img = new Image();
+    img.onload = () => {
+      const k = Math.min(1, 1600 / Math.max(img.width, img.height)), c = document.createElement("canvas");
+      c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+      c.getContext("2d").drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(url);
+      c.toBlob(b => b ? res(b) : rej(new Error("No se pudo leer la foto.")), "image/jpeg", 0.82);
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); rej(new Error("Formato de imagen no compatible.")); };
+    img.src = url;
+  });
+}
+async function obraSubir(input){
+  const pid = input.dataset.pid, files = [...input.files].slice(0, 12); input.value = "";
+  if(!files.length) return;
+  const box = document.getElementById("obraCaja"); if(box) box.insertAdjacentHTML("afterbegin", '<p class="muted small" id="obraSubiendo">Subiendo ' + files.length + ' foto(s)…</p>');
+  let ok = 0;
+  for(const f of files){
+    try{
+      const blob = await obraReducir(f), tk = await sbToken();
+      if(!tk || tk === "__red") throw new Error("Sin conexión con el servidor.");
+      const ruta = pid + "/" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7) + ".jpg";
+      const r = await sbFetch("/storage/v1/object/obras/" + ruta, { method:"POST", headers:{ apikey:SB.key, Authorization:"Bearer " + tk, "Content-Type":"image/jpeg", "x-upsert":"false" }, body: blob });
+      if(!r.ok) throw new Error(sbErr(r, "No se pudo subir la foto."));
+      const url = SB.url + "/storage/v1/object/public/obras/" + ruta;
+      const g = await sbRest("/rest/v1/obra_fotos", { method:"POST", headers:{ "Content-Type":"application/json", Prefer:"return=minimal" }, body: JSON.stringify({ proyecto_id: pid, url, ruta }) });
+      if(!g.ok) throw new Error(g.error);
+      ok++;
+    }catch(e){ toast(e.message, "err"); }
+  }
+  if(ok) toast(ok + " foto(s) agregada(s).", "ok");
+  await obraCargarFotos(pid);
+}
+async function obraBorrar(id){
+  const pid = CTL_FICHA, f = (OBRA_FOTOS[pid] || []).find(x => x.id === id); if(!f) return;
+  if(!confirm("¿Quitar esta foto de la entrega?")) return;
+  const r = await sbRest("/rest/v1/obra_fotos?id=eq." + id, { method:"DELETE" });
+  if(!r.ok) return toast(r.error || "No se pudo quitar.", "err");
+  const tk = await sbToken();
+  if(tk && tk !== "__red") sbFetch("/storage/v1/object/obras/" + f.ruta, { method:"DELETE", headers:{ apikey:SB.key, Authorization:"Bearer " + tk } }).catch(() => {});
+  await obraCargarFotos(pid);
+}
+function actaHtml(p){
+  const base = urlBasePrograma() + "assets/", mz = (p.modulo || "vidrieria") === "muebles";
+  const emp = mz ? { nombre: EMPRESA_MZ.nombre, tel: EMPRESA_MZ.telefono, logo: base + "logo-mz.jpg" } : { nombre: CFG.empresa, tel: CFG.telefono, logo: base + "logo-vitra.png" };
+  const items = mz ? (p.items || []).filter(i => num(i.ml) > 0 || String(i.desc || "").trim()).map((i, n) => '<tr><td>' + (n + 1) + '</td><td class="l">' + escapeHtml(i.desc || "—") + '</td><td>' + escapeHtml(i.ml || "") + ' ML</td></tr>').join("")
+    : (p.items || []).filter(i => num(i.alto) > 0 && num(i.ancho) > 0).map((i, n) => '<tr><td>' + (n + 1) + '</td><td class="l">' + escapeHtml(i.description || "—") + (i.material ? '<div style="font-size:11.5px;color:#62758c">' + escapeHtml(i.material) + '</div>' : '') + '</td><td>' + escapeHtml(i.cantidad || 1) + ' × ' + escapeHtml(i.alto) + ' × ' + escapeHtml(i.ancho) + ' ' + (p.unidad === "cm" ? "cm" : "pulg.") + '</td></tr>').join("");
+  const fotos = (OBRA_FOTOS[p.id] || []).map(f => '<img src="' + escapeHtml(f.url) + '" alt="Foto de la obra">').join("");
+  return (mz ? '<style>#docRender .doc-head{border-bottom-color:#75451f}#docRender .doc-emp h1,#docRender .doc-meta .box h4{color:#75451f}#docRender th{background:#75451f}</style>' : '') +
+    '<style>#docRender .acta-fotos{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:8px}#docRender .acta-fotos img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;border:1px solid #dfe7f0}</style>' +
+    '<div class="doc-head"><div class="doc-logos"><img class="doc-logo-marca" src="' + emp.logo + '" alt=""><img class="doc-logo-corp" src="' + base + 'logo-tinoco.jpg" alt=""></div>' +
+    '<div class="doc-emp"><h1>ACTA DE ENTREGA</h1><div class="doc-legal"><b>' + escapeHtml(RAZON_SOCIAL) + '</b></div><div><b>RTN:</b> ' + escapeHtml(CFG.rtn) + ' · <b>Tel.:</b> ' + escapeHtml(emp.tel) + '</div>' +
+    '<div><b>Fecha:</b> ' + fechaLarga(todayISO()) + '</div></div></div>' +
+    '<div class="doc-meta"><div class="box"><h4>Cliente</h4><div><b>' + escapeHtml(p.cliente || "—") + '</b></div>' + (p.telefono ? '<div>Teléfono: ' + escapeHtml(p.telefono) + '</div>' : '') + (p.direccion ? '<div>' + escapeHtml(p.direccion) + '</div>' : '') + '</div>' +
+    '<div class="box"><h4>Obra</h4><div><b>' + escapeHtml(p.proyecto || "—") + '</b></div><div>' + (mz ? "Presupuesto" : "Cotización") + ' N.° ' + escapeHtml(p.numero || "") + '</div><div>Empresa: ' + escapeHtml(emp.nombre) + '</div></div></div>' +
+    '<div class="doc-sub">Trabajos entregados</div>' +
+    '<table><thead><tr><th>#</th><th>Descripción</th><th>' + (mz ? "Medida" : "Cantidad y medidas") + '</th></tr></thead><tbody>' + (items || '<tr><td colspan="3">Según cotización ' + escapeHtml(p.numero || "") + '.</td></tr>') + '</tbody></table>' +
+    (fotos ? '<div class="doc-sub">Fotos de la obra terminada</div><div class="acta-fotos">' + fotos + '</div>' : '') +
+    '<div class="doc-cond">Con la firma de esta acta el cliente declara haber recibido los trabajos descritos. Si tiene observaciones, indíquelas al responder en lugar de firmar.</div>' +
+    '<div class="doc-pie">' + escapeHtml(emp.nombre) + ' · Acta de entrega de ' + escapeHtml(p.numero || "") + ' · ' + fechaLarga(todayISO()) + '</div>';
+}
+async function obraEnviarActa(pid, btn){
+  const p = ctlProy(pid); if(!p) return;
+  const e = entregaDe(pid);
+  if(e && e.estado === "Aceptada" && !confirm("El cliente ya firmó la recepción. ¿Crear un acta nueva de todos modos?")) return;
+  if(e && e.estado === "Pendiente" && !confirm("Ya hay un acta pendiente. El enlace anterior dejará de funcionar. ¿Continuar?")) return;
+  if(!(OBRA_FOTOS[pid] || []).length && !confirm("El acta no tiene fotos de la obra. ¿Enviarla así?")) return;
+  return conBoton(btn, "Creando enlace…", async () => {
+    const r = await sbRpc("cot_crear_enlace", { e: { proyecto_id: pid, tipo: "entrega", html: actaHtml(p), numero: p.numero || "", cliente: p.cliente || "",
+      empresa: (p.modulo === "muebles" ? EMPRESA_MZ.nombre : CFG.empresa), total: r2(totalesDe(p).total), dias: 30 } });
+    if(!r.ok) throw new Error(r.error || "No se pudo crear el enlace.");
+    const url = urlBasePrograma() + "firma.html?t=" + r.token;
+    await firmasCargar();
+    const txt = "Hola" + (p.cliente ? " " + p.cliente : "") + ", le compartimos el acta de entrega de su obra (" + (p.proyecto || p.numero || "") + "). " +
+      "Por favor revísela y, si todo está conforme, fírmela en este enlace:\n" + url;
+    if(p.telefono && confirm("Enlace del acta listo.\n\n¿Enviarlo ahora por WhatsApp a " + p.telefono + "?")) abrirWa(p.telefono, txt);
+    else { try{ await navigator.clipboard.writeText(txt); toast("Enlace del acta copiado.", "ok"); }catch(err){ prompt("Copie el enlace del acta:", url); } }
+    if(CTL_FICHA === pid) ctlFicha(pid);
+  });
+}
+async function obraCargarFirma(){
+  const box = document.getElementById("obraFirmaImg"); if(!box) return;
+  const r = await sbRest("/rest/v1/cot_enlaces?select=firma_png&token=eq." + encodeURIComponent(box.dataset.token));
+  const png = r.ok && r.data && r.data[0] && r.data[0].firma_png;
+  box.innerHTML = png && /^data:image\/png;base64,/.test(png) ? '<img src="' + png + '" alt="Firma de recepción">' : "";
+}
+
+/* ---------- Eventos de estas pantallas ---------- */
+document.addEventListener("click", e => {
+  const s = e.target.closest("[data-seg]");
+  if(s){ const p = ctlProy(s.dataset.id); if(s.dataset.seg === "ver" && p) verDocumento(p); if(s.dataset.seg === "wa") segWhatsapp(s.dataset.id); if(s.dataset.seg === "ficha") ctlFicha(s.dataset.id); return; }
+  const c = e.target.closest("button[data-cxc]");
+  if(c && c.dataset.cxc === "wa"){ cxcWhatsapp(c.dataset.pid); return; }
+  if(c && c.dataset.cxc === "ficha"){ ctlFicha(c.dataset.pid); return; }
+  const o = e.target.closest("[data-obra]");
+  if(o && o.dataset.obra === "borrar"){ obraBorrar(o.dataset.id); return; }
+  if(o && o.dataset.obra === "acta"){ obraEnviarActa(o.dataset.pid, o); return; }
+});
+document.addEventListener("change", e => {
+  if(e.target.matches && e.target.matches("input[data-cxc='vence']")) cxcGuardarVence(e.target.dataset.pid, e.target.value);
+  if(e.target.id === "obraArchivo") obraSubir(e.target);
+});
+
+/* ---------- Pintar ---------- */
+const CTL_VISTAS_ADMIN = [["resumen","Resumen"],["seguimiento","Seguimiento"],["ventas","Ventas y cobros"],["cxc","Por cobrar"],["gastos","Gastos"],["ordenes","Órdenes de compra"],["compras","Compras"],["inventario","Inventario"],["proveedores","Proveedores"],["sar","Facturación SAR"],["auditoria","🛡 Auditoría"]];
+const CTL_VISTAS_OPER  = [["seguimiento","Seguimiento de cotizaciones"],["gastos","Gastos de mis proyectos"],["ordenes","Órdenes de compra"],["inventario","Inventario"]];
+function ctlPintar(){
+  const vistas = esAdmin() ? CTL_VISTAS_ADMIN : CTL_VISTAS_OPER;
+  if(!vistas.some(v => v[0] === CTL_VISTA)) CTL_VISTA = vistas[0][0];
+  const badge = { ordenes: CTL.oc.filter(o => o.estado === "Solicitada").length,
+                  inventario: CTL.mat.filter(m => m.activo && Number(m.minimo) > 0 && Number(m.stock) <= Number(m.minimo)).length,
+                  seguimiento: segLista().filter(x => x.dias <= 3 && !(x.firma && x.firma.estado === "Aceptada")).length,
+                  cxc: esAdmin() ? cxcLista().filter(x => x.atraso > 0).length : 0 };
+  $("ctlTabs").innerHTML = vistas.map(v => '<button type="button" data-ctl="' + v[0] + '" class="' + (v[0] === CTL_VISTA ? "on" : "") + '">' + v[1] +
+    (badge[v[0]] && (esAdmin() || v[0] === "inventario" || v[0] === "seguimiento") ? '<b>' + badge[v[0]] + '</b>' : "") + '</button>').join("");
+  $("ctlBtnOc").classList.toggle("hidden", false);
+  const f = { resumen:ctlVistaResumen, ventas:ctlVistaVentas, gastos:ctlVistaGastos, ordenes:ctlVistaOrdenes, compras:ctlVistaCompras,
+              inventario:ctlVistaInventario, proveedores:ctlVistaProveedores, sar:ctlVistaSar, auditoria:ctlVistaAuditoria, seguimiento:ctlVistaSeguimiento, cxc:ctlVistaCxc }[CTL_VISTA];
+  $("ctlCuerpo").innerHTML = f();
+}
+function ctlKpi(color, titulo, valor, nota, cls){
+  return '<div class="ctl-kpi" style="--c:' + color + '"><small>' + titulo + '</small><strong>' + valor + '</strong><em class="' + (cls || "muted") + '">' + nota + '</em></div>';
+}
+function ctlSelMes(){
+  const meses = [], d = new Date();
+  for(let i = 0; i < 12; i++){ const x = new Date(d.getFullYear(), d.getMonth() - i, 1); meses.push(x.getFullYear() + "-" + String(x.getMonth() + 1).padStart(2,"0")); }
+  const nom = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+  return '<select id="ctlMes" class="ctl-mes">' + meses.map(m => '<option value="' + m + '"' + (m === (CTL_MES || ctlMesActual()) ? " selected" : "") + '>' +
+    nom[Number(m.slice(5)) - 1] + " " + m.slice(0,4) + '</option>').join("") + '</select>';
+}
+function ctlVistaResumen(){
+  const ventasMes = CTL.ven.filter(v => v.estado !== "Anulada" && ctlEnMes(v.fecha));
+  const vMes = r2c(ventasMes.reduce((s,v) => s + ctlBaseVenta(v.proyecto_id), 0));
+  const gMes = r2c(CTL.gas.filter(g => ctlEnMes(g.fecha)).reduce((s,g) => s + Number(g.monto), 0));
+  const cMes = r2c(CTL.com.filter(c => ctlEnMes(c.fecha)).reduce((s,c) => s + Number(c.exento) + Number(c.gravado15) + Number(c.gravado18), 0));
+  const util = r2c(ventasMes.reduce((s,v) => s + ctlBaseVenta(v.proyecto_id) - ctlCostoProyecto(v.proyecto_id).total, 0));
+  const porCobrar = r2c(CTL.ven.filter(v => v.estado !== "Anulada").reduce((s,v) => s + Math.max(0, Number(v.total) - ctlCobrado(v.proyecto_id)), 0));
+  const deudores = CTL.ven.filter(v => v.estado !== "Anulada" && Number(v.total) - ctlCobrado(v.proyecto_id) > 0.009).length;
+  const abiertas = CTL.oc.filter(o => ["Solicitada","Aprobada","Enviada","Recibida parcial"].includes(o.estado));
+  const pend = r2c(abiertas.reduce((s,o) => s + (o.lineas || []).reduce((t,l) => t + Math.max(0, Number(l.cantidad) - Number(l.recibido || 0)) * Number(l.precio || 0), 0), 0));
+  const valorInv = r2c(CTL.mat.reduce((s,m) => s + Math.max(0, Number(m.stock)) * Number(m.costo), 0));
+  const bajos = CTL.mat.filter(m => m.activo && Number(m.minimo) > 0 && Number(m.stock) <= Number(m.minimo)).length;
+  const proys = PROYECTOS.filter(p => !p.eliminado && (ctlVenta(p.id) || ctlCostoProyecto(p.id).total > 0 || CTL.oc.some(o => o.proyecto_id === p.id)))
+    .sort((a,b) => String(b.actualizado || "").localeCompare(String(a.actualizado || ""))).slice(0, 12);
+  const filas = proys.map(p => {
+    const v = ctlVenta(p.id), c = ctlCostoProyecto(p.id), base = ctlBaseVenta(p.id);
+    const m = base > 0 ? Math.round((base - c.total) / base * 100) : 0;
+    const color = !v ? "#b9c6d6" : m >= 40 ? "linear-gradient(90deg,#1da85a,#5dd08a)" : m >= 20 ? "linear-gradient(90deg,#e8a21a,#f3c45d)" : "linear-gradient(90deg,#d92027,#f07a7e)";
+    return '<tr class="ctl-click" data-ficha="' + escapeHtml(p.id) + '"><td><b>' + escapeHtml(p.numero || "s/n") + '</b><div class="muted small">' + escapeHtml((p.proyecto || "") + (p.cliente ? " · " + p.cliente : "")) + '</div></td>' +
+      '<td>' + ctlPill(ctlEstadoProyecto(p.id)) + '</td><td class="r">' + cL(base) + '</td><td class="r">' + cL(c.total) + '</td>' +
+      '<td><span class="ctl-bar"><i style="width:' + Math.max(0, Math.min(100, m)) + '%;background:' + color + '"></i></span>' + (v ? m + "%" : '<span class="muted">en proceso</span>') + '</td></tr>';
+  }).join("") || '<tr><td colspan="5" class="muted" style="padding:18px">Aún no hay proyectos con ventas, gastos u órdenes de compra.</td></tr>';
+  const av = ctlAvisos();
+  return '<div class="ctl-filtro">Período: ' + ctlSelMes() + '</div>' +
+    '<div class="ctl-kpis">' +
+      ctlKpi("#1678e8","Ventas del mes (sin ISV)", cL(vMes), ventasMes.length + " venta(s)") +
+      ctlKpi("#ff7300","Compras + gastos del mes", cL(cMes + gMes), "Compras " + cL(cMes) + " · Gastos " + cL(gMes)) +
+      ctlKpi("#159447","Utilidad de las ventas del mes", cL(util), vMes > 0 ? "Margen " + Math.round(util / vMes * 100) + "%" : "—", util >= 0 ? "up" : "down") +
+      ctlKpi("#9245d8","Por cobrar", cL(porCobrar), deudores + " cliente(s)", deudores ? "warn" : "muted") +
+      ctlKpi("#0e7490","Órdenes de compra", abiertas.length + " abiertas", cL(pend) + " por recibir") +
+      ctlKpi("#d92027","Inventario", cL(valorInv), bajos ? bajos + " bajo mínimo" : "Existencias al día", bajos ? "down" : "muted") +
+    '</div>' +
+    '<div class="ctl-grid2"><div class="ctl-card"><h3>Proyectos · rentabilidad</h3><div class="table-wrap"><table class="ctl-t"><thead><tr><th>Proyecto</th><th>Estado</th><th class="r">Venta</th><th class="r">Costos</th><th>Margen</th></tr></thead><tbody>' + filas + '</tbody></table></div>' +
+    '<p class="muted small" style="margin:8px 0 0">Toque un proyecto para ver su ficha completa.</p></div>' +
+    '<div class="ctl-card"><h3>Avisos</h3>' + (av.length ? av.map(a => '<div class="ctl-alert ' + a.t + '"><span>' + a.i + '</span><div>' + a.h + '</div></div>').join("") : '<p class="muted">Todo en orden. ✔</p>') + '</div></div>' +
+    indicadoresVendedores();
+}
+function ctlVistaVentas(){
+  const candidatos = PROYECTOS.filter(p => !p.eliminado && !ctlVenta(p.id) && Number(p.total) > 0);
+  const filas = CTL.ven.map(v => {
+    const p = ctlProy(v.proyecto_id), cob = ctlCobrado(v.proyecto_id), saldo = r2c(Number(v.total) - cob);
+    const fac = CTL.fac.filter(f => f.proyecto_id === v.proyecto_id && !f.anulada).map(f => f.numero).join(", ");
+    return '<tr class="ctl-click" data-ficha="' + escapeHtml(v.proyecto_id) + '"><td>' + cF(v.fecha) + '</td><td><b>' + escapeHtml(p ? p.numero : v.proyecto_id) + '</b><div class="muted small">' + escapeHtml(p ? (p.proyecto + " · " + p.cliente) : "") + '</div></td>' +
+      '<td>' + ctlPill(v.estado) + '</td><td class="r">' + cL(v.total) + '</td><td class="r">' + cL(cob) + '</td><td class="r ' + (saldo > 0 && v.estado !== "Anulada" ? "down" : "") + '"><b>' + cL(Math.max(0, saldo)) + '</b></td><td class="small">' + escapeHtml(fac || "—") + '</td></tr>';
+  }).join("") || '<tr><td colspan="7" class="muted" style="padding:18px">Todavía no hay ventas. Convierta una cotización aprobada en venta.</td></tr>';
+  return '<div class="ctl-acciones"><select id="ctlVentaProy"><option value="">— Elija la cotización que el cliente aprobó —</option>' +
+    candidatos.map(p => '<option value="' + escapeHtml(p.id) + '">' + escapeHtml(ctlNomProy(p.id)) + " · " + cL(p.total) + '</option>').join("") +
+    '</select><button type="button" class="save" style="color:#fff" data-ctlacc="convertir">✔ Convertir en venta</button></div>' +
+    '<div class="ctl-card"><h3>Ventas</h3><div class="table-wrap"><table class="ctl-t"><thead><tr><th>Fecha</th><th>Proyecto</th><th>Estado</th><th class="r">Total</th><th class="r">Cobrado</th><th class="r">Saldo</th><th>Factura(s)</th></tr></thead><tbody>' + filas + '</tbody></table></div></div>';
+}
+function ctlVistaGastos(){
+  const proy = $("ctlGProy") ? $("ctlGProy").value : "";
+  const lista = CTL.gas.filter(g => (!proy || g.proyecto_id === proy) && (esAdmin() ? ctlEnMes(g.fecha) || proy : true));
+  const total = r2c(lista.reduce((s,g) => s + Number(g.monto), 0));
+  const filas = lista.map(g => '<tr><td>' + cF(g.fecha) + '</td><td class="small">' + escapeHtml(ctlNomProy(g.proyecto_id, true)) + '</td><td>' + escapeHtml(g.categoria) + '</td><td>' + escapeHtml(g.descripcion) +
+    (g.proveedor ? '<div class="muted small">' + escapeHtml(g.proveedor) + '</div>' : '') + '</td><td class="small muted">' + escapeHtml(g.comprobante || "—") + '</td><td class="r"><b>' + cL(g.monto) + '</b></td>' +
+    '<td class="acc">' + ((esAdmin() || g.usuario === SESION.usuario) ? '<button class="action-small edit" data-gasto="edit" data-id="' + g.id + '">Editar</button><button class="action-small del" data-gasto="del" data-id="' + g.id + '">✕</button>' : '') + '</td></tr>').join("") ||
+    '<tr><td colspan="7" class="muted" style="padding:18px">No hay gastos registrados con este filtro.</td></tr>';
+  return '<div class="ctl-acciones">' + (esAdmin() ? '<span>Período: ' + ctlSelMes() + '</span>' : '') +
+    '<select id="ctlGProy"><option value="">' + (esAdmin() ? "Todos los proyectos" : "Todos mis proyectos") + '</option>' +
+    PROYECTOS.filter(p => !p.eliminado).map(p => '<option value="' + escapeHtml(p.id) + '"' + (p.id === proy ? " selected" : "") + '>' + escapeHtml(ctlNomProy(p.id)) + '</option>').join("") + '</select>' +
+    '<button type="button" class="save" style="color:#fff" data-ctlacc="gasto">＋ Registrar gasto</button></div>' +
+    '<div class="ctl-card"><h3>Gastos <span class="muted small">· ' + lista.length + ' registro(s) · total ' + cL(total) + '</span></h3><div class="table-wrap"><table class="ctl-t"><thead><tr><th>Fecha</th><th>Proyecto</th><th>Categoría</th><th>Detalle</th><th>Comprobante</th><th class="r">Monto</th><th></th></tr></thead><tbody>' + filas + '</tbody></table></div></div>';
+}
+function ctlVistaOrdenes(){
+  const est = $("ctlOEst") ? $("ctlOEst").value : "abiertas";
+  const lista = CTL.oc.filter(o => est === "abiertas" ? !["Recibida","Anulada"].includes(o.estado) : (!est || o.estado === est));
+  const filas = lista.map(o => {
+    const rec = (o.lineas || []).reduce((s,l) => s + Number(l.recibido || 0), 0), ped = (o.lineas || []).reduce((s,l) => s + Number(l.cantidad || 0), 0);
+    return '<tr><td><b>' + escapeHtml(o.numero) + '</b><div class="muted small">' + cF(o.fecha) + ' · ' + escapeHtml(o.usuario || "") + '</div></td><td>' + escapeHtml(ctlProvNombre(o.proveedor_id)) + '</td>' +
+      '<td class="small">' + escapeHtml(ctlNomProy(o.proyecto_id, true)) + '</td><td>' + ctlPill(o.estado) + (ped ? '<div class="muted small">' + cN(rec) + ' de ' + cN(ped) + ' recibido</div>' : '') + '</td>' +
+      '<td class="r"><b>' + cL(o.total) + '</b></td><td class="acc">' + ctlBotonesOc(o) + '</td></tr>';
+  }).join("") || '<tr><td colspan="6" class="muted" style="padding:18px">No hay órdenes de compra con este filtro.</td></tr>';
+  return '<div class="ctl-acciones"><select id="ctlOEst"><option value="abiertas"' + (est === "abiertas" ? " selected" : "") + '>Abiertas (por aprobar, enviar o recibir)</option><option value=""' + (est === "" ? " selected" : "") + '>Todas</option>' +
+    CTL_ESTADO_OC.map(e => '<option' + (est === e ? " selected" : "") + '>' + e + '</option>').join("") + '</select>' +
+    '<button type="button" class="new" style="color:#fff" data-ctlacc="oc">＋ ' + (esAdmin() ? "Nueva orden de compra" : "Solicitar orden de compra") + '</button></div>' +
+    '<div class="ctl-card"><h3>Órdenes de compra</h3><div class="table-wrap"><table class="ctl-t"><thead><tr><th>Orden</th><th>Proveedor</th><th>Proyecto</th><th>Estado</th><th class="r">Total</th><th></th></tr></thead><tbody>' + filas + '</tbody></table></div></div>';
+}
+function ctlBotonesOc(o){
+  let b = '<button class="action-small edit" data-oc="ver" data-id="' + o.id + '">Ver</button>';
+  if(o.estado === "Solicitada" && (esAdmin() || o.usuario === SESION.usuario)) b += '<button class="action-small edit" data-oc="editar" data-id="' + o.id + '">Editar</button>';
+  if(!esAdmin()) return b;
+  if(o.estado === "Aprobada") b += '<button class="action-small edit" data-oc="editar" data-id="' + o.id + '">Editar</button>';
+  if(o.estado === "Solicitada") b += '<button class="action-small dup" data-oc="aprobar" data-id="' + o.id + '">✔ Aprobar</button>';
+  if(o.estado === "Aprobada") b += '<button class="action-small dup" data-oc="enviar" data-id="' + o.id + '">Marcar enviada</button>';
+  if(["Aprobada","Enviada","Recibida parcial"].includes(o.estado)) b += '<button class="action-small dup" data-oc="recibir" data-id="' + o.id + '">📦 Recibir</button>';
+  if(["Solicitada","Aprobada","Enviada"].includes(o.estado)) b += '<button class="action-small del" data-oc="anular" data-id="' + o.id + '">Anular</button>';
+  return b;
+}
+function ctlVistaCompras(){
+  const lista = CTL.com.filter(c => ctlEnMes(c.fecha));
+  const t = k => r2c(lista.reduce((s,c) => s + Number(c[k]), 0));
+  const filas = lista.map(c => '<tr><td>' + cF(c.fecha) + '</td><td>' + escapeHtml(c.proveedor || ctlProvNombre(c.proveedor_id)) + '<div class="muted small">RTN ' + escapeHtml(c.rtn || "—") + '</div></td><td>' + escapeHtml(c.numero_factura || "—") +
+    (c.orden_id ? '<div class="muted small">' + escapeHtml((ctlOcPorId(c.orden_id) || {}).numero || "") + '</div>' : '') + '</td><td class="r">' + cL(c.exento) + '</td><td class="r">' + cL(Number(c.gravado15) + Number(c.gravado18)) + '</td><td class="r">' + cL(Number(c.isv15) + Number(c.isv18)) + '</td><td class="r"><b>' + cL(c.total) + '</b></td>' +
+    '<td class="acc"><button class="action-small del" data-compra="del" data-id="' + c.id + '">✕</button></td></tr>').join("") ||
+    '<tr><td colspan="8" class="muted" style="padding:18px">No hay compras registradas en este período.</td></tr>';
+  return '<div class="ctl-acciones"><span>Período: ' + ctlSelMes() + '</span><button type="button" class="save" style="color:#fff" data-ctlacc="compra">＋ Registrar factura de proveedor</button>' +
+    '<button type="button" class="excel" style="color:#fff" data-ctlacc="libroCompras">⬇ Libro de compras (Excel)</button></div>' +
+    '<div class="ctl-card"><h3>Compras del período <span class="muted small">· crédito fiscal ISV ' + cL(t("isv15") + t("isv18")) + '</span></h3><div class="table-wrap"><table class="ctl-t"><thead><tr><th>Fecha</th><th>Proveedor</th><th>Factura</th><th class="r">Exento</th><th class="r">Gravado</th><th class="r">ISV</th><th class="r">Total</th><th></th></tr></thead><tbody>' + filas +
+    '</tbody><tfoot><tr><td colspan="3"><b>Totales</b></td><td class="r">' + cL(t("exento")) + '</td><td class="r">' + cL(t("gravado15") + t("gravado18")) + '</td><td class="r">' + cL(t("isv15") + t("isv18")) + '</td><td class="r"><b>' + cL(t("total")) + '</b></td><td></td></tr></tfoot></table></div></div>';
+}
+function ctlVistaInventario(){
+  const q = ($("ctlIBus") ? $("ctlIBus").value : "").toLowerCase();
+  const lista = CTL.mat.filter(m => !q || (m.codigo + " " + m.nombre + " " + m.categoria).toLowerCase().includes(q));
+  const filas = lista.map(m => {
+    const bajo = m.activo && Number(m.minimo) > 0 && Number(m.stock) <= Number(m.minimo);
+    return '<tr class="' + (bajo ? "ctl-bajo" : "") + '"><td><b>' + escapeHtml(m.codigo) + '</b></td><td>' + escapeHtml(m.nombre) + '<div class="muted small">' + escapeHtml(m.categoria) + '</div></td><td>' + escapeHtml(m.unidad) + '</td>' +
+      '<td class="r"><b>' + cN(m.stock, 3) + '</b>' + (bajo ? ' <span class="ctl-pill st-anu">Bajo</span>' : '') + '</td><td class="r">' + cN(m.minimo, 3) + '</td>' +
+      (esAdmin() ? '<td class="r">' + cL(m.costo) + '</td><td class="r">' + cL(Math.max(0, m.stock) * m.costo) + '</td><td class="acc"><button class="action-small edit" data-mat="mov" data-id="' + m.id + '">± Movimiento</button><button class="action-small edit" data-mat="kardex" data-id="' + m.id + '">Kárdex</button><button class="action-small edit" data-mat="edit" data-id="' + m.id + '">Editar</button></td>' : '') + '</tr>';
+  }).join("") || '<tr><td colspan="8" class="muted" style="padding:18px">No hay materiales registrados.' + (esAdmin() ? ' Use «＋ Material» o «Cargar materiales PVC».' : '') + '</td></tr>';
+  const valor = r2c(CTL.mat.reduce((s,m) => s + Math.max(0, Number(m.stock)) * Number(m.costo), 0));
+  return '<div class="ctl-acciones"><input id="ctlIBus" placeholder="Buscar código, material o categoría…" value="' + escapeHtml(q) + '">' +
+    (esAdmin() ? '<button type="button" class="save" style="color:#fff" data-ctlacc="material">＋ Material</button><button type="button" class="btn-outline" data-ctlacc="cargarPvc">⇩ Cargar materiales PVC</button>' : '') + '</div>' +
+    '<div class="ctl-card"><h3>Inventario de materiales' + (esAdmin() ? ' <span class="muted small">· valor ' + cL(valor) + '</span>' : '') + '</h3><div class="table-wrap"><table class="ctl-t"><thead><tr><th>Código</th><th>Material</th><th>Unidad</th><th class="r">Existencia</th><th class="r">Mínimo</th>' +
+    (esAdmin() ? '<th class="r">Costo prom.</th><th class="r">Valor</th><th></th>' : '') + '</tr></thead><tbody>' + filas + '</tbody></table></div></div>';
+}
+function ctlVistaProveedores(){
+  const filas = CTL.prov.map(p => '<tr><td><b>' + escapeHtml(p.nombre) + '</b>' + (p.activo ? '' : ' <span class="ctl-pill st-anu">Inactivo</span>') + '</td><td>' + escapeHtml(p.rtn || "—") + '</td><td>' + escapeHtml(p.contacto || "—") + '</td><td>' + escapeHtml(p.telefono || "—") + '</td>' +
+    '<td class="r">' + CTL.oc.filter(o => o.proveedor_id === p.id && o.estado !== "Anulada").length + '</td><td class="acc"><button class="action-small edit" data-prov="edit" data-id="' + p.id + '">Editar</button></td></tr>').join("") ||
+    '<tr><td colspan="6" class="muted" style="padding:18px">Registre sus proveedores para usarlos en las órdenes de compra.</td></tr>';
+  return '<div class="ctl-acciones"><button type="button" class="save" style="color:#fff" data-ctlacc="proveedor">＋ Proveedor</button></div>' +
+    '<div class="ctl-card"><h3>Proveedores</h3><div class="table-wrap"><table class="ctl-t"><thead><tr><th>Proveedor</th><th>RTN</th><th>Contacto</th><th>Teléfono</th><th class="r">Órdenes</th><th></th></tr></thead><tbody>' + filas + '</tbody></table></div></div>';
+}
+function ctlVistaSar(){
+  const cais = CTL.cai.map(c => {
+    const i = ctlCaiInfo(c);
+    const est = !c.activo ? '<span class="ctl-pill st-anu">Inactivo</span>' : i.vencido ? '<span class="ctl-pill st-anu">Vencido</span>' : i.agotado ? '<span class="ctl-pill st-anu">Agotado</span>' : '<span class="ctl-pill st-ok">Vigente</span>';
+    return '<tr><td class="mono small">' + escapeHtml(c.cai) + '</td><td class="mono">' + escapeHtml(c.prefijo) + '-' + String(c.desde).padStart(8,"0") + '<br>al ' + escapeHtml(c.prefijo) + '-' + String(c.hasta).padStart(8,"0") + '</td>' +
+      '<td>' + cF(c.fecha_limite) + (c.activo && !i.vencido ? '<div class="muted small">' + i.dias + ' días</div>' : '') + '</td><td><span class="ctl-bar"><i style="width:' + i.pct + '%;background:' + (i.pct >= 90 ? "#d92027" : i.pct >= 75 ? "#e8a21a" : "#1da85a") + '"></i></span>' + i.usadas + ' usadas · quedan ' + Math.max(0, i.quedan) + '</td><td>' + est + '</td>' +
+      '<td class="acc"><button class="action-small edit" data-cai="toggle" data-id="' + c.id + '">' + (c.activo ? "Desactivar" : "Activar") + '</button></td></tr>';
+  }).join("") || '<tr><td colspan="6" class="muted" style="padding:18px">Registre el CAI del talonario que le entregó la imprenta.</td></tr>';
+  const lista = CTL.fac.filter(f => ctlEnMes(f.fecha));
+  const t = k => r2c(lista.filter(f => !f.anulada).reduce((s,f) => s + Number(f[k]), 0));
+  const facs = lista.map(f => '<tr class="' + (f.anulada ? "ctl-anulada" : "") + '"><td>' + cF(f.fecha) + '</td><td class="mono"><b>' + escapeHtml(f.numero) + '</b></td><td>' + escapeHtml(f.cliente) + '<div class="muted small">RTN ' + escapeHtml(f.rtn || "—") + '</div></td>' +
+    '<td class="r">' + cL(Number(f.exento) + Number(f.exonerado)) + '</td><td class="r">' + cL(Number(f.gravado15) + Number(f.gravado18)) + '</td><td class="r">' + cL(Number(f.isv15) + Number(f.isv18)) + '</td><td class="r"><b>' + cL(f.total) + '</b></td>' +
+    '<td class="acc">' + (f.anulada ? '<span class="ctl-pill st-anu">Anulada</span>' : '<button class="action-small del" data-fac="anular" data-id="' + f.id + '">Anular</button>') + '</td></tr>').join("") ||
+    '<tr><td colspan="8" class="muted" style="padding:18px">No hay facturas registradas en este período.</td></tr>';
+  return '<div class="ctl-acciones"><span>Período: ' + ctlSelMes() + '</span><button type="button" class="pdf" style="color:#fff" data-ctlacc="factura">🧾 Registrar factura del talonario</button>' +
+    '<button type="button" class="btn-outline" data-ctlacc="cai">＋ CAI / talonario</button><button type="button" class="excel" style="color:#fff" data-ctlacc="libroVentas">⬇ Libro de ventas (Excel)</button></div>' +
+    '<div class="note" style="margin-bottom:14px">Modalidad: <b>talonario de imprenta autorizada</b>. Cada factura se escribe en el talonario y aquí se registra su número; el sistema valida que esté dentro del rango autorizado del CAI y antes de la fecha límite de emisión. Revise con su contador los datos de cada factura.</div>' +
+    '<div class="ctl-card"><h3>CAI y talonarios</h3><div class="table-wrap"><table class="ctl-t"><thead><tr><th>CAI</th><th>Rango autorizado</th><th>Fecha límite</th><th>Uso</th><th>Estado</th><th></th></tr></thead><tbody>' + cais + '</tbody></table></div></div>' +
+    '<div class="ctl-card"><h3>Libro de ventas del período <span class="muted small">· ISV generado ' + cL(t("isv15") + t("isv18")) + '</span></h3><div class="table-wrap"><table class="ctl-t"><thead><tr><th>Fecha</th><th>Factura</th><th>Cliente</th><th class="r">Exento/Exon.</th><th class="r">Gravado</th><th class="r">ISV</th><th class="r">Total</th><th></th></tr></thead><tbody>' + facs +
+    '</tbody><tfoot><tr><td colspan="3"><b>Totales (sin anuladas)</b></td><td class="r">' + cL(t("exento") + t("exonerado")) + '</td><td class="r">' + cL(t("gravado15") + t("gravado18")) + '</td><td class="r">' + cL(t("isv15") + t("isv18")) + '</td><td class="r"><b>' + cL(t("total")) + '</b></td><td></td></tr></tfoot></table></div></div>';
+}
+
+/* ---------- Ventana genérica ---------- */
+function ctlModal(titulo, cuerpo, botones){
+  $("ctlMTitulo").textContent = titulo;
+  $("ctlMCuerpo").innerHTML = cuerpo;
+  $("ctlMAlerta").className = "alerta";
+  $("ctlMPie").innerHTML = '<button class="btn-ghost" type="button" data-close="modalCtl">Cancelar</button>';
+  (botones || []).forEach(b => {
+    const el = document.createElement("button");
+    el.type = "button"; el.className = b.cls || "save"; el.style.color = "#fff"; el.textContent = b.txt;
+    el.onclick = async () => { el.disabled = true; try{ await b.fn(); }finally{ el.disabled = false; } };
+    $("ctlMPie").appendChild(el);
+  });
+  $("ctlMPie").querySelector("[data-close]").onclick = () => cerrar("modalCtl");
+  abrir("modalCtl");
+}
+function ctlAviso(t, ok){ const a = $("ctlMAlerta"); a.className = "alerta show " + (ok ? "ok" : "err"); a.textContent = t; a.scrollIntoView({ block:"nearest" }); }
+function ctlCampo(id, label, html, ancho){ return '<div class="field' + (ancho ? " ctl-wide" : "") + '"><label for="' + id + '">' + label + '</label>' + html + '</div>'; }
+function ctlIn(id, val, attrs){ return '<input id="' + id + '" value="' + escapeHtml(val == null ? "" : val) + '" ' + (attrs || "") + '>'; }
+function ctlVal(id){ const e = $(id); return e ? String(e.value).trim() : ""; }
+
+/* ---------- Gastos ---------- */
+function ctlFormGasto(id, proyFijo){
+  const g = id ? CTL.gas.find(x => x.id === id) : null;
+  const proy = g ? g.proyecto_id : (proyFijo || "");
+  ctlModal(g ? "Editar gasto" : "Registrar gasto",
+    '<div class="form-grid ctl-form">' +
+      ctlCampo("cgProy", "Proyecto" + (esAdmin() ? "" : " *"), '<select id="cgProy">' + ctlOpcionesProy(proy, esAdmin()) + '</select>', true) +
+      ctlCampo("cgFecha", "Fecha", ctlIn("cgFecha", g ? g.fecha : todayISO(), 'type="date"')) +
+      ctlCampo("cgCat", "Categoría", '<select id="cgCat">' + CTL_CAT_GASTO.map(c => '<option' + (g && g.categoria === c ? " selected" : "") + '>' + c + '</option>').join("") + '</select>') +
+      ctlCampo("cgDesc", "Detalle *", ctlIn("cgDesc", g ? g.descripcion : "", 'maxlength="300" placeholder="Ej. Flete de materiales a la obra"'), true) +
+      ctlCampo("cgProv", "Pagado a / proveedor", ctlIn("cgProv", g ? g.proveedor : "", 'maxlength="160"')) +
+      ctlCampo("cgComp", "Comprobante", ctlIn("cgComp", g ? g.comprobante : "", 'maxlength="80" placeholder="Factura, recibo o planilla"')) +
+      ctlCampo("cgMonto", "Monto (L) *", ctlIn("cgMonto", g ? g.monto : "", 'type="number" min="0.01" step="0.01" inputmode="decimal"')) +
+    '</div>',
+    [{ txt:"💾 Guardar gasto", fn: async () => {
+      const fila = { proyecto_id: ctlVal("cgProy") || null, fecha: ctlVal("cgFecha") || todayISO(), categoria: ctlVal("cgCat"),
+        descripcion: ctlVal("cgDesc"), proveedor: ctlVal("cgProv"), comprobante: ctlVal("cgComp"), monto: r2c(num(ctlVal("cgMonto"))) };
+      if(!esAdmin() && !fila.proyecto_id) return ctlAviso("Elija el proyecto del gasto.");
+      if(!fila.descripcion) return ctlAviso("Escriba el detalle del gasto.");
+      if(!(fila.monto > 0)) return ctlAviso("Escriba un monto mayor que cero.");
+      try{ await ctlEscribir("ctl_gastos", fila, g ? "id=eq." + g.id : ""); cerrar("modalCtl"); toast("Gasto guardado.", "ok"); ctlCargar(); }
+      catch(e){ ctlAviso("No se pudo guardar: " + e.message); }
+    } }]);
+}
+async function ctlBorrarGasto(id){
+  const g = CTL.gas.find(x => x.id === id); if(!g || !confirm("¿Eliminar el gasto «" + g.descripcion + "» de " + cL(g.monto) + "?")) return;
+  try{ await ctlBorrar("ctl_gastos", "id=eq." + id); toast("Gasto eliminado.", "ok"); ctlCargar(); }catch(e){ toast("No se pudo eliminar: " + e.message, "err"); }
+}
+
+/* ---------- Órdenes de compra ---------- */
+function ctlFormOc(id, base){
+  const o = id ? ctlOcPorId(id) : null;
+  base = base || {};
+  CTL_OC_LINEAS = o ? JSON.parse(JSON.stringify(o.lineas || [])) : (base.lineas || [{ cantidad:1, precio:0 }]);
+  const provs = CTL.prov.filter(p => p.activo || (o && p.id === o.proveedor_id));
+  ctlModal(o ? "Editar " + o.numero : (esAdmin() ? "Nueva orden de compra" : "Solicitar orden de compra"),
+    (!provs.length && esAdmin() ? '<div class="note warning" style="margin-bottom:10px">Todavía no hay proveedores. Regístrelos en la pestaña Proveedores.</div>' : '') +
+    '<div class="form-grid ctl-form">' +
+      ctlCampo("coProv", "Proveedor", '<select id="coProv"><option value="">— Por definir —</option>' + provs.map(p => '<option value="' + p.id + '"' + (o && o.proveedor_id === p.id ? " selected" : "") + '>' + escapeHtml(p.nombre) + '</option>').join("") + '</select>') +
+      ctlCampo("coProy", "Proyecto o cotización" + (esAdmin() ? "" : " *"), '<select id="coProy">' + ctlOpcionesProy(o ? o.proyecto_id : (base.proyecto_id || ""), esAdmin()).replace("Sin proyecto (gasto general)", "Sin proyecto (para bodega)") + '</select>') +
+      ctlCampo("coEntrega", "Fecha de entrega", ctlIn("coEntrega", o ? o.entrega : "", 'type="date"')) +
+      ctlCampo("coIsv", "ISV", '<select id="coIsv">' + [15,18,0].map(v => '<option value="' + v + '"' + ((o ? Number(o.isv_pct) : 15) === v ? " selected" : "") + '>' + (v ? v + "%" : "Exento") + '</option>').join("") + '</select>') +
+      ctlCampo("coCond", "Condiciones", '<textarea id="coCond" rows="2" maxlength="600" placeholder="Forma de pago, lugar de entrega…">' + escapeHtml(o ? o.condiciones : ("Entregar con factura a nombre de " + RAZON_SOCIAL + ", RTN " + CFG.rtn + ".")) + '</textarea>', true) +
+    '</div><div class="doc-sub" style="margin-top:14px">Materiales</div><div class="table-wrap"><table class="ctl-t ctl-lineas"><thead><tr><th style="width:30%">Material de inventario</th><th>Descripción</th><th style="width:90px">Cant.</th><th style="width:90px">Unidad</th><th style="width:110px">Precio</th><th class="r" style="width:110px">Importe</th><th></th></tr></thead><tbody id="coLineas"></tbody></table></div>' +
+    '<button type="button" class="btn-outline" id="coAgregar" style="margin-top:8px">＋ Agregar línea</button><div class="ctl-tot" id="coTotales"></div>',
+    [{ txt: o ? "💾 Guardar cambios" : (esAdmin() ? "💾 Crear orden" : "📨 Enviar solicitud"), cls:"new", fn: () => ctlGuardarOc(o) }]);
+  ctlPintarLineasOc();
+  $("coAgregar").onclick = () => { ctlLeerLineasOc(); CTL_OC_LINEAS.push({ cantidad:1, precio:0 }); ctlPintarLineasOc(); };
+  $("coIsv").onchange = ctlTotalesOc;
+}
+function ctlPintarLineasOc(){
+  const opts = CTL.mat.filter(m => m.activo);
+  $("coLineas").innerHTML = CTL_OC_LINEAS.map((l,i) => '<tr data-i="' + i + '">' +
+    '<td><select class="co-mat"><option value="">— Otro (texto libre) —</option>' + opts.map(m => '<option value="' + m.id + '"' + (l.material_id === m.id ? " selected" : "") + '>' + escapeHtml(m.codigo + " · " + m.nombre) + '</option>').join("") + '</select></td>' +
+    '<td><input class="co-desc" value="' + escapeHtml(l.descripcion || "") + '" maxlength="200"></td>' +
+    '<td><input class="co-cant" type="number" min="0" step="0.01" value="' + escapeHtml(l.cantidad ?? 1) + '"></td>' +
+    '<td><input class="co-uni" value="' + escapeHtml(l.unidad || "unidad") + '" maxlength="20"></td>' +
+    '<td><input class="co-precio" type="number" min="0" step="0.01" value="' + escapeHtml(l.precio ?? 0) + '"></td>' +
+    '<td class="r co-imp"></td><td><button type="button" class="remove co-del">🗑</button></td></tr>').join("");
+  $("coLineas").querySelectorAll("tr").forEach(tr => {
+    tr.querySelector(".co-mat").onchange = e => {
+      const m = CTL.mat.find(x => x.id === e.target.value);
+      if(m){ tr.querySelector(".co-desc").value = m.nombre; tr.querySelector(".co-uni").value = m.unidad; if(!num(tr.querySelector(".co-precio").value)) tr.querySelector(".co-precio").value = r2c(m.costo); }
+      ctlTotalesOc();
+    };
+    tr.querySelectorAll("input").forEach(i => i.oninput = ctlTotalesOc);
+    tr.querySelector(".co-del").onclick = () => { ctlLeerLineasOc(); CTL_OC_LINEAS.splice(+tr.dataset.i, 1); if(!CTL_OC_LINEAS.length) CTL_OC_LINEAS.push({ cantidad:1, precio:0 }); ctlPintarLineasOc(); };
+  });
+  ctlTotalesOc();
+}
+function ctlLeerLineasOc(){
+  CTL_OC_LINEAS = [...$("coLineas").querySelectorAll("tr")].map((tr,i) => Object.assign({}, CTL_OC_LINEAS[i] || {}, {
+    material_id: tr.querySelector(".co-mat").value || null,
+    descripcion: tr.querySelector(".co-desc").value.trim(),
+    cantidad: r2c(num(tr.querySelector(".co-cant").value)),
+    unidad: tr.querySelector(".co-uni").value.trim() || "unidad",
+    precio: r2c(num(tr.querySelector(".co-precio").value))
+  }));
+  return CTL_OC_LINEAS;
+}
+function ctlTotalesOc(){
+  const ls = ctlLeerLineasOc();
+  $("coLineas").querySelectorAll("tr").forEach((tr,i) => tr.querySelector(".co-imp").textContent = cL(ls[i].cantidad * ls[i].precio));
+  const sub = r2c(ls.reduce((s,l) => s + r2c(l.cantidad * l.precio), 0)), pct = Number($("coIsv").value), isv = r2c(sub * pct / 100);
+  $("coTotales").innerHTML = '<div><span>Subtotal</span><b>' + cL(sub) + '</b></div><div><span>ISV ' + (pct ? pct + "%" : "(exento)") + '</span><b>' + cL(isv) + '</b></div><div class="t"><span>Total</span><b>' + cL(sub + isv) + '</b></div>';
+}
+async function ctlGuardarOc(o){
+  const lineas = ctlLeerLineasOc().filter(l => l.descripcion && l.cantidad > 0);
+  if(!lineas.length) return ctlAviso("Agregue al menos un material con descripción y cantidad.");
+  const proy = ctlVal("coProy") || null;
+  if(!esAdmin() && !proy) return ctlAviso("Elija el proyecto para el que pide los materiales.");
+  const fila = { proveedor_id: ctlVal("coProv") || null, proyecto_id: proy, entrega: ctlVal("coEntrega") || null,
+    isv_pct: Number(ctlVal("coIsv")), condiciones: ctlVal("coCond"), lineas: lineas.map(l => Object.assign({ recibido: 0 }, l)) };
+  if(!o) fila.estado = esAdmin() ? "Aprobada" : "Solicitada";
+  try{
+    await ctlEscribir("ctl_ordenes", fila, o ? "id=eq." + o.id : "");
+    cerrar("modalCtl");
+    toast(o ? "Orden actualizada." : (esAdmin() ? "Orden de compra creada." : "Solicitud enviada al administrador."), "ok");
+    CTL_VISTA = "ordenes"; await ctlCargar();
+  }catch(e){ ctlAviso("No se pudo guardar: " + e.message); }
+}
+async function ctlEstadoOc(id, estado, pregunta){
+  const o = ctlOcPorId(id); if(!o) return;
+  if(pregunta && !confirm(pregunta)) return;
+  try{ await ctlEscribir("ctl_ordenes", { estado }, "id=eq." + id); toast(o.numero + " · " + estado + ".", "ok"); ctlCargar(); }
+  catch(e){ toast("No se pudo actualizar: " + e.message, "err"); }
+}
+function ctlRecibirOc(id){
+  const o = ctlOcPorId(id); if(!o) return;
+  const filas = (o.lineas || []).map((l,i) => {
+    const pend = r2c(Number(l.cantidad) - Number(l.recibido || 0));
+    return '<tr><td>' + escapeHtml(l.descripcion) + (l.material_id ? '' : ' <span class="muted small">(sin inventario)</span>') + '</td><td class="r">' + cN(l.cantidad) + '</td><td class="r">' + cN(l.recibido || 0) + '</td>' +
+      '<td><input class="cr-cant" data-i="' + i + '" type="number" min="0" max="' + pend + '" step="0.01" value="' + pend + '" style="width:100px"></td></tr>';
+  }).join("");
+  ctlModal("Recibir " + o.numero + " · " + ctlProvNombre(o.proveedor_id),
+    '<div class="table-wrap"><table class="ctl-t"><thead><tr><th>Material</th><th class="r">Pedido</th><th class="r">Ya recibido</th><th>Recibe ahora</th></tr></thead><tbody>' + filas + '</tbody></table></div>' +
+    (o.proyecto_id ? '<label class="ctl-check"><input type="checkbox" id="crDirecto" checked> Enviar directo al proyecto <b>' + escapeHtml(ctlNomProy(o.proyecto_id, true)) + '</b> (se descuenta de bodega y se carga al costo del proyecto)</label>' :
+      '<p class="muted small">Esta orden no tiene proyecto: el material queda en bodega.</p>') +
+    '<div class="doc-sub">Factura del proveedor (para el libro de compras)</div><div class="form-grid ctl-form">' +
+      ctlCampo("crFac", "N.° de factura", ctlIn("crFac", "", 'placeholder="000-001-01-00000000" maxlength="30"')) +
+      ctlCampo("crCai", "CAI del proveedor", ctlIn("crCai", "", 'maxlength="60"')) +
+      ctlCampo("crFecha", "Fecha de la factura", ctlIn("crFecha", todayISO(), 'type="date"')) +
+    '</div><p class="muted small">Si todavía no tiene la factura, deje el número vacío y regístrela después en Compras.</p>',
+    [{ txt:"📦 Confirmar recepción", fn: async () => {
+      const recibido = [...document.querySelectorAll(".cr-cant")].map(i => r2c(num(i.value)));
+      if(!recibido.some(x => x > 0)) return ctlAviso("Indique al menos una cantidad recibida.");
+      const r = await sbRpc("ctl_recibir_orden", { r: { orden_id:o.id, recibido, directo: !!($("crDirecto") && $("crDirecto").checked),
+        numero_factura: ctlVal("crFac"), cai: ctlVal("crCai"), fecha: ctlVal("crFecha") } });
+      if(!r.ok) return ctlAviso(r.error || "No se pudo registrar la recepción.");
+      cerrar("modalCtl"); toast(o.numero + " · " + r.estado + ".", "ok"); ctlCargar();
+    } }]);
+}
+function ctlDocOc(id){
+  const o = ctlOcPorId(id); if(!o) return;
+  const pv = CTL.prov.find(p => p.id === o.proveedor_id) || {};
+  const filas = (o.lineas || []).map((l,i) => {
+    const m = CTL.mat.find(x => x.id === l.material_id);
+    return '<tr><td>' + (i + 1) + '</td><td>' + escapeHtml(m ? m.codigo : "—") + '</td><td class="l">' + escapeHtml(l.descripcion) + '</td><td>' + cN(l.cantidad) + '</td><td>' + escapeHtml(l.unidad || "") + '</td><td class="r">' + cL(l.precio) + '</td><td class="r">' + cL(r2c(l.cantidad * l.precio)) + '</td></tr>';
+  }).join("");
+  DOC_ACTUAL = { modulo:"oc", numero:o.numero, cliente: pv.nombre || "" };
+  $("docTitulo").textContent = "Orden de compra " + o.numero;
+  $("docRender").innerHTML =
+    '<div class="doc-head"><div class="doc-logos"><img class="doc-logo-marca" src="' + LOGO + '" alt=""><img class="doc-logo-corp" src="' + LOGO_PORTADA + '" alt=""></div>' +
+    '<div class="doc-emp"><h1>ORDEN DE COMPRA</h1><div style="font-size:20px;font-weight:900;color:var(--blue)">' + escapeHtml(o.numero) + '</div>' +
+    '<div class="doc-legal"><b>' + escapeHtml(RAZON_SOCIAL) + '</b></div><div><b>RTN:</b> ' + escapeHtml(CFG.rtn) + ' · <b>Tel.:</b> ' + escapeHtml(CFG.telefono) + '</div>' +
+    (CFG.direccion ? '<div>' + escapeHtml(CFG.direccion) + '</div>' : '') + '<div><b>Fecha:</b> ' + fechaLarga(o.fecha) + '</div></div></div>' +
+    '<div class="doc-meta"><div class="box"><h4>Proveedor</h4><div><b>' + escapeHtml(pv.nombre || "Por definir") + '</b></div>' + (pv.rtn ? '<div>RTN: ' + escapeHtml(pv.rtn) + '</div>' : '') +
+    (pv.contacto ? '<div>Contacto: ' + escapeHtml(pv.contacto) + '</div>' : '') + (pv.telefono ? '<div>Tel.: ' + escapeHtml(pv.telefono) + '</div>' : '') + '</div>' +
+    '<div class="box"><h4>Entrega</h4><div><b>Fecha:</b> ' + (o.entrega ? fechaLarga(o.entrega) : "A convenir") + '</div>' +
+    '<div><b>Lugar:</b> ' + escapeHtml(CFG.direccion || "A coordinar con " + CFG.empresa) + '</div>' +
+    '<div><b>Contacto:</b> ' + escapeHtml([SESION.nombre || o.usuario || "", CFG.telefono].filter(Boolean).join(" · ")) + '</div></div></div>' +
+    '<table><thead><tr><th>#</th><th>Código</th><th>Descripción</th><th>Cant.</th><th>Unidad</th><th>Precio</th><th>Importe</th></tr></thead><tbody>' + filas + '</tbody>' +
+    '<tfoot><tr><td colspan="6" class="r">Subtotal</td><td class="r">' + cL(o.subtotal) + '</td></tr><tr><td colspan="6" class="r">ISV ' + (Number(o.isv_pct) ? cN(o.isv_pct) + "%" : "(exento)") + '</td><td class="r">' + cL(o.isv) + '</td></tr>' +
+    '<tr class="final"><td colspan="6" class="r">TOTAL</td><td class="r">' + cL(o.total) + '</td></tr></tfoot></table>' +
+    '<div class="doc-letras"><b>Son:</b> ' + escapeHtml(numeroALetras(o.total)) + '</div>' +
+    (o.condiciones ? '<div class="doc-cond"><b>Condiciones:</b> ' + escapeHtml(o.condiciones) + '</div>' : '') +
+    '<div class="ctl-firmas"><div>Elaborado por<br><small>' + escapeHtml(o.usuario || "") + '</small></div><div>Autorizado por</div><div>Recibido por el proveedor</div></div>' +
+    '<div class="doc-pie">' + escapeHtml(CFG.empresa) + ' · Orden de compra ' + escapeHtml(o.numero) + ' · impresa el ' + fechaLarga(todayISO()) + '</div>';
+  abrir("modalDoc");
+}
+/* Orden de compra con los materiales del cálculo PVC del proyecto abierto */
+function ctlOcDesdePvc(){
+  if(!SB_ON || !SESION.token) return toast("Necesita conexión con la nube para crear órdenes de compra.", "err");
+  if(!pvHayCalculo()) return toast("Primero presione «Calcular materiales».", "err");
+  if(!ACTUAL || !ctlProy(ACTUAL)) return toast("Guarde el proyecto antes de pedir sus materiales.", "err");
+  const lineas = [...document.querySelectorAll("#pvResumenBody tr")].filter(tr => tr.children.length >= 6 && !tr.querySelector("td[colspan]")).map(tr => {
+    const td = [...tr.children].map(x => x.textContent.trim());
+    const nombre = td[0], unidad = td[1], cant = numTxt(td[3]), precio = numTxt(td[4]);
+    const m = CTL.mat.find(x => x.nombre.toLowerCase() === nombre.toLowerCase());
+    return { material_id: m ? m.id : null, descripcion: nombre + " · " + $("pvTipo").value, unidad: unidad.split("/").pop().trim() || "unidad", cantidad: cant, precio: precio };
+  }).filter(l => l.cantidad > 0);
+  if(!lineas.length) return toast("El cálculo no tiene materiales por comprar.", "err");
+  const ir = () => ctlFormOc(null, { proyecto_id: ACTUAL, lineas });
+  if(!CTL.prov.length && !CTL.mat.length) ctlCargar().then(ir); else ir();
+}
+
+/* ---------- Ventas, cobros y ficha del proyecto ---------- */
+async function ctlConvertirVenta(pid){
+  const p = ctlProy(pid);
+  if(!p) return toast("Elija la cotización aprobada.", "err");
+  if(!(Number(p.total) > 0)) return toast("La cotización no tiene total. Revísela antes de convertirla.", "err");
+  if(!confirm("¿Convertir " + (p.numero || p.proyecto) + " en venta por " + cL(p.total) + "?")) return;
+  try{
+    await ctlEscribir("ctl_ventas", { proyecto_id: pid, estado: "Venta", fecha: todayISO(), subtotal: r2c(p.subtotal || p.total), isv: r2c(Number(p.total) - Number(p.subtotal || p.total)), total: r2c(p.total) });
+    toast("✔ " + (p.numero || p.proyecto) + " ahora es una venta.", "ok");
+    await ctlCargar(); ctlFicha(pid);
+  }catch(e){ toast("No se pudo convertir: " + e.message, "err"); }
+}
+function ctlFormCobro(pid){
+  const v = ctlVenta(pid); if(!v) return;
+  const saldo = r2c(Number(v.total) - ctlCobrado(pid));
+  ctlModal("Registrar cobro · " + ctlNomProy(pid, true),
+    '<div class="note" style="margin-bottom:10px">Total ' + cL(v.total) + ' · cobrado ' + cL(ctlCobrado(pid)) + ' · <b>saldo ' + cL(saldo) + '</b></div><div class="form-grid ctl-form">' +
+    ctlCampo("cbMonto", "Monto (L) *", ctlIn("cbMonto", saldo > 0 ? saldo : "", 'type="number" min="0.01" step="0.01"')) +
+    ctlCampo("cbFecha", "Fecha", ctlIn("cbFecha", todayISO(), 'type="date"')) +
+    ctlCampo("cbMetodo", "Forma de pago", '<select id="cbMetodo"><option>Efectivo</option><option>Transferencia</option><option>Depósito</option><option>Cheque</option><option>Tarjeta</option></select>') +
+    ctlCampo("cbRef", "Referencia", ctlIn("cbRef", "", 'maxlength="80" placeholder="N.° de transferencia, cheque…"')) + '</div>',
+    [{ txt:"💾 Guardar cobro", fn: async () => {
+      const monto = r2c(num(ctlVal("cbMonto")));
+      if(!(monto > 0)) return ctlAviso("Escriba el monto cobrado.");
+      if(monto > saldo + 0.01 && !confirm("El monto es mayor que el saldo (" + cL(saldo) + "). ¿Registrarlo de todos modos?")) return;
+      try{
+        await ctlEscribir("ctl_cobros", { proyecto_id: pid, monto, fecha: ctlVal("cbFecha") || todayISO(), metodo: ctlVal("cbMetodo"), referencia: ctlVal("cbRef") });
+        if(ctlCobrado(pid) + monto >= Number(v.total) - 0.01 && v.estado !== "Cobrada") await ctlEscribir("ctl_ventas", { estado: "Cobrada" }, "proyecto_id=eq." + encodeURIComponent(pid));
+        cerrar("modalCtl"); toast("Cobro registrado.", "ok"); ctlCargar();
+      }catch(e){ ctlAviso("No se pudo guardar: " + e.message); }
+    } }]);
+}
+async function ctlAnularVenta(pid){
+  if(CTL.fac.some(f => f.proyecto_id === pid && !f.anulada)) return toast("Primero anule la factura de esta venta.", "err");
+  if(!confirm("¿Anular la venta de " + ctlNomProy(pid, true) + "? Los gastos y compras se conservan.")) return;
+  try{ await ctlEscribir("ctl_ventas", { estado: "Anulada" }, "proyecto_id=eq." + encodeURIComponent(pid)); toast("Venta anulada.", "ok"); ctlCargar(); }
+  catch(e){ toast("No se pudo anular: " + e.message, "err"); }
+}
+function ctlFicha(pid){
+  const p = ctlProy(pid); if(!p) return toast("El proyecto no está disponible en este equipo.", "err");
+  CTL_FICHA = pid;
+  const adm = esAdmin(), v = ctlVenta(pid), c = ctlCostoProyecto(pid), est = ctlEstadoProyecto(pid);
+  const base = ctlBaseVenta(pid), util = r2c(base - c.total);
+  const etapas = ["Cotización","Venta","Facturada","Cobrada"], idx = v && v.estado === "Anulada" ? -1 : etapas.indexOf(est);
+  const gastos = CTL.gas.filter(g => g.proyecto_id === pid), ocs = CTL.oc.filter(o => o.proyecto_id === pid), cobros = CTL.cob.filter(x => x.proyecto_id === pid);
+  const facs = CTL.fac.filter(f => f.proyecto_id === pid && !f.anulada);
+  const mats = CTL.mov.filter(m => m.proyecto_id === pid && m.tipo === "salida");
+  const pct = x => base > 0 ? Math.max(0, Math.min(100, x / base * 100)) : 0;
+  $("fichaTitulo").textContent = (p.numero || "s/n") + " · " + (p.proyecto || "Sin nombre");
+  $("fichaCuerpo").innerHTML =
+    '<div class="ctl-ficha-head"><div><div class="muted">Cliente: <b>' + escapeHtml(p.cliente || "—") + '</b>' + (p.rtn ? ' · RTN ' + escapeHtml(p.rtn) : '') + ' · Vendedor: ' + escapeHtml(p.usuario || "") + '</div>' +
+      '<div class="muted small">' + ((p.modulo || "vidrieria") === "muebles" ? "Muebles Zacapa" : "Vitra House") + ' · cotizado ' + cL(p.total) + '</div></div>' +
+      '<div class="ctl-acc-head"><button class="btn-outline" type="button" data-fx="gasto">＋ Gasto</button><button class="new" style="color:#fff" type="button" data-fx="oc">＋ Orden de compra</button>' +
+      (adm && !v ? '<button class="save" style="color:#fff" type="button" data-fx="venta">✔ Convertir en venta</button>' : '') +
+      (adm && v && v.estado === "Venta" ? '<button class="pdf" style="color:#fff" type="button" data-fx="factura">🧾 Registrar factura</button>' : '') +
+      (adm && v && ["Venta","Facturada"].includes(v.estado) ? '<button class="save" style="color:#fff" type="button" data-fx="cobro">💰 Registrar cobro</button>' : '') + '</div></div>' +
+    (v && v.estado === "Anulada" ? '<div class="note warning">Esta venta fue anulada.</div>' :
+      '<div class="ctl-pipe">' + etapas.map((e,i) => '<div class="' + (i < idx ? "done" : i === idx ? "now" : "") + '">' + (i < idx ? "✓ " : "") + e + '</div>').join("") + '</div>') +
+    (adm ? '<div class="ctl-profit"><div><small>' + (v ? "Venta (sin ISV)" : "Cotizado (sin ISV)") + '</small><b>' + cL(base) + '</b><span class="muted small">' + (facs.length ? "Factura " + escapeHtml(facs.map(f => f.numero).join(", ")) : v ? "Sin factura" : "Aún no es venta") + '</span></div>' +
+      '<div><small>Materiales</small><b>' + cL(c.materiales) + '</b><span class="muted small">' + ocs.length + ' orden(es) de compra</span></div>' +
+      '<div><small>Gastos</small><b>' + cL(c.gastos) + '</b><span class="muted small">' + gastos.length + ' gasto(s)</span></div>' +
+      '<div class="' + (util >= 0 ? "pos" : "neg") + '"><small>Utilidad</small><b>' + cL(util) + '</b><span class="small"><b>Margen ' + (base > 0 ? Math.round(util / base * 100) : 0) + '%</b></span></div></div>' +
+      '<div class="ctl-stack"><i style="width:' + pct(c.materiales) + '%;background:#ff8a1f"></i><i style="width:' + pct(c.gastos) + '%;background:#e9b949"></i><i style="width:' + pct(Math.max(0, util)) + '%;background:#1da85a"></i></div>' +
+      '<div class="ctl-legend"><span><i style="background:#ff8a1f"></i>Materiales</span><span><i style="background:#e9b949"></i>Gastos</span><span><i style="background:#1da85a"></i>Utilidad</span></div>' : '') +
+    '<div class="ctl-grid2" style="margin-top:14px"><div class="ctl-card"><h3>Gastos del proyecto</h3><div class="table-wrap"><table class="ctl-t"><thead><tr><th>Fecha</th><th>Categoría</th><th>Detalle</th><th class="r">Monto</th><th></th></tr></thead><tbody>' +
+      (gastos.map(g => '<tr><td>' + cF(g.fecha) + '</td><td>' + escapeHtml(g.categoria) + '</td><td>' + escapeHtml(g.descripcion) + (g.comprobante ? '<div class="muted small">' + escapeHtml(g.comprobante) + '</div>' : '') + '</td><td class="r">' + cL(g.monto) + '</td><td class="acc">' +
+        ((adm || g.usuario === SESION.usuario) ? '<button class="action-small edit" data-gasto="edit" data-id="' + g.id + '">Editar</button>' : '') + '</td></tr>').join("") || '<tr><td colspan="5" class="muted">Sin gastos registrados.</td></tr>') +
+      '</tbody><tfoot><tr><td colspan="3"><b>Total gastos</b></td><td class="r"><b>' + cL(c.gastos) + '</b></td><td></td></tr></tfoot></table></div>' +
+      (adm && mats.length ? '<div class="doc-sub">Materiales cargados al proyecto</div><table class="ctl-t"><tbody>' + mats.map(m => { const mt = CTL.mat.find(x => x.id === m.material_id) || {}; return '<tr><td>' + cF(m.fecha) + '</td><td>' + escapeHtml(mt.nombre || "") + '</td><td class="r">' + cN(m.cantidad) + ' ' + escapeHtml(mt.unidad || "") + '</td><td class="r">' + cL(m.cantidad * m.costo_unit) + '</td></tr>'; }).join("") + '</tbody></table>' : '') + '</div>' +
+    '<div class="ctl-card"><h3>Órdenes de compra' + (adm ? ' y cobros' : '') + '</h3><table class="ctl-t"><tbody>' +
+      (ocs.map(o => '<tr><td><b>' + escapeHtml(o.numero) + '</b><div class="muted small">' + escapeHtml(ctlProvNombre(o.proveedor_id)) + '</div></td><td>' + ctlPill(o.estado) + '</td><td class="r">' + cL(o.total) + '</td><td class="acc"><button class="action-small edit" data-oc="ver" data-id="' + o.id + '">Ver</button></td></tr>').join("") || '<tr><td colspan="4" class="muted">Sin órdenes de compra.</td></tr>') +
+      (adm && v ? cobros.map(x => '<tr><td><b>Cobro</b><div class="muted small">' + escapeHtml(x.metodo) + (x.referencia ? " · " + escapeHtml(x.referencia) : "") + ' · ' + cF(x.fecha) + '</div></td><td>' + ctlPill("Cobrada") + '</td><td class="r">' + cL(x.monto) + '</td><td></td></tr>').join("") +
+        '<tr><td><b>Saldo por cobrar</b></td><td></td><td class="r"><b class="' + (Number(v.total) - ctlCobrado(pid) > 0.009 ? "down" : "up") + '">' + cL(Math.max(0, Number(v.total) - ctlCobrado(pid))) + '</b></td><td></td></tr>' : '') +
+    '</tbody></table>' + (adm && v && v.estado !== "Anulada" ? '<button type="button" class="btn-red-outline" data-fx="anular" style="margin-top:12px">Anular venta</button>' : '') + '</div></div>' +
+    firmaSeccionFicha(pid) + obraSeccionFicha(pid);
+  abrir("modalFicha");
+  firmaCargarImagen();
+}
+
+/* ---------- Compras manuales ---------- */
+function ctlFormCompra(){
+  ctlModal("Registrar factura de proveedor",
+    '<div class="form-grid ctl-form">' +
+    ctlCampo("cmProv", "Proveedor *", '<select id="cmProv"><option value="">— Elija —</option>' + CTL.prov.map(p => '<option value="' + p.id + '">' + escapeHtml(p.nombre) + '</option>').join("") + '</select>') +
+    ctlCampo("cmFecha", "Fecha de la factura", ctlIn("cmFecha", todayISO(), 'type="date"')) +
+    ctlCampo("cmFac", "N.° de factura *", ctlIn("cmFac", "", 'placeholder="000-001-01-00000000" maxlength="30"')) +
+    ctlCampo("cmCai", "CAI del proveedor", ctlIn("cmCai", "", 'maxlength="60"')) +
+    ctlCampo("cmProy", "Proyecto (opcional)", '<select id="cmProy">' + ctlOpcionesProy("", true).replace("Sin proyecto (gasto general)", "Sin proyecto") + '</select>', true) +
+    ctlCampo("cmEx", "Importe exento", ctlIn("cmEx", "0", 'type="number" min="0" step="0.01"')) +
+    ctlCampo("cmG15", "Importe gravado 15%", ctlIn("cmG15", "0", 'type="number" min="0" step="0.01"')) +
+    ctlCampo("cmG18", "Importe gravado 18%", ctlIn("cmG18", "0", 'type="number" min="0" step="0.01"')) +
+    '</div><div class="ctl-tot" id="cmTot"></div><p class="muted small">Las compras van al libro de compras (crédito fiscal). Para cargar costos a un proyecto use Gastos u Órdenes de compra.</p>',
+    [{ txt:"💾 Guardar compra", fn: async () => {
+      const pv = CTL.prov.find(p => p.id === ctlVal("cmProv"));
+      if(!pv) return ctlAviso("Elija el proveedor.");
+      if(!ctlVal("cmFac")) return ctlAviso("Escriba el número de la factura del proveedor.");
+      const ex = r2c(num(ctlVal("cmEx"))), g15 = r2c(num(ctlVal("cmG15"))), g18 = r2c(num(ctlVal("cmG18")));
+      if(ex + g15 + g18 <= 0) return ctlAviso("Escriba los importes de la factura.");
+      const i15 = r2c(g15 * .15), i18 = r2c(g18 * .18);
+      try{
+        await ctlEscribir("ctl_compras", { proveedor_id: pv.id, proveedor: pv.nombre, rtn: pv.rtn, fecha: ctlVal("cmFecha"), numero_factura: ctlVal("cmFac"), cai: ctlVal("cmCai"),
+          proyecto_id: ctlVal("cmProy") || null, exento: ex, gravado15: g15, gravado18: g18, isv15: i15, isv18: i18, total: r2c(ex + g15 + g18 + i15 + i18) });
+        cerrar("modalCtl"); toast("Compra registrada.", "ok"); ctlCargar();
+      }catch(e){ ctlAviso("No se pudo guardar: " + e.message); }
+    } }]);
+  const tot = () => { const ex = num(ctlVal("cmEx")), g15 = num(ctlVal("cmG15")), g18 = num(ctlVal("cmG18")), i = r2c(g15 * .15 + g18 * .18);
+    $("cmTot").innerHTML = '<div><span>ISV (crédito fiscal)</span><b>' + cL(i) + '</b></div><div class="t"><span>Total factura</span><b>' + cL(ex + g15 + g18 + i) + '</b></div>'; };
+  ["cmEx","cmG15","cmG18"].forEach(i => $(i).oninput = tot); tot();
+}
+
+/* ---------- Inventario ---------- */
+function ctlFormMaterial(id){
+  const m = id ? CTL.mat.find(x => x.id === id) : null;
+  ctlModal(m ? "Editar material" : "Nuevo material",
+    '<div class="form-grid ctl-form">' +
+    ctlCampo("cmtCod", "Código *", ctlIn("cmtCod", m ? m.codigo : "", 'maxlength="40" placeholder="Ej. VID-5MM"')) +
+    ctlCampo("cmtNom", "Nombre *", ctlIn("cmtNom", m ? m.nombre : "", 'maxlength="160"')) +
+    ctlCampo("cmtUni", "Unidad", ctlIn("cmtUni", m ? m.unidad : "unidad", 'maxlength="20" placeholder="lance, lámina, rollo…"')) +
+    ctlCampo("cmtCat", "Categoría", ctlIn("cmtCat", m ? m.categoria : "General", 'maxlength="60"')) +
+    ctlCampo("cmtMin", "Existencia mínima", ctlIn("cmtMin", m ? m.minimo : 0, 'type="number" min="0" step="0.01"')) +
+    (m ? ctlCampo("cmtAct", "Estado", '<select id="cmtAct"><option value="1">Activo</option><option value="0"' + (m.activo ? "" : " selected") + '>Inactivo</option></select>') :
+      ctlCampo("cmtStock", "Existencia inicial", ctlIn("cmtStock", 0, 'type="number" min="0" step="0.01"')) + ctlCampo("cmtCosto", "Costo unitario (L)", ctlIn("cmtCosto", 0, 'type="number" min="0" step="0.01"'))) +
+    '</div>' + (m ? '<p class="muted small">La existencia y el costo cambian solo con movimientos (entradas, salidas y ajustes).</p>' : ''),
+    [{ txt:"💾 Guardar material", fn: async () => {
+      const fila = { codigo: ctlVal("cmtCod").toUpperCase(), nombre: ctlVal("cmtNom"), unidad: ctlVal("cmtUni") || "unidad", categoria: ctlVal("cmtCat") || "General", minimo: r2c(num(ctlVal("cmtMin"))) };
+      if(!fila.codigo || !fila.nombre) return ctlAviso("Escriba el código y el nombre.");
+      if(CTL.mat.some(x => x.codigo === fila.codigo && (!m || x.id !== m.id))) return ctlAviso("Ya existe un material con ese código.");
+      try{
+        if(m){ fila.activo = ctlVal("cmtAct") === "1"; await ctlEscribir("ctl_materiales", fila, "id=eq." + m.id); }
+        else{
+          fila.costo = r2c(num(ctlVal("cmtCosto")));
+          await ctlEscribir("ctl_materiales", fila);
+          const st = num(ctlVal("cmtStock"));
+          if(st > 0){
+            const lista = await ctlGet("ctl_materiales", "&codigo=eq." + encodeURIComponent(fila.codigo));
+            if(lista[0]) await ctlEscribir("ctl_movimientos", { material_id: lista[0].id, tipo: "entrada", cantidad: st, costo_unit: fila.costo, nota: "Existencia inicial" });
+          }
+        }
+        cerrar("modalCtl"); toast("Material guardado.", "ok"); ctlCargar();
+      }catch(e){ ctlAviso("No se pudo guardar: " + e.message); }
+    } }]);
+}
+function ctlFormMovimiento(id){
+  const m = CTL.mat.find(x => x.id === id); if(!m) return;
+  ctlModal("Movimiento · " + m.nombre,
+    '<div class="note" style="margin-bottom:10px">Existencia actual: <b>' + cN(m.stock, 3) + ' ' + escapeHtml(m.unidad) + '</b> · costo promedio ' + cL(m.costo) + '</div><div class="form-grid ctl-form">' +
+    ctlCampo("cmvTipo", "Tipo", '<select id="cmvTipo"><option value="salida">Salida a un proyecto</option><option value="entrada">Entrada (compra sin orden)</option><option value="ajuste">Ajuste de inventario (+/−)</option></select>') +
+    ctlCampo("cmvCant", "Cantidad *", ctlIn("cmvCant", "", 'type="number" step="0.01"')) +
+    ctlCampo("cmvCosto", "Costo unitario (solo entradas)", ctlIn("cmvCosto", r2c(m.costo), 'type="number" min="0" step="0.01"')) +
+    ctlCampo("cmvFecha", "Fecha", ctlIn("cmvFecha", todayISO(), 'type="date"')) +
+    ctlCampo("cmvProy", "Proyecto (salidas)", '<select id="cmvProy">' + ctlOpcionesProy("", true).replace("Sin proyecto (gasto general)", "Sin proyecto") + '</select>', true) +
+    ctlCampo("cmvNota", "Nota", ctlIn("cmvNota", "", 'maxlength="200" placeholder="Motivo del movimiento"'), true) + '</div>',
+    [{ txt:"💾 Registrar movimiento", fn: async () => {
+      const tipo = ctlVal("cmvTipo"), cant = r2c(num(ctlVal("cmvCant")));
+      if(!cant || (tipo !== "ajuste" && cant <= 0)) return ctlAviso("Escriba una cantidad válida" + (tipo === "ajuste" ? " (use negativo para restar)." : " mayor que cero."));
+      if(tipo === "salida" && cant > Number(m.stock) && !confirm("La salida es mayor que la existencia (" + cN(m.stock, 3) + "). ¿Continuar?")) return;
+      if(tipo === "ajuste" && !ctlVal("cmvNota")) return ctlAviso("Escriba el motivo del ajuste.");
+      try{
+        await ctlEscribir("ctl_movimientos", { material_id: m.id, tipo, cantidad: cant, costo_unit: tipo === "entrada" ? r2c(num(ctlVal("cmvCosto"))) : 0,
+          proyecto_id: tipo === "salida" ? (ctlVal("cmvProy") || null) : null, fecha: ctlVal("cmvFecha") || todayISO(), nota: ctlVal("cmvNota") });
+        cerrar("modalCtl"); toast("Movimiento registrado.", "ok"); ctlCargar();
+      }catch(e){ ctlAviso("No se pudo registrar: " + e.message); }
+    } }]);
+}
+function ctlKardex(id){
+  const m = CTL.mat.find(x => x.id === id); if(!m) return;
+  const movs = CTL.mov.filter(x => x.material_id === id);
+  ctlModal("Kárdex · " + m.codigo + " " + m.nombre,
+    '<div class="table-wrap"><table class="ctl-t"><thead><tr><th>Fecha</th><th>Tipo</th><th class="r">Cantidad</th><th class="r">Costo unit.</th><th>Proyecto / nota</th><th>Usuario</th></tr></thead><tbody>' +
+    (movs.map(x => '<tr><td>' + cF(x.fecha) + '</td><td>' + ctlPill(x.tipo === "entrada" ? "Recibida" : x.tipo === "salida" ? "Enviada" : "Solicitada").replace(/>(Recibida|Enviada|Solicitada)</, ">" + (x.tipo === "entrada" ? "Entrada" : x.tipo === "salida" ? "Salida" : "Ajuste") + "<") + '</td>' +
+      '<td class="r">' + (x.tipo === "salida" ? "−" : (x.tipo === "ajuste" && x.cantidad < 0 ? "" : "+")) + cN(x.cantidad, 3) + '</td><td class="r">' + cL(x.costo_unit) + '</td><td class="small">' + escapeHtml(x.proyecto_id ? ctlNomProy(x.proyecto_id, true) : "") + (x.nota ? '<div class="muted">' + escapeHtml(x.nota) + '</div>' : '') + '</td><td class="small">' + escapeHtml(x.usuario || "") + '</td></tr>').join("") ||
+      '<tr><td colspan="6" class="muted">Sin movimientos.</td></tr>') + '</tbody></table></div>', []);
+}
+async function ctlCargarPvc(){
+  if(typeof PVC === "undefined" || !PVC.materiales) return toast("No se encontró la lista de materiales PVC.", "err");
+  const tipo = $("pvTipo").value, campo = pvCampoPrecio(tipo), g = leerCatalogoGuardado();
+  const nuevos = PVC.materiales().filter(m => !CTL.mat.some(x => x.nombre.toLowerCase() === m.name.toLowerCase()));
+  if(!nuevos.length) return toast("Los materiales PVC ya están en el inventario.", "ok");
+  if(!confirm("Se agregarán " + nuevos.length + " materiales del catálogo PVC (" + tipo + ") con existencia 0. ¿Continuar?")) return;
+  try{
+    for(const m of nuevos){
+      const s = g[m.id] || {}, precio = s[campo] !== undefined ? s[campo] : (campo === "priceWhite" ? (s.priceWhite ?? m.priceWhite) : (s.priceWood ?? m.priceWood));
+      await ctlEscribir("ctl_materiales", { codigo: "PVC-" + String(m.id).toUpperCase().slice(0, 30), nombre: m.name, unidad: String(m.presentation || "unidad").toLowerCase(), categoria: m.category || "PVC", costo: r2c(precio || 0), minimo: 0 });
+    }
+    toast(nuevos.length + " materiales PVC agregados al inventario.", "ok"); ctlCargar();
+  }catch(e){ toast("No se pudo completar: " + e.message, "err"); ctlCargar(); }
+}
+
+/* ---------- Proveedores ---------- */
+function ctlFormProveedor(id){
+  const p = id ? CTL.prov.find(x => x.id === id) : null;
+  ctlModal(p ? "Editar proveedor" : "Nuevo proveedor",
+    '<div class="form-grid ctl-form">' +
+    ctlCampo("cpNom", "Nombre o razón social *", ctlIn("cpNom", p ? p.nombre : "", 'maxlength="160"'), true) +
+    ctlCampo("cpRtn", "RTN", ctlIn("cpRtn", p ? p.rtn : "", 'maxlength="20" inputmode="numeric" placeholder="14 dígitos"')) +
+    ctlCampo("cpCon", "Contacto", ctlIn("cpCon", p ? p.contacto : "", 'maxlength="80"')) +
+    ctlCampo("cpTel", "Teléfono", ctlIn("cpTel", p ? p.telefono : "", 'maxlength="40"')) +
+    ctlCampo("cpCor", "Correo", ctlIn("cpCor", p ? p.correo : "", 'type="email" maxlength="80"')) +
+    ctlCampo("cpDir", "Dirección", ctlIn("cpDir", p ? p.direccion : "", 'maxlength="200"'), true) +
+    (p ? ctlCampo("cpAct", "Estado", '<select id="cpAct"><option value="1">Activo</option><option value="0"' + (p.activo ? "" : " selected") + '>Inactivo</option></select>') : '') + '</div>',
+    [{ txt:"💾 Guardar proveedor", fn: async () => {
+      const fila = { nombre: ctlVal("cpNom"), rtn: ctlVal("cpRtn").replace(/[^\d]/g, ""), contacto: ctlVal("cpCon"), telefono: ctlVal("cpTel"), correo: ctlVal("cpCor"), direccion: ctlVal("cpDir") };
+      if(!fila.nombre) return ctlAviso("Escriba el nombre del proveedor.");
+      if(fila.rtn && fila.rtn.length !== 14) return ctlAviso("El RTN debe tener 14 dígitos.");
+      if(p) fila.activo = ctlVal("cpAct") === "1";
+      try{ await ctlEscribir("ctl_proveedores", fila, p ? "id=eq." + p.id : ""); cerrar("modalCtl"); toast("Proveedor guardado.", "ok"); ctlCargar(); }
+      catch(e){ ctlAviso("No se pudo guardar: " + e.message); }
+    } }]);
+}
+
+/* ---------- Facturación SAR (talonario) ---------- */
+function ctlFormCai(){
+  ctlModal("Registrar CAI del talonario",
+    '<p class="muted small" style="margin-top:0">Copie los datos exactamente como aparecen impresos en el talonario que le entregó la imprenta autorizada.</p><div class="form-grid ctl-form">' +
+    ctlCampo("ccCai", "CAI *", ctlIn("ccCai", "", 'maxlength="60" placeholder="XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XX" style="text-transform:uppercase"'), true) +
+    ctlCampo("ccPre", "Establecimiento-punto-tipo *", ctlIn("ccPre", "000-001-01", 'maxlength="10" placeholder="000-001-01"')) +
+    ctlCampo("ccDesde", "Rango desde (correlativo) *", ctlIn("ccDesde", "1", 'type="number" min="1" step="1"')) +
+    ctlCampo("ccHasta", "Rango hasta *", ctlIn("ccHasta", "", 'type="number" min="1" step="1"')) +
+    ctlCampo("ccFecha", "Fecha límite de emisión *", ctlIn("ccFecha", "", 'type="date"')) + '</div>',
+    [{ txt:"💾 Guardar CAI", fn: async () => {
+      const fila = { cai: ctlVal("ccCai").toUpperCase(), prefijo: ctlVal("ccPre"), desde: parseInt(ctlVal("ccDesde"), 10), hasta: parseInt(ctlVal("ccHasta"), 10), fecha_limite: ctlVal("ccFecha") };
+      if(fila.cai.length < 10) return ctlAviso("Escriba el CAI completo.");
+      if(!/^\d{3}-\d{3}-\d{2}$/.test(fila.prefijo)) return ctlAviso("El establecimiento-punto-tipo debe verse así: 000-001-01.");
+      if(!(fila.desde > 0) || !(fila.hasta >= fila.desde)) return ctlAviso("Revise el rango autorizado.");
+      if(!fila.fecha_limite) return ctlAviso("Indique la fecha límite de emisión.");
+      try{ await ctlEscribir("ctl_cai", fila); cerrar("modalCtl"); toast("CAI registrado.", "ok"); ctlCargar(); }
+      catch(e){ ctlAviso("No se pudo guardar: " + e.message); }
+    } }]);
+}
+function ctlFormFactura(pidFijo){
+  const cais = CTL.cai.filter(c => c.activo && !ctlCaiInfo(c).vencido && !ctlCaiInfo(c).agotado);
+  if(!cais.length) return toast("Registre primero un CAI vigente en Facturación SAR.", "err");
+  const ventas = CTL.ven.filter(v => v.estado === "Venta" || v.proyecto_id === pidFijo);
+  ctlModal("Registrar factura del talonario",
+    '<div class="form-grid ctl-form">' +
+    ctlCampo("cfProy", "Venta", '<select id="cfProy"><option value="">— Factura sin proyecto —</option>' + ventas.map(v => '<option value="' + escapeHtml(v.proyecto_id) + '"' + (v.proyecto_id === pidFijo ? " selected" : "") + '>' + escapeHtml(ctlNomProy(v.proyecto_id)) + " · " + cL(v.total) + '</option>').join("") + '</select>', true) +
+    ctlCampo("cfCai", "Talonario (CAI)", '<select id="cfCai">' + cais.map(c => '<option value="' + c.id + '">' + escapeHtml(c.prefijo + " · vence " + cF(c.fecha_limite) + " · " + c.cai.slice(0, 13) + "…") + '</option>').join("") + '</select>') +
+    ctlCampo("cfNum", "N.° de factura *", ctlIn("cfNum", "", 'maxlength="19" placeholder="000-001-01-00000001"')) +
+    ctlCampo("cfFecha", "Fecha de emisión *", ctlIn("cfFecha", todayISO(), 'type="date"')) +
+    ctlCampo("cfCli", "Cliente *", ctlIn("cfCli", "", 'maxlength="160"')) +
+    ctlCampo("cfRtn", "RTN del cliente", ctlIn("cfRtn", "", 'maxlength="20" placeholder="Opcional para consumidor final"')) +
+    ctlCampo("cfExo", "Importe exonerado", ctlIn("cfExo", "0", 'type="number" min="0" step="0.01"')) +
+    ctlCampo("cfExe", "Importe exento", ctlIn("cfExe", "0", 'type="number" min="0" step="0.01"')) +
+    ctlCampo("cfG15", "Importe gravado 15%", ctlIn("cfG15", "0", 'type="number" min="0" step="0.01"')) +
+    ctlCampo("cfG18", "Importe gravado 18%", ctlIn("cfG18", "0", 'type="number" min="0" step="0.01"')) +
+    ctlCampo("cfOce", "N.° orden de compra exenta", ctlIn("cfOce", "", 'maxlength="40"')) +
+    ctlCampo("cfCre", "N.° constancia registro exonerado", ctlIn("cfCre", "", 'maxlength="40"')) +
+    ctlCampo("cfSag", "N.° registro SAG", ctlIn("cfSag", "", 'maxlength="40"')) +
+    '</div><div class="ctl-tot" id="cfTot"></div><div class="note" id="cfAviso" style="margin-top:8px"></div>',
+    [{ txt:"🧾 Registrar factura", cls:"pdf", fn: async () => {
+      const g15 = r2c(num(ctlVal("cfG15"))), g18 = r2c(num(ctlVal("cfG18"))), exo = r2c(num(ctlVal("cfExo"))), exe = r2c(num(ctlVal("cfExe")));
+      const i15 = r2c(g15 * .15), i18 = r2c(g18 * .18);
+      const r = await sbRpc("ctl_registrar_factura", { f: { cai_id: ctlVal("cfCai"), numero: ctlVal("cfNum"), fecha: ctlVal("cfFecha"), cliente: ctlVal("cfCli"), rtn: ctlVal("cfRtn").replace(/[^\d]/g, ""),
+        proyecto_id: ctlVal("cfProy"), exonerado: exo, exento: exe, gravado15: g15, gravado18: g18, isv15: i15, isv18: i18, total: r2c(exo + exe + g15 + g18 + i15 + i18),
+        orden_exenta: ctlVal("cfOce"), constancia_exonerado: ctlVal("cfCre"), registro_sag: ctlVal("cfSag") } });
+      if(!r.ok) return ctlAviso(r.error || "No se pudo registrar.");
+      cerrar("modalCtl"); toast("✔ Factura " + r.numero + " registrada · quedan " + r.quedan + " en el talonario.", "ok"); ctlCargar();
+    } }]);
+  const sug = () => { const c = CTL.cai.find(x => x.id === ctlVal("cfCai")); if(c && !ctlVal("cfNum")) $("cfNum").value = ctlCaiInfo(c).siguiente; };
+  const tot = () => {
+    const g15 = num(ctlVal("cfG15")), g18 = num(ctlVal("cfG18")), base = num(ctlVal("cfExo")) + num(ctlVal("cfExe")) + g15 + g18, i15 = r2c(g15 * .15), i18 = r2c(g18 * .18);
+    $("cfTot").innerHTML = '<div><span>ISV 15%</span><b>' + cL(i15) + '</b></div><div><span>ISV 18%</span><b>' + cL(i18) + '</b></div><div class="t"><span>Total a pagar</span><b>' + cL(base + i15 + i18) + '</b></div><div class="muted small" style="justify-content:flex-start">Son: ' + escapeHtml(numeroALetras(base + i15 + i18)) + '</div>';
+    const v = ctlVenta(ctlVal("cfProy"));
+    $("cfAviso").innerHTML = v && Math.abs(Number(v.total) - (base + i15 + i18)) > 0.05 ? "⚠ El total de la factura (" + cL(base + i15 + i18) + ") no coincide con el total de la venta (" + cL(v.total) + "). Revíselo antes de guardar." : "Copie los importes tal como quedaron escritos en la factura del talonario.";
+  };
+  const prellenar = () => {
+    const pid = ctlVal("cfProy"), v = ctlVenta(pid), p = ctlProy(pid);
+    if(p){ $("cfCli").value = p.cliente || ""; $("cfRtn").value = p.rtn || ""; }
+    if(v){
+      if(Number(v.isv) > 0){ $("cfG15").value = r2c(v.subtotal); $("cfExe").value = 0; }
+      else{ $("cfG15").value = r2c(Number(v.total) / 1.15); }
+    }
+    tot();
+  };
+  $("cfCai").onchange = () => { $("cfNum").value = ""; sug(); };
+  $("cfProy").onchange = prellenar;
+  ["cfExo","cfExe","cfG15","cfG18"].forEach(i => $(i).oninput = tot);
+  sug(); prellenar();
+  const v0 = ctlVenta(ctlVal("cfProy"));
+  if(v0 && !(Number(v0.isv) > 0)) $("cfAviso").innerHTML = "⚠ La cotización no tenía ISV; se calculó el gravado 15% asumiendo que el precio ya incluye el impuesto. Confirme con su contador.";
+}
+async function ctlAnularFactura(id){
+  const f = CTL.fac.find(x => x.id === id); if(!f) return;
+  const motivo = (prompt("Motivo de la anulación de la factura " + f.numero + " (queda en la auditoría):") || "").trim();
+  if(!motivo) return;
+  if(motivo.length < 5) return toast("Escriba un motivo más claro (mínimo 5 letras).", "err");
+  try{
+    await ctlEscribir("ctl_facturas", { anulada: true, motivo_anulacion: motivo.slice(0, 200) }, "id=eq." + id);
+    if(f.proyecto_id && !CTL.fac.some(x => x.id !== id && x.proyecto_id === f.proyecto_id && !x.anulada)){
+      const v = ctlVenta(f.proyecto_id); if(v && v.estado === "Facturada") await ctlEscribir("ctl_ventas", { estado: "Venta" }, "proyecto_id=eq." + encodeURIComponent(f.proyecto_id));
+    }
+    toast("Factura anulada. Conserve el original y la copia en el talonario.", "ok"); ctlCargar();
+  }catch(e){ toast("No se pudo anular: " + e.message, "err"); }
+}
+
+/* ---------- Libros en Excel ---------- */
+async function ctlExcel(nombre, hoja, matriz, anchos){
+  try{
+    if(typeof XLSX === "undefined") await cargarScript("https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js");
+    const ws = XLSX.utils.aoa_to_sheet(matriz); ws["!cols"] = anchos.map(w => ({ wch:w }));
+    const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, hoja); XLSX.writeFile(wb, nombre);
+    toast("Excel descargado.", "ok");
+  }catch(e){ toast("No se pudo generar el Excel (revise la conexión).", "err"); }
+}
+function ctlLibroVentas(){
+  const mes = CTL_MES || ctlMesActual(), lista = CTL.fac.filter(f => ctlEnMes(f.fecha)).sort((a,b) => a.numero.localeCompare(b.numero));
+  const filas = lista.map(f => { const c = CTL.cai.find(x => x.id === f.cai_id) || {};
+    return [f.fecha, f.numero, c.cai || "", f.cliente, f.rtn, f.anulada ? 0 : Number(f.exonerado), f.anulada ? 0 : Number(f.exento), f.anulada ? 0 : Number(f.gravado15), f.anulada ? 0 : Number(f.gravado18),
+      f.anulada ? 0 : Number(f.isv15), f.anulada ? 0 : Number(f.isv18), f.anulada ? 0 : Number(f.total), f.anulada ? "ANULADA: " + f.motivo_anulacion : "Emitida"]; });
+  const s = i => r2c(filas.reduce((t,f) => t + Number(f[i]), 0));
+  ctlExcel("Libro_de_ventas_" + mes + ".xlsx", "Libro de ventas", [[RAZON_SOCIAL + " · RTN " + CFG.rtn], ["Libro de ventas · " + mes], [],
+    ["Fecha","N.° factura","CAI","Cliente","RTN cliente","Exonerado","Exento","Gravado 15%","Gravado 18%","ISV 15%","ISV 18%","Total","Estado"]].concat(filas,
+    [[], ["","","","TOTALES","", s(5), s(6), s(7), s(8), s(9), s(10), s(11), ""]]), [11,21,38,28,16,12,12,13,13,12,12,13,22]);
+}
+function ctlLibroCompras(){
+  const mes = CTL_MES || ctlMesActual(), lista = CTL.com.filter(c => ctlEnMes(c.fecha));
+  const filas = lista.map(c => [c.fecha, c.proveedor || ctlProvNombre(c.proveedor_id), c.rtn, c.numero_factura, c.cai, Number(c.exento), Number(c.gravado15), Number(c.gravado18), Number(c.isv15), Number(c.isv18), Number(c.total)]);
+  const s = i => r2c(filas.reduce((t,f) => t + Number(f[i]), 0));
+  ctlExcel("Libro_de_compras_" + mes + ".xlsx", "Libro de compras", [[RAZON_SOCIAL + " · RTN " + CFG.rtn], ["Libro de compras · " + mes], [],
+    ["Fecha","Proveedor","RTN proveedor","N.° factura","CAI","Exento","Gravado 15%","Gravado 18%","ISV 15%","ISV 18%","Total"]].concat(filas,
+    [[], ["","TOTALES","","","", s(5), s(6), s(7), s(8), s(9), s(10)]]), [11,30,16,21,38,12,13,13,12,12,13]);
+}
+
+/* ---------- Eventos ---------- */
+function ctlEventos(){
+  if(!$("panel-ctl")) return;
+  $("ctlRecargar").onclick = ctlCargar;
+  $("ctlBtnOc").onclick = () => ctlFormOc(null);
+  $("ctlBtnGasto").onclick = () => ctlFormGasto(null);
+  $("ctlTabs").addEventListener("click", e => { const b = e.target.closest("[data-ctl]"); if(b){ CTL_VISTA = b.dataset.ctl; ctlPintar(); } });
+  const cuerpo = $("ctlCuerpo"), ficha = $("fichaCuerpo");
+  const acciones = e => {
+    const t = e.target;
+    const a = t.closest("[data-ctlacc]");
+    if(a){ ({ convertir: () => ctlConvertirVenta(ctlVal("ctlVentaProy")), gasto: () => ctlFormGasto(null), oc: () => ctlFormOc(null), compra: ctlFormCompra,
+      libroCompras: ctlLibroCompras, libroVentas: ctlLibroVentas, material: () => ctlFormMaterial(null), cargarPvc: ctlCargarPvc,
+      proveedor: () => ctlFormProveedor(null), cai: ctlFormCai, factura: () => ctlFormFactura(null) })[a.dataset.ctlacc](); return; }
+    const g = t.closest("[data-gasto]"); if(g){ g.dataset.gasto === "edit" ? ctlFormGasto(g.dataset.id) : ctlBorrarGasto(g.dataset.id); return; }
+    const o = t.closest("[data-oc]");
+    if(o){ const id = o.dataset.id;
+      ({ ver: () => ctlDocOc(id), editar: () => ctlFormOc(id), aprobar: () => ctlEstadoOc(id, "Aprobada"), enviar: () => ctlEstadoOc(id, "Enviada"),
+         recibir: () => ctlRecibirOc(id), anular: () => ctlEstadoOc(id, "Anulada", "¿Anular la orden de compra?") })[o.dataset.oc](); return; }
+    const m = t.closest("[data-mat]"); if(m){ ({ mov: ctlFormMovimiento, kardex: ctlKardex, edit: ctlFormMaterial })[m.dataset.mat](m.dataset.id); return; }
+    const pv = t.closest("[data-prov]"); if(pv){ ctlFormProveedor(pv.dataset.id); return; }
+    const c = t.closest("[data-cai]"); if(c){ const x = CTL.cai.find(y => y.id === c.dataset.id); ctlEscribir("ctl_cai", { activo: !x.activo }, "id=eq." + x.id).then(ctlCargar).catch(err => toast(err.message, "err")); return; }
+    const f = t.closest("[data-fac]"); if(f){ ctlAnularFactura(f.dataset.id); return; }
+    const cp = t.closest("[data-compra]"); if(cp){ if(confirm("¿Eliminar esta compra del libro de compras?")) ctlBorrar("ctl_compras", "id=eq." + cp.dataset.id).then(() => { toast("Compra eliminada.", "ok"); ctlCargar(); }).catch(err => toast(err.message, "err")); return; }
+    const fm = t.closest("[data-firma]"); if(fm){ firmaAccion(fm); return; }
+    const fx = t.closest("[data-fx]");
+    if(fx){ const pid = CTL_FICHA;
+      ({ gasto: () => ctlFormGasto(null, pid), oc: () => ctlFormOc(null, { proyecto_id: pid }), venta: () => ctlConvertirVenta(pid),
+         factura: () => ctlFormFactura(pid), cobro: () => ctlFormCobro(pid), anular: () => ctlAnularVenta(pid) })[fx.dataset.fx](); return; }
+    const fi = t.closest("[data-ficha]"); if(fi && !t.closest("button")) ctlFicha(fi.dataset.ficha);
+  };
+  cuerpo.addEventListener("click", acciones);
+  ficha.addEventListener("click", acciones);
+  cuerpo.addEventListener("change", e => {
+    if(e.target.id === "ctlMes"){ CTL_MES = e.target.value; ctlPintar(); }
+    if(e.target.id === "ctlGProy" || e.target.id === "ctlOEst") ctlPintar();
+  });
+  cuerpo.addEventListener("input", e => { if(e.target.id === "ctlIBus"){ const pos = e.target.selectionStart; ctlPintar(); const n = $("ctlIBus"); n.focus(); n.setSelectionRange(pos, pos); } });
+  if($("pvOcBtn")) $("pvOcBtn").onclick = ctlOcDesdePvc;
+}
+
 /* ── 9b. PROYECTO ↔ CÁLCULO DE MATERIALES ─────────────────────── */
 function pvTieneCalculo(p){
   return !!(p && p.pvc && Array.isArray(p.pvc.ventanas) &&
@@ -2229,6 +3624,10 @@ function pvTraerCotizacion(){
   if(PVC.hayVentanas() && !confirm("Se reemplazarán las ventanas actuales del cálculo por las " + filas.length + " línea(s) de la cotización. ¿Continuar?")) return;
   filas.forEach((f,i) => { if(!f.descripcion) f.descripcion = "Ventana " + (i + 1); });
   $("pvUnidad").value = unidadActual();
+  const mats = [...new Set([...$("itemsBody").querySelectorAll("tr")]
+    .filter(r => num(r.querySelector(".alto").value) > 0 && num(r.querySelector(".ancho").value) > 0)
+    .map(r => r.querySelector(".material").value))];
+  if(mats.length === 1 && pvTiposPvc().indexOf(mats[0]) >= 0){ $("pvTipo").value = mats[0]; $("pvTipoCat").value = mats[0]; PVC.renderLibrary(); }
   PVC.cargarVentanas(filas);
   PVC.actualizarUnidad();
   PVC.calcular(); PVC.avisoCortes(); actualizarMargen();
@@ -2383,12 +3782,13 @@ function renderLista(){
         '<td class="l">' + (p.conflicto ? '<span class="pill" style="background:#ffe9e9;color:#a3161c">copia</span> ' : '') + escapeHtml(p.proyecto) + '</td>' +
         '<td>' + escapeHtml(p.cliente) + '</td>' +
         '<td>' + escapeHtml(p.fecha) + '</td>' +
-        '<td><span class="badge-estado e-' + est2 + '">' + est2 + '</span></td>' +
+        '<td><span class="badge-estado e-' + est2 + '">' + est2 + '</span>' + firmaBadge(p.id) + '</td>' +
         '<td style="font-weight:700">' + fmt(t.total) + '</td>' +
         '<td style="white-space:nowrap">' +
           '<button class="action-small detail" data-acc="ver"  data-id="' + p.id + '">Ver</button>' +
           '<button class="action-small edit"   data-acc="edit" data-id="' + p.id + '">Editar</button>' +
           (m !== "muebles" ? '<button class="action-small edit" data-acc="mat" data-id="' + p.id + '">🪟 Materiales</button>' : '') +
+          (SB_ON ? '<button class="action-small dup" data-acc="ctl" data-id="' + p.id + '">📊 Control</button>' : '') +
           '<button class="action-small dup"    data-acc="dup"  data-id="' + p.id + '">Duplicar</button>' +
           '<button class="action-small del solo-admin" data-acc="del"  data-id="' + p.id + '">Eliminar</button>' +
         '</td></tr>';
@@ -2404,7 +3804,7 @@ async function sincronizar(silencioso){
   if(sincronizando) return;
   if(!CFG.apiUrl){ if(!silencioso) toast("Configure la URL del servidor para sincronizar.", "err"); return; }
   if(!SESION.token){
-    if(!silencioso) toast("Su usuario no tiene sesión en el servidor. Cierre sesión y vuelva a entrar; si continúa, pida al administrador que lo registre en la hoja USUARIOS.", "err");
+    if(!silencioso) toast("Su usuario no tiene sesión en el servidor. Cierre sesión y vuelva a entrar; si continúa, pida al administrador que revise su usuario en Supabase.", "err");
     return;
   }
   sincronizando = true;
@@ -2472,6 +3872,7 @@ async function sincronizar(silencioso){
     guardarConfigLocal();
     guardarProyectosLocales();
     renderLista();
+    firmasCargar();
     if(!silencioso) toast("Sincronización completada · " + PROYECTOS.filter(p => !p.eliminado).length + " proyecto(s).", "ok");
   }finally{
     sincronizando = false;
@@ -2560,7 +3961,9 @@ function verDocumento(d){
    nombre del archivo PDF: por eso se cambia justo antes de imprimir. */
 function imprimirDocumento(){
   const original = document.title;
-  document.title = DOC_ACTUAL && DOC_ACTUAL.modulo === "pvc"
+  document.title = DOC_ACTUAL && DOC_ACTUAL.modulo === "oc"
+    ? ("Orden de compra " + DOC_ACTUAL.numero + " - " + (DOC_ACTUAL.cliente || CFG.empresa))
+    : DOC_ACTUAL && DOC_ACTUAL.modulo === "pvc"
     ? ("Materiales - " + (DOC_ACTUAL.cliente || CFG.empresa))
     : DOC_ACTUAL
     ? ((DOC_ACTUAL.modulo === "muebles" ? "Presupuesto " : "Cotizacion ") +
@@ -2634,22 +4037,16 @@ async function exportarExcel(){
 function abrirConfig(){
   if(!esAdmin()) return toast("Solo el administrador puede abrir la configuración.", "err");
   $("cfgAlerta").className = "alerta";
-  $("cfgUrl").value = CFG.apiUrl;
   const fijo = !!AJUSTES_FABRICA.apiUrl, est = $("estadoConexion");
   if(fijo && SESION.token){
     est.style.display = "block";
     est.innerHTML = "☁ Conectado al servidor de la empresa como <b>" + escapeHtml(SESION.nombre || SESION.usuario) + "</b>. Aquí no hay nada que configurar.";
-    $("bloqueConexion").style.display = "none";
   }else if(fijo){
     est.style.display = "block";
     est.innerHTML = "⚠ No se pudo conectar con el servidor de la empresa. Puede seguir trabajando en este dispositivo; los cambios se enviarán al recuperar la conexión.";
-    $("bloqueConexion").style.display = SB_ON ? "none" : "";
   }else{
     est.style.display = "none";
-    $("bloqueConexion").style.display = "";
   }
-  $("cfgUsuario").value = SESION.usuario || "";
-  $("cfgPin").value = "";
   $("cfgEmpresa").value = CFG.empresa;
   $("cfgGerente").value = CFG.gerente;
   $("cfgRtn").value = CFG.rtn;
@@ -2680,7 +4077,7 @@ function guardarConfig(){
     if(inp.value.trim()) mats.push({ nombre:inp.value.trim(), precio:num(precio ? precio.value : 0) });
   });
   if(!mats.length){ alertaCfg("Debe existir al menos un material.", "err"); return; }
-  CFG.apiUrl    = AJUSTES_FABRICA.apiUrl ? String(AJUSTES_FABRICA.apiUrl).trim() : $("cfgUrl").value.trim();
+  CFG.apiUrl    = AJUSTES_FABRICA.apiUrl ? String(AJUSTES_FABRICA.apiUrl).trim() : "";
   CFG.empresa   = $("cfgEmpresa").value.trim() || CFG_DEFAULT.empresa;
   CFG.gerente   = $("cfgGerente").value.trim();
   CFG.rtn       = $("cfgRtn").value.trim();
@@ -2723,14 +4120,15 @@ function conectarEventos(){
   $("btnSync").onclick        = () => sincronizar(false);
   $("btnConfig").onclick      = abrirConfig;
   $("btnGuardarCfg").onclick  = guardarConfig;
-  $("btnProbar").onclick      = probarConexion;
-  $("btnLogin").onclick       = iniciarSesion;
-  $("btnLogout").onclick      = cerrarSesion;
   $("btnImprimir").onclick    = imprimirDocumento;
+  $("btnPdfDoc").onclick      = descargarPdfVisor;
+  $("envPdf").onclick         = enviarPdf;
+  $("envFirma").onclick       = crearEnlaceFirma;
+  $("envFirmaWa").onclick     = enviarEnlaceWhatsapp;
+  $("envFirmaCopiar").onclick = copiarEnlaceFirma;
   $("btnAddMaterial").onclick = () => { CFG.materiales.push({ nombre:"", precio:0 }); pintarMateriales(); };
   $("btnConfig2").onclick     = abrirConfig;
   $("btnGuardarCatalogo").onclick   = guardarCatalogo;
-  $("btnGenerarHash").onclick       = generarHash;
   $("btnExportarRespaldo").onclick  = exportarRespaldo;
   $("btnImportarRespaldo").onclick  = () => $("archivoRespaldo").click();
   $("archivoRespaldo").onchange     = e => {
@@ -2829,6 +4227,7 @@ function conectarEventos(){
     if(b.dataset.acc === "dup")  duplicarProyecto(id);
     if(b.dataset.acc === "del")  eliminarProyecto(id);
     if(b.dataset.acc === "mat")  abrirMateriales(id);
+    if(b.dataset.acc === "ctl")  ctlAbrirProyecto(id);
   });
 
   document.querySelectorAll("[data-close]").forEach(b =>
@@ -2877,11 +4276,11 @@ const library=[
  {id:'empaque_goma',category:'Materiales lineales',name:'Empaque de goma',kind:'linear_bulk',presentation:'Rollo (pulgadas)',content:1200,priceWhite:0,priceWood:0,rule:'Perímetro de hojas y mosquitera seleccionada'}
 ];
 let rowSeq=0;
-function fmt(n,d=2){return Number(n||0).toLocaleString('es-HN',{minimumFractionDigits:d,maximumFractionDigits:d})}
-function money(n){return (document.getElementById('pvMoneda')?.value||'L')+' '+fmt(n,2)}
+function pvFmt(n,d=2){return Number(n||0).toLocaleString('es-HN',{minimumFractionDigits:d,maximumFractionDigits:d})}
+function pvMoney(n){return (document.getElementById('pvMoneda')?.value||'L')+' '+pvFmt(n,2)}
 function addWindowRow(data={}){
  rowSeq++; const tr=document.createElement('tr'); tr.dataset.id=rowSeq;
- tr.innerHTML=`<td><input class="item-input description-input descripcion" value="${data.descripcion||'Ventana '+rowSeq}"></td>
+ tr.innerHTML=`<td><input class="item-input description-input descripcion" value="${escapeHtml(data.descripcion||'Ventana '+rowSeq)}"></td>
  <td><input class="item-input alto" type="number" min="0" step="0.01" value="${data.alto||''}"></td>
  <td><input class="item-input ancho" type="number" min="0" step="0.01" value="${data.ancho||''}"></td>
  <td><input class="item-input cantidad" type="number" min="1" step="1" value="${data.cantidad||1}"></td>
@@ -2892,15 +4291,19 @@ function addWindowRow(data={}){
 }
 function agregarVentana(){addWindowRow()}
 function renderLibrary(){
+ pvLlenarTipos();
  const type=document.getElementById('pvTipo').value;
+ const campo=pvCampoPrecio(type);
  const guardado=leerCatalogoGuardado();
+ const propios=campo==='priceWhite'||campo==='priceWood'||Object.keys(guardado).some(id=>guardado[id]&&guardado[id][campo]!==undefined);
+ const aviso=document.getElementById('pvAvisoTipo');
+ if(aviso){aviso.classList.toggle('hidden',propios);aviso.innerHTML=propios?'':'<b>'+escapeHtml(type)+'</b> todavía no tiene precios propios: se muestran los de <b>PVC color madera</b> como referencia. Ajústelos y presione <b>Guardar y publicar precios</b>.';}
  let currentCategory='';
  document.getElementById('pvBibliotecaBody').innerHTML=library.map(m=>{
   const g=guardado[m.id]||{};
-  const base=type==='PVC color madera'?m.priceWood:m.priceWhite;
-  const price=(type==='PVC color madera')
-    ? (g.priceWood!==undefined?g.priceWood:base)
-    : (g.priceWhite!==undefined?g.priceWhite:base);
+  // Los tipos nuevos parten de los precios de PVC color madera hasta que se guarden los suyos
+  const ref=campo==='priceWhite'?(g.priceWhite!==undefined?g.priceWhite:m.priceWhite):(g.priceWood!==undefined?g.priceWood:m.priceWood);
+  const price=g[campo]!==undefined?g[campo]:ref;
   const content=(g.content!==undefined?g.content:m.content);
   const activo=(g.enabled===false)?'':'checked';
   const categoryRow=m.category!==currentCategory?`<tr class="category-row"><td colspan="7"><strong>${m.category}</strong></td></tr>`:'';
@@ -2938,7 +4341,7 @@ function aplicarLongitudLance(){
 function resumenConversion(windows){
  const u=document.getElementById('pvUnidad').value;
  if(u==='in'){document.getElementById('pvResumenConversion').innerHTML='<strong>Unidad ingresada:</strong> Pulgadas.<br>Todos los cálculos y cortes se realizaron directamente en pulgadas.';return}
- const ejemplos=windows.slice(0,5).map(w=>`<tr><td>${w.desc}</td><td class="num">${fmt(w.altoEntrada)} cm</td><td class="num">${fmt(w.alto)} pulg</td><td class="num">${fmt(w.anchoEntrada)} cm</td><td class="num">${fmt(w.ancho)} pulg</td></tr>`).join('');
+ const ejemplos=windows.slice(0,5).map(w=>`<tr><td>${escapeHtml(w.desc)}</td><td class="num">${pvFmt(w.altoEntrada)} cm</td><td class="num">${pvFmt(w.alto)} pulg</td><td class="num">${pvFmt(w.anchoEntrada)} cm</td><td class="num">${pvFmt(w.ancho)} pulg</td></tr>`).join('');
  document.getElementById('pvResumenConversion').innerHTML=`<strong>Unidad ingresada:</strong> Centímetros.<br><strong>Conversión:</strong> pulgadas = centímetros ÷ 2.54.<div class="table-wrap" style="margin-top:8px"><table><thead><tr><th>Ventana</th><th>Alto ingresado</th><th>Alto convertido</th><th>Ancho ingresado</th><th>Ancho convertido</th></tr></thead><tbody>${ejemplos}</tbody></table></div>`;
 }
 function mostrarPestanaConsolidado(tab){
@@ -2952,7 +4355,7 @@ function calcular(){
  CORTES_IMPOSIBLES=[];
  const windows=readWindows(); resumenConversion(windows); if(!windows.length){ AVISO('Agregue al menos una ventana con alto y ancho.','err'); return }
  const lib=readLibrary(), decimals=+document.getElementById('pvDecimales').value||2, waste=Math.max(0,+document.getElementById('pvDesperdicio').value||0)/100;
- const cuts={}, area={}, units={}, detail=[]; let totalWindows=0;
+ const cuts={}, area={}, units={}; let totalWindows=0;
  windows.forEach(w=>{
   totalWindows+=w.qty; const half=w.ancho/2; area.vidrio=(area.vidrio||0)+((w.alto*w.ancho)/144)*w.qty;
   addCuts(cuts,'triple',w.alto,2*w.qty,w.desc+' vertical'); addCuts(cuts,'triple',w.ancho,2*w.qty,w.desc+' horizontal');
@@ -2978,8 +4381,8 @@ function calcular(){
    const arr=cuts[m.id]||[]; const base=arr.reduce((s,c)=>s+c.length,0); const target=base*(1+waste); let bins=optimize(arr,cfg.content,m.name); const minStock=Math.ceil(target/cfg.content); while(bins.length<minStock)bins.push({used:0,cuts:[]});
    const purchase=bins.length,cost=purchase*cfg.price,scrap=purchase*cfg.content-target; totalCost+=cost;totalLances+=purchase;totalLinearIn+=target;totalScrap+=Math.max(0,scrap);
    summary.push({category:m.category,name:m.name,unit:'pulgadas / lances',required:target,purchase,cost,price:cfg.price,scrap:Math.max(0,scrap)});
-   bins.forEach((b,i)=>cutRows.push(`<tr><td>${m.name}</td><td>${i+1}</td><td>${b.cuts.length?b.cuts.map(c=>fmt(c.length,decimals)+'”').join(' + '):'Reserva por desperdicio'}</td><td class="num">${fmt(b.used,decimals)} pulg</td><td class="num">${fmt(cfg.content-b.used,decimals)} pulg</td><td class="num">${fmt((cfg.content-b.used)/12,decimals)} pies</td></tr>`));
-   arr.forEach(c=>{const k=m.id+'|'+c.length;const x=fabMap.get(k)||{name:m.name,measure:fmt(c.length)+' pulg',qty:0,ref:new Set()};x.qty++;x.ref.add(c.label);fabMap.set(k,x)})
+   bins.forEach((b,i)=>cutRows.push(`<tr><td>${m.name}</td><td>${i+1}</td><td>${b.cuts.length?b.cuts.map(c=>pvFmt(c.length,decimals)+'”').join(' + '):'Reserva por desperdicio'}</td><td class="num">${pvFmt(b.used,decimals)} pulg</td><td class="num">${pvFmt(cfg.content-b.used,decimals)} pulg</td><td class="num">${pvFmt((cfg.content-b.used)/12,decimals)} pies</td></tr>`));
+   arr.forEach(c=>{const k=m.id+'|'+c.length;const x=fabMap.get(k)||{name:m.name,measure:pvFmt(c.length)+' pulg',qty:0,ref:new Set()};x.qty++;x.ref.add(c.label);fabMap.set(k,x)})
   } else if(m.kind==='area'){
    const req=(area[m.id]||0)*(1+waste),purchase=cfg.content>0?Math.ceil(req/cfg.content):req,cost=purchase*cfg.price,scrap=purchase*cfg.content-req;totalCost+=cost;
    const isGlass=m.id==='vidrio';
@@ -2991,12 +4394,12 @@ function calcular(){
    const reqIn=(units[m.id]||0)*(1+waste),reqFeet=reqIn/12,purchase=Math.ceil(reqIn/cfg.content),cost=purchase*cfg.price,scrap=purchase*cfg.content-reqIn;totalCost+=cost;totalLinearIn+=reqIn;summary.push({category:m.category,name:m.name,unit:'pies lineales',required:reqFeet,purchase,cost,price:cfg.price,scrap:scrap/12});fabMap.set(m.id,{name:m.name,measure:'Pie lineal',qty:reqFeet,ref:new Set([m.rule])})
   }
  }
- lastCalculatedTotal=totalCost; document.getElementById('pvMVentanas').textContent=totalWindows;document.getElementById('pvMLances').textContent=totalLances;document.getElementById('pvMMetros').textContent=fmt(totalLinearIn/INCH_PER_METER);document.getElementById('pvMSobrante').textContent=fmt(totalScrap)+' pulg';document.getElementById('pvMCosto').textContent=money(totalCost);
- document.getElementById('pvResumenBody').innerHTML=summary.map(s=>`<tr><td>${s.name}</td><td>${s.unit}</td><td class="num">${fmt(s.required)}</td><td class="num">${fmt(s.purchase,0)}</td><td class="num">${money(s.price)}</td><td class="num"><strong>${money(s.cost)}</strong></td><td class="num">${fmt(s.scrap)}</td></tr>`).join('')+`<tr><td colspan="5"><strong>Total</strong></td><td class="num"><strong>${money(totalCost)}</strong></td><td></td></tr>`;
- document.getElementById('pvTotalesBody').innerHTML=summary.map(s=>`<tr><td>${s.category||'-'}</td><td><strong>${s.name}</strong></td><td>${s.unit}</td><td class="num">${fmt(s.required)}</td><td class="num">${fmt(s.purchase,0)}</td><td class="num">${money(s.price)}</td><td class="num"><strong>${money(s.cost)}</strong></td><td class="num">${fmt(s.scrap)}</td></tr>`).join('')||'<tr><td colspan="8">No hay materiales incluidos.</td></tr>';
- document.getElementById('pvTotalesFoot').innerHTML=`<tr><td colspan="6"><strong>Total general de materiales</strong></td><td class="num"><strong>${money(totalCost)}</strong></td><td></td></tr>`;
+ lastCalculatedTotal=totalCost; document.getElementById('pvMVentanas').textContent=totalWindows;document.getElementById('pvMLances').textContent=totalLances;document.getElementById('pvMMetros').textContent=pvFmt(totalLinearIn/INCH_PER_METER);document.getElementById('pvMSobrante').textContent=pvFmt(totalScrap)+' pulg';document.getElementById('pvMCosto').textContent=pvMoney(totalCost);
+ document.getElementById('pvResumenBody').innerHTML=summary.map(s=>`<tr><td>${s.name}</td><td>${s.unit}</td><td class="num">${pvFmt(s.required)}</td><td class="num">${pvFmt(s.purchase,0)}</td><td class="num">${pvMoney(s.price)}</td><td class="num"><strong>${pvMoney(s.cost)}</strong></td><td class="num">${pvFmt(s.scrap)}</td></tr>`).join('')+`<tr><td colspan="5"><strong>Total</strong></td><td class="num"><strong>${pvMoney(totalCost)}</strong></td><td></td></tr>`;
+ document.getElementById('pvTotalesBody').innerHTML=summary.map(s=>`<tr><td>${s.category||'-'}</td><td><strong>${s.name}</strong></td><td>${s.unit}</td><td class="num">${pvFmt(s.required)}</td><td class="num">${pvFmt(s.purchase,0)}</td><td class="num">${pvMoney(s.price)}</td><td class="num"><strong>${pvMoney(s.cost)}</strong></td><td class="num">${pvFmt(s.scrap)}</td></tr>`).join('')||'<tr><td colspan="8">No hay materiales incluidos.</td></tr>';
+ document.getElementById('pvTotalesFoot').innerHTML=`<tr><td colspan="6"><strong>Total general de materiales</strong></td><td class="num"><strong>${pvMoney(totalCost)}</strong></td><td></td></tr>`;
  document.getElementById('pvCortesBody').innerHTML=cutRows.length?cutRows.join(''):'<tr><td colspan="6">No hay perfiles lineales incluidos.</td></tr>';
- document.getElementById('pvFabricacionBody').innerHTML=[...fabMap.values()].map(x=>`<tr><td>${x.name}</td><td>${x.measure}</td><td class="num">${fmt(x.qty,x.measure==='Unidad'?0:2)}</td><td>${[...x.ref].slice(0,4).join(', ')}</td></tr>`).join('');
+ document.getElementById('pvFabricacionBody').innerHTML=[...fabMap.values()].map(x=>`<tr><td>${x.name}</td><td>${x.measure}</td><td class="num">${pvFmt(x.qty,x.measure==='Unidad'?0:2)}</td><td>${escapeHtml([...x.ref].slice(0,4).join(', '))}</td></tr>`).join('');
 }
 
 function avisoCortesImposibles(){
@@ -3063,6 +4466,7 @@ function exportar(){
 function importar(o){
   o = o || {};
   const set = (id,val) => { const e = document.getElementById(id); if(e && val !== undefined && val !== null && val !== "") e.value = val; };
+  if(o.tipo){ const st=document.getElementById('pvTipo'); if(st && ![...st.options].some(x=>x.value===o.tipo)){ const op=document.createElement('option'); op.value=op.textContent=o.tipo; st.append(op); } }
   set('pvUnidad',o.unidad); set('pvTipo',o.tipo); set('pvDesperdicio',o.desperdicio);
   set('pvLance',o.lance); set('pvMoneda',o.moneda); set('pvDecimales',o.decimales); set('pvNota',o.nota);
   renderLibrary();
@@ -3094,6 +4498,7 @@ return {
   material: function(id){ return library.find(function(x){ return x.id === id; }) || null; },
   aplicarLongitudLance: aplicarLongitudLance, tab: mostrarPestanaConsolidado,
   costo: function(){ return lastCalculatedTotal; },
+  materiales: function(){ return library; },
   cargarVentanas: function(filas){
     document.getElementById('pvVentanasBody').innerHTML = '';
     rowSeq = 0;
@@ -3135,6 +4540,8 @@ function abrirEnviar(d){
   if(!d.cliente && !d.proyecto) return toast("Complete cliente y proyecto antes de enviar.", "err");
   ENVIO_ACTUAL = d;
   $("envMensaje").value = textoEnvio(d);
+  $("envFirmaBox").classList.add("hidden");
+  $("envFirma").classList.toggle("hidden", !SB_ON);
   abrir("modalEnviar");
 }
 let ENVIO_ACTUAL = null;
@@ -3159,6 +4566,207 @@ async function compartirCotizacion(){
 }
 
 
+
+/* ── 18-bis. PDF Y ENLACE DE ACEPTACIÓN CON FIRMA ───────────── */
+const PDF_LIB = "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js";
+let FIRMAS = [];
+function docHtmlDe(d){ return (d.modulo || "vidrieria") === "muebles" ? construirDocMuebles(d) : construirDoc(d); }
+function docNombreArchivo(d){
+  const base = (d.modulo === "muebles" ? "Presupuesto " : "Cotizacion ") + (d.numero || "sin numero") + " - " + (d.cliente || CFG.empresa);
+  return base.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[\\/:*?"<>|]+/g, "").replace(/\s+/g, " ").trim().slice(0, 90) || "Cotizacion";
+}
+/* Convierte el HTML del documento en un PDF tamaño carta (sin abrir el diálogo de impresión) */
+async function docPdfBlob(html){
+  if(!window.html2pdf){
+    try{ await cargarScript(PDF_LIB); }catch(e){ throw new Error("Se necesita internet la primera vez para preparar el PDF."); }
+  }
+  const host = document.createElement("div");
+  host.style.cssText = "position:absolute;left:0;top:0;width:740px;z-index:-1;pointer-events:none;background:#fff";
+  // En el PDF siempre se usa el diseño de escritorio, aunque se genere desde el celular
+  const fijo = '<style>#docPdf .doc-meta{grid-template-columns:1fr 1fr!important}#docPdf .doc-head{flex-direction:row!important;gap:26px!important;padding-bottom:12px!important}' +
+    '#docPdf .doc-logos{gap:16px!important}#docPdf .doc-logo-marca{width:170px!important}#docPdf .doc-logo-corp{width:155px!important;padding-left:16px!important}' +
+    '#docPdf .doc-emp{text-align:right!important;font-size:13px!important;line-height:1.5!important}#docPdf .doc-emp h1{font-size:22px!important}</style>';
+  host.innerHTML = '<div id="docPdf" class="doc" style="width:740px;padding:0">' + fijo + String(html).split("#docRender").join("#docPdf") + '</div>';
+  document.body.appendChild(host);
+  try{
+    await Promise.all([...host.querySelectorAll("img")].map(im => im.complete ? 0 : new Promise(r => { im.onload = im.onerror = r; })));
+    return await window.html2pdf().set({
+      margin: [10, 10, 12, 10],
+      image: { type: "jpeg", quality: 0.95 },
+      html2canvas: { scale: 2, useCORS: true, backgroundColor: "#ffffff", scrollX: 0, scrollY: 0 },
+      jsPDF: { unit: "mm", format: "letter", orientation: "portrait" },
+      pagebreak: { mode: ["css", "legacy"], avoid: ["tr", ".doc-firma", ".doc-letras", ".doc-meta", ".ctl-firmas"] }
+    }).from(host.firstChild).outputPdf("blob");
+  }finally{ host.remove(); }
+}
+function descargarBlob(blob, nombre){
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = nombre;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 30000);
+}
+async function conBoton(btn, texto, fn){
+  const t = btn ? btn.textContent : "";
+  if(btn){ btn.disabled = true; btn.textContent = texto; }
+  try{ return await fn(); }
+  catch(e){ toast(e.message || "No se pudo completar.", "err"); }
+  finally{ if(btn){ btn.disabled = false; btn.textContent = t; } }
+}
+/* Botón del visor de documentos: descarga lo que está en pantalla (cotización, presupuesto u orden de compra) */
+function descargarPdfVisor(){
+  const d = DOC_ACTUAL || {};
+  const nombre = d.modulo === "oc" ? ("Orden de compra " + (d.numero || "")) :
+                 d.modulo === "pvc" ? ("Materiales - " + (d.cliente || CFG.empresa)) : docNombreArchivo(d);
+  return conBoton($("btnPdfDoc"), "Generando PDF…", async () => {
+    const blob = await docPdfBlob($("docRender").innerHTML);
+    descargarBlob(blob, nombre.replace(/[\\/:*?"<>|]+/g, "") + ".pdf");
+    toast("PDF descargado.", "ok");
+  });
+}
+/* Enviar la cotización como archivo PDF: en el celular abre «Compartir» con el PDF adjunto */
+function enviarPdf(){
+  const d = ENVIO_ACTUAL || leerFormulario();
+  return conBoton($("envPdf"), "Generando PDF…", async () => {
+    const blob = await docPdfBlob(docHtmlDe(d));
+    const nombre = docNombreArchivo(d) + ".pdf";
+    let file = null;
+    try{ file = new File([blob], nombre, { type: "application/pdf" }); }catch(e){}
+    if(file && navigator.canShare && navigator.canShare({ files: [file] })){
+      try{ await navigator.share({ files: [file], title: nombre, text: $("envMensaje").value }); return; }
+      catch(e){ if(e && e.name === "AbortError") return; }
+    }
+    descargarBlob(blob, nombre);
+    toast("PDF descargado. Adjúntelo en WhatsApp o en el correo.", "ok");
+  });
+}
+
+/* ---------- Enlace para que el cliente acepte y firme ---------- */
+function urlBasePrograma(){ return location.href.split(/[?#]/)[0].replace(/[^/]*$/, ""); }
+function docHtmlPublico(d){
+  const base = urlBasePrograma() + "assets/";
+  return docHtmlDe(d).split(LOGO).join(base + "logo-vitra.png").split(LOGO_MZ).join(base + "logo-mz.jpg").split(LOGO_PORTADA).join(base + "logo-tinoco.jpg");
+}
+function firmaDe(pid){ return FIRMAS.find(f => f.proyecto_id === pid && f.estado !== "Anulada" && f.tipo !== "entrega") || null; }
+async function firmasCargar(){
+  if(!SB_ON || !SESION.token) return;
+  const campos = "token,proyecto_id,numero,cliente,total,estado,creado,vence,visto,firma_nombre,firma_identidad,comentario,respondido";
+  let r = await sbRest("/rest/v1/cot_enlaces?select=" + campos + ",tipo&order=creado.desc&limit=1000");
+  if(!r.ok) r = await sbRest("/rest/v1/cot_enlaces?select=" + campos + "&order=creado.desc&limit=1000");   // base sin la columna «tipo» todavía
+  if(!r.ok) return;                       // si aún no se instaló el SQL de firmas, simplemente no se muestran
+  const antes = JSON.stringify(FIRMAS.map(f => f.token + f.estado + (f.visto || "")));
+  FIRMAS = r.data || [];
+  if(antes !== JSON.stringify(FIRMAS.map(f => f.token + f.estado + (f.visto || "")))){
+    renderLista();
+    if(typeof CTL_FICHA !== "undefined" && CTL_FICHA && $("modalFicha").classList.contains("open")) ctlFicha(CTL_FICHA);
+  }
+}
+function firmaBadge(pid){
+  const ent = FIRMAS.find(x => x.proyecto_id === pid && x.tipo === "entrega" && x.estado === "Aceptada");
+  if(ent) return ' <span class="firma-b ok" title="Recibida por ' + escapeHtml(ent.firma_nombre || "") + '">📦 Obra recibida</span>';
+  const f = firmaDe(pid); if(!f) return "";
+  if(f.estado === "Aceptada") return ' <span class="firma-b ok" title="Aceptada por ' + escapeHtml(f.firma_nombre || "") + '">✍ Aceptada</span>';
+  if(f.estado === "Rechazada") return ' <span class="firma-b no" title="' + escapeHtml(f.comentario || "Sin comentario") + '">✖ No aceptada</span>';
+  const venc = f.vence && f.vence < todayISO();
+  return ' <span class="firma-b ' + (venc ? "no" : "wait") + '">' + (venc ? "⌛ Enlace vencido" : f.visto ? "👁 Vista por el cliente" : "⏳ Enviada a firma") + '</span>';
+}
+async function crearEnlaceFirma(){
+  const d = ENVIO_ACTUAL || leerFormulario();
+  if(!SB_ON || !SESION.token) return toast("El enlace de firma necesita la conexión con la nube.", "err");
+  const p = PROYECTOS.find(x => x.id === d.id && !x.eliminado);
+  if(!p) return toast("Guarde el proyecto antes de crear el enlace de firma.", "err");
+  if(Math.abs(totalesDe(p).total - totalesDe(d).total) > 0.009) return toast("Tiene cambios sin guardar. Guarde el proyecto y vuelva a intentarlo.", "err");
+  const prev = firmaDe(p.id);
+  if(prev && prev.estado === "Aceptada" && !confirm("El cliente ya aceptó esta cotización. ¿Crear un enlace nuevo de todos modos?")) return;
+  if(prev && prev.estado === "Pendiente" && !confirm("Ya hay un enlace pendiente para esta cotización. Si crea uno nuevo, el anterior deja de funcionar. ¿Continuar?")) return;
+  return conBoton($("envFirma"), "Creando enlace…", async () => {
+    if(p.pendiente) await sincronizar(true);
+    const r = await sbRpc("cot_crear_enlace", { e: {
+      proyecto_id: p.id, html: docHtmlPublico(d), numero: d.numero || "", cliente: d.cliente || "",
+      empresa: d.modulo === "muebles" ? EMPRESA_MZ.nombre : CFG.empresa, total: r2(totalesDe(d).total), dias: num(d.validez) || 15 } });
+    if(!r.ok) throw new Error(/cot_crear_enlace|function|404/i.test(r.error || "") ? "Falta instalar en Supabase el archivo supabase_firma_cotizaciones.sql." : (r.error || "No se pudo crear el enlace."));
+    const url = urlBasePrograma() + "firma.html?t=" + r.token;
+    $("envFirmaUrl").value = url;
+    $("envFirmaVence").textContent = "Válido hasta el " + fechaLarga(r.vence) + ". Cuando el cliente firme, verá «✍ Aceptada» en la lista de proyectos.";
+    $("envFirmaBox").classList.remove("hidden");
+    $("envFirmaBox").scrollIntoView({ block: "nearest", behavior: "smooth" });
+    firmasCargar();
+  });
+}
+function textoEnlaceFirma(){
+  const d = ENVIO_ACTUAL || {};
+  return "Hola" + (d.cliente ? " " + d.cliente : "") + ", le compartimos su " + (d.modulo === "muebles" ? "presupuesto " : "cotización ") + (d.numero || "") +
+    ". Puede revisarla y, si está de acuerdo, aceptarla con su firma en este enlace:\n" + $("envFirmaUrl").value;
+}
+function enviarEnlaceWhatsapp(){
+  const d = ENVIO_ACTUAL || {};
+  const tel = (d.telefono || "").replace(/\D/g, "");
+  window.open("https://wa.me/" + (tel ? (tel.length === 8 ? "504" + tel : tel) : "") + "?text=" + encodeURIComponent(textoEnlaceFirma()), "_blank");
+}
+async function copiarEnlaceFirma(){
+  try{ await navigator.clipboard.writeText(textoEnlaceFirma()); toast("Enlace copiado.", "ok"); }
+  catch(e){ $("envFirmaUrl").select(); toast("Seleccione el enlace y cópielo.", ""); }
+}
+/* Sección de la ficha del proyecto (Control comercial) */
+function firmaSeccionFicha(pid){
+  const f = firmaDe(pid);
+  if(!f) return '<div class="ctl-card" style="margin-top:14px"><h3>Aceptación del cliente</h3><p class="muted" style="margin:0">Aún no se ha enviado enlace de firma. Use «Enviar» en la cotización ▸ «✍ Enlace para firma».</p></div>';
+  const cab = f.estado === "Aceptada" ? '<b style="color:#135b30">✅ Aceptada</b> por <b>' + escapeHtml(f.firma_nombre || "") + '</b>' + (f.firma_identidad ? ' · Id. ' + escapeHtml(f.firma_identidad) : '') + ' · ' + escapeHtml(fechaHoraCorta(f.respondido))
+    : f.estado === "Rechazada" ? '<b style="color:#a3261b">✖ No aceptada</b> · ' + escapeHtml(fechaHoraCorta(f.respondido)) + (f.comentario ? '<div>Motivo: ' + escapeHtml(f.comentario) + '</div>' : '')
+    : '<b>⏳ Pendiente</b> · enviada ' + escapeHtml(fechaHoraCorta(f.creado)) + ' · ' + (f.visto ? "vista " + escapeHtml(fechaHoraCorta(f.visto)) : "aún no la abre") + ' · vence ' + cF(f.vence);
+  return '<div class="ctl-card" style="margin-top:14px"><h3>Aceptación del cliente</h3><div style="line-height:1.7">' + cab + '</div>' +
+    (f.estado === "Aceptada" ? '<div id="fichaFirmaImg" data-token="' + f.token + '" class="firma-img muted small">Cargando firma…</div>' : '') +
+    '<div class="ctl-acc-head" style="margin-top:10px"><button type="button" class="btn-outline" data-firma="copiar" data-token="' + f.token + '">🔗 Copiar enlace</button>' +
+    (f.estado === "Pendiente" ? '<button type="button" class="btn-red-outline" data-firma="anular" data-token="' + f.token + '">Anular enlace</button>' : '') +
+    (f.estado === "Aceptada" && esAdmin() && !ctlVenta(pid) ? '<button class="save" style="color:#fff" type="button" data-fx="venta">✔ Convertir en venta</button>' : '') + '</div></div>';
+}
+function fechaHoraCorta(iso){
+  if(!iso) return "";
+  const d = new Date(iso);
+  return isNaN(d) ? String(iso) : d.toLocaleDateString("es-HN", { day:"2-digit", month:"short", year:"numeric" }) + " " + d.toLocaleTimeString("es-HN", { hour:"2-digit", minute:"2-digit" });
+}
+async function firmaCargarImagen(){
+  const box = document.getElementById("fichaFirmaImg"); if(!box) return;
+  const r = await sbRest("/rest/v1/cot_enlaces?select=firma_png&token=eq." + encodeURIComponent(box.dataset.token));
+  const png = r.ok && r.data && r.data[0] && r.data[0].firma_png;
+  box.innerHTML = png && /^data:image\/png;base64,/.test(png) ? '<img src="' + png + '" alt="Firma del cliente">' : "";
+}
+async function firmaAccion(btn){
+  const t = btn.dataset.token;
+  if(btn.dataset.firma === "copiar"){
+    const url = urlBasePrograma() + "firma.html?t=" + t;
+    try{ await navigator.clipboard.writeText(url); toast("Enlace copiado.", "ok"); }catch(e){ prompt("Copie el enlace:", url); }
+  }else if(btn.dataset.firma === "anular"){
+    if(!confirm("¿Anular el enlace? El cliente ya no podrá abrirlo ni firmarlo.")) return;
+    const r = await sbRpc("cot_anular_enlace", { t });
+    if(!r.ok) return toast(r.error || "No se pudo anular.", "err");
+    toast("Enlace anulado.", "ok"); await firmasCargar();
+  }
+}
+
+
+/* ── 18a. TIPOS DE PVC: salen de Configuración ▸ Materiales y precios ── */
+function pvTiposPvc(){
+  const l = (CFG.materiales || []).map(m => String(m.nombre || "").trim()).filter(Boolean);
+  return l.length ? l : ["PVC blanco", "PVC color madera"];
+}
+function pvCampoPrecio(tipo){
+  if(tipo === "PVC blanco") return "priceWhite";
+  if(tipo === "PVC color madera") return "priceWood";
+  return "p_" + String(tipo || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
+}
+function pvLlenarTipos(){
+  const tipos = pvTiposPvc();
+  ["pvTipo", "pvTipoCat"].forEach(id => {
+    const sel = document.getElementById(id); if(!sel) return;
+    const cur = sel.value;
+    const lista = tipos.slice();
+    if(cur && lista.indexOf(cur) < 0) lista.push(cur);
+    const html = lista.map(t => '<option value="' + escapeHtml(t) + '">' + escapeHtml(t) + '</option>').join("");
+    if(sel.dataset.h !== html){ sel.innerHTML = html; sel.dataset.h = html; }
+    sel.value = (cur && lista.indexOf(cur) >= 0) ? cur : lista[0];
+  });
+}
+
 /* ── 18b. CATÁLOGO DE MATERIALES PVC: PRECIOS PERMANENTES ────── */
 function leerCatalogoGuardado(){
   try{ return JSON.parse(localStorage.getItem(LS.catalogo) || "{}") || {}; }
@@ -3168,7 +4776,7 @@ function leerCatalogoGuardado(){
 async function guardarCatalogo(){
   if(!esAdmin()) return toast("Solo el administrador puede modificar el catálogo.", "err");
   const tipo = $("pvTipo").value;
-  const campo = (tipo === "PVC color madera") ? "priceWood" : "priceWhite";
+  const campo = pvCampoPrecio(tipo);
   const guardado = leerCatalogoGuardado();
   let cambios = 0;
   document.querySelectorAll("#pvBibliotecaBody tr[data-id]").forEach(tr => {
@@ -3185,6 +4793,7 @@ async function guardarCatalogo(){
     CFG.catalogoPvc = guardado;
     guardarConfigLocal();
     pintarSelloCatalogo();
+    if(typeof PVC !== "undefined") PVC.renderLibrary();
   }catch(e){ return toast("No se pudo guardar: almacenamiento lleno.", "err"); }
 
   if(!CFG.apiUrl || !SESION.token){
@@ -3521,6 +5130,7 @@ function restaurarDePapelera(id){
   if(!PROYECTOS.some(x => x.id === p.id)) PROYECTOS.push(p);
   guardarProyectosLocales(); renderLista(); renderPapelera();
   toast("Proyecto restaurado · " + (p.numero || p.proyecto) + ".", "ok");
+  if(CFG.apiUrl && SESION.token) sincronizar(true);
 }
 function borrarDefinitivo(id){
   if(!confirm("¿Borrar definitivamente? Esta acción ya no se puede deshacer.")) return;
@@ -3732,12 +5342,56 @@ function iniciar(){
   $("saveStatus").textContent = "Autoguardado activado";
 
   nubeModulosEventos();
+  ctlEventos();
   if(SESION.usuario){ abrirApp(); if(CFG.apiUrl && SESION.token){ sincronizar(true); solCargar(true); } }
   else mostrarLogin();
 
   if("serviceWorker" in navigator){
     window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
   }
+  iniciarAvisoVersion();
+}
+
+/* ── AVISO DE VERSIÓN NUEVA ─────────────────────────────────────
+   Revisa en GitHub si se publicó otra versión (al abrir, al volver a la
+   pestaña y cada 30 minutos). Si la hay, muestra el aviso con «Actualizar». */
+const LS_VER = "vitra_version_vista";
+function compararVersion(a, b){
+  const x = String(a).split(".").map(Number), y = String(b).split(".").map(Number);
+  for(let i = 0; i < 3; i++){ if((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) - (y[i] || 0); }
+  return 0;
+}
+async function revisarVersion(){
+  if(!navigator.onLine || location.protocol === "file:") return;
+  try{
+    const r = await fetch("index.html?v=" + Date.now(), { cache: "no-store" });
+    if(!r.ok) return;
+    const m = (await r.text()).match(/const APP_VERSION = "([\d.]+)"/);
+    if(m && compararVersion(m[1], APP_VERSION) > 0){
+      $("avisoVerNum").textContent = m[1];
+      $("avisoVersion").classList.remove("hidden");
+    }
+  }catch(e){}
+}
+async function actualizarApp(){
+  const b = $("btnActualizarApp"); b.disabled = true; b.textContent = "Actualizando…";
+  try{
+    const reg = navigator.serviceWorker && await navigator.serviceWorker.getRegistration();
+    if(reg) await reg.update();
+    if(window.caches) await Promise.all((await caches.keys()).map(k => caches.delete(k)));   // la copia vieja sin internet
+  }catch(e){}
+  location.reload();
+}
+function iniciarAvisoVersion(){
+  document.querySelectorAll(".verApp").forEach(e => e.textContent = APP_VERSION);
+  $("btnActualizarApp").onclick = actualizarApp;
+  $("btnAvisoLuego").onclick = () => $("avisoVersion").classList.add("hidden");
+  // Después de actualizar: avisa una vez que ya está en la versión nueva
+  let vista = ""; try{ vista = localStorage.getItem(LS_VER) || ""; localStorage.setItem(LS_VER, APP_VERSION); }catch(e){}
+  if(vista && compararVersion(APP_VERSION, vista) > 0) setTimeout(() => toast("Programa actualizado a la versión " + APP_VERSION + ".", "ok"), 900);
+  setTimeout(revisarVersion, 4000);
+  setInterval(revisarVersion, 30 * 60 * 1000);
+  document.addEventListener("visibilitychange", () => { if(document.visibilityState === "visible") revisarVersion(); });
 }
 document.addEventListener("DOMContentLoaded", iniciar);
 </script>

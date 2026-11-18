@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Aceptación de cotización</title>
+<link rel="icon" href="assets/icon-192.png">
+<style>
+:root{--blue:#0b4a93;--blue-dark:#082f63;--blue-soft:#dceeff;--sky:#1678e8;--green:#159447;--red:#d92027;--amber:#b06a00;
+--border:#cfdae7;--line:#e3ebf4;--text:#10213a;--muted:#62758c;--shadow:0 8px 24px rgba(11,74,147,.09)}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",Arial,Helvetica,sans-serif;color:var(--text);background:linear-gradient(180deg,#eef7ff 0,#fff 30%,#f4f8fc 100%);min-height:100vh}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px}
+.top{background:linear-gradient(135deg,#082f63,#0b4a93);color:#fff;padding:14px 0;margin-bottom:18px}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.top b{font-size:16px}.top small{opacity:.85}
+.card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:20px;box-shadow:var(--shadow);margin-bottom:16px}
+.hidden{display:none!important}
+.pill{display:inline-block;padding:4px 12px;border-radius:99px;font-size:12.5px;font-weight:800;background:#fff;color:var(--blue)}
+.pill.ok{background:#e3f3e8;color:#135b30}.pill.no{background:#fde4e2;color:#a3261b}.pill.wait{background:#fff1d6;color:#8a5a00}
+h2{margin:0 0 6px;font-size:20px}
+.muted{color:var(--muted)}
+label{display:block;font-weight:800;font-size:13px;margin:12px 0 5px}
+input[type=text],textarea{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:10px;font:inherit;font-size:15px}
+textarea{min-height:90px}
+.firma-box{position:relative;border:2px dashed #9fb4cc;border-radius:12px;background:#fbfdff;touch-action:none}
+.firma-box canvas{display:block;width:100%;height:190px;cursor:crosshair}
+.firma-box .ph{position:absolute;left:0;right:0;bottom:44px;text-align:center;color:#a5b4c5;pointer-events:none;font-size:14px}
+.firma-box .linea{position:absolute;left:8%;right:8%;bottom:38px;border-top:1px solid #c5d2e0;pointer-events:none}
+.check{display:flex;gap:10px;align-items:flex-start;margin:14px 0;font-size:14.5px;line-height:1.45}
+.check input{width:20px;height:20px;margin-top:2px;flex:none}
+.acciones{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+button{border:0;border-radius:12px;padding:12px 18px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit}
+.btn-ok{background:linear-gradient(135deg,#1da85a,#087b3d);color:#fff}
+.btn-no{background:#fff;border:2px solid #ed3a3f;color:var(--red)}
+.btn-sec{background:#fff;border:2px solid var(--sky);color:#0b5fb8}
+.btn-mini{padding:6px 12px;font-size:13px}
+button:disabled{opacity:.55;cursor:wait}
+.alerta{display:none;margin-top:12px;padding:11px 13px;border-radius:10px;font-size:14px}
+.alerta.show{display:block}.alerta.err{background:#fdecea;color:#8a1c1c;border:1px solid #f5c2bd}
+.sello{display:flex;gap:16px;align-items:center;flex-wrap:wrap;border:2px solid #9fd5b2;background:#eefaf2;border-radius:14px;padding:14px 16px}
+.sello.no{border-color:#f5c2bd;background:#fdecea}
+.sello img{max-width:260px;max-height:110px;background:#fff;border:1px solid var(--line);border-radius:8px}
+.sello b{font-size:17px}
+.pie{text-align:center;color:#8193a7;font-size:12px;margin:24px 0 30px}
+/* ── Documento (mismos estilos del programa) ── */
+.doc{font-family:Arial,Helvetica,sans-serif;color:#10213a;background:#fff;padding:6px 4px}
+.doc-head{display:flex;justify-content:space-between;align-items:flex-start;gap:26px;border-bottom:3px solid var(--blue);padding-bottom:12px;margin-bottom:14px}
+.doc-logos{display:flex;align-items:center;gap:16px;flex:none}
+.doc-logos img{object-fit:contain;display:block}
+.doc-logo-marca{width:170px}
+.doc-logo-corp{width:155px;border-left:2px solid #c9d4e0;padding-left:16px}
+.doc-emp{text-align:right;line-height:1.5;font-size:13px}
+.doc-emp h1{margin:0 0 5px;color:var(--blue);font-size:22px}
+.doc-emp .doc-legal{font-size:14px;font-weight:700;margin:0 0 8px;line-height:1.25}
+.doc-meta{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px;font-size:13.5px}
+.doc-meta .box{border:1px solid #b9c9da;border-radius:8px;padding:10px 12px;line-height:1.65}
+.doc-meta .box h4{margin:0 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--blue)}
+.doc table{width:100%;border-collapse:collapse;min-width:0;font-size:13px}
+.doc th,.doc td{border:1px solid #b9c9da;padding:7px 8px;text-align:center}
+.doc th{background:var(--blue);color:#fff;font-size:12.5px}
+.doc td.l{text-align:left}
+.doc td.r{text-align:right}
+.doc tfoot td{font-weight:bold;background:#edf5ff}
+.doc tfoot tr.final td{font-size:15px;background:#d9eaff}
+.doc-letras{margin-top:10px;font-size:12.5px;background:#f3f8ff;border-left:4px solid var(--blue);padding:9px 12px}
+.doc-sub{margin:18px 0 8px;font-size:14px;font-weight:800;color:var(--blue-dark);border-bottom:1px solid #b9c9da;padding-bottom:4px}
+.doc-mini{font-size:11.5px;color:#62758c;margin:0 0 6px}
+.doc-cond{margin-top:14px;font-size:12px;line-height:1.6;color:#33495f;white-space:pre-line}
+.doc-firma{margin-top:56px;text-align:center}
+.doc-firma .line{width:250px;border-top:1px solid #333;margin:0 auto 6px}
+.doc-firma .t{font-weight:bold;font-size:13px}
+.doc-firma .n{font-size:12.5px;margin-top:3px}
+.doc-pie{margin-top:26px;text-align:center;font-size:11px;color:#7c8ea1;border-top:1px solid #dfe7f0;padding-top:8px}
+#docRender{overflow-x:auto}
+@media(max-width:640px){.card{padding:14px}.doc-head{gap:10px;padding-bottom:9px}.doc-logos{gap:8px}.doc-logo-marca{width:96px}.doc-logo-corp{width:86px;padding-left:8px}.doc-emp{font-size:10.5px;line-height:1.4}.doc-emp h1{font-size:15px}.doc-emp .doc-legal{font-size:11px}.doc-meta{grid-template-columns:1fr}.doc table{font-size:10px}.doc th{font-size:9.5px}.doc th,.doc td{padding:4px 2px}#docCard{padding:10px}.doc tfoot tr.final td{font-size:11.5px}}
+@media print{body{background:#fff}.top,.no-print,#aceptar,.pie{display:none!important}.card{box-shadow:none;border:0;padding:0}}
+</style>
+</head>
+<body>
+<div class="top no-print"><div class="wrap"><div><b id="tTitulo">Revisión de cotización</b><br><small id="tSub">Cargando…</small></div><span class="pill" id="tEstado">…</span></div></div>
+<main class="wrap">
+  <div class="card hidden" id="msg"></div>
+  <div class="card hidden" id="resultado"></div>
+  <div class="card hidden" id="docCard"><div id="docRender" class="doc"></div></div>
+
+  <div class="card hidden no-print" id="aceptar">
+    <h2 id="hPregunta">¿Está de acuerdo con esta cotización?</h2>
+    <p class="muted" style="margin:0 0 6px">Revise el detalle de arriba. Si está conforme, escriba su nombre y firme en el recuadro.</p>
+    <label for="nombre">Nombre completo *</label>
+    <input type="text" id="nombre" maxlength="120" autocomplete="name" placeholder="Como aparece en su identidad">
+    <label for="identidad">N.° de identidad o RTN (opcional)</label>
+    <input type="text" id="identidad" maxlength="30" inputmode="numeric">
+    <label>Firma *</label>
+    <div class="firma-box"><canvas id="lienzo"></canvas><div class="linea"></div><div class="ph" id="ph">Firme aquí con el dedo o el mouse</div></div>
+    <div class="acciones" style="margin-top:6px"><button type="button" class="btn-sec btn-mini" id="borrar">Borrar firma</button></div>
+    <label class="check"><input type="checkbox" id="acepto"><span id="txtAcepto">He revisado la cotización y acepto sus precios y condiciones.</span></label>
+    <div class="acciones">
+      <button type="button" class="btn-ok" id="btnAceptar">✍ Firmar y aceptar</button>
+      <button type="button" class="btn-no" id="btnRechazar">No acepto</button>
+    </div>
+    <div class="hidden" id="rechazoBox">
+      <label for="comentario" id="lblComentario">Cuéntenos el motivo (opcional)</label>
+      <textarea id="comentario" maxlength="1000" placeholder="Ej. el precio, las medidas, el tiempo de entrega…"></textarea>
+      <div class="acciones"><button type="button" class="btn-no" id="btnConfirmarRechazo">Enviar respuesta</button><button type="button" class="btn-sec" id="btnCancelarRechazo">Volver</button></div>
+    </div>
+    <div class="alerta" id="alerta"></div>
+  </div>
+  <p class="pie no-print">Su respuesta queda registrada con la fecha y la hora. Este enlace es personal: no lo comparta.</p>
+</main>
+<script>
+"use strict";
+/* Clave publicable de Supabase: es pública por diseño; la seguridad la ponen las reglas de la base de datos. */
+const SUPABASE_URL = "https://swjccmziyjtshqeqntlq.supabase.co";
+const SUPABASE_KEY = "sb_publishable_XOZ38hBxCZC4bUiktw9fqA_tm28UqOP";
+const $ = id => document.getElementById(id);
+const token = new URLSearchParams(location.search).get("t") || "";
+let DATOS = null, trazos = 0;
+const esActa = () => DATOS && DATOS.tipo === "entrega";
+
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const lps = n => "L " + Number(n || 0).toLocaleString("es-HN", { minimumFractionDigits:2, maximumFractionDigits:2 });
+const fecha = iso => { if(!iso) return ""; const d = new Date(String(iso).length <= 10 ? iso + "T12:00:00" : iso);
+  return d.toLocaleDateString("es-HN", { day:"numeric", month:"long", year:"numeric" }) + (String(iso).length > 10 ? " a las " + d.toLocaleTimeString("es-HN", { hour:"2-digit", minute:"2-digit" }) : ""); };
+/* El documento lo genera el programa; por precaución se quitan scripts y atributos de eventos */
+const limpiar = h => String(h || "").replace(/<script[\s\S]*?<\/script>/gi, "").replace(/\son[a-z]+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, "");
+
+async function rpc(fn, args){
+  const r = await fetch(SUPABASE_URL + "/rest/v1/rpc/" + fn, { method:"POST", cache:"no-store",
+    headers:{ apikey:SUPABASE_KEY, Authorization:"Bearer " + SUPABASE_KEY, "Content-Type":"application/json" }, body:JSON.stringify(args) });
+  const j = await r.json().catch(() => null);
+  if(!r.ok) throw new Error((j && (j.message || j.error)) || ("Error " + r.status));
+  return j;
+}
+function mensaje(html){ $("msg").innerHTML = html; $("msg").classList.remove("hidden"); }
+function estadoTop(estado, cls){ $("tEstado").textContent = estado; $("tEstado").className = "pill " + (cls || ""); }
+
+function pintarResultado(d){
+  const box = $("resultado");
+  if(d.estado === "Aceptada"){
+    box.innerHTML = '<div class="sello"><div style="font-size:34px">✅</div><div><b>' + (esActa() ? "Obra recibida a satisfacción" : "Cotización aceptada") + '</b><br>por <b>' + esc(d.firma_nombre) + '</b><br><span class="muted">' + esc(fecha(d.respondido)) + '</span></div>' +
+      (d.firma_png ? '<img src="' + esc(d.firma_png) + '" alt="Firma">' : '') + '</div>' +
+      '<div class="acciones no-print" style="margin-top:12px"><button type="button" class="btn-sec" onclick="window.print()">🖨 Imprimir / guardar copia</button></div>';
+    estadoTop("Aceptada", "ok");
+  }else if(d.estado === "Rechazada"){
+    box.innerHTML = '<div class="sello no"><div style="font-size:30px">✖</div><div><b>' + (esActa() ? "Observaciones enviadas" : "Cotización no aceptada") + '</b><br><span class="muted">' + esc(fecha(d.respondido)) + '</span>' +
+      (d.comentario ? '<br>' + (esActa() ? 'Observaciones: ' : 'Comentario: ') + esc(d.comentario) : '') + '<br>Gracias por su respuesta; la empresa se comunicará con usted.</div></div>';
+    estadoTop("No aceptada", "no");
+  }
+  box.classList.remove("hidden");
+}
+
+async function cargar(){
+  if(!/^[0-9a-f-]{36}$/i.test(token)){ mensaje("<b>Enlace incompleto.</b> Revise que copió el enlace completo que le enviaron."); $("tSub").textContent = ""; estadoTop("—"); return; }
+  let d;
+  try{ d = await rpc("cot_ver", { t: token }); }
+  catch(e){ mensaje("<b>No se pudo cargar la cotización.</b> Revise su conexión a internet e intente de nuevo."); $("tSub").textContent = ""; estadoTop("Sin conexión", "no"); return; }
+  if(!d || !d.ok){ mensaje("<b>" + esc((d && d.error) || "Enlace no disponible.") + "</b>"); $("tSub").textContent = ""; estadoTop("No disponible", "no"); return; }
+  DATOS = d;
+  document.title = "Cotización " + (d.numero || "") + " · " + (d.empresa || "");
+  $("tTitulo").textContent = (d.empresa || "Cotización") + " · " + (d.numero || "");
+  $("tSub").textContent = "Para: " + (d.cliente || "cliente") + " · Total " + lps(d.total);
+  $("docRender").innerHTML = limpiar(d.html);
+  $("docCard").classList.remove("hidden");
+  if(d.estado === "Pendiente" && d.vencido){
+    mensaje("<b>" + (esActa() ? "Este enlace venció el " : "Esta cotización venció el ") + "" + esc(fecha(d.vence)) + ".</b> Comuníquese con la empresa para recibir una cotización actualizada.");
+    estadoTop("Vencida", "no"); return;
+  }
+  if(d.estado !== "Pendiente"){ pintarResultado(d); return; }
+  estadoTop("Pendiente de aceptación", "wait");
+  if(esActa()){
+    document.title = "Acta de entrega " + (d.numero || "") + " · " + (d.empresa || "");
+    $("tTitulo").textContent = (d.empresa || "") + " · Acta de entrega";
+    $("tSub").textContent = "Para: " + (d.cliente || "cliente") + " · Obra " + (d.numero || "");
+    $("hPregunta").textContent = "¿Recibe los trabajos a su satisfacción?";
+    $("txtAcepto").textContent = "He revisado los trabajos de " + (d.numero || "la obra") + " y los recibo a mi satisfacción.";
+    $("btnAceptar").textContent = "✍ Firmar recepción";
+    $("btnRechazar").textContent = "Tengo observaciones";
+    $("lblComentario").textContent = "Escriba sus observaciones";
+    estadoTop("Pendiente de firma", "wait");
+    mensaje("Revise el acta y las fotos. Al final de la página puede firmar la recepción.");
+  }else{
+    $("txtAcepto").textContent = "He revisado la cotización " + (d.numero || "") + " por " + lps(d.total) + " y acepto sus precios y condiciones.";
+    mensaje("Válida hasta el <b>" + esc(fecha(d.vence)) + "</b>. Al final de la página puede aceptarla con su firma.");
+  }
+  $("aceptar").classList.remove("hidden");
+  iniciarLienzo();
+}
+
+/* ---------- Firma ---------- */
+function iniciarLienzo(){
+  const c = $("lienzo"), ctx = c.getContext("2d");
+  const ajustar = () => {
+    const r = c.getBoundingClientRect(), k = Math.min(window.devicePixelRatio || 1, 2);
+    const prev = trazos ? c.toDataURL() : null;
+    c.width = Math.round(r.width * k); c.height = Math.round(r.height * k);
+    ctx.setTransform(k, 0, 0, k, 0, 0); ctx.lineWidth = 2.4; ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.strokeStyle = "#0d2147";
+    if(prev){ const im = new Image(); im.onload = () => ctx.drawImage(im, 0, 0, r.width, r.height); im.src = prev; }
+  };
+  ajustar(); window.addEventListener("resize", ajustar);
+  let dibujando = false, ultimo = null;
+  const punto = e => { const r = c.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
+  c.addEventListener("pointerdown", e => { dibujando = true; ultimo = punto(e); c.setPointerCapture(e.pointerId); ctx.beginPath(); ctx.arc(ultimo.x, ultimo.y, 1.1, 0, Math.PI * 2); ctx.fill(); e.preventDefault(); });
+  c.addEventListener("pointermove", e => { if(!dibujando) return; const p = punto(e); ctx.beginPath(); ctx.moveTo(ultimo.x, ultimo.y); ctx.lineTo(p.x, p.y); ctx.stroke(); ultimo = p; trazos++; $("ph").style.display = "none"; e.preventDefault(); });
+  const fin = () => { dibujando = false; };
+  c.addEventListener("pointerup", fin); c.addEventListener("pointercancel", fin); c.addEventListener("pointerleave", fin);
+  $("borrar").onclick = () => { ctx.clearRect(0, 0, c.width, c.height); trazos = 0; $("ph").style.display = ""; };
+}
+function firmaPng(){
+  // Se recorta a un tamaño moderado para guardar la firma liviana
+  const c = $("lienzo"), out = document.createElement("canvas"), w = 600, h = Math.round(600 * c.height / c.width);
+  out.width = w; out.height = h; out.getContext("2d").drawImage(c, 0, 0, w, h);
+  return out.toDataURL("image/png");
+}
+function alerta(t){ const a = $("alerta"); a.textContent = t; a.className = "alerta show err"; a.scrollIntoView({ block:"nearest", behavior:"smooth" }); }
+async function responder(acepta){
+  const nombre = $("nombre").value.trim();
+  if(acepta){
+    if(nombre.length < 3) return alerta("Escriba su nombre completo.");
+    if(trazos < 5) return alerta("Dibuje su firma en el recuadro.");
+    if(!$("acepto").checked) return alerta("Marque la casilla para confirmar que acepta la cotización.");
+  }
+  const botones = [...document.querySelectorAll("#aceptar button")]; botones.forEach(b => b.disabled = true);
+  try{
+    const r = await rpc("cot_responder", { t: token, r: { acepta, nombre, identidad: $("identidad").value.trim(),
+      firma: acepta ? firmaPng() : null, comentario: acepta ? "" : $("comentario").value.trim(), agente: navigator.userAgent.slice(0, 250) } });
+    if(!r.ok){ botones.forEach(b => b.disabled = false); return alerta(r.error || "No se pudo registrar su respuesta."); }
+    $("aceptar").classList.add("hidden"); $("msg").classList.add("hidden");
+    pintarResultado(Object.assign({}, DATOS, { estado: r.estado, firma_nombre: nombre, firma_png: acepta ? firmaPng() : null, respondido: r.respondido, comentario: acepta ? "" : $("comentario").value.trim() }));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }catch(e){ botones.forEach(b => b.disabled = false); alerta("No se pudo enviar. Revise su conexión e intente de nuevo."); }
+}
+$("btnAceptar").onclick = () => responder(true);
+$("btnRechazar").onclick = () => { $("rechazoBox").classList.remove("hidden"); $("btnAceptar").classList.add("hidden"); $("btnRechazar").classList.add("hidden"); $("comentario").focus(); };
+$("btnCancelarRechazo").onclick = () => { $("rechazoBox").classList.add("hidden"); $("btnAceptar").classList.remove("hidden"); $("btnRechazar").classList.remove("hidden"); };
+$("btnConfirmarRechazo").onclick = () => responder(false);
+cargar();
+</script>
+</body>
+</html>

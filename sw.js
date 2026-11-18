@@ -1,8 +1,8 @@
-/* Vitra House · Service Worker v7.0.0
+/* Vitra House · Service Worker v12.3.1
    Permite que la aplicación abra sin internet.
    IMPORTANTE: al publicar una versión nueva, cambie CACHE_VERSION. */
 
-const CACHE_VERSION = 'vitra-v11.1.0';
+const CACHE_VERSION = 'vitra-v12.3.1';
 const ARCHIVOS = [
   './',
   './index.html',
@@ -40,6 +40,8 @@ self.addEventListener('fetch', evento => {
 
   // El documento principal: primero red, luego caché (así se ven las actualizaciones).
   if (req.mode === 'navigate' || req.destination === 'document') {
+    // Otras páginas (p. ej. firma.html, que abre el cliente) van directo a la red.
+    if (!/\/(index\.html)?$/.test(new URL(req.url).pathname)) return;
     evento.respondWith(
       fetch(req)
         .then(res => {
