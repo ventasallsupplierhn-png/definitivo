@@ -397,6 +397,7 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
 .ctl-t tfoot td{border-top:2px solid var(--line);border-bottom:0;background:#f8fbff}
 .ctl-t input,.ctl-t select{width:100%}
 .ctl-click{cursor:pointer}.ctl-click:hover td{background:#f4f9ff}
+.ctl-radio{display:flex;gap:8px;align-items:center;padding:6px 0;font-weight:400;cursor:pointer;font-size:14px}.ctl-radio input{width:auto;margin:0}
 .ctl-bajo td{background:#fff6f6}.ctl-anulada td{color:#9aa8b8;text-decoration:line-through}
 .ctl-pill{display:inline-block;padding:3px 10px;border-radius:99px;font-size:11.5px;font-weight:800;white-space:nowrap}
 .st-sol{background:#eef2f7;color:#4b5f78}.st-apr{background:#fff1d6;color:#8a5a00}.st-env{background:#e0f4f7;color:#0e6a7d}.st-par{background:#fdebd7;color:#9a4b00}
@@ -1278,7 +1279,7 @@ const AJUSTES_FABRICA = {
 if(AJUSTES_FABRICA.supabaseUrl && AJUSTES_FABRICA.supabaseKey) AJUSTES_FABRICA.apiUrl = "supabase";
 
 /* ── 1. CONSTANTES Y ESTADO GLOBAL ───────────────────────────── */
-const APP_VERSION = "12.5.0";
+const APP_VERSION = "12.6.0";
 const LS = {
   borrador : "vitra.borrador.v7",
   borradorMZ: "vitra.borradorMZ.v9",
@@ -2053,6 +2054,7 @@ function aplicarConfigServidor(c){
   if(c.validez !== undefined && c.validez !== "") CFG.validez = num(c.validez);
   if(c.areaMin !== undefined && c.areaMin !== "") CFG.areaMin = num(c.areaMin);
   if(Array.isArray(c.materiales) && c.materiales.length) CFG.materiales = c.materiales;
+  if(c.facAuto !== undefined){ CFG.facAuto = c.facAuto === true || c.facAuto === "true"; CFG.facAutoRes = c.facAutoRes || ""; CFG.facAutoFecha = c.facAutoFecha || ""; }
   if(c.catalogoPvc && Object.keys(c.catalogoPvc).length){
     CFG.catalogoPvc = c.catalogoPvc;
     try{ localStorage.setItem(LS.catalogo, JSON.stringify(c.catalogoPvc)); }catch(e){}
@@ -2318,7 +2320,7 @@ function migrarVersionAnterior(){
    CONTROL COMERCIAL · ventas, cobros, gastos, órdenes de compra, compras,
    inventario, proveedores y facturación SAR (talonario de imprenta)
    ══════════════════════════════════════════════════════════════════════ */
-const CTL = { prov:[], mat:[], oc:[], gas:[], com:[], ven:[], cob:[], cai:[], fac:[], mov:[] };
+const CTL = { prov:[], mat:[], oc:[], gas:[], com:[], ven:[], cob:[], cai:[], fac:[], mov:[], cpb:[] };
 let CTL_VISTA = "resumen", CTL_MES = "", CTL_FICHA = null, CTL_FICHA_PEND = null, CTL_OC_LINEAS = [], CTL_CARGANDO = false;
 const CTL_CAT_GASTO = ["Mano de obra","Transporte","Combustible","Viáticos","Insumos","Herramientas","Alquiler","Servicios","Comisiones","Otros"];
 const CTL_ESTADO_OC = ["Solicitada","Aprobada","Enviada","Recibida parcial","Recibida","Anulada"];
@@ -2358,7 +2360,7 @@ async function ctlCargar(){
   $("ctlEstado").textContent = "Actualizando…";
   try{
     const adm = esAdmin();
-    const [prov, mat, oc, gas, ven, com, cob, cai, fac, mov] = await Promise.all([
+    const [prov, mat, oc, gas, ven, com, cob, cai, fac, mov, cpb] = await Promise.all([
       ctlGet("ctl_proveedores", "&order=nombre.asc"),
       ctlGet("ctl_materiales", "&order=nombre.asc"),
       ctlGet("ctl_ordenes", "&order=creado.desc&limit=500"),
@@ -2368,9 +2370,10 @@ async function ctlCargar(){
       adm ? ctlGet("ctl_cobros", "&order=fecha.desc") : [],
       adm ? ctlGet("ctl_cai", "&order=creado.desc") : [],
       adm ? ctlGet("ctl_facturas", "&order=fecha.desc&limit=1000") : [],
-      adm ? ctlGet("ctl_movimientos", "&order=id.desc&limit=2000") : []
+      adm ? ctlGet("ctl_movimientos", "&order=id.desc&limit=2000") : [],
+      adm ? ctlGet("ctl_comprobantes", "&order=numero.desc&limit=1000").catch(() => []) : []
     ]);
-    Object.assign(CTL, { prov, mat, oc, gas, ven, com, cob, cai, fac, mov });
+    Object.assign(CTL, { prov, mat, oc, gas, ven, com, cob, cai, fac, mov, cpb });
     await firmasCargar();
     CTL_CARGADO = Date.now();
     $("ctlEstado").textContent = "Actualizado " + horaActual();
@@ -2422,6 +2425,7 @@ function ctlCobrado(pid){ return r2c(CTL.cob.filter(c => c.proyecto_id === pid).
 function ctlEstadoProyecto(pid){
   const v = ctlVenta(pid);
   if(!v) return "Cotización";
+  if(v.estado === "Venta" && typeof cpbDe === "function" && cpbDe(pid)) return "Facturada";
   return v.estado;
 }
 function ctlCaiInfo(c){
@@ -2950,14 +2954,14 @@ function ctlVistaVentas(){
   const candidatos = PROYECTOS.filter(p => !p.eliminado && !ctlVenta(p.id) && Number(p.total) > 0);
   const filas = CTL.ven.map(v => {
     const p = ctlProy(v.proyecto_id), cob = ctlCobrado(v.proyecto_id), saldo = r2c(Number(v.total) - cob);
-    const fac = CTL.fac.filter(f => f.proyecto_id === v.proyecto_id && !f.anulada).map(f => f.numero).join(", ");
+    const fac = CTL.fac.filter(f => f.proyecto_id === v.proyecto_id && !f.anulada).map(f => f.numero).concat((CTL.cpb || []).filter(c => c.proyecto_id === v.proyecto_id && !c.anulado).map(c => cvNum(c.numero))).join(", ");
     return '<tr class="ctl-click" data-ficha="' + escapeHtml(v.proyecto_id) + '"><td>' + cF(v.fecha) + '</td><td><b>' + escapeHtml(p ? p.numero : v.proyecto_id) + '</b><div class="muted small">' + escapeHtml(p ? (p.proyecto + " · " + p.cliente) : "") + '</div></td>' +
       '<td>' + ctlPill(v.estado) + '</td><td class="r">' + cL(v.total) + '</td><td class="r">' + cL(cob) + '</td><td class="r ' + (saldo > 0 && v.estado !== "Anulada" ? "down" : "") + '"><b>' + cL(Math.max(0, saldo)) + '</b></td><td class="small">' + escapeHtml(fac || "—") + '</td></tr>';
   }).join("") || '<tr><td colspan="7" class="muted" style="padding:18px">Todavía no hay ventas. Convierta una cotización aprobada en venta.</td></tr>';
   return '<div class="ctl-acciones"><select id="ctlVentaProy"><option value="">— Elija la cotización que el cliente aprobó —</option>' +
     candidatos.map(p => '<option value="' + escapeHtml(p.id) + '">' + escapeHtml(ctlNomProy(p.id)) + " · " + cL(p.total) + '</option>').join("") +
     '</select><button type="button" class="save" style="color:#fff" data-ctlacc="convertir">✔ Convertir en venta</button></div>' +
-    '<div class="ctl-card"><h3>Ventas</h3><div class="table-wrap"><table class="ctl-t"><thead><tr><th>Fecha</th><th>Proyecto</th><th>Estado</th><th class="r">Total</th><th class="r">Cobrado</th><th class="r">Saldo</th><th>Factura(s)</th></tr></thead><tbody>' + filas + '</tbody></table></div></div>';
+    '<div class="ctl-card"><h3>Ventas</h3><div class="table-wrap"><table class="ctl-t"><thead><tr><th>Fecha</th><th>Proyecto</th><th>Estado</th><th class="r">Total</th><th class="r">Cobrado</th><th class="r">Saldo</th><th>Factura / comprobante</th></tr></thead><tbody>' + filas + '</tbody></table></div></div>' + cpbTarjeta();
 }
 function ctlVistaGastos(){
   const proy = $("ctlGProy") ? $("ctlGProy").value : "";
@@ -3044,11 +3048,12 @@ function ctlVistaSar(){
   const t = k => r2c(lista.filter(f => !f.anulada).reduce((s,f) => s + Number(f[k]), 0));
   const facs = lista.map(f => '<tr class="' + (f.anulada ? "ctl-anulada" : "") + '"><td>' + cF(f.fecha) + '</td><td class="mono"><b>' + escapeHtml(f.numero) + '</b></td><td>' + escapeHtml(f.cliente) + '<div class="muted small">RTN ' + escapeHtml(f.rtn || "—") + '</div></td>' +
     '<td class="r">' + cL(Number(f.exento) + Number(f.exonerado)) + '</td><td class="r">' + cL(Number(f.gravado15) + Number(f.gravado18)) + '</td><td class="r">' + cL(Number(f.isv15) + Number(f.isv18)) + '</td><td class="r"><b>' + cL(f.total) + '</b></td>' +
-    '<td class="acc">' + (f.anulada ? '<span class="ctl-pill st-anu">Anulada</span>' : '<button class="action-small del" data-fac="anular" data-id="' + f.id + '">Anular</button>') + '</td></tr>').join("") ||
+    '<td class="acc">' + (facAutoActivo() ? '<button class="action-small edit" data-facimp="' + f.id + '">🖨 Imprimir</button>' : '') + (f.anulada ? '<span class="ctl-pill st-anu">Anulada</span>' : '<button class="action-small del" data-fac="anular" data-id="' + f.id + '">Anular</button>') + '</td></tr>').join("") ||
     '<tr><td colspan="8" class="muted" style="padding:18px">No hay facturas registradas en este período.</td></tr>';
-  return '<div class="ctl-acciones"><span>Período: ' + ctlSelMes() + '</span><button type="button" class="pdf" style="color:#fff" data-ctlacc="factura">🧾 Registrar factura del talonario</button>' +
+  return '<div class="ctl-acciones"><span>Período: ' + ctlSelMes() + '</span><button type="button" class="pdf" style="color:#fff" data-ctlacc="factura">🧾 ' + (facAutoActivo() ? "Emitir factura" : "Registrar factura del talonario") + '</button>' +
     '<button type="button" class="btn-outline" data-ctlacc="cai">＋ CAI / talonario</button><button type="button" class="excel" style="color:#fff" data-ctlacc="libroVentas">⬇ Libro de ventas (Excel)</button></div>' +
-    '<div class="note" style="margin-bottom:14px">Modalidad: <b>talonario de imprenta autorizada</b>. Cada factura se escribe en el talonario y aquí se registra su número; el sistema valida que esté dentro del rango autorizado del CAI y antes de la fecha límite de emisión. Revise con su contador los datos de cada factura.</div>' +
+    (facAutoActivo() ? '<div class="note" style="margin-bottom:14px">Modalidad: <b>autoimpresor</b>. El número sale del CAI activo y la factura se imprime completa (original para el cliente y copia para el emisor). Revise con su contador los datos de cada factura.</div>'
+      : '<div class="note" style="margin-bottom:14px">Modalidad: <b>talonario de imprenta autorizada</b>. Cada factura se escribe en el talonario y aquí se registra su número; el sistema valida que esté dentro del rango autorizado del CAI y antes de la fecha límite de emisión. Revise con su contador los datos de cada factura.</div>') + facModoTarjeta() +
     '<div class="ctl-card"><h3>CAI y talonarios</h3><div class="table-wrap"><table class="ctl-t"><thead><tr><th>CAI</th><th>Rango autorizado</th><th>Fecha límite</th><th>Uso</th><th>Estado</th><th></th></tr></thead><tbody>' + cais + '</tbody></table></div></div>' +
     '<div class="ctl-card"><h3>Libro de ventas del período <span class="muted small">· ISV generado ' + cL(t("isv15") + t("isv18")) + '</span></h3><div class="table-wrap"><table class="ctl-t"><thead><tr><th>Fecha</th><th>Factura</th><th>Cliente</th><th class="r">Exento/Exon.</th><th class="r">Gravado</th><th class="r">ISV</th><th class="r">Total</th><th></th></tr></thead><tbody>' + facs +
     '</tbody><tfoot><tr><td colspan="3"><b>Totales (sin anuladas)</b></td><td class="r">' + cL(t("exento") + t("exonerado")) + '</td><td class="r">' + cL(t("gravado15") + t("gravado18")) + '</td><td class="r">' + cL(t("isv15") + t("isv18")) + '</td><td class="r"><b>' + cL(t("total")) + '</b></td><td></td></tr></tfoot></table></div></div>';
@@ -3354,10 +3359,11 @@ function ctlFicha(pid){
       '<div class="ctl-acc-head"><button class="btn-outline" type="button" data-fx="gasto">＋ Gasto</button><button class="new" style="color:#fff" type="button" data-fx="oc">＋ Orden de compra</button>' +
       (adm && !v ? '<button class="save" style="color:#fff" type="button" data-fx="venta">✔ Convertir en venta</button>' : '') +
       (adm && v && v.estado === "Venta" ? '<button class="pdf" style="color:#fff" type="button" data-fx="factura">🧾 Registrar factura</button>' : '') +
+      (adm && v && v.estado !== "Anulada" ? '<button class="btn-outline" type="button" data-cpb="emitir" data-id="' + escapeHtml(pid) + '">🧾 ' + (cpbDe(pid) ? "Ver comprobante " + cvNum(cpbDe(pid).numero) : "Comprobante de venta") + '</button>' : '') +
       (adm && v && ["Venta","Facturada"].includes(v.estado) ? '<button class="save" style="color:#fff" type="button" data-fx="cobro">💰 Registrar cobro</button>' : '') + '</div></div>' +
     (v && v.estado === "Anulada" ? '<div class="note warning">Esta venta fue anulada.</div>' :
       '<div class="ctl-pipe">' + etapas.map((e,i) => '<div class="' + (i < idx ? "done" : i === idx ? "now" : "") + '">' + (i < idx ? "✓ " : "") + e + '</div>').join("") + '</div>') +
-    (adm ? '<div class="ctl-profit"><div><small>' + (v ? "Venta (sin ISV)" : "Cotizado (sin ISV)") + '</small><b>' + cL(base) + '</b><span class="muted small">' + (facs.length ? "Factura " + escapeHtml(facs.map(f => f.numero).join(", ")) : v ? "Sin factura" : "Aún no es venta") + '</span></div>' +
+    (adm ? '<div class="ctl-profit"><div><small>' + (v ? "Venta (sin ISV)" : "Cotizado (sin ISV)") + '</small><b>' + cL(base) + '</b><span class="muted small">' + (facs.length ? "Factura " + escapeHtml(facs.map(f => f.numero).join(", ")) : cpbDe(pid) ? "Comprobante " + cvNum(cpbDe(pid).numero) : v ? "Sin factura" : "Aún no es venta") + '</span></div>' +
       '<div><small>Materiales</small><b>' + cL(c.materiales) + '</b><span class="muted small">' + (pres ? 'presup. ' + cL(pres.mat) : ocs.length + ' orden(es) de compra') + '</span></div>' +
       '<div><small>Gastos</small><b>' + cL(c.gastos) + '</b><span class="muted small">' + (pres ? 'presup. ' + cL(pres.otros) : gastos.length + ' gasto(s)') + '</span></div>' +
       '<div class="' + (util >= 0 ? "pos" : "neg") + '"><small>Utilidad</small><b>' + cL(util) + '</b><span class="small"><b>Margen ' + (base > 0 ? Math.round(util / base * 100) : 0) + '%</b>' + (pres ? ' · presup. ' + (base > 0 ? Math.round((base - pres.mat - pres.otros) / base * 100) : 0) + '%' : '') + '</span></div></div>' +
@@ -3532,11 +3538,12 @@ function ctlFormFactura(pidFijo){
   const cais = CTL.cai.filter(c => c.activo && !ctlCaiInfo(c).vencido && !ctlCaiInfo(c).agotado);
   if(!cais.length) return toast("Registre primero un CAI vigente en Facturación SAR.", "err");
   const ventas = CTL.ven.filter(v => v.estado === "Venta" || v.proyecto_id === pidFijo);
-  ctlModal("Registrar factura del talonario",
+  const auto = facAutoActivo();
+  ctlModal(auto ? "Emitir factura (autoimpresor)" : "Registrar factura del talonario",
     '<div class="form-grid ctl-form">' +
     ctlCampo("cfProy", "Venta", '<select id="cfProy"><option value="">— Factura sin proyecto —</option>' + ventas.map(v => '<option value="' + escapeHtml(v.proyecto_id) + '"' + (v.proyecto_id === pidFijo ? " selected" : "") + '>' + escapeHtml(ctlNomProy(v.proyecto_id)) + " · " + cL(v.total) + '</option>').join("") + '</select>', true) +
     ctlCampo("cfCai", "Talonario (CAI)", '<select id="cfCai">' + cais.map(c => '<option value="' + c.id + '">' + escapeHtml(c.prefijo + " · vence " + cF(c.fecha_limite) + " · " + c.cai.slice(0, 13) + "…") + '</option>').join("") + '</select>') +
-    ctlCampo("cfNum", "N.° de factura *", ctlIn("cfNum", "", 'maxlength="19" placeholder="000-001-01-00000001"')) +
+    ctlCampo("cfNum", "N.° de factura *", ctlIn("cfNum", "", 'maxlength="19" placeholder="000-001-01-00000001"' + (auto ? ' readonly title="Lo asigna el sistema según el CAI"' : ''))) +
     ctlCampo("cfFecha", "Fecha de emisión *", ctlIn("cfFecha", todayISO(), 'type="date"')) +
     ctlCampo("cfCli", "Cliente *", ctlIn("cfCli", "", 'maxlength="160"')) +
     ctlCampo("cfRtn", "RTN del cliente", ctlIn("cfRtn", "", 'maxlength="20" placeholder="Opcional para consumidor final"')) +
@@ -3548,14 +3555,16 @@ function ctlFormFactura(pidFijo){
     ctlCampo("cfCre", "N.° constancia registro exonerado", ctlIn("cfCre", "", 'maxlength="40"')) +
     ctlCampo("cfSag", "N.° registro SAG", ctlIn("cfSag", "", 'maxlength="40"')) +
     '</div><div class="ctl-tot" id="cfTot"></div><div class="note" id="cfAviso" style="margin-top:8px"></div>',
-    [{ txt:"🧾 Registrar factura", cls:"pdf", fn: async () => {
+    [{ txt: auto ? "🧾 Emitir e imprimir" : "🧾 Registrar factura", cls:"pdf", fn: async () => {
       const g15 = r2c(num(ctlVal("cfG15"))), g18 = r2c(num(ctlVal("cfG18"))), exo = r2c(num(ctlVal("cfExo"))), exe = r2c(num(ctlVal("cfExe")));
       const i15 = r2c(g15 * .15), i18 = r2c(g18 * .18);
       const r = await sbRpc("ctl_registrar_factura", { f: { cai_id: ctlVal("cfCai"), numero: ctlVal("cfNum"), fecha: ctlVal("cfFecha"), cliente: ctlVal("cfCli"), rtn: ctlVal("cfRtn").replace(/[^\d]/g, ""),
         proyecto_id: ctlVal("cfProy"), exonerado: exo, exento: exe, gravado15: g15, gravado18: g18, isv15: i15, isv18: i18, total: r2c(exo + exe + g15 + g18 + i15 + i18),
         orden_exenta: ctlVal("cfOce"), constancia_exonerado: ctlVal("cfCre"), registro_sag: ctlVal("cfSag") } });
       if(!r.ok) return ctlAviso(r.error || "No se pudo registrar.");
-      cerrar("modalCtl"); toast("✔ Factura " + r.numero + " registrada · quedan " + r.quedan + " en el talonario.", "ok"); ctlCargar();
+      cerrar("modalCtl"); toast("✔ Factura " + r.numero + (auto ? " emitida · quedan " + r.quedan + " números del rango autorizado." : " registrada · quedan " + r.quedan + " en el talonario."), "ok");
+      if(auto){ await ctlCargar(); const nf = CTL.fac.find(x => x.numero === r.numero); if(nf) facVer(nf.id); }
+      else ctlCargar();
     } }]);
   const sug = () => { const c = CTL.cai.find(x => x.id === ctlVal("cfCai")); if(c && !ctlVal("cfNum")) $("cfNum").value = ctlCaiInfo(c).siguiente; };
   const tot = () => {
@@ -3574,6 +3583,7 @@ function ctlFormFactura(pidFijo){
     tot();
   };
   $("cfCai").onchange = () => { $("cfNum").value = ""; sug(); };
+  if(auto) $("cfNum").style.background = "#f3f6fa";
   $("cfProy").onchange = prellenar;
   ["cfExo","cfExe","cfG15","cfG18"].forEach(i => $(i).oninput = tot);
   sug(); prellenar();
@@ -3883,6 +3893,228 @@ async function eliminarProyecto(id){
 
 /* ── 10. LISTA DE PROYECTOS ──────────────────────────────────── */
 
+/* ══════════ v12.6 · COMPROBANTE DE VENTA (sin CAI) Y FACTURA AUTOIMPRESOR ══════════ */
+const CV_CSS = '<style>' +
+  '.cv{font-family:Arial,Helvetica,sans-serif;color:#1b2533;font-size:12.5px;background:#fff}' +
+  '.cv-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}' +
+  '.cv-emi{line-height:1.5;font-size:11.5px;color:#475467}.cv-emi img{height:48px;display:block;margin-bottom:4px}.cv-emi b{font-size:15px;color:#1b2533}' +
+  '.cv-box{text-align:right}.cv-box h2{margin:0;font-size:18px;letter-spacing:1.5px;color:#0e7c86}.cv-box .n{font-family:Consolas,monospace;font-size:16px;font-weight:bold;margin-top:4px}.cv-box .f{font-size:11.5px;color:#667;margin-top:2px}' +
+  '.cv-band{height:4px;background:linear-gradient(90deg,#0e7c86,#1f3864);border-radius:2px;margin:14px 0}' +
+  '.cv-cli{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;background:#f4f7fa;border-radius:8px;padding:12px 14px}' +
+  '.cv-cli small{display:block;font-size:9.5px;color:#8592a3;text-transform:uppercase;letter-spacing:.5px}.cv-cli span{font-size:13px;font-weight:bold;word-break:break-word}' +
+  '.cv th,.cv td{border:0}.cv table{width:100%;border-collapse:collapse;margin-top:16px}.cv th{font-size:10px;color:#8592a3;text-transform:uppercase;letter-spacing:.5px;text-align:left;padding:7px 5px;border-bottom:1.5px solid #1b2533;background:none}' +
+  '.cv td{padding:8px 5px;border-bottom:1px solid #e6ebf1;font-size:12.5px;text-align:left;vertical-align:top}.cv .r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}' +
+  '.cv-sum{display:flex;justify-content:space-between;gap:20px;margin-top:16px;align-items:flex-start}' +
+  '.cv-pagos{flex:1;font-size:11.5px}.cv-pagos h4{margin:0 0 6px;font-size:10px;color:#8592a3;text-transform:uppercase;letter-spacing:.5px}' +
+  '.cv-pagos div{display:flex;justify-content:space-between;gap:8px;padding:4px 0;border-bottom:1px dashed #e1e6ec}' +
+  '.cv-tot{width:250px}.cv-tot div{display:flex;justify-content:space-between;padding:3px 0}.cv-tot .g{border-top:1.5px solid #1b2533;margin-top:5px;padding-top:7px;font-size:17px;font-weight:bold}' +
+  '.cv-saldo{margin-top:6px;background:#fff4e5;color:#8a4b00;border-radius:6px;padding:7px 9px;font-weight:bold}.cv-saldo.ok{background:#e9f7ef;color:#156b3b}' +
+  '.cv-letras{margin-top:14px;font-size:11.5px;color:#475467}' +
+  '.cv-firmas{display:flex;justify-content:space-between;gap:40px;margin-top:56px}.cv-firmas div{flex:1;border-top:1px solid #98a2b3;text-align:center;padding-top:5px;font-size:11px;color:#667}' +
+  '.cv-pie{margin-top:34px;text-align:center;font-size:10px;color:#98a2b3;border-top:1px solid #e6ebf1;padding-top:7px}' +
+  '.cv-anul{position:relative}.cv-anul:after{content:"ANULADO";position:absolute;top:38%;left:0;right:0;text-align:center;font-size:90px;font-weight:900;color:rgba(217,32,39,.16);transform:rotate(-22deg);pointer-events:none;letter-spacing:8px}' +
+  /* factura autoimpresor */
+  '.fa .cv-box{border:2px solid #1f3864;border-radius:7px;padding:8px 14px;text-align:center;min-width:200px}.fa .cv-box h2{color:#1f3864;letter-spacing:4px;font-size:21px}' +
+  '.fa .cv-band{background:#1f3864;height:2px}.fa-cai{font-size:11px;background:#f3f6fa;border-radius:5px;padding:7px 9px;line-height:1.6;margin-bottom:10px}' +
+  '.fa-izq{flex:1}.fa-exo{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px;font-size:10.5px}.fa-exo div{border:1px solid #dde3ea;border-radius:4px;padding:4px 6px}.fa-exo b{display:block;font-size:11.5px}' +
+  '.fa-pie{display:flex;justify-content:space-between;margin-top:30px;border-top:1px solid #ccd3dc;padding-top:6px;font-size:11px}' +
+  '.fa-pag+.fa-pag{page-break-before:always;break-before:page;margin-top:28px}' +
+  '@media screen{.fa-pag+.fa-pag{border-top:2px dashed #ccd3dc;padding-top:24px}}' +
+  '@media (max-width:640px){.cv-top,.cv-sum{flex-direction:column}.cv-box{text-align:left}.cv-tot{width:100%}.cv-cli{grid-template-columns:1fr}.fa-exo{grid-template-columns:1fr}}' +
+  '</style>';
+
+function cvM(n){ return Number(n || 0).toLocaleString("es-HN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function cvNum(n){ return "CV-" + String(n || 0).padStart(6, "0"); }
+function cpbDe(pid){ return (CTL.cpb || []).find(c => c.proyecto_id === pid && !c.anulado); }
+function docMarca(p){
+  const mz = p && (p.modulo || "vidrieria") === "muebles";
+  return { logo: mz ? LOGO_MZ : LOGO, nombre: mz ? "Muebles Zacapa" : CFG.empresa };
+}
+/* Líneas de detalle a partir de los productos del proyecto */
+function docLineas(p){
+  if(!p) return [];
+  if((p.modulo || "vidrieria") === "muebles")
+    return (p.items || []).filter(i => num(i.ml) > 0 && num(i.price) > 0)
+      .map(i => ({ cant: num(i.ml).toFixed(2) + " ml", desc: i.desc || "Mueble", pu: num(i.price), total: r2(num(i.ml) * num(i.price)) }));
+  const u = p.unidad === "cm" ? "cm" : '"';
+  return (p.items || []).filter(i => num(i.alto) > 0 && num(i.ancho) > 0).map(i => {
+    const c = calcularLinea(i, p.unidad || "in");
+    return { cant: String(c.cantidad), desc: (i.description || "Producto") + (i.material ? " · " + i.material : "") + " · " + i.alto + u + " × " + i.ancho + u,
+             pu: r2(c.total / c.cantidad), total: c.total };
+  });
+}
+function docTablaLineas(lineas){
+  return '<table><thead><tr><th style="width:62px">Cant.</th><th>Descripción</th><th class="r">P. unitario</th><th class="r">Total</th></tr></thead><tbody>' +
+    lineas.map(l => '<tr><td>' + escapeHtml(l.cant) + '</td><td>' + escapeHtml(l.desc) + '</td><td class="r">' + (l.pu == null ? "" : cvM(l.pu)) + '</td><td class="r">' + cvM(l.total) + '</td></tr>').join("") + '</tbody></table>';
+}
+function letrasCap(n){ const s = numeroALetras(n); return s.charAt(0).toUpperCase() + s.slice(1); }
+
+/* ---------- Comprobante de venta ---------- */
+function cpbHtml(c){
+  const p = ctlProy(c.proyecto_id), m = docMarca(p), t = p ? totalesDe(p) : null;
+  let lineas = docLineas(p), filas = [];
+  const esperado = t ? (c.con_isv ? t.total : t.base) : -1;
+  if(!lineas.length || Math.abs(esperado - Number(c.total)) > 0.05){
+    lineas = [{ cant: "1", desc: "Venta del proyecto " + (p ? (p.proyecto || p.numero || "") : c.proyecto_id), pu: Number(c.total), total: Number(c.total) }];
+    filas.push(["Total", Number(c.total), "g"]);
+  }else{
+    filas.push(["Subtotal", t.subtotal]);
+    if(t.descuento > 0) filas.push(["Descuento", -t.descuento]);
+    if(c.con_isv && t.isv > 0) filas.push(["ISV (" + t.isvPct.toFixed(0) + "%)", t.isv]);
+    filas.push(["Total", Number(c.total), "g"]);
+  }
+  const cob = (CTL.cob || []).filter(x => x.proyecto_id === c.proyecto_id).sort((a, b) => String(a.fecha).localeCompare(String(b.fecha)));
+  const pagado = r2c(cob.reduce((s, x) => s + Number(x.monto), 0)), saldo = r2c(Number(c.total) - pagado);
+  return CV_CSS + '<div class="cv' + (c.anulado ? " cv-anul" : "") + '">' +
+    '<div class="cv-top"><div class="cv-emi"><img src="' + m.logo + '" alt=""><b>' + escapeHtml(m.nombre) + '</b><br>' + escapeHtml(CFG.direccion || "") +
+      '<br>Tel. ' + escapeHtml(CFG.telefono || "") + (CFG.correo ? ' · ' + escapeHtml(CFG.correo) : '') + '</div>' +
+    '<div class="cv-box"><h2>COMPROBANTE DE VENTA</h2><div class="n">' + cvNum(c.numero) + '</div><div class="f">Fecha: ' + fechaLarga(c.fecha) + '</div></div></div>' +
+    '<div class="cv-band"></div>' +
+    '<div class="cv-cli"><div><small>Cliente</small><span>' + escapeHtml(c.cliente || (p && p.cliente) || "—") + '</span></div><div><small>Teléfono</small><span>' + escapeHtml((p && p.telefono) || "—") + '</span></div>' +
+      '<div><small>Proyecto</small><span>' + escapeHtml((p && p.proyecto) || "—") + '</span></div><div><small>' + (p && p.modulo === "muebles" ? "Presupuesto" : "Cotización") + '</small><span>' + escapeHtml((p && p.numero) || "—") + '</span></div></div>' +
+    docTablaLineas(lineas) +
+    '<div class="cv-sum"><div class="cv-pagos"><h4>Pagos recibidos</h4>' +
+      (cob.length ? cob.map(x => '<div><span>' + cF(x.fecha) + ' · ' + escapeHtml(x.metodo || "") + (x.referencia ? ' · ' + escapeHtml(x.referencia) : '') + '</span><b>' + cvM(x.monto) + '</b></div>').join("") : '<div><span class="muted">Sin pagos registrados</span><span></span></div>') + '</div>' +
+    '<div class="cv-tot">' + filas.map(f => '<div' + (f[2] ? ' class="g"' : '') + '><span>' + f[0] + '</span><span class="r">' + (f[2] ? "L " : "") + (f[1] < 0 ? "- " + cvM(-f[1]) : cvM(f[1])) + '</span></div>').join("") +
+      '<div><span>Pagado</span><span class="r">' + cvM(pagado) + '</span></div>' +
+      '<div class="cv-saldo' + (saldo <= 0.009 ? " ok" : "") + '" style="display:flex;justify-content:space-between"><span>' + (saldo <= 0.009 ? "Pagado en su totalidad" : "Saldo") + '</span><span>' + (saldo <= 0.009 ? "✔" : "L " + cvM(saldo)) + '</span></div></div></div>' +
+    '<div class="cv-letras"><b>Total en letras:</b> ' + escapeHtml(letrasCap(c.total)) + '</div>' +
+    '<div class="cv-firmas"><div>Entregado por</div><div>Recibido por (cliente)</div></div>' +
+    '<div class="cv-pie">Gracias por su compra · ' + escapeHtml(m.nombre) + ' · Comprobante interno, no es documento fiscal' + (c.anulado ? ' · ANULADO: ' + escapeHtml(c.motivo_anulacion || "") : '') + '</div></div>';
+}
+function cpbVer(id){
+  const c = (CTL.cpb || []).find(x => x.id === id); if(!c) return toast("No se encontró el comprobante.", "err");
+  DOC_ACTUAL = { modulo: "cpb", numero: cvNum(c.numero), cliente: c.cliente };
+  $("docTitulo").textContent = "Comprobante de venta " + cvNum(c.numero);
+  $("docRender").innerHTML = cpbHtml(c);
+  abrir("modalDoc");
+}
+function cpbAbrir(pid){
+  const c = cpbDe(pid);
+  if(c) return cpbVer(c.id);
+  return cpbFormEmitir(pid);
+}
+function cpbFormEmitir(pid){
+  if(!esAdmin()) return toast("Solo el administrador emite comprobantes.", "err");
+  const v = ctlVenta(pid), p = ctlProy(pid);
+  if(!v || v.estado === "Anulada") return toast("Primero convierta la cotización en venta.", "err");
+  const conIsv = Number(v.isv) > 0, base = conIsv ? ctlBaseVenta(pid) : Number(v.total);
+  ctlModal("Comprobante de venta (sin CAI)",
+    '<div class="form-grid ctl-form">' +
+    ctlCampo("cvCli", "Cliente", ctlIn("cvCli", (p && p.cliente) || "", 'maxlength="160"')) +
+    ctlCampo("cvFecha", "Fecha", ctlIn("cvFecha", todayISO(), 'type="date"')) + '</div>' +
+    (conIsv ? '<div class="field" style="margin-top:6px"><label>Total del comprobante</label>' +
+      '<label class="ctl-radio"><input type="radio" name="cvIsv" value="0" checked> Sin ISV: <b>' + cL(base) + '</b> <span class="muted small">(la venta se ajusta a este monto)</span></label>' +
+      '<label class="ctl-radio"><input type="radio" name="cvIsv" value="1"> Con ISV incluido: <b>' + cL(v.total) + '</b></label></div>'
+      : '<div class="ctl-tot"><div class="t"><span>Total del comprobante</span><b>' + cL(v.total) + '</b></div></div>') +
+    '<div class="note" style="margin-top:10px">Numeración propia (' + cvNum(((CTL.cpb || []).reduce((mx, c) => Math.max(mx, c.numero), 0)) + 1) + '), separada de las facturas. Incluye el detalle del proyecto, los pagos recibidos y el saldo.</div>',
+    [{ txt: "🧾 Emitir comprobante", cls: "pdf", fn: async () => {
+      const sel = document.querySelector('input[name="cvIsv"]:checked'), conI = conIsv && sel && sel.value === "1";
+      const total = conIsv && !conI ? base : Number(v.total);
+      if(!(total > 0)) return ctlAviso("La venta no tiene total.");
+      const r = await sbRpc("ctl_emitir_comprobante", { d: { proyecto_id: pid, fecha: ctlVal("cvFecha"), cliente: ctlVal("cvCli"), total: total, con_isv: conI } });
+      if(!r.ok) return ctlAviso(r.error || "No se pudo emitir.");
+      if(conIsv && !conI){
+        try{ await ctlEscribir("ctl_ventas", { subtotal: base, isv: 0, total: base }, "proyecto_id=eq." + encodeURIComponent(pid)); }
+        catch(e){ toast("Comprobante emitido, pero no se pudo ajustar la venta: " + e.message, "err"); }
+      }
+      cerrar("modalCtl");
+      toast("✔ Comprobante " + cvNum(r.comprobante.numero) + " emitido.", "ok");
+      CTL.cpb = [r.comprobante].concat(CTL.cpb || []);
+      cpbVer(r.comprobante.id);
+      ctlCargar();
+    } }]);
+}
+async function cpbAnular(id){
+  const c = (CTL.cpb || []).find(x => x.id === id); if(!c) return;
+  const motivo = (prompt("Motivo de la anulación del comprobante " + cvNum(c.numero) + " (queda en la auditoría):") || "").trim();
+  if(!motivo) return;
+  try{ await ctlEscribir("ctl_comprobantes", { anulado: true, motivo_anulacion: motivo }, "id=eq." + c.id); toast(cvNum(c.numero) + " anulado.", "ok"); ctlCargar(); }
+  catch(e){ toast("No se pudo anular: " + e.message, "err"); }
+}
+function cpbTarjeta(){
+  const lista = CTL.cpb || [];
+  const filas = lista.map(c => '<tr class="' + (c.anulado ? "ctl-anulada" : "") + '"><td>' + cF(c.fecha) + '</td><td class="mono"><b>' + cvNum(c.numero) + '</b></td><td>' + escapeHtml(c.cliente || "—") +
+    '<div class="muted small">' + escapeHtml(ctlNomProy(c.proyecto_id, true)) + '</div></td><td class="r"><b>' + cL(c.total) + '</b>' + (c.con_isv ? '<div class="muted small">con ISV</div>' : '') + '</td>' +
+    '<td class="acc"><button class="action-small edit" data-cpb="ver" data-id="' + c.id + '">🖨 Ver / imprimir</button>' + (c.anulado ? '<span class="ctl-pill st-anu">Anulado</span>' : '<button class="action-small del" data-cpb="anular" data-id="' + c.id + '">Anular</button>') + '</td></tr>').join("") ||
+    '<tr><td colspan="5" class="muted" style="padding:18px">Todavía no hay comprobantes. Se emiten desde la ficha del proyecto o el menú ⋯ del historial.</td></tr>';
+  return '<div class="ctl-card"><h3>Comprobantes de venta <span class="muted small">· sin CAI</span></h3><div class="table-wrap"><table class="ctl-t"><thead><tr><th>Fecha</th><th>Número</th><th>Cliente</th><th class="r">Total</th><th></th></tr></thead><tbody>' + filas + '</tbody></table></div></div>';
+}
+
+/* ---------- Factura autoimpresor (se habilita con la autorización de SAR) ---------- */
+function facAutoActivo(){ return !!CFG.facAuto; }
+function facHtml(f){
+  const cai = CTL.cai.find(c => c.id === f.cai_id) || {}, p = f.proyecto_id ? ctlProy(f.proyecto_id) : null, m = docMarca(p);
+  const base = r2c(Number(f.exonerado) + Number(f.exento) + Number(f.gravado15) + Number(f.gravado18));
+  let lineas = docLineas(p);
+  const t = p ? totalesDe(p) : null;
+  let desc = 0;
+  if(!lineas.length || !t || Math.abs(t.base - base) > 0.05) lineas = [{ cant: "1", desc: p ? "Venta del proyecto " + (p.proyecto || p.numero || "") : "Venta de bienes y servicios", pu: base, total: base }];
+  else desc = t.descuento;
+  const rango = (cai.prefijo || "") + "-" + String(cai.desde || 0).padStart(8, "0") + " al " + (cai.prefijo || "") + "-" + String(cai.hasta || 0).padStart(8, "0");
+  const imp = [["Descuentos y rebajas", desc], ["Importe exonerado", f.exonerado], ["Importe exento", f.exento], ["Importe gravado 15%", f.gravado15], ["Importe gravado 18%", f.gravado18], ["ISV 15%", f.isv15], ["ISV 18%", f.isv18]];
+  const pagina = leyenda => '<div class="cv fa fa-pag' + (f.anulada ? " cv-anul" : "") + '"' + (f.anulada ? ' style="--x:1"' : '') + '>' +
+    '<div class="cv-top"><div class="cv-emi"><img src="' + m.logo + '" alt=""><b>' + escapeHtml(RAZON_SOCIAL) + '</b><br>Nombre comercial: ' + escapeHtml(m.nombre) + ' · RTN ' + escapeHtml(CFG.rtn || "") +
+      '<br>Casa matriz y punto de emisión: ' + escapeHtml(CFG.direccion || "") + '<br>Tel. ' + escapeHtml(CFG.telefono || "") + (CFG.correo ? ' · ' + escapeHtml(CFG.correo) : '') + '</div>' +
+    '<div class="cv-box"><h2>FACTURA</h2><div class="n">' + escapeHtml(f.numero) + '</div><div class="f">Fecha de emisión: ' + cF(f.fecha) + '</div></div></div>' +
+    '<div class="cv-band"></div>' +
+    '<div class="fa-cai"><b>CAI:</b> ' + escapeHtml(cai.cai || "") + '<br><b>Rango autorizado:</b> ' + escapeHtml(rango) + ' · <b>Fecha límite de emisión:</b> ' + cF(cai.fecha_limite) + '</div>' +
+    '<div class="cv-cli"><div><small>Cliente</small><span>' + escapeHtml(f.cliente || "Consumidor final") + '</span></div><div><small>RTN del cliente</small><span>' + escapeHtml(f.rtn || "—") + '</span></div>' +
+      (p ? '<div><small>Proyecto</small><span>' + escapeHtml(p.proyecto || "—") + '</span></div><div><small>Referencia</small><span>' + escapeHtml(p.numero || "—") + '</span></div>' : '') + '</div>' +
+    docTablaLineas(lineas) +
+    '<div class="cv-sum"><div class="fa-izq"><div class="cv-letras" style="margin-top:0"><b>Valor en letras:</b><br>' + escapeHtml(letrasCap(f.total)) + '</div>' +
+      '<div class="fa-exo"><div>N.° orden de compra exenta<b>' + escapeHtml(f.orden_exenta || "—") + '</b></div><div>N.° constancia de registro de exonerado<b>' + escapeHtml(f.constancia_exonerado || "—") + '</b></div><div>N.° registro SAG<b>' + escapeHtml(f.registro_sag || "—") + '</b></div></div></div>' +
+    '<div class="cv-tot">' + imp.map(x => '<div><span>' + x[0] + '</span><span class="r">' + cvM(x[1]) + '</span></div>').join("") +
+      '<div class="g"><span>Total a pagar</span><span class="r">L ' + cvM(f.total) + '</span></div></div></div>' +
+    (f.anulada ? '<div class="cv-saldo" style="margin-top:14px">ANULADA · ' + escapeHtml(f.motivo_anulacion || "") + '</div>' : '') +
+    '<div class="fa-pie"><b>' + leyenda + '</b><span>Autorización autoimpresor: ' + escapeHtml(CFG.facAutoRes || "—") + '</span></div></div>';
+  return CV_CSS + pagina("ORIGINAL: CLIENTE") + pagina("COPIA: OBLIGADO TRIBUTARIO EMISOR");
+}
+function facVer(id){
+  const f = CTL.fac.find(x => x.id === id); if(!f) return toast("No se encontró la factura.", "err");
+  if(!facAutoActivo()) return toast("La impresión de facturas se habilita al activar el modo autoimpresor.", "err");
+  DOC_ACTUAL = { modulo: "fac", numero: f.numero, cliente: f.cliente };
+  $("docTitulo").textContent = "Factura " + f.numero;
+  $("docRender").innerHTML = facHtml(f);
+  abrir("modalDoc");
+}
+function facModoTarjeta(){
+  const on = facAutoActivo();
+  return '<div class="ctl-card"><h3>🖨 Modalidad de facturación</h3>' +
+    (on ? '<p style="margin:4px 0 10px"><span class="ctl-pill st-ok">Autoimpresor activo</span> Autorización SAR <b>' + escapeHtml(CFG.facAutoRes || "") + '</b>' + (CFG.facAutoFecha ? ' · desde ' + cF(CFG.facAutoFecha) : '') + '. Cada factura se imprime completa desde el sistema (original y copia).</p>' +
+          '<button type="button" class="btn-outline" data-facmodo="off">Volver a talonario de imprenta</button>'
+        : '<p style="margin:4px 0 10px">Hoy: <b>talonario de imprenta</b>. Cuando SAR autorice a la empresa como <b>autoimpresor</b>, active aquí la impresión de la factura completa desde el sistema.</p>' +
+          '<button type="button" class="btn-outline" data-facmodo="on">Activar modo autoimpresor</button>') + '</div>';
+}
+function facModoForm(activar){
+  if(!esAdmin()) return;
+  if(!activar){
+    if(!confirm("¿Volver a la modalidad de talonario de imprenta? Las facturas ya no se imprimirán desde el sistema.")) return;
+    return sbRpc("ctl_modo_autoimpresor", { d: { activar: false } }).then(r => {
+      if(!r.ok) return toast(r.error || "No se pudo cambiar.", "err");
+      CFG.facAuto = false; guardarConfigLocal(); toast("Modalidad: talonario de imprenta.", "ok"); ctlPintar();
+    });
+  }
+  ctlModal("Activar modo autoimpresor",
+    '<div class="note" style="margin-bottom:12px">Active esto <b>solo</b> cuando SAR haya autorizado a la empresa como <b>autoimpresor</b> (Acuerdo 481-2017, Art. 50 y siguientes) y haya registrado el CAI que SAR asignó para esta modalidad. Antes de usarlo, pida a su contador que revise una factura de prueba.</div>' +
+    '<div class="form-grid ctl-form">' + ctlCampo("faRes", "N.° de resolución / autorización de SAR *", ctlIn("faRes", CFG.facAutoRes || "", 'maxlength="60"'), true) + '</div>' +
+    '<label class="ctl-radio" style="margin-top:10px"><input type="checkbox" id="faOk"> Confirmo que la empresa está autorizada por SAR como autoimpresor.</label>',
+    [{ txt: "Activar", cls: "save", fn: async () => {
+      if(!$("faOk").checked) return ctlAviso("Marque la confirmación de la autorización de SAR.");
+      if(!ctlVal("faRes")) return ctlAviso("Escriba el número de la autorización de SAR.");
+      const r = await sbRpc("ctl_modo_autoimpresor", { d: { activar: true, autorizacion: ctlVal("faRes") } });
+      if(!r.ok) return ctlAviso(r.error || "No se pudo activar.");
+      CFG.facAuto = true; CFG.facAutoRes = ctlVal("faRes"); CFG.facAutoFecha = todayISO(); guardarConfigLocal();
+      cerrar("modalCtl"); toast("✔ Modo autoimpresor activado.", "ok"); ctlPintar();
+    } }]);
+}
+document.addEventListener("click", e => {
+  const c = e.target.closest("[data-cpb]");
+  if(c){ const a = c.dataset.cpb; if(a === "ver") cpbVer(c.dataset.id); else if(a === "anular") cpbAnular(c.dataset.id); else if(a === "emitir") cpbAbrir(c.dataset.id); return; }
+  const f = e.target.closest("[data-facimp]"); if(f){ facVer(f.dataset.facimp); return; }
+  const m = e.target.closest("[data-facmodo]"); if(m) facModoForm(m.dataset.facmodo === "on");
+});
+
 /* ══════════ v12.5 · HISTORIAL DE COTIZACIONES: etapa, siguiente paso y acciones ══════════ */
 const ETAPAS = ["Borrador","Enviada","Aceptada","Venta","Facturada","Cobrada","Entregada"];
 let HIST_ETAPA = "", CTL_CARGADO = 0, CTL_PROMESA = null;
@@ -3899,10 +4131,10 @@ function etapaDe(p){
   const fir = firmaDe(p.id);
   if(v && v.estado !== "Anulada"){
     const saldo = r2c(Number(v.total) - ctlCobrado(p.id));
-    const facs = CTL.fac.filter(f => f.proyecto_id === p.id && !f.anulada).length;
+    const facs = CTL.fac.filter(f => f.proyecto_id === p.id && !f.anulada).length, cpb = cpbDe(p.id);
     if(ent) return { n: 7, txt: "📦 Entregada", cls: "s7" };
     if(v.estado === "Cobrada" || (esAdmin() && saldo <= 0.009 && Number(v.total) > 0)) return { n: 6, txt: "Cobrada", cls: "s6" };
-    if(facs || v.estado === "Facturada") return { n: 5, txt: "Facturada" + (esAdmin() && saldo > 0.009 ? " · saldo " + cL(saldo) : ""), cls: "s5" };
+    if(facs || cpb || v.estado === "Facturada") return { n: 5, txt: (facs || v.estado === "Facturada" ? "Facturada" : "Comprobante") + (esAdmin() && saldo > 0.009 ? " · saldo " + cL(saldo) : ""), cls: "s5" };
     return { n: 4, txt: "Venta" + (esAdmin() && saldo > 0.009 && ctlCobrado(p.id) > 0 ? " · saldo " + cL(saldo) : ""), cls: "s4" };
   }
   if(ent) return { n: 7, txt: "📦 Entregada", cls: "s7" };
@@ -3941,6 +4173,7 @@ function histAcciones(p){
     l.push({ sep: true });
     if(adm) l.push({ acc: "venta", i: "✔", txt: "Convertir en venta", off: vOk ? "ya es venta" : (totalesDe(p).total > 0 ? "" : "sin total") });
     if(adm) l.push({ acc: "factura", i: "🧾", txt: "Facturar", off: vOk ? "" : "después de la venta" });
+    if(adm) l.push({ acc: "cpb", i: "📄", txt: cpbDe(p.id) ? "Ver comprobante " + cvNum(cpbDe(p.id).numero) : "Comprobante de venta (sin CAI)", off: vOk ? "" : "después de la venta" });
     if(adm) l.push({ acc: "cobro", i: "💵", txt: "Registrar cobro", off: !vOk ? "después de la venta" : (saldo <= 0.009 ? "ya está cobrada" : "") });
     l.push({ acc: "oc", i: "🛒", txt: "Orden de compra de materiales" });
     l.push({ acc: "gasto", i: "💸", txt: "Registrar gasto" });
@@ -3984,6 +4217,7 @@ async function histAccion(acc, id){
     case "seguir": await ctlAsegurar(); return segWhatsapp(id);
     case "venta": await sinc(); return ctlConvertirVenta(id);
     case "factura": await sinc(); return ctlFormFactura(id);
+    case "cpb": await sinc(); return cpbAbrir(id);
     case "cobro": await sinc(); return ctlFormCobro(id);
     case "oc": await sinc(); return ctlFormOc(null, { proyecto_id: id });
     case "gasto": await sinc(); return ctlFormGasto(null, id);
@@ -4203,7 +4437,9 @@ function verDocumento(d){
    nombre del archivo PDF: por eso se cambia justo antes de imprimir. */
 function imprimirDocumento(){
   const original = document.title;
-  document.title = DOC_ACTUAL && DOC_ACTUAL.modulo === "oc"
+  document.title = DOC_ACTUAL && (DOC_ACTUAL.modulo === "cpb" || DOC_ACTUAL.modulo === "fac")
+    ? ((DOC_ACTUAL.modulo === "cpb" ? "Comprobante " : "Factura ") + DOC_ACTUAL.numero + " - " + (DOC_ACTUAL.cliente || CFG.empresa))
+    : DOC_ACTUAL && DOC_ACTUAL.modulo === "oc"
     ? ("Orden de compra " + DOC_ACTUAL.numero + " - " + (DOC_ACTUAL.cliente || CFG.empresa))
     : DOC_ACTUAL && DOC_ACTUAL.modulo === "pvc"
     ? ("Materiales - " + (DOC_ACTUAL.cliente || CFG.empresa))
@@ -4853,11 +5089,12 @@ async function conBoton(btn, texto, fn){
 /* Botón del visor de documentos: descarga lo que está en pantalla (cotización, presupuesto u orden de compra) */
 function descargarPdfVisor(){
   const d = DOC_ACTUAL || {};
-  const nombre = d.modulo === "oc" ? ("Orden de compra " + (d.numero || "")) :
+  const nombre = d.modulo === "cpb" || d.modulo === "fac" ? ((d.modulo === "cpb" ? "Comprobante " : "Factura ") + d.numero + " - " + (d.cliente || CFG.empresa)) :
+                 d.modulo === "oc" ? ("Orden de compra " + (d.numero || "")) :
                  d.modulo === "pvc" ? ("Materiales - " + (d.cliente || CFG.empresa)) : docNombreArchivo(d);
   return conBoton($("btnPdfDoc"), "Generando PDF…", async () => {
     const blob = await docPdfBlob($("docRender").innerHTML);
-    descargarBlob(blob, nombre.replace(/[\\/:*?"<>|]+/g, "") + ".pdf");
+    descargarBlob(blob, nombre.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[\\/:*?"<>|]+/g, "").trim().slice(0, 90) + ".pdf");
     toast("PDF descargado.", "ok");
   });
 }

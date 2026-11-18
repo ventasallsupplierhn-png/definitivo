@@ -1,4 +1,4 @@
-# Sistema de Presupuestos · Vitra House y Muebles Zacapa · v12.5.0
+# Sistema de Presupuestos · Vitra House y Muebles Zacapa · v12.6.0
 
 Aplicación web (GitHub Pages + Supabase) de **Representaciones e Inversiones Tinoco S. de R. L.**
 Funciona en computadora y celular, también sin internet (se sincroniza al volver la conexión).
@@ -15,7 +15,8 @@ Funciona en computadora y celular, también sin internet (se sincroniza al volve
   - Ventas y cobros, y **Por cobrar** (antigüedad de saldos).
   - Gastos por proyecto.
   - Órdenes de compra, compras e inventario (kárdex), proveedores.
-  - Facturación SAR con talonario de imprenta.
+  - Facturación SAR con talonario de imprenta, y **modo autoimpresor** (factura completa impresa, original y copia) que el administrador activa cuando SAR lo autorice.
+  - **Comprobante de venta** sin CAI (numeración CV propia): detalle, pagos y saldo, para imprimir o enviar en PDF.
   - **🛡 Auditoría** de cambios.
   - **Acta de entrega** con fotos de la obra y firma del cliente.
 
@@ -36,6 +37,7 @@ supabase/             scripts de la base de datos y LEEME.txt con la instalació
 4. `supabase_auditoria.sql`
 5. `supabase_mejoras_v12_3.sql`
 6. `supabase_mejoras_v12_4.sql` (costo presupuestado de cada venta)
+7. `supabase_mejoras_v12_6.sql` (comprobante de venta y modo autoimpresor)
 
 Todos se pueden volver a ejecutar sin perder datos. Los detalles (usuarios, roles, catálogo) están en `supabase/LEEME.txt`.
 
