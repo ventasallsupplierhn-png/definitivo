@@ -430,6 +430,47 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
 .neg-t td:nth-child(4){grid-column:2;grid-row:3;text-align:right;font-size:12.5px;color:var(--muted)}
 .neg-t td:nth-child(5){grid-column:1/-1;grid-row:4;font-size:13px}
 .neg-t td:nth-child(7){grid-column:1/-1;grid-row:5;text-align:right}}
+/* v12.8 · Agenda */
+.age-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.age-bar h3{margin:0 6px;font-size:17px;min-width:190px}
+.age-seg{display:flex;border:1px solid var(--border);border-radius:11px;overflow:hidden;background:#fff}
+.age-seg button{background:#fff;color:var(--muted);border-radius:0;box-shadow:none;padding:8px 12px;font-size:13px}
+.age-seg button.on{background:var(--blue);color:#fff}
+.age-nav{padding:8px 12px}
+.age-sem{display:grid;grid-template-columns:62px repeat(7,1fr);border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#fff;box-shadow:var(--shadow)}
+.age-hd{background:#f4f8fc;padding:8px 4px;text-align:center;font-weight:800;font-size:13px;border-bottom:1px solid var(--line);cursor:pointer}
+.age-hd.hoy{background:var(--blue);color:#fff}
+.age-horas div{font-size:11px;color:var(--muted);text-align:right;padding:2px 6px;border-top:1px solid var(--line);box-sizing:border-box}
+.age-col{position:relative;border-left:1px solid var(--line)}.age-col.hoy{background:#f7fbff}
+.age-slot{border-top:1px solid var(--line);box-sizing:border-box;cursor:copy}.age-slot:hover{background:#f1f7ff}
+.age-ev{display:block;width:100%;text-align:left;background:color-mix(in srgb,var(--c) 13%,#fff);border:0;border-left:4px solid var(--c);border-radius:7px;color:var(--text);
+  padding:3px 6px;font-size:11.5px;line-height:1.3;overflow:hidden;box-shadow:none;font-weight:500;margin-bottom:3px;cursor:pointer}
+.age-ev b{font-weight:800}.age-ev small{display:block;color:var(--muted)}.age-ev.off{opacity:.5;text-decoration:line-through}
+.age-mes{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#fff;box-shadow:var(--shadow)}
+.age-mhd{background:#f4f8fc;padding:7px;text-align:center;font-weight:800;font-size:12.5px}
+.age-md{min-height:96px;border-top:1px solid var(--line);border-left:1px solid var(--line);padding:4px;cursor:pointer}.age-md:nth-child(7n+1){border-left:0}
+.age-md .n{display:inline-block;font-weight:800;font-size:12.5px;margin-bottom:3px;width:24px;height:24px;line-height:24px;text-align:center;border-radius:50%}
+.age-md.hoy .n{background:var(--blue);color:#fff}.age-md.fuera{background:#fafcfe;color:#a8b6c6}
+.age-md .mas{display:block;color:var(--muted);font-size:11px}
+.age-pt{display:inline-block;background:var(--blue);color:#fff;font-size:11px;font-weight:800;border-radius:99px;padding:1px 7px;margin-left:2px}
+.age-dia h3{text-transform:none}
+.age-it{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:#fff;border:0;border-left:4px solid var(--c);border-radius:10px;box-shadow:none;color:var(--text);
+  padding:10px 12px;margin-top:8px;border-top:1px solid var(--line);font-weight:400;cursor:pointer}
+.age-it:hover{background:#f6faff}.age-it.off{opacity:.55}
+.age-it .hr{min-width:76px;font-weight:800;color:var(--blue);font-size:14px}.age-it .tx{flex:1;font-size:14px}.age-it small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.age-ley{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted);margin-top:10px}.age-ley i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.age-det{border-left:5px solid var(--c);padding:2px 0 2px 12px}
+.age-det-f{display:flex;gap:10px;padding:4px 0;font-size:14.5px}.age-det-f span{width:22px;text-align:center}
+.age-acc{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.age-acc button{background:#fff;border:1px solid var(--border);color:#355172;font-size:13px;padding:8px 11px;box-shadow:none}
+.age-wa,.age-acc .age-wa{background:#25d366!important;border-color:#25d366!important;color:#fff!important}
+.age-wa.ok{background:#e9f7ef!important;color:var(--green)!important;border-color:#bfe5cd!important}
+.age-warn{background:#fff4e5;border-color:#f3cf9b;color:#8a4b00;margin-top:10px}
+.age-rec{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}.age-rec small{display:block;color:var(--muted)}
+.age-rec button{padding:8px 14px;box-shadow:none}
+.age-aviso{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--border);border-left:5px solid #7a3fb8;border-radius:14px;padding:12px 16px;margin:0 0 16px;box-shadow:var(--shadow);cursor:pointer}
+.age-aviso .ic{font-size:24px}.age-aviso div{flex:1}.age-aviso b{font-size:15.5px}.age-aviso small{display:block;color:var(--muted);font-size:13px}.age-aviso .go{color:#7a3fb8;font-weight:800;font-size:13px}
+@media(max-width:760px){.age-bar h3{min-width:0;width:100%;order:-1;margin:0}.age-md{min-height:54px}.age-it .hr{min-width:62px;font-size:13px}}
 .ctl-bajo td{background:#fff6f6}.ctl-anulada td{color:#9aa8b8;text-decoration:line-through}
 .ctl-pill{display:inline-block;padding:3px 10px;border-radius:99px;font-size:11.5px;font-weight:800;white-space:nowrap}
 .st-sol{background:#eef2f7;color:#4b5f78}.st-apr{background:#fff1d6;color:#8a5a00}.st-env{background:#e0f4f7;color:#0e6a7d}.st-par{background:#fdebd7;color:#9a4b00}
@@ -596,6 +637,7 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
       <h2>¿Qué módulo deseas usar?</h2>
       <p>Selecciona una opción para comenzar</p>
     </div>
+    <div id="ageAviso" class="age-aviso hidden sb-only" role="button" tabindex="0"></div>
     <div class="home-grid">
       <button class="mod-card" data-tab="cot" type="button" style="--c:#1678e8;--soft:#e6f0fb">
         <span class="mod-ico">▣</span>
@@ -620,6 +662,11 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
       <button class="mod-card sb-only" data-tab="ctl" type="button" style="--c:#0b4a93;--soft:#dceeff">
         <span class="mod-ico">📊</span>
         <div><h3>Control comercial</h3><p>Ventas y cobros, gastos por proyecto, órdenes de compra, compras, inventario y facturación SAR</p></div>
+        <span class="mod-go">↗</span>
+      </button>
+      <button class="mod-card sb-only" data-tab="age" type="button" style="--c:#7a3fb8;--soft:#f3eafd">
+        <span class="mod-ico">📅</span>
+        <div><h3>Agenda de citas</h3><p>Mediciones, visitas, instalaciones y entregas, con recordatorios y aviso por WhatsApp</p></div>
         <span class="mod-go">↗</span>
       </button>
       <button class="mod-card solo-admin sb-only" data-tab="neg" type="button" style="--c:#159447;--soft:#e6f5ec">
@@ -989,6 +1036,27 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
     <div id="negCuerpo"></div>
   </div><!-- /panel-neg -->
 
+  <div id="panel-age" class="tab-panel hidden">
+    <div class="ctl-top">
+      <div class="ctl-titulo"><span class="section-icon">📅</span><div><h2>Agenda de citas</h2><div class="muted small">Cada persona ve sus citas; el administrador ve todas · <span id="ageEstado"></span></div></div></div>
+      <div class="toolbar">
+        <button class="btn-outline hidden" id="ageNotif" type="button">🔔 Activar avisos</button>
+        <button class="btn-outline" id="ageRecordar" type="button">💬 Recordar a clientes</button>
+        <button class="btn-outline" id="ageRecargar" type="button">⟳</button>
+        <button class="save" id="ageNueva" type="button" style="color:#fff">＋ Nueva cita</button>
+      </div>
+    </div>
+    <div class="age-bar">
+      <button class="btn-outline age-nav" id="agePrev" type="button" aria-label="Anterior">‹</button>
+      <button class="btn-outline age-nav" id="ageSig" type="button" aria-label="Siguiente">›</button>
+      <button class="btn-outline age-nav" id="ageHoy" type="button">Hoy</button>
+      <h3 id="ageTitulo"></h3>
+      <div class="age-seg" id="ageVistas"><button type="button" data-agev="dia">Día</button><button type="button" data-agev="semana">Semana</button><button type="button" data-agev="mes">Mes</button><button type="button" data-agev="lista">Lista</button></div>
+      <select id="agePersona" class="hidden" style="max-width:220px"></select>
+    </div>
+    <div id="ageCuerpo"></div>
+  </div><!-- /panel-age -->
+
   <div id="panel-cat" class="tab-panel hidden">
   <section class="card">
     <div class="card-head">
@@ -1325,7 +1393,7 @@ const AJUSTES_FABRICA = {
 if(AJUSTES_FABRICA.supabaseUrl && AJUSTES_FABRICA.supabaseKey) AJUSTES_FABRICA.apiUrl = "supabase";
 
 /* ── 1. CONSTANTES Y ESTADO GLOBAL ───────────────────────────── */
-const APP_VERSION = "12.7.0";
+const APP_VERSION = "12.8.0";
 const LS = {
   borrador : "vitra.borrador.v7",
   borradorMZ: "vitra.borradorMZ.v9",
@@ -1568,6 +1636,7 @@ function abrirApp(){
   document.body.classList.remove("bloqueado");
   aplicarRol();
   aplicarConfigUI();
+  if(typeof ageArranque === "function") setTimeout(ageArranque, 400);
 }
 async function entrar(){
   const usuario = $("logUsuario").value;
@@ -1634,7 +1703,7 @@ function salir(){
 const MODULOS = {
   home:"", cot:"Cotización · Vitra House", pvc:"Materiales PVC",
   mue:"Presupuesto · Muebles Zacapa", pro:"Historial de cotizaciones", adm:"Administración",
-  cat:"Catálogo de clientes", sol:"Solicitudes del catálogo", ctl:"Control comercial", neg:"Mis negocios"
+  cat:"Catálogo de clientes", sol:"Solicitudes del catálogo", ctl:"Control comercial", neg:"Mis negocios", age:"Agenda de citas"
 };
 function irTab(t){
   if((t === "adm" || t === "cat" || t === "neg") && !esAdmin()) return;
@@ -1649,6 +1718,7 @@ function irTab(t){
   if(t === "cat" && typeof catCargar === "function") catCargar();
   if(t === "ctl" && typeof ctlCargar === "function") ctlCargar();
   if(t === "neg" && typeof negCargar === "function"){ negPintar(); negCargar(); }
+  if(t === "age" && typeof ageCargar === "function"){ agePintar(); ageCargar(); }
   if(t === "pro"){ renderLista(); if(typeof ctlAsegurar === "function") ctlAsegurar().then(renderLista); }
   if(t === "sol" && typeof solCargar === "function") solCargar();
 }
@@ -4481,6 +4551,336 @@ function negIniciar(){
   c.addEventListener("input", e => { if(e.target.id === "negBuscar"){ NEG.buscar = e.target.value; const pos = e.target.selectionStart; negPintar(); const n = $("negBuscar"); n.focus(); n.setSelectionRange(pos, pos); } });
 }
 
+/* ══════════ v12.8 · AGENDA DE CITAS Y RECORDATORIOS ══════════ */
+const AGE_TIPOS = { "Medición": "#1678e8", "Visita técnica": "#ff7300", "Reunión": "#0e7490", "Instalación": "#159447", "Entrega": "#7a3fb8", "Otro": "#62758c" };
+const AGE_ESTADOS = ["Programada","Confirmada","Realizada","Cancelada","No asistió"];
+const AGE_RECORDAR = [[0,"Sin aviso"],[15,"15 minutos antes"],[30,"30 minutos antes"],[60,"1 hora antes"],[120,"2 horas antes"],[1440,"1 día antes"]];
+const AGE_DIAS = ["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
+const AGE_DIAS_L = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+const AGE_MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+const AGE = { citas: [], vista: "semana", dia: null, persona: "", desde: "", hasta: "", cargando: false, listo: false, timer: null };
+const AGE_LS_AVISADAS = "vitra.agendaAvisos.v1";
+
+/* ---------- Fechas ---------- */
+function ageISO(d){ return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+function ageFecha(iso){ const p = String(iso).split("-").map(Number); return new Date(p[0], p[1] - 1, p[2]); }
+function ageSumar(iso, dias){ const d = ageFecha(iso); d.setDate(d.getDate() + dias); return ageISO(d); }
+function ageLunes(iso){ const d = ageFecha(iso), w = (d.getDay() + 6) % 7; d.setDate(d.getDate() - w); return ageISO(d); }
+function ageMin(h){ const p = String(h || "0:0").split(":").map(Number); return p[0] * 60 + (p[1] || 0); }
+function ageHora(h){ const m = ageMin(h), hh = Math.floor(m / 60), mm = m % 60; return (hh % 12 || 12) + ":" + String(mm).padStart(2, "0") + (hh < 12 ? " a. m." : " p. m."); }
+function ageHoraFin(c){ const f = ageMin(c.hora) + Number(c.duracion_min || 60); return ageHora(Math.floor(f / 60) % 24 + ":" + (f % 60)); }
+/* Inicio de la cita como fecha real (hora de Honduras, UTC-6, sin horario de verano) */
+function ageInicio(c){ return new Date(c.fecha + "T" + String(c.hora).slice(0, 5) + ":00-06:00"); }
+function ageDiaTxt(iso){ const d = ageFecha(iso), h = todayISO(); const pre = iso === h ? "Hoy · " : iso === ageSumar(h, 1) ? "Mañana · " : ""; return pre + AGE_DIAS_L[d.getDay()] + " " + d.getDate() + " de " + AGE_MESES[d.getMonth()]; }
+function ageActiva(c){ return c.estado === "Programada" || c.estado === "Confirmada"; }
+function ageMias(c){ return c.asignado === SESION.usuario; }
+function ageNombre(u){ const x = usuariosLocales().find(v => v.usuario === u); return x ? x.nombre : (u || "—"); }
+
+/* ---------- Carga ---------- */
+function ageRango(){
+  const d = AGE.dia || todayISO();
+  if(AGE.vista === "mes"){ const f = ageFecha(d); const ini = ageLunes(ageISO(new Date(f.getFullYear(), f.getMonth(), 1))); return [ini, ageSumar(ini, 41)]; }
+  if(AGE.vista === "semana"){ const ini = ageLunes(d); return [ini, ageSumar(ini, 6)]; }
+  if(AGE.vista === "dia") return [d, d];
+  const i = AGE.dia && AGE.dia > todayISO() ? AGE.dia : todayISO(); return [i, ageSumar(i, 60)];
+}
+async function ageCargar(forzar){
+  if(!SB_ON || !SESION.token) return;
+  const r = ageRango(), h = todayISO();
+  const desde = r[0] < h ? r[0] : h, hasta = r[1] > ageSumar(h, 60) ? r[1] : ageSumar(h, 60);
+  if(!forzar && AGE.listo && desde >= AGE.desde && hasta <= AGE.hasta) return agePintar();
+  if(AGE.cargando) return; AGE.cargando = true;
+  if($("ageEstado")) $("ageEstado").textContent = "Actualizando…";
+  try{
+    const d2 = ageSumar(desde, -7), h2 = ageSumar(hasta, 7);
+    AGE.citas = await ctlGet("age_citas", "&fecha=gte." + d2 + "&fecha=lte." + h2 + "&order=fecha.asc,hora.asc");
+    AGE.desde = d2; AGE.hasta = h2; AGE.listo = true;
+    if($("ageEstado")) $("ageEstado").textContent = "Actualizado " + horaActual();
+  }catch(e){
+    AGE.cargando = false;
+    if($("ageCuerpo") && !$("panel-age").classList.contains("hidden"))
+      $("ageCuerpo").innerHTML = '<div class="note" style="margin:10px 0">No se pudo leer la agenda: ' + escapeHtml(e.message) + '<br>¿Ya ejecutó el script <b>supabase_mejoras_v12_8.sql</b> en Supabase?</div>';
+    return;
+  }
+  AGE.cargando = false;
+  agePintar(); ageAvisoInicio(); ageRevisarRecordatorios();
+}
+function ageVisibles(){ return AGE.citas.filter(c => !AGE.persona || c.asignado === AGE.persona); }
+
+/* ---------- Pintado ---------- */
+function agePintar(){
+  if(!$("ageCuerpo")) return;
+  const d = AGE.dia || todayISO(), r = ageRango();
+  const f0 = ageFecha(r[0]), f1 = ageFecha(r[1]);
+  $("ageTitulo").textContent = AGE.vista === "mes" ? AGE_MESES[ageFecha(d).getMonth()].replace(/^./, x => x.toUpperCase()) + " " + ageFecha(d).getFullYear()
+    : AGE.vista === "semana" ? f0.getDate() + (f0.getMonth() !== f1.getMonth() ? " de " + AGE_MESES[f0.getMonth()] : "") + " – " + f1.getDate() + " de " + AGE_MESES[f1.getMonth()] + " " + f1.getFullYear()
+    : AGE.vista === "dia" ? ageDiaTxt(d).replace(/^./, x => x.toUpperCase()) : "Próximas citas";
+  document.querySelectorAll("#ageVistas [data-agev]").forEach(b => b.classList.toggle("on", b.dataset.agev === AGE.vista));
+  const sel = $("agePersona");
+  if(esAdmin()){ sel.classList.remove("hidden");
+    sel.innerHTML = '<option value="">Todas las personas</option>' + usuariosLocales().map(u => '<option value="' + escapeHtml(u.usuario) + '"' + (u.usuario === AGE.persona ? " selected" : "") + '>' + escapeHtml(u.nombre) + '</option>').join("");
+  }else sel.classList.add("hidden");
+  $("ageNotif").classList.toggle("hidden", !("Notification" in window) || Notification.permission !== "default");
+  if(!AGE.listo) return;
+  const angosto = innerWidth < 760;
+  $("ageCuerpo").innerHTML = (AGE.vista === "semana" && !angosto ? ageVistaSemana() : AGE.vista === "mes" ? ageVistaMes() : ageVistaLista()) + ageLeyenda();
+}
+function ageLeyenda(){ return '<div class="age-ley">' + Object.keys(AGE_TIPOS).map(t => '<span><i style="background:' + AGE_TIPOS[t] + '"></i>' + t + '</span>').join("") + '</div>'; }
+function ageChip(c, estilo){
+  const col = AGE_TIPOS[c.tipo] || "#62758c";
+  return '<button type="button" class="age-ev' + (ageActiva(c) ? "" : " off") + '" data-cita="' + c.id + '" style="--c:' + col + (estilo ? ";" + estilo : "") + '">' +
+    '<b>' + escapeHtml(String(c.hora).slice(0, 5)) + ' ' + escapeHtml(c.tipo) + '</b> · ' + escapeHtml(c.cliente || "—") +
+    (esAdmin() && !AGE.persona ? '<small>' + escapeHtml(ageNombre(c.asignado)) + '</small>' : '') + '</button>';
+}
+function ageVistaSemana(){
+  const ini = ageLunes(AGE.dia || todayISO()), dias = [...Array(7)].map((_, i) => ageSumar(ini, i)), cs = ageVisibles().filter(c => c.fecha >= dias[0] && c.fecha <= dias[6]);
+  let hMin = 7, hMax = 18;
+  cs.forEach(c => { const a = ageMin(c.hora), b = a + Number(c.duracion_min || 60); hMin = Math.min(hMin, Math.floor(a / 60)); hMax = Math.max(hMax, Math.min(24, Math.ceil(b / 60))); });
+  const alto = 46, horas = [...Array(hMax - hMin)].map((_, i) => hMin + i), h = todayISO();
+  const col = d => { const ev = cs.filter(c => c.fecha === d).sort((x, y) => ageMin(x.hora) - ageMin(y.hora));
+    /* citas que se cruzan se ponen lado a lado */
+    const fin = [], carril = ev.map(c => { const a = ageMin(c.hora); let i = fin.findIndex(f => f <= a); if(i < 0){ i = fin.length; fin.push(0); } fin[i] = a + Number(c.duracion_min || 60); return i; });
+    const n = Math.max(1, fin.length);
+    return '<div class="age-col' + (d === h ? " hoy" : "") + '" data-agedia="' + d + '" data-h0="' + hMin + '" style="height:' + (horas.length * alto) + 'px">' + horas.map(() => '<div class="age-slot" style="height:' + alto + 'px"></div>').join("") +
+      ev.map(c => { const top = (ageMin(c.hora) - hMin * 60) / 60 * alto, hh = Math.max(24, Number(c.duracion_min || 60) / 60 * alto - 3);
+        const k = carril[ev.indexOf(c)];
+        return ageChip(c, "position:absolute;top:" + top.toFixed(0) + "px;height:" + hh.toFixed(0) + "px;left:calc(" + (k * 100 / n).toFixed(2) + "% + 2px);width:calc(" + (100 / n).toFixed(2) + "% - 4px)"); }).join("") + '</div>'; };
+  return '<div class="age-sem"><div class="age-hd"></div>' + dias.map(d => { const f = ageFecha(d); return '<div class="age-hd' + (d === h ? " hoy" : "") + '" data-agever="' + d + '">' + AGE_DIAS[f.getDay()] + ' ' + f.getDate() + '</div>'; }).join("") +
+    '<div class="age-horas">' + horas.map(x => '<div style="height:' + alto + 'px">' + (x % 12 || 12) + (x < 12 ? " a. m." : " p. m.") + '</div>').join("") + '</div>' + dias.map(col).join("") + '</div>';
+}
+function ageVistaMes(){
+  const d = ageFecha(AGE.dia || todayISO()), ini = ageLunes(ageISO(new Date(d.getFullYear(), d.getMonth(), 1))), h = todayISO(), cs = ageVisibles();
+  const angosto = innerWidth < 760;
+  return '<div class="age-mes">' + ["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"].map(x => '<div class="age-mhd">' + x + '</div>').join("") +
+    [...Array(42)].map((_, i) => { const dia = ageSumar(ini, i), f = ageFecha(dia), ev = cs.filter(c => c.fecha === dia);
+      return '<div class="age-md' + (f.getMonth() !== d.getMonth() ? " fuera" : "") + (dia === h ? " hoy" : "") + '" data-agever="' + dia + '"><span class="n">' + f.getDate() + '</span>' +
+        (angosto ? (ev.length ? '<span class="age-pt">' + ev.length + '</span>' : '') : ev.slice(0, 3).map(c => ageChip(c)).join("") + (ev.length > 3 ? '<small class="mas">+' + (ev.length - 3) + ' más</small>' : '')) + '</div>'; }).join("") + '</div>';
+}
+function ageVistaLista(){
+  let cs = ageVisibles(), r = ageRango();
+  if(AGE.vista === "semana"){ /* celular: la semana se ve como lista */ }
+  cs = cs.filter(c => c.fecha >= r[0] && c.fecha <= r[1]);
+  if(AGE.vista === "lista") cs = cs.filter(c => c.estado !== "Cancelada");
+  if(!cs.length) return '<div class="ctl-card"><p class="muted" style="margin:0">No hay citas ' + (AGE.vista === "lista" ? "próximas" : "en estos días") + '. Toque <b>＋ Nueva cita</b> para agendar una.</p></div>';
+  const dias = [...new Set(cs.map(c => c.fecha))];
+  return dias.map(d => '<div class="ctl-card age-dia"><h3>' + escapeHtml(ageDiaTxt(d)) + '</h3>' + cs.filter(c => c.fecha === d).map(c =>
+    '<button type="button" class="age-it' + (ageActiva(c) ? "" : " off") + '" data-cita="' + c.id + '" style="--c:' + (AGE_TIPOS[c.tipo] || "#62758c") + '"><span class="hr">' + ageHora(c.hora) + '</span>' +
+    '<span class="tx"><b>' + escapeHtml(c.tipo) + '</b> · ' + escapeHtml(c.cliente || "—") + '<small>' + escapeHtml([c.direccion, c.notas].filter(Boolean).join(" · ") || ageHora(c.hora) + " a " + ageHoraFin(c)) + (esAdmin() ? ' · ' + escapeHtml(ageNombre(c.asignado)) : '') + '</small></span>' +
+    '<span class="ctl-pill ' + ageEstadoCls(c.estado) + '">' + escapeHtml(c.estado) + '</span></button>').join("") + '</div>').join("");
+}
+function ageEstadoCls(e){ return { "Programada": "st-env", "Confirmada": "st-ok", "Realizada": "st-ok", "Cancelada": "st-anu", "No asistió": "st-anu" }[e] || ""; }
+
+/* ---------- Detalle de una cita ---------- */
+function ageMaps(dir){ return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(dir); }
+function ageVer(id){
+  const c = AGE.citas.find(x => x.id === id); if(!c) return;
+  const p = c.proyecto_id ? PROYECTOS.find(x => x.id === c.proyecto_id) : null;
+  const fila = (i, t) => '<div class="age-det-f"><span>' + i + '</span><div>' + t + '</div></div>';
+  ctlModal(c.tipo + " · " + (c.cliente || "sin cliente"),
+    '<div class="age-det" style="--c:' + (AGE_TIPOS[c.tipo] || "#62758c") + '"><span class="ctl-pill ' + ageEstadoCls(c.estado) + '" style="float:right">' + escapeHtml(c.estado) + '</span>' +
+    fila("📅", escapeHtml(ageDiaTxt(c.fecha).replace(/^./, x => x.toUpperCase())) + ' · ' + ageHora(c.hora) + ' a ' + ageHoraFin(c)) +
+    (c.direccion ? fila("📍", escapeHtml(c.direccion) + ' · <a href="' + ageMaps(c.direccion) + '" target="_blank" rel="noopener">Abrir en Maps</a>') : '') +
+    (c.telefono ? fila("✆", escapeHtml(c.telefono)) : '') +
+    (p ? fila("🧾", 'Proyecto: ' + escapeHtml((p.numero || "") + " · " + (p.proyecto || p.cliente || ""))) : '') +
+    fila("👤", 'Asignada a: <b>' + escapeHtml(ageNombre(c.asignado)) + '</b>' + (c.creado_por && c.creado_por !== c.asignado ? ' · creada por ' + escapeHtml(c.creado_por) : '')) +
+    fila("🔔", (Number(c.recordar_min) ? (AGE_RECORDAR.find(x => x[0] === Number(c.recordar_min)) || [0, ""])[1] : "Sin aviso") + (c.recordar_cliente ? ' · al cliente un día antes' + (c.cliente_avisado ? ' (avisado ✔)' : '') : '')) +
+    (c.notas ? fila("📝", escapeHtml(c.notas)) : '') + '</div>' +
+    '<div class="age-acc">' +
+      (c.telefono ? '<button type="button" class="age-wa" data-ageacc="wa">💬 WhatsApp: recordar cita</button>' : '') +
+      '<button type="button" data-ageacc="ics">📆 Agregar a mi calendario</button><button type="button" data-ageacc="gcal">Google Calendar</button>' +
+      (c.estado !== "Confirmada" && ageActiva(c) ? '<button type="button" data-ageacc="Confirmada">✔ Confirmada</button>' : '') +
+      (ageActiva(c) ? '<button type="button" data-ageacc="Realizada">✅ Realizada</button><button type="button" data-ageacc="No asistió">No asistió</button><button type="button" data-ageacc="Cancelada">✖ Cancelar cita</button>' : '<button type="button" data-ageacc="Programada">↺ Volver a programada</button>') +
+      (p ? '<button type="button" data-ageacc="proy">Ver proyecto</button>' : '') +
+    '</div>',
+    [].concat(esAdmin() ? [{ txt: "Eliminar", cls: "btn-red", fn: async () => {
+      if(!confirm("¿Eliminar esta cita? Queda registrada en la auditoría.")) return;
+      try{ await ctlBorrar("age_citas", "id=eq." + c.id); }catch(e){ return ctlAviso("No se pudo eliminar: " + e.message); }
+      cerrar("modalCtl"); toast("Cita eliminada.", "ok"); ageCargar(true); } }] : [],
+      [{ txt: "✏ Editar / reprogramar", cls: "save", fn: () => ageForm(c.id) }]));
+  $("ctlMCuerpo").querySelectorAll("[data-ageacc]").forEach(b => b.onclick = () => ageAccion(c, b.dataset.ageacc));
+}
+function ageTextoCliente(c){
+  return "Hola " + (c.cliente || "") + ", le saluda " + (c.proyecto_id && (PROYECTOS.find(x => x.id === c.proyecto_id) || {}).modulo === "muebles" ? "Muebles Zacapa" : CFG.empresa) +
+    ". Le recordamos su cita de " + c.tipo.toLowerCase() + " el " + ageDiaTxt(c.fecha).replace(/^(Hoy|Mañana) · /, "") + " a las " + ageHora(c.hora) +
+    (c.direccion ? " en " + c.direccion : "") + ". ¿Nos confirma, por favor? Gracias.";
+}
+async function ageAccion(c, a){
+  if(a === "wa"){ abrirWa(c.telefono, ageTextoCliente(c)); try{ await ctlEscribir("age_citas", { cliente_avisado: new Date().toISOString() }, "id=eq." + c.id); c.cliente_avisado = new Date().toISOString(); }catch(e){} return; }
+  if(a === "ics") return ageIcs(c);
+  if(a === "gcal") return window.open(ageGcal(c), "_blank");
+  if(a === "proy"){ cerrar("modalCtl"); return (esAdmin() && typeof ctlFicha === "function") ? (ctlAsegurar().then(() => ctlFicha(c.proyecto_id))) : editarProyecto(c.proyecto_id); }
+  if(AGE_ESTADOS.includes(a)){
+    try{ await ctlEscribir("age_citas", { estado: a }, "id=eq." + c.id); }catch(e){ return ctlAviso("No se pudo cambiar: " + e.message); }
+    cerrar("modalCtl"); toast("Cita: " + a.toLowerCase() + ".", "ok"); ageCargar(true);
+  }
+}
+
+/* ---------- Calendario del celular (.ics con alarma) y Google Calendar ---------- */
+function ageUtc(d){ return d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, ""); }
+function ageIcsTxt(t){ return String(t || "").replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n"); }
+function ageIcs(c){
+  const ini = ageInicio(c), fin = new Date(ini.getTime() + Number(c.duracion_min || 60) * 60000);
+  const l = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Vitra House//Agenda//ES","CALSCALE:GREGORIAN","METHOD:PUBLISH","BEGIN:VEVENT",
+    "UID:" + c.id + "@agenda-vitra", "DTSTAMP:" + ageUtc(new Date()), "DTSTART:" + ageUtc(ini), "DTEND:" + ageUtc(fin),
+    "SUMMARY:" + ageIcsTxt(c.tipo + " · " + (c.cliente || "")), "LOCATION:" + ageIcsTxt(c.direccion),
+    "DESCRIPTION:" + ageIcsTxt([c.telefono ? "Tel. " + c.telefono : "", c.notas].filter(Boolean).join("\n"))];
+  if(Number(c.recordar_min)) l.push("BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:" + ageIcsTxt("Cita: " + c.tipo + " · " + (c.cliente || "")), "TRIGGER:-PT" + Number(c.recordar_min) + "M","END:VALARM");
+  l.push("END:VEVENT","END:VCALENDAR");
+  descargarBlob(new Blob([l.join("\r\n")], { type: "text/calendar;charset=utf-8" }), "Cita " + c.fecha + " " + String(c.hora).slice(0, 5).replace(":", "h") + ".ics");
+  toast("Ábralo en el celular para agregarlo al calendario con su alarma.", "ok");
+}
+function ageGcal(c){
+  const ini = ageInicio(c), fin = new Date(ini.getTime() + Number(c.duracion_min || 60) * 60000);
+  return "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(c.tipo + " · " + (c.cliente || "")) +
+    "&dates=" + ageUtc(ini) + "/" + ageUtc(fin) + "&details=" + encodeURIComponent([c.telefono ? "Tel. " + c.telefono : "", c.notas].filter(Boolean).join("\n")) +
+    "&location=" + encodeURIComponent(c.direccion || "");
+}
+
+/* ---------- Nueva cita / editar ---------- */
+function ageForm(id, pre){
+  const c = id ? AGE.citas.find(x => x.id === id) : null, v = c || Object.assign({ fecha: AGE.dia && AGE.dia >= todayISO() ? AGE.dia : todayISO(), hora: "09:00", duracion_min: 60, tipo: "Medición",
+    asignado: SESION.usuario, recordar_min: 60, recordar_cliente: true, cliente: "", telefono: "", direccion: "", notas: "", proyecto_id: "" }, pre || {});
+  const proys = PROYECTOS.filter(p => !p.eliminado).slice().sort((a, b) => String(b.fecha || "").localeCompare(String(a.fecha || ""))).slice(0, 300);
+  const opt = (l, sel) => l.map(x => { const val = Array.isArray(x) ? x[0] : x, t = Array.isArray(x) ? x[1] : x; return '<option value="' + escapeHtml(val) + '"' + (String(val) === String(sel) ? " selected" : "") + '>' + escapeHtml(t) + '</option>'; }).join("");
+  ctlModal(c ? "Editar cita" : "Nueva cita",
+    '<div class="form-grid ctl-form">' +
+    ctlCampo("agTipo", "Tipo", '<select id="agTipo">' + opt(Object.keys(AGE_TIPOS), v.tipo) + '</select>') +
+    ctlCampo("agAsig", "Asignada a", '<select id="agAsig">' + opt(usuariosLocales().map(u => [u.usuario, u.nombre]), v.asignado) + '</select>') +
+    ctlCampo("agFecha", "Fecha *", ctlIn("agFecha", v.fecha, 'type="date"')) +
+    ctlCampo("agHora", "Hora *", ctlIn("agHora", String(v.hora).slice(0, 5), 'type="time" step="900"')) +
+    ctlCampo("agDur", "Duración", '<select id="agDur">' + opt([[30,"30 minutos"],[60,"1 hora"],[90,"1 h 30 min"],[120,"2 horas"],[180,"3 horas"],[240,"4 horas"],[480,"Todo el día (8 h)"]].concat([[Number(v.duracion_min), Number(v.duracion_min) + " min"]]).filter((x, i, a) => a.findIndex(y => y[0] === x[0]) === i), v.duracion_min) + '</select>') +
+    ctlCampo("agProy", "Proyecto / cotización (opcional)", '<select id="agProy"><option value="">— Ninguno —</option>' + proys.map(p => '<option value="' + escapeHtml(p.id) + '"' + (p.id === v.proyecto_id ? " selected" : "") + '>' + escapeHtml((p.numero || "") + " · " + (p.cliente || "") + (p.proyecto ? " · " + p.proyecto : "")) + '</option>').join("") + '</select>') +
+    ctlCampo("agCli", "Cliente", ctlIn("agCli", v.cliente, 'maxlength="160"')) +
+    ctlCampo("agTel", "Teléfono", ctlIn("agTel", v.telefono, 'maxlength="40" inputmode="tel"')) +
+    ctlCampo("agDir", "Dirección / ubicación", ctlIn("agDir", v.direccion, 'maxlength="300"'), true) +
+    ctlCampo("agNotas", "Notas", '<textarea id="agNotas" rows="2" maxlength="600">' + escapeHtml(v.notas) + '</textarea>', true) +
+    ctlCampo("agRec", "🔔 Recordarme", '<select id="agRec">' + opt(AGE_RECORDAR, v.recordar_min) + '</select>') +
+    ctlCampo("agRecCli", "Recordar al cliente", '<select id="agRecCli"><option value="1"' + (v.recordar_cliente ? " selected" : "") + '>Un día antes (WhatsApp)</option><option value="0"' + (!v.recordar_cliente ? " selected" : "") + '>No</option></select>') +
+    '</div><div id="agChoque"></div>' +
+    (!c ? '<label class="ctl-radio" style="margin-top:8px"><input type="checkbox" id="agAvisar"' + (v.telefono ? " checked" : "") + '> Abrir WhatsApp para avisarle al cliente</label>' : ''),
+    [{ txt: "Guardar", cls: "save", fn: async () => {
+      const fila = { tipo: ctlVal("agTipo"), asignado: ctlVal("agAsig"), fecha: ctlVal("agFecha"), hora: ctlVal("agHora"), duracion_min: Number(ctlVal("agDur")) || 60,
+        proyecto_id: ctlVal("agProy") || null, cliente: ctlVal("agCli"), telefono: ctlVal("agTel"), direccion: ctlVal("agDir"), notas: ctlVal("agNotas"),
+        recordar_min: Number(ctlVal("agRec")) || 0, recordar_cliente: ctlVal("agRecCli") === "1" };
+      if(!fila.fecha || !fila.hora) return ctlAviso("Indique la fecha y la hora.");
+      if(!fila.cliente && !fila.notas) return ctlAviso("Escriba el cliente o una nota de para qué es la cita.");
+      const ch = ageChoques(fila, c && c.id);
+      if(ch.length && !$("agChoque").dataset.ok){
+        $("agChoque").dataset.ok = "1";
+        $("agChoque").innerHTML = '<div class="note age-warn">⚠ ' + escapeHtml(ageNombre(fila.asignado)) + ' ya tiene ' + ch.map(x => escapeHtml(x.tipo + " · " + (x.cliente || "") + " de " + ageHora(x.hora) + " a " + ageHoraFin(x))).join("; ") + ' ese día. Pulse <b>Guardar</b> otra vez para guardarla de todos modos.</div>';
+        return;
+      }
+      if(c && (fila.fecha !== c.fecha || fila.hora !== String(c.hora).slice(0, 5))) fila.cliente_avisado = null;
+      try{ await ctlEscribir("age_citas", fila, c ? "id=eq." + c.id : null); }
+      catch(e){ return ctlAviso("No se pudo guardar: " + e.message); }
+      const avisar = !c && $("agAvisar") && $("agAvisar").checked && fila.telefono;
+      cerrar("modalCtl"); toast(c ? "Cita actualizada." : "Cita agendada para el " + ageDiaTxt(fila.fecha).replace(/^(Hoy|Mañana) · /, "") + ".", "ok");
+      if(avisar) abrirWa(fila.telefono, "Hola " + fila.cliente + ", le saluda " + CFG.empresa + ". Le confirmamos su cita de " + fila.tipo.toLowerCase() + " el " + ageDiaTxt(fila.fecha).replace(/^(Hoy|Mañana) · /, "") + " a las " + ageHora(fila.hora) + (fila.direccion ? " en " + fila.direccion : "") + ". ¡Gracias!");
+      AGE.dia = fila.fecha; ageCargar(true);
+    } }]);
+  $("agProy").onchange = () => { const p = PROYECTOS.find(x => x.id === $("agProy").value); if(!p) return;
+    if(!ctlVal("agCli")) $("agCli").value = p.cliente || ""; if(!ctlVal("agTel")) $("agTel").value = p.telefono || ""; if(!ctlVal("agDir")) $("agDir").value = p.direccion || p.proyecto || ""; };
+  if($("agAvisar")){ $("agAvisar").onchange = () => { $("agAvisar").dataset.t = "1"; };
+    $("agTel").addEventListener("input", () => { if(!$("agAvisar").dataset.t) $("agAvisar").checked = !!ctlVal("agTel"); }); }
+  ["agFecha","agHora","agDur","agAsig"].forEach(i => $(i).addEventListener("change", () => { $("agChoque").innerHTML = ""; delete $("agChoque").dataset.ok; }));
+}
+function ageChoques(f, idPropio){
+  const a = ageMin(f.hora), b = a + Number(f.duracion_min || 60);
+  return AGE.citas.filter(c => c.id !== idPropio && c.asignado === f.asignado && c.fecha === f.fecha && ageActiva(c) && ageMin(c.hora) < b && ageMin(c.hora) + Number(c.duracion_min || 60) > a);
+}
+
+/* ---------- Recordar al cliente (citas de mañana) ---------- */
+function ageRecordarHoy(){
+  const m = ageSumar(todayISO(), 1), l = AGE.citas.filter(c => c.fecha === m && ageActiva(c) && c.recordar_cliente && c.telefono && (esAdmin() || ageMias(c) || c.creado_por === SESION.usuario));
+  ctlModal("Recordar a los clientes · citas de mañana",
+    (l.length ? '<p class="muted small" style="margin:0 0 10px">Toque cada botón: abre WhatsApp con el mensaje listo. Queda marcado como avisado.</p>' + l.map(c =>
+      '<div class="age-rec"><div><b>' + ageHora(c.hora) + ' · ' + escapeHtml(c.tipo) + '</b> · ' + escapeHtml(c.cliente) + '<small>' + escapeHtml(c.telefono) + (c.cliente_avisado ? ' · avisado ✔' : '') + '</small></div>' +
+      '<button type="button" class="age-wa" data-agerec="' + c.id + '">💬 Enviar</button></div>').join("")
+      : '<p class="muted" style="margin:0">No hay citas de mañana con recordatorio al cliente pendiente.</p>'), []);
+  $("ctlMCuerpo").querySelectorAll("[data-agerec]").forEach(b => b.onclick = async () => {
+    const c = AGE.citas.find(x => x.id === b.dataset.agerec); if(!c) return;
+    await ageAccion(c, "wa"); b.textContent = "✔ Enviado"; b.classList.add("ok");
+  });
+}
+
+/* ---------- Recordatorios dentro del programa ---------- */
+function ageAvisadas(){ try{ return JSON.parse(localStorage.getItem(AGE_LS_AVISADAS) || "{}"); }catch(e){ return {}; } }
+function ageGuardarAvisadas(o){ try{ localStorage.setItem(AGE_LS_AVISADAS, JSON.stringify(o)); }catch(e){} }
+function ageRevisarRecordatorios(){
+  if(!AGE.listo || !SESION.usuario) return;
+  const ahora = Date.now(), av = ageAvisadas();
+  AGE.citas.filter(c => ageMias(c) && ageActiva(c) && Number(c.recordar_min) > 0).forEach(c => {
+    const ini = ageInicio(c).getTime(), clave = c.id + "|" + c.fecha + "|" + String(c.hora).slice(0, 5) + "|" + c.recordar_min;
+    if(ahora >= ini - Number(c.recordar_min) * 60000 && ahora < ini && !av[clave]){
+      av[clave] = ahora;
+      const min = Math.max(1, Math.round((ini - ahora) / 60000));
+      const falta = min >= 1440 ? "mañana" : min >= 60 ? "en " + Math.round(min / 60) + " h" : "en " + min + " min";
+      const titulo = "Cita " + falta + ": " + c.tipo, cuerpo = ageHora(c.hora) + " · " + (c.cliente || "") + (c.direccion ? " · " + c.direccion : "");
+      toast("🔔 " + titulo + " · " + cuerpo, "ok");
+      ageNotificar(titulo, cuerpo, c.id);
+    }
+  });
+  Object.keys(av).forEach(k => { if(ahora - av[k] > 3 * 86400000) delete av[k]; });
+  ageGuardarAvisadas(av);
+}
+async function ageNotificar(titulo, cuerpo, id){
+  if(!("Notification" in window) || Notification.permission !== "granted") return;
+  const op = { body: cuerpo, tag: "cita-" + id, icon: "assets/icon-192.png", badge: "assets/icon-192.png", data: { url: location.href.split("#")[0] + "#agenda" } };
+  try{ const r = navigator.serviceWorker && await navigator.serviceWorker.getRegistration(); if(r && r.showNotification){ await r.showNotification(titulo, op); return; } }catch(e){}
+  try{ new Notification(titulo, op); }catch(e){}
+}
+async function ageActivarNotif(){
+  if(!("Notification" in window)) return toast("Este navegador no permite notificaciones.", "err");
+  const r = await Notification.requestPermission();
+  toast(r === "granted" ? "🔔 Notificaciones activadas: le avisaremos de sus citas mientras el programa esté abierto." : "No se activaron las notificaciones.", r === "granted" ? "ok" : "err");
+  agePintar();
+}
+function ageAvisoInicio(){
+  const a = $("ageAviso"); if(!a) return;
+  const h = todayISO(), hoy = AGE.citas.filter(c => c.fecha === h && ageActiva(c) && (ageMias(c) || (esAdmin() && !AGE.persona))), m = AGE.citas.filter(c => c.fecha === ageSumar(h, 1) && ageActiva(c) && c.recordar_cliente && c.telefono && !c.cliente_avisado && (esAdmin() || ageMias(c) || c.creado_por === SESION.usuario));
+  if(!hoy.length && !m.length){ a.classList.add("hidden"); return; }
+  a.classList.remove("hidden");
+  const prox = hoy.filter(c => ageInicio(c).getTime() > Date.now())[0];
+  a.innerHTML = '<span class="ic">📅</span><div><b>' + (hoy.length ? (esAdmin() ? "Hoy hay " : "Hoy tiene ") + hoy.length + (hoy.length === 1 ? " cita" : " citas") : "Sin citas hoy") + '</b>' +
+    (prox ? '<small>Próxima: ' + ageHora(prox.hora) + ' · ' + escapeHtml(prox.tipo) + ' · ' + escapeHtml(prox.cliente || "") + '</small>' : '') +
+    (m.length ? '<small>' + m.length + (m.length === 1 ? " cliente por recordar" : " clientes por recordar") + ' para mañana</small>' : '') + '</div><span class="go">Ver agenda ↗</span>';
+}
+function ageArranque(){
+  if(!SB_ON || !SESION.token) return;
+  ageCargar(true);
+  if(AGE.timer) clearInterval(AGE.timer);
+  AGE.timer = setInterval(() => { ageRevisarRecordatorios(); }, 60000);
+}
+
+/* ---------- Eventos ---------- */
+function ageIniciar(){
+  if(!$("panel-age")) return;
+  $("ageRecargar").onclick = () => ageCargar(true);
+  $("ageNueva").onclick = () => ageForm(null);
+  $("ageRecordar").onclick = ageRecordarHoy;
+  $("ageNotif").onclick = ageActivarNotif;
+  $("agePrev").onclick = () => ageMover(-1); $("ageSig").onclick = () => ageMover(1);
+  $("ageHoy").onclick = () => { AGE.dia = todayISO(); ageCargar(); };
+  $("ageVistas").addEventListener("click", e => { const b = e.target.closest("[data-agev]"); if(b){ AGE.vista = b.dataset.agev; ageCargar(); } });
+  $("agePersona").onchange = e => { AGE.persona = e.target.value; agePintar(); };
+  $("ageCuerpo").addEventListener("click", e => {
+    const c = e.target.closest("[data-cita]"); if(c){ ageVer(c.dataset.cita); return; }
+    const d = e.target.closest("[data-agever]"); if(d){ AGE.dia = d.dataset.agever; AGE.vista = "dia"; ageCargar(); return; }
+    const s = e.target.closest("[data-agedia]"); if(s && e.target.classList.contains("age-slot")){
+      const idx = [...s.querySelectorAll(".age-slot")].indexOf(e.target), h0 = Number(s.dataset.h0 || 7);
+      ageForm(null, { fecha: s.dataset.agedia, hora: String(h0 + idx).padStart(2, "0") + ":00" });
+    }
+  });
+  $("ageAviso").onclick = () => irTab("age");
+  window.addEventListener("resize", () => { if(!$("panel-age").classList.contains("hidden")) agePintar(); });
+}
+function ageMover(n){
+  const d = AGE.dia || todayISO();
+  if(AGE.vista === "mes"){ const f = ageFecha(d); AGE.dia = ageISO(new Date(f.getFullYear(), f.getMonth() + n, 1)); }
+  else AGE.dia = ageSumar(d, AGE.vista === "semana" ? 7 * n : AGE.vista === "lista" ? 30 * n : n);
+  ageCargar();
+}
+
 /* ══════════ v12.5 · HISTORIAL DE COTIZACIONES: etapa, siguiente paso y acciones ══════════ */
 const ETAPAS = ["Borrador","Enviada","Aceptada","Venta","Facturada","Cobrada","Entregada"];
 let HIST_ETAPA = "", CTL_CARGADO = 0, CTL_PROMESA = null;
@@ -4541,6 +4941,7 @@ function histAcciones(p){
     if(adm) l.push({ acc: "factura", i: "🧾", txt: "Facturar", off: vOk ? "" : "después de la venta" });
     if(adm) l.push({ acc: "cpb", i: "📄", txt: cpbDe(p.id) ? "Ver comprobante " + cvNum(cpbDe(p.id).numero) : "Comprobante de venta (sin CAI)", off: vOk ? "" : "después de la venta" });
     if(adm) l.push({ acc: "cobro", i: "💵", txt: "Registrar cobro", off: !vOk ? "después de la venta" : (saldo <= 0.009 ? "ya está cobrada" : "") });
+    l.push({ acc: "cita", i: "📅", txt: "Agendar cita" });
     l.push({ acc: "oc", i: "🛒", txt: "Orden de compra de materiales" });
     l.push({ acc: "gasto", i: "💸", txt: "Registrar gasto" });
     l.push({ acc: "acta", i: "📦", txt: "Acta de entrega" });
@@ -4584,6 +4985,7 @@ async function histAccion(acc, id){
     case "venta": await sinc(); return ctlConvertirVenta(id);
     case "factura": await sinc(); return ctlFormFactura(id);
     case "cpb": await sinc(); return cpbAbrir(id);
+    case "cita": return ageForm(null, { proyecto_id: id, cliente: p.cliente || "", telefono: p.telefono || "", direccion: p.direccion || "", tipo: "Medición" });
     case "cobro": await sinc(); return ctlFormCobro(id);
     case "oc": await sinc(); return ctlFormOc(null, { proyecto_id: id });
     case "gasto": await sinc(); return ctlFormGasto(null, id);
@@ -6181,6 +6583,7 @@ function iniciar(){
   nubeModulosEventos();
   ctlEventos();
   negIniciar();
+  ageIniciar();
   if(SESION.usuario){ abrirApp(); if(CFG.apiUrl && SESION.token){ sincronizar(true); solCargar(true); } }
   else mostrarLogin();
 

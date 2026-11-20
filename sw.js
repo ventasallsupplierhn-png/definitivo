@@ -2,7 +2,7 @@
    Permite que la aplicación abra sin internet.
    IMPORTANTE: al publicar una versión nueva, cambie CACHE_VERSION. */
 
-const CACHE_VERSION = 'vitra-v12.7.0';
+const CACHE_VERSION = 'vitra-v12.8.0';
 const ARCHIVOS = [
   './',
   './index.html',
@@ -64,4 +64,14 @@ self.addEventListener('fetch', evento => {
       return res;
     }).catch(() => new Response('', { status: 504, statusText: 'Sin conexion' })))
   );
+});
+
+/* Al tocar un recordatorio de cita, abrir (o traer al frente) el programa */
+self.addEventListener('notificationclick', evento => {
+  evento.notification.close();
+  const url = (evento.notification.data && evento.notification.data.url) || './';
+  evento.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(lista => {
+    for(const c of lista){ if('focus' in c) return c.focus(); }
+    return self.clients.openWindow ? self.clients.openWindow(url) : null;
+  }));
 });
