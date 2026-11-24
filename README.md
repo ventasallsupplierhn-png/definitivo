@@ -1,4 +1,4 @@
-# Sistema de Presupuestos · Vitra House y Muebles Zacapa · v12.8.0
+# Sistema de Presupuestos · Vitra House y Muebles Zacapa · v12.8.1
 
 Aplicación web (GitHub Pages + Supabase) de **Representaciones e Inversiones Tinoco S. de R. L.**
 Funciona en computadora y celular, también sin internet (se sincroniza al volver la conexión).

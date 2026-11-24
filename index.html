@@ -1393,7 +1393,7 @@ const AJUSTES_FABRICA = {
 if(AJUSTES_FABRICA.supabaseUrl && AJUSTES_FABRICA.supabaseKey) AJUSTES_FABRICA.apiUrl = "supabase";
 
 /* ── 1. CONSTANTES Y ESTADO GLOBAL ───────────────────────────── */
-const APP_VERSION = "12.8.0";
+const APP_VERSION = "12.8.1";
 const LS = {
   borrador : "vitra.borrador.v7",
   borradorMZ: "vitra.borradorMZ.v9",
@@ -3165,7 +3165,7 @@ function ctlVistaSar(){
   const t = k => r2c(lista.filter(f => !f.anulada).reduce((s,f) => s + Number(f[k]), 0));
   const facs = lista.map(f => '<tr class="' + (f.anulada ? "ctl-anulada" : "") + '"><td>' + cF(f.fecha) + '</td><td class="mono"><b>' + escapeHtml(f.numero) + '</b></td><td>' + escapeHtml(f.cliente) + '<div class="muted small">RTN ' + escapeHtml(f.rtn || "—") + '</div></td>' +
     '<td class="r">' + cL(Number(f.exento) + Number(f.exonerado)) + '</td><td class="r">' + cL(Number(f.gravado15) + Number(f.gravado18)) + '</td><td class="r">' + cL(Number(f.isv15) + Number(f.isv18)) + '</td><td class="r"><b>' + cL(f.total) + '</b></td>' +
-    '<td class="acc">' + (facAutoActivo() ? '<button class="action-small edit" data-facimp="' + f.id + '">🖨 Imprimir</button>' : '') + (f.anulada ? '<span class="ctl-pill st-anu">Anulada</span>' : '<button class="action-small del" data-fac="anular" data-id="' + f.id + '">Anular</button>') + '</td></tr>').join("") ||
+    '<td class="acc">' + (f.autoimpresor ? '<button class="action-small edit" data-facimp="' + f.id + '">🖨 Imprimir</button>' : '') + (f.anulada ? '<span class="ctl-pill st-anu">Anulada</span>' : '<button class="action-small del" data-fac="anular" data-id="' + f.id + '">Anular</button>') + '</td></tr>').join("") ||
     '<tr><td colspan="8" class="muted" style="padding:18px">No hay facturas registradas en este período.</td></tr>';
   return '<div class="ctl-acciones"><span>Período: ' + ctlSelMes() + '</span><button type="button" class="pdf" style="color:#fff" data-ctlacc="factura">🧾 ' + (facAutoActivo() ? "Emitir factura" : "Registrar factura del talonario") + '</button>' +
     '<button type="button" class="btn-outline" data-ctlacc="cai">＋ CAI / talonario</button><button type="button" class="excel" style="color:#fff" data-ctlacc="libroVentas">⬇ Libro de ventas (Excel)</button></div>' +
@@ -4115,26 +4115,25 @@ function cpbFormEmitir(pid){
   if(!esAdmin()) return toast("Solo el administrador emite comprobantes.", "err");
   const v = ctlVenta(pid), p = ctlProy(pid);
   if(!v || v.estado === "Anulada") return toast("Primero convierta la cotización en venta.", "err");
-  const conIsv = Number(v.isv) > 0, base = conIsv ? ctlBaseVenta(pid) : Number(v.total);
+  if(cpbDe(pid)) return cpbVer(cpbDe(pid).id);
+  const conIsv = Number(v.isv) > 0, base = r2c(Number(v.total) - Number(v.isv || 0));
+  const facturada = CTL.fac.some(f => f.proyecto_id === pid && !f.anulada);
   ctlModal("Comprobante de venta (sin CAI)",
     '<div class="form-grid ctl-form">' +
     ctlCampo("cvCli", "Cliente", ctlIn("cvCli", (p && p.cliente) || "", 'maxlength="160"')) +
     ctlCampo("cvFecha", "Fecha", ctlIn("cvFecha", todayISO(), 'type="date"')) + '</div>' +
-    (conIsv ? '<div class="field" style="margin-top:6px"><label>Total del comprobante</label>' +
-      '<label class="ctl-radio"><input type="radio" name="cvIsv" value="0" checked> Sin ISV: <b>' + cL(base) + '</b> <span class="muted small">(la venta se ajusta a este monto)</span></label>' +
+    (conIsv && facturada ? '<div class="ctl-tot"><div class="t"><span>Total del comprobante (con ISV, ya está facturada)</span><b>' + cL(v.total) + '</b></div></div>'
+      : conIsv ? '<div class="field" style="margin-top:6px"><label>Total del comprobante</label>' +
+      '<label class="ctl-radio"><input type="radio" name="cvIsv" value="0" checked> Sin ISV: <b>' + cL(base) + '</b> <span class="muted small">(la venta se ajusta a este monto; si lo anula, vuelve el ISV)</span></label>' +
       '<label class="ctl-radio"><input type="radio" name="cvIsv" value="1"> Con ISV incluido: <b>' + cL(v.total) + '</b></label></div>'
       : '<div class="ctl-tot"><div class="t"><span>Total del comprobante</span><b>' + cL(v.total) + '</b></div></div>') +
     '<div class="note" style="margin-top:10px">Numeración propia (' + cvNum(((CTL.cpb || []).reduce((mx, c) => Math.max(mx, c.numero), 0)) + 1) + '), separada de las facturas. Incluye el detalle del proyecto, los pagos recibidos y el saldo.</div>',
     [{ txt: "🧾 Emitir comprobante", cls: "pdf", fn: async () => {
-      const sel = document.querySelector('input[name="cvIsv"]:checked'), conI = conIsv && sel && sel.value === "1";
-      const total = conIsv && !conI ? base : Number(v.total);
-      if(!(total > 0)) return ctlAviso("La venta no tiene total.");
-      const r = await sbRpc("ctl_emitir_comprobante", { d: { proyecto_id: pid, fecha: ctlVal("cvFecha"), cliente: ctlVal("cvCli"), total: total, con_isv: conI } });
+      const sel = document.querySelector('input[name="cvIsv"]:checked'), conI = conIsv && (facturada || (sel && sel.value === "1"));
+      if(!(Number(v.total) > 0)) return ctlAviso("La venta no tiene total.");
+      /* El servidor toma el total de la venta y, si va sin ISV, ajusta la venta en la misma operación */
+      const r = await sbRpc("ctl_emitir_comprobante", { d: { proyecto_id: pid, fecha: ctlVal("cvFecha"), cliente: ctlVal("cvCli"), con_isv: conI } });
       if(!r.ok) return ctlAviso(r.error || "No se pudo emitir.");
-      if(conIsv && !conI){
-        try{ await ctlEscribir("ctl_ventas", { subtotal: base, isv: 0, total: base }, "proyecto_id=eq." + encodeURIComponent(pid)); }
-        catch(e){ toast("Comprobante emitido, pero no se pudo ajustar la venta: " + e.message, "err"); }
-      }
       cerrar("modalCtl");
       toast("✔ Comprobante " + cvNum(r.comprobante.numero) + " emitido.", "ok");
       CTL.cpb = [r.comprobante].concat(CTL.cpb || []);
@@ -4146,8 +4145,10 @@ async function cpbAnular(id){
   const c = (CTL.cpb || []).find(x => x.id === id); if(!c) return;
   const motivo = (prompt("Motivo de la anulación del comprobante " + cvNum(c.numero) + " (queda en la auditoría):") || "").trim();
   if(!motivo) return;
-  try{ await ctlEscribir("ctl_comprobantes", { anulado: true, motivo_anulacion: motivo }, "id=eq." + c.id); toast(cvNum(c.numero) + " anulado.", "ok"); ctlCargar(); }
-  catch(e){ toast("No se pudo anular: " + e.message, "err"); }
+  const r = await sbRpc("ctl_anular_comprobante", { d: { id: c.id, motivo } });
+  if(!r.ok) return toast("No se pudo anular: " + (r.error || ""), "err");
+  toast(cvNum(c.numero) + " anulado" + (Number(r.isv_devuelto) > 0 ? "; la venta recupera el ISV de " + cL(r.isv_devuelto) : "") + ".", "ok");
+  ctlCargar();
 }
 function cpbTarjeta(){
   const lista = CTL.cpb || [];
@@ -4189,7 +4190,7 @@ function facHtml(f){
 }
 function facVer(id){
   const f = CTL.fac.find(x => x.id === id); if(!f) return toast("No se encontró la factura.", "err");
-  if(!facAutoActivo()) return toast("La impresión de facturas se habilita al activar el modo autoimpresor.", "err");
+  if(!f.autoimpresor) return toast("Esta factura salió del talonario de imprenta; solo se imprimen completas las emitidas como autoimpresor.", "err");
   DOC_ACTUAL = { modulo: "fac", numero: f.numero, cliente: f.cliente };
   $("docTitulo").textContent = "Factura " + f.numero;
   $("docRender").innerHTML = facHtml(f);
@@ -4244,6 +4245,16 @@ function negPorId(id){ return NEG.negs.find(n => n.id === id); }
 function negModuloProy(pid){ const p = ctlProy(pid); return p ? (p.modulo || "vidrieria") : "vidrieria"; }
 function negCats(n, tipo){ const c = n && (tipo === "ingreso" ? n.cat_ingreso : n.cat_gasto); return Array.isArray(c) && c.length ? c : [tipo === "ingreso" ? "Otros ingresos" : "Otros gastos"]; }
 
+/* Lee todas las filas en páginas de 1000 (Supabase corta cada respuesta en 1000 filas) */
+async function negGetTodo(tabla, extra){
+  const out = [];
+  for(let off = 0; off < 200000; off += 1000){
+    const l = await ctlGet(tabla, extra + "&limit=1000&offset=" + off);
+    out.push(...l);
+    if(l.length < 1000) break;
+  }
+  return out;
+}
 async function negCargar(){
   if(!esAdmin()) return;
   if(!SB_ON || !SESION.token){ $("negCuerpo").innerHTML = '<p class="muted" style="padding:20px">Mis negocios necesita la conexión con la nube.</p>'; return; }
@@ -4254,10 +4265,10 @@ async function negCargar(){
     NEG.negs = await ctlGet("neg_negocios", "&order=orden.asc,nombre.asc");
     const auto = NEG.negs.some(n => n.modo === "auto" && n.enlace && n.activo);
     const [movs, cob, gas, com] = await Promise.all([
-      ctlGet("neg_movimientos", rango + "&order=fecha.desc,creado.desc"),
-      auto ? ctlGet("ctl_cobros", rango) : [],
-      auto ? ctlGet("ctl_gastos", rango) : [],
-      auto ? ctlGet("ctl_compras", rango) : []
+      negGetTodo("neg_movimientos", rango + "&order=fecha.desc,creado.desc,id.asc"),
+      auto ? negGetTodo("ctl_cobros", rango + "&order=id.asc") : [],
+      auto ? negGetTodo("ctl_gastos", rango + "&order=id.asc") : [],
+      auto ? negGetTodo("ctl_compras", rango + "&order=id.asc") : []
     ]);
     Object.assign(NEG, { movs, cob, gas, com, listo: true });
     $("negEstado").textContent = "Actualizado " + horaActual();
@@ -4358,8 +4369,9 @@ function negMesesHasta(){ const h = new Date(); return NEG.anio < h.getFullYear(
 function negReporte(){
   const filas = negFilas().filter(f => !f.anulado && String(f.fecha).slice(0, 4) === String(NEG.anio));
   if(NEG.rep === "er"){
-    const n = NEG.repNeg ? negPorId(NEG.repNeg) : null, base = n ? filas.filter(f => f.negocio_id === n.id) : filas;
     const nm = Math.max(1, negMesesHasta()), cols = NEG_MESES.slice(0, nm);
+    /* el total del año es la suma de las columnas: no cuenta movimientos con fecha futura */
+    const n = NEG.repNeg ? negPorId(NEG.repNeg) : null, base = (n ? filas.filter(f => f.negocio_id === n.id) : filas).filter(f => Number(String(f.fecha).slice(5, 7)) <= nm);
     const linea = (lista, mesIdx) => r2c(lista.filter(f => mesIdx == null || Number(String(f.fecha).slice(5, 7)) === mesIdx + 1).reduce((s, f) => s + f.monto, 0));
     const bloque = tipo => { const l = base.filter(f => f.tipo === tipo); const cats = [...new Set(l.map(f => f.categoria || "Sin categoría"))].sort();
       return { tot: [linea(l, null)].concat(cols.map((_, i) => linea(l, i))), cats: cats.map(c => { const lc = l.filter(f => (f.categoria || "Sin categoría") === c); return { c, v: [linea(lc, null)].concat(cols.map((_, i) => linea(lc, i))) }; }) }; };
@@ -4745,7 +4757,7 @@ function ageForm(id, pre){
   ctlModal(c ? "Editar cita" : "Nueva cita",
     '<div class="form-grid ctl-form">' +
     ctlCampo("agTipo", "Tipo", '<select id="agTipo">' + opt(Object.keys(AGE_TIPOS), v.tipo) + '</select>') +
-    ctlCampo("agAsig", "Asignada a", '<select id="agAsig">' + opt(usuariosLocales().map(u => [u.usuario, u.nombre]), v.asignado) + '</select>') +
+    ctlCampo("agAsig", "Asignada a", '<select id="agAsig">' + opt(usuariosLocales().map(u => [u.usuario, u.nombre]).concat(usuariosLocales().some(u => u.usuario === v.asignado) ? [] : [[v.asignado, v.asignado]]), v.asignado) + '</select>') +
     ctlCampo("agFecha", "Fecha *", ctlIn("agFecha", v.fecha, 'type="date"')) +
     ctlCampo("agHora", "Hora *", ctlIn("agHora", String(v.hora).slice(0, 5), 'type="time" step="900"')) +
     ctlCampo("agDur", "Duración", '<select id="agDur">' + opt([[30,"30 minutos"],[60,"1 hora"],[90,"1 h 30 min"],[120,"2 horas"],[180,"3 horas"],[240,"4 horas"],[480,"Todo el día (8 h)"]].concat([[Number(v.duracion_min), Number(v.duracion_min) + " min"]]).filter((x, i, a) => a.findIndex(y => y[0] === x[0]) === i), v.duracion_min) + '</select>') +
@@ -4771,11 +4783,13 @@ function ageForm(id, pre){
         return;
       }
       if(c && (fila.fecha !== c.fecha || fila.hora !== String(c.hora).slice(0, 5))) fila.cliente_avisado = null;
-      try{ await ctlEscribir("age_citas", fila, c ? "id=eq." + c.id : null); }
-      catch(e){ return ctlAviso("No se pudo guardar: " + e.message); }
       const avisar = !c && $("agAvisar") && $("agAvisar").checked && fila.telefono;
+      /* la ventana de WhatsApp se abre ya (en el toque), si no el iPhone la bloquea */
+      const win = avisar ? window.open("", "_blank") : null;
+      try{ await ctlEscribir("age_citas", fila, c ? "id=eq." + c.id : null); }
+      catch(e){ if(win) win.close(); return ctlAviso("No se pudo guardar: " + e.message); }
       cerrar("modalCtl"); toast(c ? "Cita actualizada." : "Cita agendada para el " + ageDiaTxt(fila.fecha).replace(/^(Hoy|Mañana) · /, "") + ".", "ok");
-      if(avisar) abrirWa(fila.telefono, "Hola " + fila.cliente + ", le saluda " + CFG.empresa + ". Le confirmamos su cita de " + fila.tipo.toLowerCase() + " el " + ageDiaTxt(fila.fecha).replace(/^(Hoy|Mañana) · /, "") + " a las " + ageHora(fila.hora) + (fila.direccion ? " en " + fila.direccion : "") + ". ¡Gracias!");
+      if(avisar) ageAbrirWaEn(win, fila.telefono, "Hola " + fila.cliente + ", le saluda " + CFG.empresa + ". Le confirmamos su cita de " + fila.tipo.toLowerCase() + " el " + ageDiaTxt(fila.fecha).replace(/^(Hoy|Mañana) · /, "") + " a las " + ageHora(fila.hora) + (fila.direccion ? " en " + fila.direccion : "") + ". ¡Gracias!");
       AGE.dia = fila.fecha; ageCargar(true);
     } }]);
   $("agProy").onchange = () => { const p = PROYECTOS.find(x => x.id === $("agProy").value); if(!p) return;
@@ -4783,6 +4797,11 @@ function ageForm(id, pre){
   if($("agAvisar")){ $("agAvisar").onchange = () => { $("agAvisar").dataset.t = "1"; };
     $("agTel").addEventListener("input", () => { if(!$("agAvisar").dataset.t) $("agAvisar").checked = !!ctlVal("agTel"); }); }
   ["agFecha","agHora","agDur","agAsig"].forEach(i => $(i).addEventListener("change", () => { $("agChoque").innerHTML = ""; delete $("agChoque").dataset.ok; }));
+}
+function ageAbrirWaEn(win, tel, texto){
+  const url = "https://wa.me/" + telWa(tel) + "?text=" + encodeURIComponent(texto);
+  if(win && !win.closed){ try{ win.location.href = url; return; }catch(e){} }
+  window.open(url, "_blank");
 }
 function ageChoques(f, idPropio){
   const a = ageMin(f.hora), b = a + Number(f.duracion_min || 60);
@@ -4849,8 +4868,13 @@ function ageArranque(){
   if(!SB_ON || !SESION.token) return;
   ageCargar(true);
   if(AGE.timer) clearInterval(AGE.timer);
-  AGE.timer = setInterval(() => { ageRevisarRecordatorios(); }, 60000);
+  let vueltas = 0;
+  /* cada minuto revisa recordatorios; cada 5 minutos trae de la nube las citas nuevas o reprogramadas */
+  AGE.timer = setInterval(() => { if(++vueltas % 5 === 0) ageCargar(true); else ageRevisarRecordatorios(); }, 60000);
+  if(location.hash === "#agenda"){ try{ history.replaceState(null, "", location.pathname + location.search); }catch(e){} irTab("age"); }
 }
+document.addEventListener("visibilitychange", () => { if(document.visibilityState === "visible" && AGE.timer && SB_ON && SESION.token) ageCargar(true); });
+if(navigator.serviceWorker) navigator.serviceWorker.addEventListener("message", e => { if(e.data && e.data.tipo === "agenda" && SESION.usuario) irTab("age"); });
 
 /* ---------- Eventos ---------- */
 function ageIniciar(){

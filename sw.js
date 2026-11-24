@@ -2,7 +2,7 @@
    Permite que la aplicación abra sin internet.
    IMPORTANTE: al publicar una versión nueva, cambie CACHE_VERSION. */
 
-const CACHE_VERSION = 'vitra-v12.8.0';
+const CACHE_VERSION = 'vitra-v12.8.1';
 const ARCHIVOS = [
   './',
   './index.html',
@@ -71,7 +71,7 @@ self.addEventListener('notificationclick', evento => {
   evento.notification.close();
   const url = (evento.notification.data && evento.notification.data.url) || './';
   evento.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(lista => {
-    for(const c of lista){ if('focus' in c) return c.focus(); }
+    for(const c of lista){ if('focus' in c){ c.postMessage({ tipo: 'agenda' }); return c.focus(); } }
     return self.clients.openWindow ? self.clients.openWindow(url) : null;
   }));
 });
