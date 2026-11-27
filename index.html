@@ -471,6 +471,9 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
 .age-aviso{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--border);border-left:5px solid #7a3fb8;border-radius:14px;padding:12px 16px;margin:0 0 16px;box-shadow:var(--shadow);cursor:pointer}
 .age-aviso .ic{font-size:24px}.age-aviso div{flex:1}.age-aviso b{font-size:15.5px}.age-aviso small{display:block;color:var(--muted);font-size:13px}.age-aviso .go{color:#7a3fb8;font-weight:800;font-size:13px}
 @media(max-width:760px){.age-bar h3{min-width:0;width:100%;order:-1;margin:0}.age-md{min-height:54px}.age-it .hr{min-width:62px;font-size:13px}}
+.sinisv-sw{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--border);border-radius:12px;padding:12px 14px;cursor:pointer;background:#fff}
+.sinisv-sw:has(input:checked){border-color:var(--blue);background:#eef5ff}
+.sinisv-sw input{width:20px;height:20px;margin:2px 0 0;flex:none}.sinisv-sw b{font-size:14.5px}.sinisv-sw small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px;font-weight:400}
 .ctl-bajo td{background:#fff6f6}.ctl-anulada td{color:#9aa8b8;text-decoration:line-through}
 .ctl-pill{display:inline-block;padding:3px 10px;border-radius:99px;font-size:11.5px;font-weight:800;white-space:nowrap}
 .st-sol{background:#eef2f7;color:#4b5f78}.st-apr{background:#fff1d6;color:#8a5a00}.st-env{background:#e0f4f7;color:#0e6a7d}.st-par{background:#fdebd7;color:#9a4b00}
@@ -1252,6 +1255,7 @@ a.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:
 
         <h4 style="margin:0;font-size:15px">Valores por defecto</h4>
         <div class="form-grid" style="grid-template-columns:1fr 1fr">
+          <label class="sinisv-sw" style="grid-column:1/-1"><input type="checkbox" id="cfgSinIsv"><span><b>Trabajar sin ISV</b><small>Cotizaciones, presupuestos de muebles, ventas y facturas salen sin impuesto. Lo ya guardado queda como está.</small></span></label>
           <div class="field"><label for="cfgIsv">ISV por defecto (%)</label><input id="cfgIsv" type="number" min="0" max="30" step="0.01"></div>
           <div class="field"><label for="cfgValidez">Validez (días)</label><input id="cfgValidez" type="number" min="0" max="365" step="1"></div>
           <div class="field"><label for="cfgAreaMin">Área mínima por pieza (ft²)</label><input id="cfgAreaMin" type="number" min="0" step="0.01"><div class="hint">0 = sin mínimo</div></div>
@@ -1393,7 +1397,7 @@ const AJUSTES_FABRICA = {
 if(AJUSTES_FABRICA.supabaseUrl && AJUSTES_FABRICA.supabaseKey) AJUSTES_FABRICA.apiUrl = "supabase";
 
 /* ── 1. CONSTANTES Y ESTADO GLOBAL ───────────────────────────── */
-const APP_VERSION = "12.8.1";
+const APP_VERSION = "12.9.0";
 const LS = {
   borrador : "vitra.borrador.v7",
   borradorMZ: "vitra.borradorMZ.v9",
@@ -1543,7 +1547,15 @@ function guardarConfigLocal(){
   localStorage.setItem(LS.config, JSON.stringify(CFG));
   localStorage.setItem(LS.sesion, JSON.stringify(SESION));
 }
+/* v12.9 · Trabajar sin ISV: oculta las filas de impuesto (si el documento abierto no trae ISV) */
+function isvFilas(){
+  const s = !!CFG.sinIsv;
+  const tog = (ids, ver) => ids.forEach(id => { const e = $(id); const r = e && e.closest(".summary-row"); if(r) r.classList.toggle("hidden", !ver); });
+  if($("isvPercent")) tog(["isvPercent","isvValue"], !(s && num($("isvPercent").value) === 0));
+  if($("mzImpuesto")) tog(["mzImpuesto","mzImpValor"], !(s && num($("mzImpuesto").value) === 0));
+}
 function aplicarConfigUI(){
+  isvFilas();
   $("empTel").textContent = CFG.telefono;
   $("empCorreo").textContent = CFG.correo;
   $("empGerente").textContent = CFG.gerente;
@@ -2113,12 +2125,12 @@ async function solCrear(id){
   const prods = s.productos || [];
   const nota = "Solicitud desde el catálogo" + (s.ubicacion ? " · Ubicación: " + s.ubicacion : "") + (s.detalles ? "\nDetalles del cliente: " + s.detalles : "");
   if(s.empresa === "Muebles Zacapa"){
-    mzPintar({ fecha:todayISO(), isv:15, cliente:s.cliente, telefono:s.telefono || "", direccion:s.ubicacion || "",
+    mzPintar({ fecha:todayISO(), isv:(CFG.sinIsv ? 0 : 15), cliente:s.cliente, telefono:s.telefono || "", direccion:s.ubicacion || "",
       proyecto:"Solicitud web · " + s.cliente, notas:nota,
       items: prods.length ? prods.map(p => ({ desc:(p.title || "") + ((p.qty || 1) > 1 ? " × " + p.qty : "") })) : [{},{}] });
     irTab("mue");
   }else{
-    pintarFormulario({ fecha:todayISO(), validez:CFG.validez, isv:CFG.isv, cliente:s.cliente, telefono:s.telefono || "",
+    pintarFormulario({ fecha:todayISO(), validez:CFG.validez, isv:(CFG.sinIsv ? 0 : CFG.isv), cliente:s.cliente, telefono:s.telefono || "",
       proyecto:"Solicitud web · " + s.cliente, notas:(CFG.notas ? CFG.notas + "\n" : "") + nota,
       items: prods.length ? prods.map(p => ({ description:(p.title || "") + (p.category ? " (" + p.category + ")" : ""), cantidad:p.qty || 1 })) : [{}] });
     irTab("cot");
@@ -2171,6 +2183,7 @@ function aplicarConfigServidor(c){
   if(c.validez !== undefined && c.validez !== "") CFG.validez = num(c.validez);
   if(c.areaMin !== undefined && c.areaMin !== "") CFG.areaMin = num(c.areaMin);
   if(Array.isArray(c.materiales) && c.materiales.length) CFG.materiales = c.materiales;
+  if(c.sinIsv !== undefined) CFG.sinIsv = c.sinIsv === true || c.sinIsv === "true";
   if(c.facAuto !== undefined){ CFG.facAuto = c.facAuto === true || c.facAuto === "true"; CFG.facAutoRes = c.facAutoRes || ""; CFG.facAutoFecha = c.facAutoFecha || ""; }
   if(c.catalogoPvc && Object.keys(c.catalogoPvc).length){
     CFG.catalogoPvc = c.catalogoPvc;
@@ -2277,6 +2290,7 @@ function totalesDe(datos){
   return { area:area, subtotal:subtotal, pct:pct, descuento:descuento, base:base, isvPct:isvPct, isv:isv, total:r2(base + isv) };
 }
 function recalcular(){
+  isvFilas();
   const unidad = unidadActual();
   let subtotal = 0, area = 0;
   $("itemsBody").querySelectorAll("tr").forEach(row => {
@@ -3655,8 +3669,8 @@ function ctlFormFactura(pidFijo){
   const cais = CTL.cai.filter(c => c.activo && !ctlCaiInfo(c).vencido && !ctlCaiInfo(c).agotado);
   if(!cais.length) return toast("Registre primero un CAI vigente en Facturación SAR.", "err");
   const ventas = CTL.ven.filter(v => v.estado === "Venta" || v.proyecto_id === pidFijo);
-  const auto = facAutoActivo();
-  ctlModal(auto ? "Emitir factura (autoimpresor)" : "Registrar factura del talonario",
+  const auto = facAutoActivo(), sinIsv = !!CFG.sinIsv;
+  ctlModal((auto ? "Emitir factura (autoimpresor)" : "Registrar factura del talonario") + (sinIsv ? " · sin ISV" : ""),
     '<div class="form-grid ctl-form">' +
     ctlCampo("cfProy", "Venta", '<select id="cfProy"><option value="">— Factura sin proyecto —</option>' + ventas.map(v => '<option value="' + escapeHtml(v.proyecto_id) + '"' + (v.proyecto_id === pidFijo ? " selected" : "") + '>' + escapeHtml(ctlNomProy(v.proyecto_id)) + " · " + cL(v.total) + '</option>').join("") + '</select>', true) +
     ctlCampo("cfCai", "Talonario (CAI)", '<select id="cfCai">' + cais.map(c => '<option value="' + c.id + '">' + escapeHtml(c.prefijo + " · vence " + cF(c.fecha_limite) + " · " + c.cai.slice(0, 13) + "…") + '</option>').join("") + '</select>') +
@@ -3664,17 +3678,20 @@ function ctlFormFactura(pidFijo){
     ctlCampo("cfFecha", "Fecha de emisión *", ctlIn("cfFecha", todayISO(), 'type="date"')) +
     ctlCampo("cfCli", "Cliente *", ctlIn("cfCli", "", 'maxlength="160"')) +
     ctlCampo("cfRtn", "RTN del cliente", ctlIn("cfRtn", "", 'maxlength="20" placeholder="Opcional para consumidor final"')) +
+    (sinIsv ? ctlCampo("cfG15", "Importe *", ctlIn("cfG15", "0", 'type="number" min="0" step="0.01"'), true) +
+      '<input type="hidden" id="cfExo" value="0"><input type="hidden" id="cfExe" value="0"><input type="hidden" id="cfG18" value="0"><input type="hidden" id="cfOce" value=""><input type="hidden" id="cfCre" value=""><input type="hidden" id="cfSag" value="">' :
     ctlCampo("cfExo", "Importe exonerado", ctlIn("cfExo", "0", 'type="number" min="0" step="0.01"')) +
     ctlCampo("cfExe", "Importe exento", ctlIn("cfExe", "0", 'type="number" min="0" step="0.01"')) +
     ctlCampo("cfG15", "Importe gravado 15%", ctlIn("cfG15", "0", 'type="number" min="0" step="0.01"')) +
     ctlCampo("cfG18", "Importe gravado 18%", ctlIn("cfG18", "0", 'type="number" min="0" step="0.01"')) +
     ctlCampo("cfOce", "N.° orden de compra exenta", ctlIn("cfOce", "", 'maxlength="40"')) +
     ctlCampo("cfCre", "N.° constancia registro exonerado", ctlIn("cfCre", "", 'maxlength="40"')) +
-    ctlCampo("cfSag", "N.° registro SAG", ctlIn("cfSag", "", 'maxlength="40"')) +
+    ctlCampo("cfSag", "N.° registro SAG", ctlIn("cfSag", "", 'maxlength="40"'))) +
     '</div><div class="ctl-tot" id="cfTot"></div><div class="note" id="cfAviso" style="margin-top:8px"></div>',
     [{ txt: auto ? "🧾 Emitir e imprimir" : "🧾 Registrar factura", cls:"pdf", fn: async () => {
       const g15 = r2c(num(ctlVal("cfG15"))), g18 = r2c(num(ctlVal("cfG18"))), exo = r2c(num(ctlVal("cfExo"))), exe = r2c(num(ctlVal("cfExe")));
-      const i15 = r2c(g15 * .15), i18 = r2c(g18 * .18);
+      const i15 = sinIsv ? 0 : r2c(g15 * .15), i18 = sinIsv ? 0 : r2c(g18 * .18);
+      if(sinIsv && !(g15 > 0)) return ctlAviso("Escriba el importe de la factura.");
       const r = await sbRpc("ctl_registrar_factura", { f: { cai_id: ctlVal("cfCai"), numero: ctlVal("cfNum"), fecha: ctlVal("cfFecha"), cliente: ctlVal("cfCli"), rtn: ctlVal("cfRtn").replace(/[^\d]/g, ""),
         proyecto_id: ctlVal("cfProy"), exonerado: exo, exento: exe, gravado15: g15, gravado18: g18, isv15: i15, isv18: i18, total: r2c(exo + exe + g15 + g18 + i15 + i18),
         orden_exenta: ctlVal("cfOce"), constancia_exonerado: ctlVal("cfCre"), registro_sag: ctlVal("cfSag") } });
@@ -3685,8 +3702,9 @@ function ctlFormFactura(pidFijo){
     } }]);
   const sug = () => { const c = CTL.cai.find(x => x.id === ctlVal("cfCai")); if(c && !ctlVal("cfNum")) $("cfNum").value = ctlCaiInfo(c).siguiente; };
   const tot = () => {
-    const g15 = num(ctlVal("cfG15")), g18 = num(ctlVal("cfG18")), base = num(ctlVal("cfExo")) + num(ctlVal("cfExe")) + g15 + g18, i15 = r2c(g15 * .15), i18 = r2c(g18 * .18);
-    $("cfTot").innerHTML = '<div><span>ISV 15%</span><b>' + cL(i15) + '</b></div><div><span>ISV 18%</span><b>' + cL(i18) + '</b></div><div class="t"><span>Total a pagar</span><b>' + cL(base + i15 + i18) + '</b></div><div class="muted small" style="justify-content:flex-start">Son: ' + escapeHtml(numeroALetras(base + i15 + i18)) + '</div>';
+    const g15 = num(ctlVal("cfG15")), g18 = num(ctlVal("cfG18")), base = num(ctlVal("cfExo")) + num(ctlVal("cfExe")) + g15 + g18, i15 = sinIsv ? 0 : r2c(g15 * .15), i18 = sinIsv ? 0 : r2c(g18 * .18);
+    if(sinIsv) $("cfTot").innerHTML = '<div><span>ISV</span><b>' + cL(0) + '</b></div><div class="t"><span>Total a pagar</span><b>' + cL(base) + '</b></div>';
+    else $("cfTot").innerHTML = '<div><span>ISV 15%</span><b>' + cL(i15) + '</b></div><div><span>ISV 18%</span><b>' + cL(i18) + '</b></div><div class="t"><span>Total a pagar</span><b>' + cL(base + i15 + i18) + '</b></div><div class="muted small" style="justify-content:flex-start">Son: ' + escapeHtml(numeroALetras(base + i15 + i18)) + '</div>';
     const v = ctlVenta(ctlVal("cfProy"));
     $("cfAviso").innerHTML = v && Math.abs(Number(v.total) - (base + i15 + i18)) > 0.05 ? "⚠ El total de la factura (" + cL(base + i15 + i18) + ") no coincide con el total de la venta (" + cL(v.total) + "). Revíselo antes de guardar." : "Copie los importes tal como quedaron escritos en la factura del talonario.";
   };
@@ -3694,7 +3712,8 @@ function ctlFormFactura(pidFijo){
     const pid = ctlVal("cfProy"), v = ctlVenta(pid), p = ctlProy(pid);
     if(p){ $("cfCli").value = p.cliente || ""; $("cfRtn").value = p.rtn || ""; }
     if(v){
-      if(Number(v.isv) > 0){ $("cfG15").value = ctlBaseVenta(pid); $("cfExe").value = 0; }
+      if(sinIsv){ $("cfG15").value = r2c(Number(v.total)); }
+      else if(Number(v.isv) > 0){ $("cfG15").value = ctlBaseVenta(pid); $("cfExe").value = 0; }
       else{ $("cfG15").value = r2c(Number(v.total) / 1.15); }
     }
     tot();
@@ -3705,7 +3724,7 @@ function ctlFormFactura(pidFijo){
   ["cfExo","cfExe","cfG15","cfG18"].forEach(i => $(i).oninput = tot);
   sug(); prellenar();
   const v0 = ctlVenta(ctlVal("cfProy"));
-  if(v0 && !(Number(v0.isv) > 0)) $("cfAviso").innerHTML = "⚠ La cotización no tenía ISV; se calculó el gravado 15% asumiendo que el precio ya incluye el impuesto. Confirme con su contador.";
+  if(v0 && !(Number(v0.isv) > 0) && !sinIsv) $("cfAviso").innerHTML = "⚠ La cotización no tenía ISV; se calculó el gravado 15% asumiendo que el precio ya incluye el impuesto. Confirme con su contador.";
 }
 async function ctlAnularFactura(id){
   const f = CTL.fac.find(x => x.id === id); if(!f) return;
@@ -3946,10 +3965,10 @@ function trabajoSinGuardar(mz){
   return d;
 }
 function limpiarModulo(t){
-  if(t === "mue"){ MZ_ACTUAL = null; localStorage.removeItem(LS.borradorMZ); mzPintar({ fecha:todayISO(), isv:15, items:[{},{}] }); return; }
+  if(t === "mue"){ MZ_ACTUAL = null; localStorage.removeItem(LS.borradorMZ); mzPintar({ fecha:todayISO(), isv:(CFG.sinIsv ? 0 : 15), items:[{},{}] }); return; }
   ACTUAL = null;
   localStorage.removeItem(LS.borrador);
-  pintarFormulario({ fecha:todayISO(), validez:CFG.validez, isv:CFG.isv, notas:CFG.notas, items:[{}] });
+  pintarFormulario({ fecha:todayISO(), validez:CFG.validez, isv:(CFG.sinIsv ? 0 : CFG.isv), notas:CFG.notas, items:[{}] });
   if(typeof PVC !== "undefined") PVC.limpiar();
   $("saveStatus").textContent = "Nuevo proyecto iniciado";
 }
@@ -4170,7 +4189,9 @@ function facHtml(f){
   if(!lineas.length || !t || Math.abs(t.base - base) > 0.05) lineas = [{ cant: "1", desc: p ? "Venta del proyecto " + (p.proyecto || p.numero || "") : "Venta de bienes y servicios", pu: base, total: base }];
   else desc = t.descuento;
   const rango = (cai.prefijo || "") + "-" + String(cai.desde || 0).padStart(8, "0") + " al " + (cai.prefijo || "") + "-" + String(cai.hasta || 0).padStart(8, "0");
-  const imp = [["Descuentos y rebajas", desc], ["Importe exonerado", f.exonerado], ["Importe exento", f.exento], ["Importe gravado 15%", f.gravado15], ["Importe gravado 18%", f.gravado18], ["ISV 15%", f.isv15], ["ISV 18%", f.isv18]];
+  const sinImp = !Number(f.isv15) && !Number(f.isv18) && !Number(f.exonerado) && !Number(f.exento) && !Number(f.gravado18);
+  const imp = sinImp ? [["Descuentos y rebajas", desc], ["Importe", f.gravado15], ["ISV", 0]]
+    : [["Descuentos y rebajas", desc], ["Importe exonerado", f.exonerado], ["Importe exento", f.exento], ["Importe gravado 15%", f.gravado15], ["Importe gravado 18%", f.gravado18], ["ISV 15%", f.isv15], ["ISV 18%", f.isv18]];
   const pagina = leyenda => '<div class="cv fa fa-pag' + (f.anulada ? " cv-anul" : "") + '"' + (f.anulada ? ' style="--x:1"' : '') + '>' +
     '<div class="cv-top"><div class="cv-emi"><img src="' + m.logo + '" alt=""><b>' + escapeHtml(RAZON_SOCIAL) + '</b><br>Nombre comercial: ' + escapeHtml(m.nombre) + ' · RTN ' + escapeHtml(CFG.rtn || "") +
       '<br>Casa matriz y punto de emisión: ' + escapeHtml(CFG.direccion || "") + '<br>Tel. ' + escapeHtml(CFG.telefono || "") + (CFG.correo ? ' · ' + escapeHtml(CFG.correo) : '') + '</div>' +
@@ -5325,6 +5346,8 @@ function abrirConfig(){
   $("cfgCorreo").value = CFG.correo;
   $("cfgDireccion").value = CFG.direccion;
   $("cfgIsv").value = CFG.isv;
+  $("cfgSinIsv").checked = !!CFG.sinIsv; $("cfgIsv").disabled = !!CFG.sinIsv;
+  $("cfgSinIsv").onchange = () => { $("cfgIsv").disabled = $("cfgSinIsv").checked; };
   $("cfgValidez").value = CFG.validez;
   $("cfgAreaMin").value = CFG.areaMin;
   $("cfgPrefijo").value = CFG.prefijo;
@@ -5356,6 +5379,8 @@ function guardarConfig(){
   CFG.correo    = $("cfgCorreo").value.trim();
   CFG.direccion = $("cfgDireccion").value.trim();
   CFG.isv       = num($("cfgIsv").value);
+  const sinIsvAntes = !!CFG.sinIsv;
+  CFG.sinIsv    = $("cfgSinIsv").checked;
   CFG.validez   = num($("cfgValidez").value);
   CFG.areaMin   = num($("cfgAreaMin").value);
   CFG.prefijo   = $("cfgPrefijo").value.trim() || "COT";
@@ -5373,7 +5398,10 @@ function guardarConfig(){
       correo:CFG.correo, direccion:CFG.direccion, isv:CFG.isv, validez:CFG.validez, areaMin:CFG.areaMin,
       prefijo:CFG.prefijo, notas:CFG.notas, materiales:CFG.materiales } })
       .then(r => { if(!r.ok) toast("Quedó guardada en este equipo, pero no se publicó para los demás: " + (r.error || ""), "err"); });
+    if(sinIsvAntes !== CFG.sinIsv) sbRpc("ctl_modo_sin_isv", { d: { activar: CFG.sinIsv } })
+      .then(r => { if(!r.ok) toast("«Trabajar sin ISV» quedó solo en este equipo: " + (r.error || ""), "err"); });
   }
+  if(sinIsvAntes !== CFG.sinIsv) toast(CFG.sinIsv ? "Listo: desde ahora se trabaja sin ISV." : "Listo: se vuelve a calcular el ISV.", "ok");
 }
 
 /* ── 15. EVENTOS ─────────────────────────────────────────────── */
@@ -6435,6 +6463,7 @@ function mzRenumerar(){
   $("mzItems").querySelectorAll("tr").forEach((r,i) => r.querySelector(".row-number").textContent = i + 1);
 }
 function mzCalcular(){
+  isvFilas();
   let subtotal = 0, ml = 0;
   $("mzItems").querySelectorAll("tr").forEach(r => {
     const m = Math.max(0, num(r.querySelector(".mz-ml").value)), pr = Math.max(0, num(r.querySelector(".mz-price").value));
@@ -6489,7 +6518,7 @@ function mzPintar(d){
   $("mzFecha").value = d.fecha || todayISO();
   $("mzEstado").value = d.estado || "Borrador";
   $("mzDescuento").value = d.descuento || 0;
-  $("mzImpuesto").value = String(d.isv === undefined ? 15 : d.isv);
+  $("mzImpuesto").value = String(d.isv === undefined ? (CFG.sinIsv ? 0 : 15) : d.isv);
   $("mzObservaciones").value = d.notas || "";
   $("mzItems").innerHTML = "";
   const items = (d.items && d.items.length) ? d.items : [{},{}];
@@ -6539,7 +6568,8 @@ function construirDocMuebles(d){
 
   let pie = '<tr><td colspan="3" class="r">SUBTOTAL</td><td class="r">' + fmt(t.subtotal) + '</td></tr>';
   if(t.descuento > 0) pie += '<tr><td colspan="3" class="r">DESCUENTO (' + t.pct.toFixed(2) + '%)</td><td class="r">- ' + fmt(t.descuento) + '</td></tr>';
-  pie += '<tr><td colspan="3" class="r">' + (t.isvPct === 0 ? "IMPUESTO (EXENTO)" : "IMPUESTO (" + t.isvPct.toFixed(2) + "%)") + '</td><td class="r">' + fmt(t.isv) + '</td></tr>';
+  if(!(CFG.sinIsv && t.isv === 0))
+    pie += '<tr><td colspan="3" class="r">' + (t.isvPct === 0 ? "IMPUESTO (EXENTO)" : "IMPUESTO (" + t.isvPct.toFixed(2) + "%)") + '</td><td class="r">' + fmt(t.isv) + '</td></tr>';
   pie += '<tr class="final"><td colspan="3" class="r">TOTAL GENERAL</td><td class="r">' + fmt(t.total) + '</td></tr>';
 
   return '<style>#docRender .doc-head{border-bottom-color:' + C + '}#docRender .doc-emp h1{color:' + C + '}' +
@@ -6591,11 +6621,11 @@ function iniciar(){
 
   let borrador = null;
   try{ borrador = JSON.parse(localStorage.getItem(LS.borrador) || "null"); }catch(e){}
-  pintarFormulario(borrador || { fecha:todayISO(), validez:CFG.validez, isv:CFG.isv, notas:CFG.notas, items:[{}] });
+  pintarFormulario(borrador || { fecha:todayISO(), validez:CFG.validez, isv:(CFG.sinIsv ? 0 : CFG.isv), notas:CFG.notas, items:[{}] });
 
   let borradorMZ = null;
   try{ borradorMZ = JSON.parse(localStorage.getItem(LS.borradorMZ) || "null"); }catch(e){}
-  mzPintar(borradorMZ || { fecha:todayISO(), isv:15, items:[{},{}] });
+  mzPintar(borradorMZ || { fecha:todayISO(), isv:(CFG.sinIsv ? 0 : 15), items:[{},{}] });
 
   renderLista();
   pintarUsuarios();
